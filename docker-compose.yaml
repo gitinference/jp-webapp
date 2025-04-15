@@ -1,61 +1,16 @@
 services:
-  database:
-    image: postgres:17
-    container_name: api_database
-    restart: always
-    secrets:
-      - db-password
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
-      POSTGRES_DB: postgres
-    volumes:
-      - database_volume:/var/lib/postgresql/data
-    networks:
-      - api_network
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
-
-  api:
-    container_name: FastAPI
-    image: ouslan/jp-api:stage
-    restart: always
-    secrets:
-      - db-password
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
-      POSTGRES_DB: postgres
-
-    volumes:
-      - data_folder:/app/data
-    ports:
-      - 8051:8000
-    networks:
-      - api_network
-    depends_on:
-      database:
-        condition: service_healthy
-
   django:
     container_name: django_server
     build:
       context: .
-    secrets:
-      - db-password
     environment:
       DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-      DEV: True
-      DEBUG: True
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: jp_webapp_prod
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST: 0.0.0.0
     command: >
       sh -c "python manage.py migrate &&
              python manage.py shell -c 'from django.contrib.auth.models import User; User.objects.filter(username=\"${DJANGO_SUPERUSER_USERNAME}\").exists() or User.objects.create_superuser(\"${DJANGO_SUPERUSER_USERNAME}\", \"${DJANGO_SUPERUSER_EMAIL}\", \"${DJANGO_SUPERUSER_PASSWORD}\")' &&
@@ -65,17 +20,12 @@ services:
     ports: 
       - 8057:8000
     networks:
-      - api_network
-    depends_on:
-      database:
-        condition: service_healthy
+      - postgres_network
 networks:
-  api_network:
+  postgres_network:
+    external: true
 
 volumes:
   database_volume:
   data_folder:
 
-secrets:
-  db-password:
-    file: password.txt
