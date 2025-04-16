@@ -12,6 +12,8 @@ django==5.1.8
     # via jp-webapp (pyproject.toml)
 greenlet==3.1.1
     # via sqlalchemy
+gunicorn==23.0.0
+    # via jp-webapp (pyproject.toml)
 idna==3.10
     # via requests
 iniconfig==2.0.0
@@ -23,6 +25,7 @@ numpy==2.2.2
     #   scipy
 packaging==24.2
     # via
+    #   gunicorn
     #   plotly
     #   pytest
 pandas==2.2.3
