@@ -21,6 +21,7 @@ def get_db_credentials() -> list:
         DATABASE_URL = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
         API_URL = str(os.getenv("API_URL")).strip()
     else:
+        HOST = "postgres"
         DATABASE_URL = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
         API_URL = "FastAPI"
     return [
@@ -34,8 +35,3 @@ def get_db_credentials() -> list:
         PORT,
         DEBUG,
     ]
-
-
-def read_secret_file(secret_path):
-    with open(secret_path, "r") as file:
-        return file.read().strip()
