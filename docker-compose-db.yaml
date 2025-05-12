@@ -3,14 +3,12 @@ services:
     image: postgres:17
     container_name: api_database
     restart: always
-    secrets:
-      - db-password
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - database_volume:/var/lib/postgresql/data
     networks:
@@ -27,7 +25,3 @@ networks:
 volumes:
   database_volume:
   data_folder:
-
-secrets:
-  db-password:
-    file: password.txt
