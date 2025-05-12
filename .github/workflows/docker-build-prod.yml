@@ -1,9 +1,8 @@
-name: Staging Docker Image
-
+name: Production Docker Image
 on:
   push:
     branches:
-      - main
+      - PRODUCTION
 
 jobs:
   build:
