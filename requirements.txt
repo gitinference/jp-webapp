@@ -8,21 +8,24 @@ certifi==2024.12.14
     # via requests
 charset-normalizer==3.4.1
     # via requests
-django==5.1.5
+django==5.2.1
     # via jp-webapp (pyproject.toml)
 greenlet==3.1.1
     # via sqlalchemy
+gunicorn==23.0.0
+    # via jp-webapp (pyproject.toml)
 idna==3.10
     # via requests
 iniconfig==2.0.0
     # via pytest
-numpy==2.2.1
+numpy==2.2.2
     # via
     #   jp-webapp (pyproject.toml)
     #   pandas
     #   scipy
 packaging==24.2
     # via
+    #   gunicorn
     #   plotly
     #   pytest
 pandas==2.2.3
@@ -74,7 +77,7 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   sqlalchemy
-tzdata==2024.2
+tzdata==2025.1
     # via pandas
 urllib3==2.3.0
     # via requests
