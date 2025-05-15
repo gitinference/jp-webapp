@@ -6,11 +6,10 @@ maintainers = [
   { name = "Fernando J. Sierra Aponte", email = "fernando.sierra3@upr.edu" },
   { name = "Bryan D. Vega Gonzalez", email = "bryan.vega7@upr.edu" },
   { name = "Edzel Enrique Ortiz Padilla", email = "edzel.ortiz@upr.edu" },
-  { name = "Luis Jomyr Serrato Diaz", email = "luisjomyr.serrato@upr.edu" },
 ]
 license = { text = "GPL-3.0-or-later" }
 name = "jp-webapp"
-version = "1.5.0"
+version = "1.4.1"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
