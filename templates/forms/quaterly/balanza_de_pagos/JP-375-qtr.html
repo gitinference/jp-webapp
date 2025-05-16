@@ -1,346 +1,339 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}JP-375 Encuesta sobre el valor pendiente de pago de hipotecas sobre viviendas{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-375-qtr.css' %}" />
+{% endblock %}
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
+{% block header %}
 
-    <title>JP-375 Encuesta sobre el valor pendiente de pago de hipotecas sobre viviendas</title>
+<table>
+  <tr>
+    <td id="header_left">
+      JP-375<br>
+      Abril 97<br>
+      Centro Gubernamental Roberto Sánchez Vilella<br>
+      Apartado 41119, San Juan, Puerto Rico 00940<br>
+    </td>
+    <td id="header_center">
+      <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image" /><br>
+      <p>ENCUESTA SOBRE EL VALOR PENDIENTE DE PAGO DE HIPOTECAS SOBRE VIVIENDAS<br>
+        (EN MILES DE DÓLARES)</p><br>
+      Quaterly
+    </td>
+    <td id="header_right">
+      Junta de Planificación de Puerto Rico<br>
+      Programa de Planificación Económica y Social<br>
+      Subprograma de Análisis Económico<br>
+    </td>
+  </tr>
+</table>
+{% endblock %}
+{% block form_content %}
 
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
+<main>
+  <form method="POST" action="{% url 'web_app:JP-375-qtr' %}">
+    {% csrf_token %}
 
-    <link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-375-qtr.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
-
-  <body>
-    <!-- Header -->
-    <section class="header">
+    <section class="divider-container">
       <table>
         <tr>
-          <td id="header_left">
-            JP-375<br>
-            Abril 97<br>
-            Centro Gubernamental Roberto Sánchez Vilella<br>
-            Apartado 41119, San Juan, Puerto Rico 00940<br>
-          </td>
-          <td id="header_center">
-            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image"/><br>
-            <p>ENCUESTA SOBRE EL VALOR PENDIENTE DE PAGO DE HIPOTECAS SOBRE VIVIENDAS<br> 
-                (EN MILES DE DÓLARES)</p><br>
-                Quaterly
-          </td>
-          <td id="header_right">
-            Junta de Planificación de Puerto Rico<br>
-            Programa de Planificación Económica y Social<br>
-            Subprograma de Análisis Económico<br>
-          </td>
+          <th rowspan="2">
+            <h3>Partida</h3>
+          </th>
+          <th rowspan="2">
+            <select name="dropdown_fiscal_year_1">
+              <option value="">Select Trimester</option>
+              <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
+              <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
+              <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
+              <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
+            </select>
+            Año: <input id="year" type="number" name="year_1" required min="1000" max="9999" placeholder="Año" required>
+          </th>
+          <th rowspan="2">
+            <select name="dropdown_fiscal_year_2">
+              <option value="">Select Trimester</option>
+              <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
+              <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
+              <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
+              <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
+            </select>
+            Año: <input id="year" type="number" name="year_2" required min="1000" max="9999" placeholder="Año" required>
+          </th>
+          <th rowspan="2">
+            <select name="dropdown_fiscal_year_3">
+              <option value="">Select Trimester</option>
+              <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
+              <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
+              <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
+              <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
+            </select>
+            Año: <input id="year" type="number" name="year_3" required min="1000" max="9999" placeholder="Año" required>
+          </th>
+        </tr>
+
+        <!-- Line 1 -->
+        <tr>
+        <tr>
+          <td>A. Hipoteca Poseídas por la Institución 1/</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        </tr>
+
+        <!-- Line 2 -->
+        <tr>
+          <td>&emsp;1. F.H.A.</td>
+          <td><input type="number" name="FHA_1" placeholder="$" required></td>
+          <td><input type="number" name="FHA_2" placeholder="$" required></td>
+          <td><input type="number" name="FHA_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 3 -->
+        <tr>
+          <td>&emsp;2. Adm. de Veteranos</td>
+          <td><input type="number" name="veteran_1" placeholder="$" required></td>
+          <td><input type="number" name="veteran_2" placeholder="$" required></td>
+          <td><input type="number" name="veteran_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 4 -->
+        <tr>
+          <td>&emsp;3. Banco de la Vivienda</td>
+          <td><input type="number" name="bank_1" placeholder="$" required></td>
+          <td><input type="number" name="bank_2" placeholder="$" required></td>
+          <td><input type="number" name="bank_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 5 -->
+        <tr>
+          <td>&emsp;4. Convencionales</td>
+          <td><input type="number" name="conventional_1" placeholder="$" required></td>
+          <td><input type="number" name="conventional_2" placeholder="$" required></td>
+          <td><input type="number" name="conventional_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 6 -->
+        <tr>
+          <td>&emsp;5. Otras</td>
+          <td><input type="number" name="other_1" placeholder="$"></td>
+          <td><input type="number" name="other_2" placeholder="$"></td>
+          <td><input type="number" name="other_3" placeholder="$"></td>
+        </tr>
+
+        <!-- Line 7 -->
+        <tr>
+          <td>B. Hipotecas Servidas, Total</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!-- Line 8 -->
+        <tr>
+          <td>&emsp;1. A Residentes de Puerto Rico</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!-- Line 9 -->
+        <tr>
+          <td>&emsp;&emsp;a) Corporaciones 936</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!-- Line 10 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;1) F.H.A.</td>
+          <td><input type="number" name="FHA_2_1" placeholder="$" required></td>
+          <td><input type="number" name="FHA_2_2" placeholder="$" required></td>
+          <td><input type="number" name="FHA_2_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 11 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;2) Adm. de Veteranos</td>
+          <td><input type="number" name="veteran_2_1" placeholder="$" required></td>
+          <td><input type="number" name="veteran_2_2" placeholder="$" required></td>
+          <td><input type="number" name="veteran_2_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 12 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;3) Convencionales</td>
+          <td><input type="number" name="conventional_2_1" placeholder="$" required></td>
+          <td><input type="number" name="conventional_2_2" placeholder="$" required></td>
+          <td><input type="number" name="conventional_2_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 13 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;4) Otras</td>
+          <td><input type="number" name="others_2_1" placeholder="$"></td>
+          <td><input type="number" name="others_2_2" placeholder="$"></td>
+          <td><input type="number" name="others_2_3" placeholder="$"></td>
+        </tr>
+
+        <!-- Line 14 -->
+        <tr>
+          <td>&emsp;&emsp;b) Otros</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!-- Line 15 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;1) F.H.A.</td>
+          <td><input type="number" name="FHA_3_1" placeholder="$" required></td>
+          <td><input type="number" name="FHA_3_2" placeholder="$" required></td>
+          <td><input type="number" name="FHA_3_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 16 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;2) Adm. de Veteranos</td>
+          <td><input type="number" name="veteran_3_1" placeholder="$" required></td>
+          <td><input type="number" name="veteran_3_2" placeholder="$" required></td>
+          <td><input type="number" name="veteran_3_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 17 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;3) Banco de la Vivienda</td>
+          <td><input type="number" name="bank_2_1" placeholder="$" required></td>
+          <td><input type="number" name="bank_2_2" placeholder="$" required></td>
+          <td><input type="number" name="bank_2_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 18 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;4) Convencionales</td>
+          <td><input type="number" name="conventional_3_1" placeholder="$" required></td>
+          <td><input type="number" name="conventional_3_2" placeholder="$" required></td>
+          <td><input type="number" name="conventional_3_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 19 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;5) Otras</td>
+          <td><input type="number" name="others_3_1" placeholder="$"></td>
+          <td><input type="number" name="others_3_2" placeholder="$"></td>
+          <td><input type="number" name="others_3_3" placeholder="$"></td>
+        </tr>
+
+        <!-- Line 20 -->
+        <tr>
+          <td>&emsp;2. A No-Residentes 2/</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!-- Line 21 -->
+        <tr>
+          <td>&emsp;&emsp;a) Valor de las Hipotecas</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!-- Line 22 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;1) F.H.A.</td>
+          <td><input type="number" name="FHA_4_1" placeholder="$" required></td>
+          <td><input type="number" name="FHA_4_2" placeholder="$" required></td>
+          <td><input type="number" name="FHA_4_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 23 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;2) Adm. de Veteranos</td>
+          <td><input type="number" name="veteran_4_1" placeholder="$" required></td>
+          <td><input type="number" name="veteran_4_2" placeholder="$" required></td>
+          <td><input type="number" name="veteran_4_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 24 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;3) Convencionales</td>
+          <td><input type="number" name="conventional_4_1" placeholder="$" required></td>
+          <td><input type="number" name="conventional_4_2" placeholder="$" required></td>
+          <td><input type="number" name="conventional_4_3" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 25 -->
+        <tr>
+          <td>&emsp;&emsp;&emsp;4) Otras</td>
+          <td><input type="number" name="others_4_1" placeholder="$"></td>
+          <td><input type="number" name="others_4_2" placeholder="$"></td>
+          <td><input type="number" name="others_4_3" placeholder="$"></td>
+        </tr>
+
+        <!-- Line 26 -->
+        <tr>
+          <td>&emsp;&emsp;b) Comisiones Recibidas de <br>&emsp;&emsp;&emsp;No-Residentes 3/</td>
+          <td><input type="number" name="commissions_1" placeholder="$" required></td>
+          <td><input type="number" name="commissions_2" placeholder="$" required></td>
+          <td><input type="number" name="commissions_3" placeholder="$" required></td>
         </tr>
       </table>
     </section>
-    
-    <main>
-      <form method="POST" action="{% url 'web_app:JP-375-qtr' %}">
-        {% csrf_token %}
+    <br>
 
-        <section class="divider-container">
-            <table>
-                <tr>
-                    <th rowspan="2"><h3>Partida</h3></th>
-                    <th rowspan="2">
-                        <select name="dropdown_fiscal_year_1">
-                            <option value="">Select Trimester</option>
-                            <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
-                            <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
-                            <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
-                            <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
-                        </select>
-                        Año: <input id="year" type="number" name="year_1" required min="1000" max="9999" placeholder="Año" required>
-                    </th>
-                    <th rowspan="2">
-                        <select name="dropdown_fiscal_year_2">
-                            <option value="">Select Trimester</option>
-                            <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
-                            <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
-                            <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
-                            <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
-                        </select>
-                        Año: <input id="year" type="number" name="year_2" required min="1000" max="9999" placeholder="Año" required>
-                    </th>
-                    <th rowspan="2">
-                        <select name="dropdown_fiscal_year_3">
-                            <option value="">Select Trimester</option>
-                            <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
-                            <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
-                            <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
-                            <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
-                        </select>
-                        Año: <input id="year" type="number" name="year_3" required min="1000" max="9999" placeholder="Año" required>
-                    </th>
-                </tr>
-                
-                <!-- Line 1 -->
-                <tr>
-                    <tr>
-                    <td>A. Hipoteca Poseídas por la Institución 1/</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr></tr>
+    <div id="custom-line"></div>
+    <div>
+      1/ Son aquellas hipotecas que la firma contabiliza como activos en su estado de situación.<br><br>
 
-                <!-- Line 2 -->
-                <tr>
-                    <td>&emsp;1. F.H.A.</td>
-                    <td><input type="number" name="FHA_1" placeholder="$" required></td>
-                    <td><input type="number" name="FHA_2" placeholder="$" required></td>
-                    <td><input type="number" name="FHA_3" placeholder="$" required></td>
-                </tr>
+      2/ Se consideran no-residentes aquellos individuos y firmas (incluyendo bancos y otras instituciones financieras)
+      que
+      no operan oficinas en Puerto Rico y por consiguiente, el pago por concepto de interés sobre estas hipotecas se les
+      envía
+      al exterior.<br><br>
 
-                <!-- Line 3 -->
-                <tr>
-                    <td>&emsp;2. Adm. de Veteranos</td>
-                    <td><input type="number" name="veteran_1" placeholder="$" required></td>
-                    <td><input type="number" name="veteran_2" placeholder="$" required></td>
-                    <td><input type="number" name="veteran_3" placeholder="$" required></td>
-                </tr>
-                
-                <!-- Line 4 -->
-                <tr>
-                    <td>&emsp;3. Banco de la Vivienda</td>
-                    <td><input type="number" name="bank_1" placeholder="$" required></td>
-                    <td><input type="number" name="bank_2" placeholder="$" required></td>
-                    <td><input type="number" name="bank_3" placeholder="$" required></td>
-                </tr>
-                
-                <!-- Line 5 -->
-                <tr>
-                    <td>&emsp;4. Convencionales</td>
-                    <td><input type="number" name="conventional_1" placeholder="$" required></td>
-                    <td><input type="number" name="conventional_2" placeholder="$" required></td>
-                    <td><input type="number" name="conventional_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 6 -->
-                <tr>
-                    <td>&emsp;5. Otras</td>
-                    <td><input type="number" name="other_1" placeholder="$"></td>
-                    <td><input type="number" name="other_2" placeholder="$"></td>
-                    <td><input type="number" name="other_3" placeholder="$"></td>
-                </tr>
-
-                <!-- Line 7 -->
-                <tr>
-                    <td>B. Hipotecas Servidas, Total</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <!-- Line 8 -->
-                <tr>
-                    <td>&emsp;1. A Residentes de Puerto Rico</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <!-- Line 9 -->
-                <tr>
-                    <td>&emsp;&emsp;a) Corporaciones 936</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <!-- Line 10 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;1) F.H.A.</td>
-                    <td><input type="number" name="FHA_2_1" placeholder="$" required></td>
-                    <td><input type="number" name="FHA_2_2" placeholder="$" required></td>
-                    <td><input type="number" name="FHA_2_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 11 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;2) Adm. de Veteranos</td>
-                    <td><input type="number" name="veteran_2_1" placeholder="$" required></td>
-                    <td><input type="number" name="veteran_2_2" placeholder="$" required></td>
-                    <td><input type="number" name="veteran_2_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 12 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;3) Convencionales</td>
-                    <td><input type="number" name="conventional_2_1" placeholder="$" required></td>
-                    <td><input type="number" name="conventional_2_2" placeholder="$" required></td>
-                    <td><input type="number" name="conventional_2_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 13 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;4) Otras</td>
-                    <td><input type="number" name="others_2_1" placeholder="$"></td>
-                    <td><input type="number" name="others_2_2" placeholder="$"></td>
-                    <td><input type="number" name="others_2_3" placeholder="$"></td>
-                </tr>
-
-                <!-- Line 14 -->
-                <tr>
-                    <td>&emsp;&emsp;b) Otros</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <!-- Line 15 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;1) F.H.A.</td>
-                    <td><input type="number" name="FHA_3_1" placeholder="$" required></td>
-                    <td><input type="number" name="FHA_3_2" placeholder="$" required></td>
-                    <td><input type="number" name="FHA_3_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 16 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;2) Adm. de Veteranos</td>
-                    <td><input type="number" name="veteran_3_1" placeholder="$" required></td>
-                    <td><input type="number" name="veteran_3_2" placeholder="$" required></td>
-                    <td><input type="number" name="veteran_3_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 17 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;3) Banco de la Vivienda</td>
-                    <td><input type="number" name="bank_2_1" placeholder="$" required></td>
-                    <td><input type="number" name="bank_2_2" placeholder="$" required></td>
-                    <td><input type="number" name="bank_2_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 18 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;4) Convencionales</td>
-                    <td><input type="number" name="conventional_3_1" placeholder="$" required></td>
-                    <td><input type="number" name="conventional_3_2" placeholder="$" required></td>
-                    <td><input type="number" name="conventional_3_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 19 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;5) Otras</td>
-                    <td><input type="number" name="others_3_1" placeholder="$"></td>
-                    <td><input type="number" name="others_3_2" placeholder="$"></td>
-                    <td><input type="number" name="others_3_3" placeholder="$"></td>
-                </tr>
-
-                <!-- Line 20 -->
-                <tr>
-                    <td>&emsp;2. A No-Residentes 2/</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <!-- Line 21 -->
-                <tr>
-                    <td>&emsp;&emsp;a) Valor de las Hipotecas</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <!-- Line 22 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;1) F.H.A.</td>
-                    <td><input type="number" name="FHA_4_1" placeholder="$" required></td>
-                    <td><input type="number" name="FHA_4_2" placeholder="$" required></td>
-                    <td><input type="number" name="FHA_4_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 23 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;2) Adm. de Veteranos</td>
-                    <td><input type="number" name="veteran_4_1" placeholder="$" required></td>
-                    <td><input type="number" name="veteran_4_2" placeholder="$" required></td>
-                    <td><input type="number" name="veteran_4_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 24 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;3) Convencionales</td>
-                    <td><input type="number" name="conventional_4_1" placeholder="$" required></td>
-                    <td><input type="number" name="conventional_4_2" placeholder="$" required></td>
-                    <td><input type="number" name="conventional_4_3" placeholder="$" required></td>
-                </tr>
-
-                <!-- Line 25 -->
-                <tr>
-                    <td>&emsp;&emsp;&emsp;4) Otras</td>
-                    <td><input type="number" name="others_4_1" placeholder="$"></td>
-                    <td><input type="number" name="others_4_2" placeholder="$"></td>
-                    <td><input type="number" name="others_4_3" placeholder="$"></td>
-                </tr>
-
-                <!-- Line 26 -->
-                <tr>
-                    <td>&emsp;&emsp;b) Comisiones Recibidas de <br>&emsp;&emsp;&emsp;No-Residentes 3/</td>
-                    <td><input type="number" name="commissions_1" placeholder="$" required></td>
-                    <td><input type="number" name="commissions_2" placeholder="$" required></td>
-                    <td><input type="number" name="commissions_3" placeholder="$" required></td>
-                </tr>
-            </table>
-        </section>
-        <br>
-
-        <div id="custom-line"></div>
-        <div>
-            1/ Son aquellas hipotecas que la firma contabiliza como activos en su estado de situación.<br><br>
-
-            2/ Se consideran no-residentes aquellos individuos y firmas (incluyendo bancos y otras instituciones financieras) que 
-            no operan oficinas en Puerto Rico y por consiguiente, el pago por concepto de interés sobre estas hipotecas se les envía 
-            al exterior.<br><br>
-
-            3/ Favor informar las comisiones recibidas durante el año fiscal.<br>
-        <div>
+      3/ Favor informar las comisiones recibidas durante el año fiscal.<br>
+      <div>
 
         <section>
-            <div class="big-box-bottom">
-              <div class="left-signature">
-                <input id="signature" name="signature" placeholder="Nombre" required></input> <!-- Signature Input -->
-                <hr> <!-- Signature Line -->
-                <p>
-                  Nombre de persona que suministra la información<br>
-                  Name of person furnishing information<br>
-                </p>
-              </div>
-
-              <div class="center-signature">
-                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" maxlength="12" minlength="12"required></input> <!-- Signature Input -->
-                <hr> <!-- Signature Line -->
-                <p>
-                  Número de Teléfono<br>
-                  Phone Number<br>
-                </p>
-              </div>
-  
-              <div class="right-signature">
-                <input id="position" name="position" placeholder="Posición" required></input> <!-- Signature Input -->
-                <hr> <!-- Signature Line -->
-                <p>
-                  Rango o posición que ocupa en la empresa<br>
-                  Rank or position<br>
-                </p>
-              </div>
+          <div class="big-box-bottom">
+            <div class="left-signature">
+              <input id="signature" name="signature" placeholder="Nombre" required></input> <!-- Signature Input -->
+              <hr> <!-- Signature Line -->
+              <p>
+                Nombre de persona que suministra la información<br>
+                Name of person furnishing information<br>
+              </p>
             </div>
-          </section>
 
-        <section class = 'submit-button-container'>
+            <div class="center-signature">
+              <input type="tel" id="phone" name="phone" placeholder="123-456-7890" maxlength="12" minlength="12"
+                required></input> <!-- Signature Input -->
+              <hr> <!-- Signature Line -->
+              <p>
+                Número de Teléfono<br>
+                Phone Number<br>
+              </p>
+            </div>
+
+            <div class="right-signature">
+              <input id="position" name="position" placeholder="Posición" required></input> <!-- Signature Input -->
+              <hr> <!-- Signature Line -->
+              <p>
+                Rango o posición que ocupa en la empresa<br>
+                Rank or position<br>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class='submit-button-container'>
           <input type="submit" value="SUBMIT" class="submit-button"></input>
         </section>
-      <form>
-    </main>
-  </body>
-</html>
+        <form>
+</main>
+{% endblock %}
