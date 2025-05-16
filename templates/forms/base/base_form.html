@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}<!-- Aquí va el título del formulario-->{% endblock %}</title>
+  
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+    {% block cssheader %}
+    <!-- Aquí va la el archivo css especifico -->    
+    {% endblock %}
+  </head>
+
+  <body>
+    <!-- Header -->
+    <section class="header">
+        {% block header %}
+        <!-- Aquí va la cabecera de la sección -->
+        {% endblock %}
+    </section>
+
+    {% block form_content %}
+        <!-- Aquí va el formulario específico -->
+    {% endblock %}
+    <!-- --------------------------------- Second Table --------------------------------- -->
+ 
+  </body>
+</html>

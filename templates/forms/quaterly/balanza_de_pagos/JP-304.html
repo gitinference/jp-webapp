@@ -1,769 +1,803 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}JP-304 Encuesta sobre el Valor de la Inversión en Obras de Construcción{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-304.css' %}" />
+{% endblock %}
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JP-304 Encuesta sobre el Valor de la Inversión en Obras de Construcción</title>
-  
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
-  
-    <link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-304.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
+{% block header %}
+    <table>
+      <tr>
+        <td id="header_left">
+          JP-304 Rev.<br>
+          Junta de Planificación<br>
+          Subprograma de Análisis Económico<br>
+        </td>
+        <td id="header_center">
+          <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image" /><br>
+          RELACIÓN DE APORTACIONES FEDERALES APROBADAS, RECIBIDAS Y GASTADAS<br>
+          Orden Ejecutiva 12372
+        </td>
+        <td id="header_right">
+          Centro Gubernamental Roberto Sánchez Vilella<br>
+          Apartado 41119<br>
+          San Juan, Puerto Rico 00940-1119
+        </td>
+      </tr>
+    </table>
+{% endblock %}
+{% block form_content %}
+  <!-- Main -->
+  <main>
+    <form method="POST" action="{% url 'web_app:JP-304' %}">
+      {% csrf_token %}
+      <section class="trimester">
+        Trimestre de
+        <select id="meses" name="start_month" placeholder="month" required>
+          <option value="enero">enero</option>
+          <option value="febrero">febrero</option>
+          <option value="marzo">marzo</option>
+          <option value="abril">abril</option>
+          <option value="mayo">mayo</option>
+          <option value="junio">junio</option>
+          <option value="julio">julio</option>
+          <option value="julio">julio</option>
+          <option value="agosto">agosto</option>
+          <option value="septiembre">septiembre</option>
+          <option value="octubre">octubre</option>
+          <option value="noviembre">noviembre</option>
+          <option value="diciembre">diciembre</option>
+        </select>
+        a
+        <select id="meses" name="end_month" placeholder="month" required>
+          <option value="enero">enero</option>
+          <option value="febrero">febrero</option>
+          <option value="marzo">marzo</option>
+          <option value="abril">abril</option>
+          <option value="mayo">mayo</option>
+          <option value="junio">junio</option>
+          <option value="julio">julio</option>
+          <option value="julio">julio</option>
+          <option value="agosto">agosto</option>
+          <option value="septiembre">septiembre</option>
+          <option value="octubre">octubre</option>
+          <option value="noviembre">noviembre</option>
+          <option value="diciembre">diciembre</option>
+        </select>
+        de
+        <input type="number" id="year" name="year" min="1000" max="9999" placeholder="year" required>
+      </section>
 
-  <body>
-    <!-- Header -->
-    <section class="header">
       <table>
         <tr>
-          <td id="header_left">
-            JP-304 Rev.<br>
-              Junta de Planificación<br>
-              Subprograma de Análisis Económico<br>
-          </td>
-          <td id="header_center">
-            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image"/><br>
-            RELACIÓN DE APORTACIONES FEDERALES APROBADAS, RECIBIDAS Y GASTADAS<br>
-            Orden Ejecutiva 12372
-          </td>
-          <td id="header_right">
-            Centro Gubernamental Roberto Sánchez Vilella<br>
-            Apartado 41119<br>
-            San Juan, Puerto Rico 00940-1119
-          </td>
-        </tr>
-      </table>
-    </section>
-
-    <!-- Main -->
-    <main>
-      <form method="POST" action="{% url 'web_app:JP-304' %}">
-        {% csrf_token %}
-        <section class="trimester">
-          Trimestre de 
-            <select id="meses" name="start_month" placeholder="month" required>
-              <option value="enero">enero</option>
-              <option value="febrero">febrero</option>
-              <option value="marzo">marzo</option>
-              <option value="abril">abril</option>
-              <option value="mayo">mayo</option>
-              <option value="junio">junio</option>
-              <option value="julio">julio</option>
-              <option value="julio">julio</option>
-              <option value="agosto">agosto</option>
-              <option value="septiembre">septiembre</option>
-              <option value="octubre">octubre</option>
-              <option value="noviembre">noviembre</option>
-              <option value="diciembre">diciembre</option>
-            </select> 
-              a 
-            <select id="meses" name="end_month" placeholder="month" required>
-              <option value="enero">enero</option>
-              <option value="febrero">febrero</option>
-              <option value="marzo">marzo</option>
-              <option value="abril">abril</option>
-              <option value="mayo">mayo</option>
-              <option value="junio">junio</option>
-              <option value="julio">julio</option>
-              <option value="julio">julio</option>
-              <option value="agosto">agosto</option>
-              <option value="septiembre">septiembre</option>
-              <option value="octubre">octubre</option>
-              <option value="noviembre">noviembre</option>
-              <option value="diciembre">diciembre</option>
-              </select>
-              de 
-              <input type="number" id="year" name="year" min="1000" max="9999" placeholder="year" required>
-        </section>
-
-        <table>
-          <tr>
-          <th id="left_box" colspan="2">Nombre de la Agencia, Corporación o Municipio: <input class="header_input" type="text" id="nombre" name="name" placeholder="Company Name" required></th>
-          <th id="right_box">Dirección: <input class="header_input" type="text" id="direccion" name="direction" placeholder="Address" required></th>
+          <th id="left_box" colspan="2">Nombre de la Agencia, Corporación o Municipio: <input class="header_input"
+              type="text" id="nombre" name="name" placeholder="Company Name" required></th>
+          <th id="right_box">Dirección: <input class="header_input" type="text" id="direccion" name="direction"
+              placeholder="Address" required></th>
         </tr>
         <tr>
-          <th id="left_box">Persona de Contacto: <input class="header_input" type="text" id="contacto" name="liaison_officer" placeholder="Liaison Officer" required></th>
-          <th id="no_border">Título: <input class="header_input" type="text" id="title" name="title" placeholder="Title" required></th>
-          <th id="right_box">Teléfono: <input class="header_input" type="tel" id="telefono" name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="12" maxlength="12" name="tel" placeholder="123-456-7890" required></th>
-          </tr>
-        </table>
+          <th id="left_box">Persona de Contacto: <input class="header_input" type="text" id="contacto"
+              name="liaison_officer" placeholder="Liaison Officer" required></th>
+          <th id="no_border">Título: <input class="header_input" type="text" id="title" name="title" placeholder="Title"
+              required></th>
+          <th id="right_box">Teléfono: <input class="header_input" type="tel" id="telefono" name="tel"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="12" maxlength="12" name="tel" placeholder="123-456-7890"
+              required></th>
+        </tr>
+      </table>
 
-        <section>
-          <p>
-            I. APORTACIONES FEDERALES DIRECTAS (de la agencia federal a la dependencia estatal): En miles de dólares ($000)
-          </p>
-        </section>
-
-        <table>
-          <tr>
-            <th id="table_header">1</th>
-            <th id="table_header">2</th>
-            <th id="table_header">3</th>
-            <th id="table_header">4</th>
-            <th id="table_header">5</th>
-            <th id="table_header">6</th>
-            <th id="table_header">7</th>
-            <th id="table_header">8</th>
-            <th id="table_header">9</th>
-            <th id="table_header">10</th>
-          </tr>
-          <tr>
-            <td id="table_header">
-              <p>
-                Nombre de la<br>
-                Agencia Federal
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Número de<br>
-                Catálogo y Título del<br>
-                Programa Federal
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                "SAI<br>
-                Number" (1)
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Título del Programa<br>
-                Local (2)
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Aportación<br>
-                Federal<br>
-                Aprobada (3)<br>
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Fecha de<br>
-                Aprobación<br>
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Aportación<br>
-                Federal<br>
-                Recibida
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Fecha de<br>
-                Recibo<br>
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Aportación<br>
-                Federal<br>
-                Gastada
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Fecha del<br>
-                Gasto<br>
-              </p>
-          </tr>
-          <tr>
-            <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_1" placeholder="Company Name" required></input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_federal_1" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="sai_federal_1" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="titulo_federal_1" placeholder="Title" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_1" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_1" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_1" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_1" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_1" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_1" placeholder="MM/DD/YYYY" required></input></td>
-          </tr>
-
-          <tr>
-            <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_2" placeholder="Company Name" required></input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_federal_2" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="sai_federal_2" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="titulo_federal_2" placeholder="Title" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_2" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_2" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_2" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_2" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_2" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_2" placeholder="MM/DD/YYYY" required></input></td>
-          </tr>
-
-          <tr>
-            <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_3" placeholder="Company Name" required></input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_federal_3" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="sai_federal_3" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="titulo_federal_3" placeholder="Title" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_3" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_3" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_3" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_3" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_3" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_3" placeholder="MM/DD/YYYY" required></input></td>
-          </tr>
-
-          <tr>
-            <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_4" placeholder="Company Name" required></input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_federal_4" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="sai_federal_4" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="titulo_federal_4" placeholder="Title" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_4" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_4" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_4" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_4" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_4" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_4" placeholder="MM/DD/YYYY" required></input></td>
-          </tr>
-
-          <tr>
-            <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_5" placeholder="Company Name" required></input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_federal_5" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="sai_federal_5" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="titulo_federal_5" placeholder="Title" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_5" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_5" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_5" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_5" placeholder="MM/DD/YYYY" required></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_5" placeholder="" required></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_5" placeholder="MM/DD/YYYY" required></input></td>
-          </tr>
-        </table>
-
-        <p> 
-          1- Número de Identificación de la propuesta para fondos federales, procesados a través de la Oficina de Propuestas Federales, Junta de Planificación.<br>
-          2- Indique cuando éste es diferente al programa federal o es un proyecto dentro del programa. Además, describa si el uso es construcción. Por ejemplo, pavimentación Carr. #136...<br>
-          etc.; o Edificio Vicks, cost $000, etc.<br>
-          3- Cuando los fondos son aprobados una vez al año, indique la cantidad total aprobada para el año con su fecha correspondiente.<br>
-          4- Favor ver instrucciones en hoja aparte.
+      <section>
+        <p>
+          I. APORTACIONES FEDERALES DIRECTAS (de la agencia federal a la dependencia estatal): En miles de dólares
+          ($000)
         </p>
+      </section>
 
-        <p id="page-number">PAGINA 1</p>
-    </main>
+      <table>
+        <tr>
+          <th id="table_header">1</th>
+          <th id="table_header">2</th>
+          <th id="table_header">3</th>
+          <th id="table_header">4</th>
+          <th id="table_header">5</th>
+          <th id="table_header">6</th>
+          <th id="table_header">7</th>
+          <th id="table_header">8</th>
+          <th id="table_header">9</th>
+          <th id="table_header">10</th>
+        </tr>
+        <tr>
+          <td id="table_header">
+            <p>
+              Nombre de la<br>
+              Agencia Federal
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              Número de<br>
+              Catálogo y Título del<br>
+              Programa Federal
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              "SAI<br>
+              Number" (1)
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              Título del Programa<br>
+              Local (2)
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              Aportación<br>
+              Federal<br>
+              Aprobada (3)<br>
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              Fecha de<br>
+              Aprobación<br>
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              Aportación<br>
+              Federal<br>
+              Recibida
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              Fecha de<br>
+              Recibo<br>
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              Aportación<br>
+              Federal<br>
+              Gastada
+            </p>
+          </td>
+          <td id="table_header">
+            <p>
+              Fecha del<br>
+              Gasto<br>
+            </p>
+        </tr>
+        <tr>
+          <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_1" placeholder="Company Name"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="catalogo_federal_1" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="sai_federal_1" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="titulo_federal_1" placeholder="Title" required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_1" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_1" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_1" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_1" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_1" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_1" placeholder="MM/DD/YYYY"
+              required></input></td>
+        </tr>
 
-    <!-- --------------------------------- Second Table --------------------------------- -->
-    <main id="second-table">
-        <section>
+        <tr>
+          <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_2" placeholder="Company Name"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="catalogo_federal_2" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="sai_federal_2" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="titulo_federal_2" placeholder="Title" required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_2" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_2" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_2" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_2" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_2" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_2" placeholder="MM/DD/YYYY"
+              required></input></td>
+        </tr>
+
+        <tr>
+          <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_3" placeholder="Company Name"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="catalogo_federal_3" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="sai_federal_3" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="titulo_federal_3" placeholder="Title" required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_3" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_3" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_3" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_3" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_3" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_3" placeholder="MM/DD/YYYY"
+              required></input></td>
+        </tr>
+
+        <tr>
+          <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_4" placeholder="Company Name"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="catalogo_federal_4" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="sai_federal_4" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="titulo_federal_4" placeholder="Title" required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_4" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_4" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_4" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_4" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_4" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_4" placeholder="MM/DD/YYYY"
+              required></input></td>
+        </tr>
+
+        <tr>
+          <td> <input type="text" id="input_box_1" name="nombre_agencia_federal_5" placeholder="Company Name"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="catalogo_federal_5" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="sai_federal_5" placeholder="" required></input></td>
+          <td> <input type="text" id="input_box_1" name="titulo_federal_5" placeholder="Title" required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_aprobada_federal_5" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_aprobacion_federal_5" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_recibida_federal_5" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_recibo_federal_5" placeholder="MM/DD/YYYY"
+              required></input></td>
+          <td> <input type="text" id="input_box_1" name="aportacion_gastada_federal_5" placeholder="" required></input>
+          </td>
+          <td> <input type="text" id="input_box_1" name="fecha_gasto_federal_5" placeholder="MM/DD/YYYY"
+              required></input></td>
+        </tr>
+      </table>
+
+      <p>
+        1- Número de Identificación de la propuesta para fondos federales, procesados a través de la Oficina de
+        Propuestas Federales, Junta de Planificación.<br>
+        2- Indique cuando éste es diferente al programa federal o es un proyecto dentro del programa. Además, describa
+        si el uso es construcción. Por ejemplo, pavimentación Carr. #136...<br>
+        etc.; o Edificio Vicks, cost $000, etc.<br>
+        3- Cuando los fondos son aprobados una vez al año, indique la cantidad total aprobada para el año con su fecha
+        correspondiente.<br>
+        4- Favor ver instrucciones en hoja aparte.
+      </p>
+
+      <p id="page-number">PAGINA 1</p>
+  </main>
+
+  <!-- --------------------------------- Second Table --------------------------------- -->
+  <main id="second-table">
+    <section>
+      <p>
+        II. APORTACIONES FEDERALES A TRAVÉS DE AGENCIAS LOCALES (aquellas aportaciones que contabiliza el departamento
+        de Hacienda y/o que procedan de otras agencias estatales): En miles de dólares ($000)
+      </p>
+    </section>
+
+    <table>
+      <tr>
+        <th id="table_header">1</th>
+        <th id="table_header">2</th>
+        <th id="table_header">3</th>
+        <th id="table_header">4</th>
+        <th id="table_header">5</th>
+        <th id="table_header">6</th>
+        <th id="table_header">7</th>
+        <th id="table_header">8</th>
+        <th id="table_header">9</th>
+        <th id="table_header">10</th>
+      </tr>
+      <tr>
+        <td id="table_header">
           <p>
-            II. APORTACIONES FEDERALES A TRAVÉS DE AGENCIAS LOCALES (aquellas aportaciones que contabiliza el departamento de Hacienda y/o que procedan de otras agencias estatales): En miles de dólares ($000)
+            Agencia Local que<br>
+            Hace la Distribución
           </p>
-        </section>
-
-        <table>
-          <tr>
-            <th id="table_header">1</th>
-            <th id="table_header">2</th>
-            <th id="table_header">3</th>
-            <th id="table_header">4</th>
-            <th id="table_header">5</th>
-            <th id="table_header">6</th>
-            <th id="table_header">7</th>
-            <th id="table_header">8</th>
-            <th id="table_header">9</th>
-            <th id="table_header">10</th>
-          </tr>
-          <tr>
-            <td id="table_header">
-              <p>
-                Agencia Local que<br>
-                Hace la Distribución
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Número de<br>
-                Catálogo y Título del<br>
-                Programa Federal
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Programa<br>
-                Local*
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Aportación<br>
-                Federal<br>
-                Aprobada
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Fecha de<br>
-                Aprobación<br>
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Aportación<br>
-                Federal<br>
-                Recibida
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Fecha de<br>
-                Recibo<br>
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Aportación<br>
-                Federal<br>
-                Gastada
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Fecha de<br>
-                Gasto<br>
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Número de Cuenta del<br>
-                Departamanto de Hacienda
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td> <input type="text" id="input_box_1" name="agencia_local_table_box_1" placeholder=""> </input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_local_1" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="programa_local_1" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_1" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_1" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_1" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_local_1" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_1" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_local_1" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="numero_cuenta_local_1" placeholder=""></input></td>
-          </tr>
-
-          <tr>
-            <td> <input type="text" id="input_box_1" name="agencia_local_table_box_2" placeholder=""> </input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_local_2" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="programa_local_2" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_2" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_2" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_2" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_local_2" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_2" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_local_2" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="numero_cuenta_local_2" placeholder=""></input></td>
-          </tr>
-
-          <tr>
-            <td> <input type="text" id="input_box_1" name="agencia_local_table_box_3" placeholder=""> </input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_local_3" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="programa_local_3" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_3" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_3" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_3" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_local_3" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_3" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_local_3" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="numero_cuenta_local_3" placeholder=""></input></td>
-          </tr>
-
-          <tr>
-            <td> <input type="text" id="input_box_1" name="agencia_local_table_box_4" placeholder=""> </input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_local_4" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="programa_local_4" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_4" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_4" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_4" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_local_4" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_4" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_local_4" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="numero_cuenta_local_4" placeholder=""></input></td>
-          </tr>
-
-          <tr>
-            <td> <input type="text" id="input_box_1" name="agencia_local_table_box_5" placeholder=""> </input></td>
-            <td> <input type="text" id="input_box_1" name="catalogo_local_5" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="programa_local_5" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_5" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_5" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_5" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_recibo_local_5" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_5" placeholder=""></input></td>
-            <td> <input type="text" id="input_box_1" name="fecha_gasto_local_5" placeholder="MM/DD/YYYY"></input></td>
-            <td> <input type="text" id="input_box_1" name="numero_cuenta_local_5" placeholder=""></input></td>
-          </tr>
-        </table>
-
-          <p> 
-            1- Número de Identificación de la propuesta para fondos federales, procesados a través de la Oficina de Propuestas Federales, Junta de Planificación.<br>
-            2- Indique cuando éste es diferente al programa federal o es un proyecto dentro del programa. Además, describa si el uso es construcción. Por ejemplo, pavimentación Carr. #136...<br>
-            etc.; o Edificio Vicks, cost $000, etc.<br>
-            3- Cuando los fondos son aprobados una vez al año, indique la cantidad total aprobada para el año con su fecha correspondiente.<br>
-            4- Favor ver instrucciones en hoja aparte.
+        </td>
+        <td id="table_header">
+          <p>
+            Número de<br>
+            Catálogo y Título del<br>
+            Programa Federal
           </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Programa<br>
+            Local*
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Aportación<br>
+            Federal<br>
+            Aprobada
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Fecha de<br>
+            Aprobación<br>
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Aportación<br>
+            Federal<br>
+            Recibida
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Fecha de<br>
+            Recibo<br>
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Aportación<br>
+            Federal<br>
+            Gastada
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Fecha de<br>
+            Gasto<br>
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Número de Cuenta del<br>
+            Departamanto de Hacienda
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td> <input type="text" id="input_box_1" name="agencia_local_table_box_1" placeholder=""> </input></td>
+        <td> <input type="text" id="input_box_1" name="catalogo_local_1" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="programa_local_1" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_1" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_1" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_1" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_recibo_local_1" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_1" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_gasto_local_1" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="numero_cuenta_local_1" placeholder=""></input></td>
+      </tr>
 
-        <section class = 'submit-button-container'>
-          <input type="submit" value="SUBMIT" class="submit-button"></input>
-        </section>
-      </form>
+      <tr>
+        <td> <input type="text" id="input_box_1" name="agencia_local_table_box_2" placeholder=""> </input></td>
+        <td> <input type="text" id="input_box_1" name="catalogo_local_2" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="programa_local_2" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_2" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_2" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_2" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_recibo_local_2" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_2" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_gasto_local_2" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="numero_cuenta_local_2" placeholder=""></input></td>
+      </tr>
 
-      <p id="page-number">PAGINA 2</p>
-    </main>
+      <tr>
+        <td> <input type="text" id="input_box_1" name="agencia_local_table_box_3" placeholder=""> </input></td>
+        <td> <input type="text" id="input_box_1" name="catalogo_local_3" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="programa_local_3" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_3" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_3" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_3" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_recibo_local_3" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_3" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_gasto_local_3" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="numero_cuenta_local_3" placeholder=""></input></td>
+      </tr>
 
-    <main id="instruction-page">
-        <p class="instruction-header" id="center_text">
-            INSTRUCCIONES PARA LLENAR EL FORMULARIO JP-304<br>
-            (Relación de Aportaciones Federales Aprobadas, Recibidas y Gastadas)
-        </p>
+      <tr>
+        <td> <input type="text" id="input_box_1" name="agencia_local_table_box_4" placeholder=""> </input></td>
+        <td> <input type="text" id="input_box_1" name="catalogo_local_4" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="programa_local_4" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_4" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_4" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_4" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_recibo_local_4" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_4" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_gasto_local_4" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="numero_cuenta_local_4" placeholder=""></input></td>
+      </tr>
 
-        <table>
-            <tr>
-                <th id="center_text">PAGINA 1 :</th>
-                <th id="left_text_title" >Aportaciones federales directas</th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 1 :
-                </th>
-                <th colspan="2" id="left_text_title">Nombre de la agencia federal</th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">
-                    Indique el nombre de la agencia federal de la cual se recibe directamente la aportación.
-                    Este es el caso en que no media el gobierno estatal o alguna de sus dependencias
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 2 :
-                </th>
-                <th colspan="2" id="left_text_title">Número de catálogo y título del programa federal</th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">Indique el número de la agencia federal de la cual se recibe directamente la aportación.<br>
-                        "Calaloge of Federal Domestic Assistance". En caso de que el programa no tenga número<br>
-                        de catálogo, informe el número y título de la Ley Federal que creó el programa. Por ejemplo</th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="center_text">
-                    Número:<br><br>
-                    14,156<br>
-                    10,551<br>
-                    Ley 393
-                </th>
-                <th id="center_text">
-                    Título:<br><br>
-                    Sección 8, Subsidio de Renta<br>
-                    Asistencia Nutricional (PAN)<br>
-                    (L.P. 95-166) Sección 19, Ley de Nutrición del Niño
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 3 :
-                </th>
-                <th colspan="2" id="left_text_title">"SAI Number"</th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">
-                    Escriba el número de identificación de la propuesta para fondos federales, procesada a
-                    través de la Oficina de Propuestas Federales, Junta de Planificación.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 4 :
-                </th>
-                <th colspan="2" id="left_text_title">
-                    Título del programa local
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">
-                    Indique el nombre del proyecto local bajo el cual se recibe la aportación federal.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 5 :
-                </th>
-                <th colspan="2" id="left_text_title">
-                    Aportación federal aprobada (Por año fiscal)
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text" ></th>
-                <th colspan="2" id="left_text">
-                    Informe la cantidad de fondos aprobados para su agencia, corporación y/o municipio para
-                    cada programa federal durante el periodo de tiempo que cubre este informe. Si su
-                    agencia, corporación y/o municipio recibe una aportación total para todo un año, informe la
-                    cantidad total y la fecha de aprobación y no informe nada más en los periodos
-                    subsiguientes. En el caso de aprobación de fondos adicionales, infórmelo en una llamada
-                    o nota al calce.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 6 :
-                </th>
-                <th colspan="2" id="left_text_title">
-                    Fecha de aprobación (MM/DD/YYYY)
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">
-                    Indique la fecha de aprobación de los fondos y el "Federal Grant Identification" asignado a
-                    dicha aprobación.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 7 :
-                </th>
-                <th colspan="2" id="left_text_title">
-                    Aportación federal recibida
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">
-                    Indique las aportaciones federales recibidas durante el periodo de tiempo que cubre este
-                    informe (trimestre). No incluya aportaciones recibidas en periodods anteriores. En el caso
-                    en que recibe fondos de años fiscales anteriores, indique en las columnas 5 y 6, la cantidad
-                    y el año al que corresponde la cantidad recibida.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 8 :
-                </th>
-                <th colspan="2" id="left_text_title">
-                    Fecha de recibo (MM/DD/YYYY)
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">
-                    Indique la fecha exacta en que la agencia, corporación y/o municipio recibió los fondos
-                    federales.
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 9 :
-                </th>
-                <th colspan="2" id="left_text_title">
-                    Aportación federal gastada
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">
-                    Indique la cantidad gastada si ésta es diferente a la cantidad recibida, (Se presume que en 
-                    la mayoría de los casos la cantidad aprobada no es igual a la recibida y que esta última no
-                    necesariamente es igual a la gastada). Si el gasto corresponde a fondos recibidos de la 
-                    aprobaciónde un año fiscal anterior, pero el gasto se efectúa ahora, indique en las
-                    columnas 5 y 6, la cantidad y el año a que corresponden los fondos.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 10 :
-                </th>
-                <th colspan="2" id="left_text_title">
-                    Fecha de gasto (MM/DD/YYYY)
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th colspan="2" id="left_text">
-                    Indique en esta columna la fecha exacta en que se efectuó el gasto.
-                </th>
-            </tr>
-            <tr>
-                <th colspan="3" class="page1-footer">
-                    Copyright Junta de Planificación 2017
-                </th>
-            </tr>
+      <tr>
+        <td> <input type="text" id="input_box_1" name="agencia_local_table_box_5" placeholder=""> </input></td>
+        <td> <input type="text" id="input_box_1" name="catalogo_local_5" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="programa_local_5" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_aprobada_local_5" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_aprobacion_local_5" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_recibida_local_5" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_recibo_local_5" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="aportacion_federal_gastada_local_5" placeholder=""></input></td>
+        <td> <input type="text" id="input_box_1" name="fecha_gasto_local_5" placeholder="MM/DD/YYYY"></input></td>
+        <td> <input type="text" id="input_box_1" name="numero_cuenta_local_5" placeholder=""></input></td>
+      </tr>
+    </table>
 
-            <tr>
-                <th id="center_text">
-                    PAGINA 2 :
-                </th>
-                <th id="left_text_title">
-                    Aportaciones federales a través de agencias locales
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Aquellas aportaciones que contabiliza el Deparatmento de Hacienda y/o proceden de otras
-                    agencias estatales.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 1 :
-                </th>
-                <th id="left_text_title">
-                    Agencia local que hace la distribución
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Se refiere a agencias como: Administración de Servicios Munifipales, Oficina de 
-                    Oportunidades Económicas y otras agencias quienes actúan como intermediarias en la
-                    distribución de algunos fondos federales a otras agencias gubernamentales, corporaciones
-                    públicas y municipios.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 2 :
-                </th>
-                <th id="left_text_title">
-                    Número de catálogo y título del programa federal
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Igual a Columna 2 de la página 1.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 3 :
-                </th>
-                <th id="left_text_title">
-                    Programa local
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Indique el nombre del proyecto local bajo el cual se recibe la aportación federal.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 4 :
-                </th>
-                <th id="left_text_title">
-                    Aportación federal aprobada
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Igual a Columna 5 de la página 1.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 5 :
-                </th>
-                <th id="left_text_title">
-                    Fecha de aprobación (MM/DD/YYYY)
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Igual a Columna 6 de la página 1.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 6 :
-                </th>
-                <th id="left_text_title">
-                    Aportación federal recibida
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Igual a Columna 7 de la página 1.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 7 :
-                </th>
-                <th id="left_text_title">
-                    Fecha de recibo (MM/DD/YYYY)
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Igual a Columna 8 de la página 1.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 8 :
-                </th>
-                <th id="left_text_title">
-                    Aportación federal gastada
-                </th>
-            </tr>
-            <tr>
-                <th id="left_text"></th>
-                <th id="left_text">
-                    Igual a Columna 9 de la página 1.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 9 :
-                </th>
-                <th id="left_text_title">
-                    Fecha de gasto (MM/DD/YYYY)
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Igual a Columna 10 de la página 1.
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text">
-                    Columna 10 :
-                </th>
-                <th id="left_text_title">
-                    Número de cuenta del Departamento de Hacienda
-                </th>
-            </tr>
-            <tr>
-                <th id="center_text"></th>
-                <th id="left_text">
-                    Según aparece en la transacción de fondos.
-                </th>
-            </tr>
-        </table>
-    </main>
-  </body>
-</html>
+    <p>
+      1- Número de Identificación de la propuesta para fondos federales, procesados a través de la Oficina de Propuestas
+      Federales, Junta de Planificación.<br>
+      2- Indique cuando éste es diferente al programa federal o es un proyecto dentro del programa. Además, describa si
+      el uso es construcción. Por ejemplo, pavimentación Carr. #136...<br>
+      etc.; o Edificio Vicks, cost $000, etc.<br>
+      3- Cuando los fondos son aprobados una vez al año, indique la cantidad total aprobada para el año con su fecha
+      correspondiente.<br>
+      4- Favor ver instrucciones en hoja aparte.
+    </p>
+
+    <section class='submit-button-container'>
+      <input type="submit" value="SUBMIT" class="submit-button"></input>
+    </section>
+    </form>
+
+    <p id="page-number">PAGINA 2</p>
+  </main>
+
+  <main id="instruction-page">
+    <p class="instruction-header" id="center_text">
+      INSTRUCCIONES PARA LLENAR EL FORMULARIO JP-304<br>
+      (Relación de Aportaciones Federales Aprobadas, Recibidas y Gastadas)
+    </p>
+
+    <table>
+      <tr>
+        <th id="center_text">PAGINA 1 :</th>
+        <th id="left_text_title">Aportaciones federales directas</th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 1 :
+        </th>
+        <th colspan="2" id="left_text_title">Nombre de la agencia federal</th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Indique el nombre de la agencia federal de la cual se recibe directamente la aportación.
+          Este es el caso en que no media el gobierno estatal o alguna de sus dependencias
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 2 :
+        </th>
+        <th colspan="2" id="left_text_title">Número de catálogo y título del programa federal</th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">Indique el número de la agencia federal de la cual se recibe directamente la
+          aportación.<br>
+          "Calaloge of Federal Domestic Assistance". En caso de que el programa no tenga número<br>
+          de catálogo, informe el número y título de la Ley Federal que creó el programa. Por ejemplo</th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="center_text">
+          Número:<br><br>
+          14,156<br>
+          10,551<br>
+          Ley 393
+        </th>
+        <th id="center_text">
+          Título:<br><br>
+          Sección 8, Subsidio de Renta<br>
+          Asistencia Nutricional (PAN)<br>
+          (L.P. 95-166) Sección 19, Ley de Nutrición del Niño
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 3 :
+        </th>
+        <th colspan="2" id="left_text_title">"SAI Number"</th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Escriba el número de identificación de la propuesta para fondos federales, procesada a
+          través de la Oficina de Propuestas Federales, Junta de Planificación.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 4 :
+        </th>
+        <th colspan="2" id="left_text_title">
+          Título del programa local
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Indique el nombre del proyecto local bajo el cual se recibe la aportación federal.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 5 :
+        </th>
+        <th colspan="2" id="left_text_title">
+          Aportación federal aprobada (Por año fiscal)
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Informe la cantidad de fondos aprobados para su agencia, corporación y/o municipio para
+          cada programa federal durante el periodo de tiempo que cubre este informe. Si su
+          agencia, corporación y/o municipio recibe una aportación total para todo un año, informe la
+          cantidad total y la fecha de aprobación y no informe nada más en los periodos
+          subsiguientes. En el caso de aprobación de fondos adicionales, infórmelo en una llamada
+          o nota al calce.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 6 :
+        </th>
+        <th colspan="2" id="left_text_title">
+          Fecha de aprobación (MM/DD/YYYY)
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Indique la fecha de aprobación de los fondos y el "Federal Grant Identification" asignado a
+          dicha aprobación.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 7 :
+        </th>
+        <th colspan="2" id="left_text_title">
+          Aportación federal recibida
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Indique las aportaciones federales recibidas durante el periodo de tiempo que cubre este
+          informe (trimestre). No incluya aportaciones recibidas en periodods anteriores. En el caso
+          en que recibe fondos de años fiscales anteriores, indique en las columnas 5 y 6, la cantidad
+          y el año al que corresponde la cantidad recibida.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 8 :
+        </th>
+        <th colspan="2" id="left_text_title">
+          Fecha de recibo (MM/DD/YYYY)
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Indique la fecha exacta en que la agencia, corporación y/o municipio recibió los fondos
+          federales.
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 9 :
+        </th>
+        <th colspan="2" id="left_text_title">
+          Aportación federal gastada
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Indique la cantidad gastada si ésta es diferente a la cantidad recibida, (Se presume que en
+          la mayoría de los casos la cantidad aprobada no es igual a la recibida y que esta última no
+          necesariamente es igual a la gastada). Si el gasto corresponde a fondos recibidos de la
+          aprobaciónde un año fiscal anterior, pero el gasto se efectúa ahora, indique en las
+          columnas 5 y 6, la cantidad y el año a que corresponden los fondos.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 10 :
+        </th>
+        <th colspan="2" id="left_text_title">
+          Fecha de gasto (MM/DD/YYYY)
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th colspan="2" id="left_text">
+          Indique en esta columna la fecha exacta en que se efectuó el gasto.
+        </th>
+      </tr>
+      <tr>
+        <th colspan="3" class="page1-footer">
+          Copyright Junta de Planificación 2017
+        </th>
+      </tr>
+
+      <tr>
+        <th id="center_text">
+          PAGINA 2 :
+        </th>
+        <th id="left_text_title">
+          Aportaciones federales a través de agencias locales
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Aquellas aportaciones que contabiliza el Deparatmento de Hacienda y/o proceden de otras
+          agencias estatales.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 1 :
+        </th>
+        <th id="left_text_title">
+          Agencia local que hace la distribución
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Se refiere a agencias como: Administración de Servicios Munifipales, Oficina de
+          Oportunidades Económicas y otras agencias quienes actúan como intermediarias en la
+          distribución de algunos fondos federales a otras agencias gubernamentales, corporaciones
+          públicas y municipios.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 2 :
+        </th>
+        <th id="left_text_title">
+          Número de catálogo y título del programa federal (F1)
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Igual a Columna 2 de la página 1.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 3 :
+        </th>
+        <th id="left_text_title">
+          Programa local
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Indique el nombre del proyecto local bajo el cual se recibe la aportación federal.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 4 :
+        </th>
+        <th id="left_text_title">
+          Aportación federal aprobada
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Igual a Columna 5 de la página 1.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 5 :
+        </th>
+        <th id="left_text_title">
+          Fecha de aprobación (MM/DD/YYYY)
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Igual a Columna 6 de la página 1.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 6 :
+        </th>
+        <th id="left_text_title">
+          Aportación federal recibida
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Igual a Columna 7 de la página 1.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 7 :
+        </th>
+        <th id="left_text_title">
+          Fecha de recibo (MM/DD/YYYY)
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Igual a Columna 8 de la página 1.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 8 :
+        </th>
+        <th id="left_text_title">
+          Aportación federal gastada
+        </th>
+      </tr>
+      <tr>
+        <th id="left_text"></th>
+        <th id="left_text">
+          Igual a Columna 9 de la página 1.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 9 :
+        </th>
+        <th id="left_text_title">
+          Fecha de gasto (MM/DD/YYYY)
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Igual a Columna 10 de la página 1.
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text">
+          Columna 10 :
+        </th>
+        <th id="left_text_title">
+          Número de cuenta del Departamento de Hacienda
+        </th>
+      </tr>
+      <tr>
+        <th id="center_text"></th>
+        <th id="left_text">
+          Según aparece en la transacción de fondos.
+        </th>
+      </tr>
+    </table>
+{% endblock %}
