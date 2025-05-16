@@ -12,7 +12,7 @@ def get_db_credentials() -> list:
     DATABASE = str(os.environ.get("POSTGRES_DB")).strip()
     PASSWORD = str(os.getenv("POSTGRES_PASSWORD")).strip()
     SECRET_KEY = str(os.getenv("SECRET_KEY")).strip()
-    DEBUG = os.getenv("DEBUG")
+    DEBUG = bool(os.getenv("DEBUG"))
 
     if not all([HOST, USER, DATABASE, SECRET_KEY, PORT, PASSWORD]):
         raise ValueError("Database credentials not set")

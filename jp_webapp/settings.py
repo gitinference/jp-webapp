@@ -21,6 +21,7 @@ DATABASE = creds[3]
 DATABASE_URL = creds[4]
 SECRET_KEY = creds[5]
 PORT = creds[7]
+DEBUG_FLAG = creds[8]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-DEBUG = False
+DEBUG = DEBUG_FLAG
 
 ALLOWED_HOSTS = ["localhost", "dev.econlabs.net", "127.0.0.1", "192.168.50.24"]
 
