@@ -1,25 +1,11 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}JP-304 Encuesta sobre el Valor de la Inversión en Obras de Construcción{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-375.css' %}" />
+{% endblock %}
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-
-    <title>JP-375 Encuesta sobre el valor pendiente de pago de hipotecas sobre viviendas</title>
-
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
-
-    <link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-375.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
-
-  <body>
-    <!-- Header -->
-    <section class="header">
+{% block header %}
       <table>
         <tr>
           <td id="header_left">
@@ -41,7 +27,8 @@
           </td>
         </tr>
       </table>
-    </section>
+{% endblock %}
+{% block form_content %}
     
     <main>
       <form method="POST" action="{% url 'web_app:JP-375' %}">
@@ -315,5 +302,4 @@
         </section>
       <form>
     </main>
-  </body>
-</html>
+{% endblock %}
