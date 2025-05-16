@@ -1,6 +1,0 @@
-[submodule "src/jp_idh"]
-	path = src/jp_idh
-	url = https://github.com/ouslan/IDH-index.git
-[submodule "src/jp_form"]
-	path = src/jp_form
-	url = https://github.com/ouslan/jp-forms.git
