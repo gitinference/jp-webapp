@@ -1,0 +1,288 @@
+{% extends "forms/base/base_form.html" %}
+{% load static %}
+{% block title %}JP-361-quaterly Transactions in Puerto Rico of External Insurance Companies{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-361-qrt.css' %}" />
+{% endblock %}
+
+{% block header %}
+        <div class="left-header">
+            <strong>Puerto Rico Planning Board</strong><br>
+            Program of Economic and Social Analysis<br>
+            P.O. Box 41119<br>San Juan, Puerto Rico 00940<br>
+            Subprogram of Economic Analysis
+        </div>
+
+        <div class="right-header">
+            <div><img src="https://assets-global.website-files.com/60ddbc422188bb3fab87d219/60ddbc422188bbbe5a87d251_gobierno-de-puerto-rico.png" alt="Logo"></div>
+        </div>
+{% endblock %}
+{% block form_content %}
+    <main>
+        <form method="POST" action="{% url 'web_app:JP-361-qrt' %}">
+            {% csrf_token %}
+            <h2 class="header-bottom">TRANSACTIONS IN PUERTO RICO OF EXTERNAL INSURANCE COMPANIES</h2>
+            <div>
+                <table>
+                    <tr>
+                        <th colspan="2">Part I  : Income and Expenses</th>
+                        <th id="center_dropdown"><input type="number" name="income_expenses_year_1" min="1000" max="9999" placeholder="Year" required> &emsp;<br>
+                            <select name="dropdown_fiscal_year_1">
+                                <option value="">Select Trimester</option>
+                                <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
+                                <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
+                                <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
+                                <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
+                            </select>
+                        </th>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2"><strong>A. Income</strong></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2">&emsp;1. Premiums earned</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;a) Life</td>
+                        <td><input type="number" id="input" name="income_life" placeholder="$" required></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;b) Disability</td>
+                        <td><input type="number" name="income_disability" placeholder="$" required></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;c) Auto</td>
+                        <td><input type="number" name="income_auto" placeholder="$" required></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;d) Other</td>
+                        <td><input type="number" name="income_other" placeholder="$" required></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2">&emsp;2. Interest</td>
+                        <td><input type="number" name="income_interest" placeholder="$" required></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">&emsp;3. Rent of land and building</td>
+                        <td><input type="number" name="income_rent" placeholder="$" required></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">&emsp;4. Other</td>
+                        <td><input type="number" name="income_other_2" placeholder="$" required></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2"><strong>Total income</strong></td>
+                        <td><input type="number" name="total_income_1" placeholder="$" required></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2"><strong>B. Expenses</strong></td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2">&emsp;1. Benefits paid</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;a) Life</td>
+                        <td><input type="number" name="expenses_life" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;b) Disability</td>
+                        <td><input type="number" name="expenses_disability" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;c) Auto</td>
+                        <td><input type="number" name="expenses_auto" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;d) Other</td>
+                        <td><input type="number" name="expenses_other" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;2. Salaries</td>
+                        <td><input type="number" name="expenses_salaries" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;3. Interest</td>
+                        <td><input type="number" name="expenses_interest" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;4. Rent of land and building</td>
+                        <td><input type="number" name="expenses_rent" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;5. Depreciation</td>
+                        <td><input type="number" name="expenses_depreciation" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;6. Donations</td>
+                        <td><input type="number" name="expenses_donations" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;7. Commissions</td>
+                        <td><input type="number" name="expenses_commissions" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;a) To employees</td>
+                        <td><input type="number" name="expenses_employees" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;&emsp;&emsp;b) To local brokers</td>
+                        <td><input type="number" name="expenses_brokers" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&emsp;8. Other operational expenses</td>
+                        <td><input type="number" name="expenses_other_operational" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Total expenses</strong></td>
+                        <td><input type="number" name="total_expenses" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Net profit or loss</strong></td>
+                        <td><input type="number" name="net_profit" placeholder="$" required></td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="second-table">
+                <table>
+                    <tr>
+                        <th colspan="4">PART II :</th>
+                        <th id="center-item">Outstanding Balance</th>
+                        <th id="center-item">Interest Received</th>
+                    </tr>
+                    <tr>
+                        <th colspan="4" id="center-item">OTHER ITEMS</th>
+                        <th id="center_dropdown"><input type="number" name="income_expenses_year_2" min="1000" max="9999" placeholder="Year" required> &emsp;<br>
+                            <select name="dropdown_fiscal_year_2" id="trimester_select">
+                                <option value="">Select Trimester</option>
+                                <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
+                                <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
+                                <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
+                                <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option></th>
+                            </select>
+                        <th id="center-item">Estimated</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4">A. Residential Mortgages serviced directly by your firm:</td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="4">&emsp;1. F.H.A. guaranteed</td>
+                        <td><input type="number" name="guaranteed_1" placeholder="$" required></td>
+                        <td><input type="number" name="guaranteed_2" placeholder="$" required></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="4">&emsp;2. Veterans Administration</td>
+                        <td><input type="number" name="veterans_1" placeholder="$" required></td>
+                        <td><input type="number" name="veterans_2" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&emsp;3. Conventional</td>
+                        <td><input type="number" name="conventional_1" placeholder="$" required></td>
+                        <td><input type="number" name="conventional_2" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&emsp;4. Other</td>
+                        <td><input type="number" name="other_1" placeholder="$" required></td>
+                        <td><input type="number" name="other_2" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">B. Short-term assets:</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&emsp;1. Policy loans</td>
+                        <td><input type="number" name="policy_loans_1" placeholder="$" required></td>
+                        <td><input type="number" name="policy_loans_2" placeholder="$" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&emsp;2. Other (Specify)</td>
+                        <td><input type="number" name="other_specify_1" placeholder="$" required></td>
+                        <td><input type="number" name="other_specify_2" placeholder="$" required></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="4"><strong>C. Other:<strong></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="4">&emsp;1. Policy reserves of Puerto Rican residents</td>
+                        <td><input type="number" name="policy_reserves_1" placeholder="$" required></td>
+                        <td>XXXXXXXXXXXXXX</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&emsp;2. Accrued dividends on life insurance policies held by Puerto Rican residents</td>
+                        <td><input type="number" name="accrued_dividends_1" placeholder="$" required></td>
+                        <td>XXXXXXXXXXXXXX</td>
+                    </tr>
+                </table>
+            </div>
+
+            <section>
+                <div class="big-box-bottom">
+                    <div class="left-signature">
+                        <input type="text" id="signature" name="signature" placeholder="Name" required></input> <!-- Signature Input -->
+                        <hr> <!-- Signature Line -->
+                        <p>
+                            Name of person filling the questionnaire<br>
+                        </p>
+                    </div>
+
+                    <div class="right-signature">
+                        <input type="text" id="position" name="position" placeholder="Position" required></input> <!-- Signature Input -->
+                        <hr> <!-- Signature Line -->
+                        <p>
+                            Position<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="big-box-bottom" id="signature-bottom">
+                    <div class="left-signature">
+                        <input type="date" id="date" name="date" placeholder="Date" required></input> <!-- Signature Input -->
+                        <hr> <!-- Signature Line -->
+                        <p>
+                            Date<br>
+                        </p>
+                    </div>
+
+                    <div class="right-signature">
+                        <input type="tel" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="12" maxlength="12" name="phone" placeholder="123-456-7890" required><!-- Signature Input -->
+                        <hr> <!-- Signature Line -->
+                        <p>
+                            Phone Number<br>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class = 'submit-button-container'>
+                <input type="submit" value="SUBMIT" class="submit-button"></input>
+            </section>
+
+        </form>
+    </main>
+{% endblock %}
