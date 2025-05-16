@@ -1,25 +1,16 @@
 import polars as pl
 import plotly.express as px
 from django.shortcuts import render
-from dotenv import load_dotenv
 import requests
 import pandas as pd
 import os
 import sys
-
-# Add the root directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-
-# Now import from env
 from env import get_db_credentials
 
-
-load_dotenv()
-
 creds = get_db_credentials()
+
 api = creds[6]
 
-print(api)
 def web_app_imports_exports(request):
 
     df1_imports = requests.get(f"{api}data/trade/jp/?time_frame=yearly&level=country&agg=none&agr=false&group=false&datetime=2009").json()

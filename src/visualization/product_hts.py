@@ -7,10 +7,11 @@ from env import get_db_credentials
 creds = get_db_credentials()
 
 API_URL = creds[6]
+print(API_URL)
 
 
 def fetch_trade_data(agg, hts_code):
-    url = f"{API_URL}/data/trade/jp/?&time&types=hts&agr=false&group=false&data_filter={hts_code}&agg={agg}"
+    url = f"{API_URL}data/trade/jp/?level=hts&time_frame={agg}&agriculture_filter=false&group=false&level_filter={hts_code}"
     print(url)
     try:
         response = requests.get(url)
@@ -25,7 +26,7 @@ def fetch_trade_data(agg, hts_code):
 
 
 def fetch_hts_codes():
-    hts_codes_url = f"{API_URL}/data/trade/jp/hts_codes/"
+    hts_codes_url = f"{API_URL}data/trade/jp/hts_codes/"
 
     try:
         response = requests.get(hts_codes_url)
