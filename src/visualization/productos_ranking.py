@@ -4,7 +4,9 @@ import requests
 from django.shortcuts import render
 from env import get_db_credentials
 
-API_URL = get_db_credentials()[6]
+creds = get_db_credentials()
+
+API_URL = creds[6]
 
 
 def productos_ranking(request):
@@ -13,21 +15,22 @@ def productos_ranking(request):
 
     # Convert session data into DataFrames
     df = pd.DataFrame(response)
+    print(df.columns)
 
     # Find the last month in the DataFrame
     last_month = df["date"].max()
 
     # Filter the data for the last month
     df_last_month_imports = df[
-        (df["date"] == last_month) & (df["moving_import_rank"] != 0)
+        (df["date"] == last_month) & (df["rank_imports_change_year_over_year"] != 0)
     ]
     df_last_month_exports = df[
-        (df["date"] == last_month) & (df["moving_export_rank"] != 0)
+        (df["date"] == last_month) & (df["rank_exports_change_year_over_year"] != 0)
     ]
 
     # Sort the DataFrame by export and import rank, then select the top 5 items
-    df_imports = df_last_month_imports.sort_values(by="moving_import_rank")
-    df_exports = df_last_month_exports.sort_values(by="moving_export_rank")
+    df_imports = df_last_month_imports.sort_values(by="rank_imports_change_year_over_year")
+    df_exports = df_last_month_exports.sort_values(by="rank_exports_change_year_over_year")
 
     top5_imports = df_imports.head(5)
     top5_exports = df_exports.head(5)
