@@ -35,7 +35,3 @@ def get_db_credentials() -> list:
         PORT,
         DEBUG,
     ]
-
-
-if __name__ == "__main__":
-    print(get_db_credentials())
