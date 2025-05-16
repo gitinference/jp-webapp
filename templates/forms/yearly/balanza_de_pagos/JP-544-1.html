@@ -1,146 +1,276 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}JP-544.1 Instrucciones{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-544-1.css' %}" />
+{% endblock %}
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JP-544.1 Instrucciones</title>
-  
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
-  
-    <link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-544-1.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
-
-  <body>
-    <!-- Header -->
-    <section class="header">
-      <table>
-        <tr>
-          <td id="header_left">
+{% block header %}
+<table>
+    <tr>
+        <td id="header_left">
             JP-544.1<br>
-          </td>
-          <td id="header_center">
+        </td>
+        <td id="header_center">
             <strong>INSTRUCCIONES PARA LLENAR EL FORMULARIO JP-544.1</strong><br>
-            <strong>COLEGIOS Y UNIVERSDADES</strong><br>
-          </td>
-          <td id="header_right">
-            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image"/><br>
-          </td>
-        </tr>
-      </table>
-    </section>
+            <strong>COLEGIOS Y UNIVERSIDADES</strong><br>
+        </td>
+        <td id="header_right">
+            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image" /><br>
+        </td>
+    </tr>
+</table>
+{% endblock %}
+{% block form_content %}
 
-    <!-- Main -->
-    
+<!-- Main -->
 
-        <main>
-            <form method="POST" action="{% url 'web_app:JP-544-1' %}">
-                {% csrf_token %}
+
+<main>
+    <form method="POST" action="{% url 'web_app:JP-544-1' %}">
+        {% csrf_token %}
 
         <table>
             <tr>
                 <br>
                 <br>
-                <b><ul>&emsp;APORTACIONES FEDERALES RECIBIDAS</ul></b>
-                <ul><ul>A. Aportaciones federales directas </ul></ul>
-                <ul><ul><ul>Aquellas aportaciones que se reciben directamente de la agencia federal</ul></ul></ul>
+                <b>
+                    <ul>&emsp;APORTACIONES FEDERALES RECIBIDAS</ul>
+                </b>
+                <ul>
+                    <ul>A. Aportaciones federales directas </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>Aquellas aportaciones que se reciben directamente de la agencia federal</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul><ul>1. <u>Nombre de la agencia federal</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique el nombre de la agencia federal de la cual se recibe directamente la aportación.
-                Este es el caso en que <u>no media</u> el gobierno estatal o alguna de sus dependecias.</ul></ul></ul>
+                <ul>
+                    <ul>
+                        <ul>1. <u>Nombre de la agencia federal</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Indique el nombre de la agencia federal de la cual se recibe directamente la
+                            aportación.
+                            Este es el caso en que <u>no media</u> el gobierno estatal o alguna de sus dependecias.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul><ul>2. <u>Programa Federal</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Se refiere a aquellos programas para los cuales la institucón recibe fondos.</ul></ul></ul>
+                <ul>
+                    <ul>
+                        <ul>2. <u>Programa Federal</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Se refiere a aquellos programas para los cuales la institucón recibe fondos.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul><ul>3. <u>Cantidad recibida</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique el valor ($) de las aportaciones federales recibidas durante el periodo de tiempo que cubre este informe, independientemente si estos han sido aportados en periodos interiores.</ul></ul></ul>
+                <ul>
+                    <ul>
+                        <ul>3. <u>Cantidad recibida</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Indique el valor ($) de las aportaciones federales recibidas durante el periodo de
+                            tiempo que cubre este informe, independientemente si estos han sido aportados en periodos
+                            interiores.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul><ul>4. <u>Fecha de recibo</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique la fecha exacta en que la institución recibió los fondos.</ul></ul></ul>
+                <ul>
+                    <ul>
+                        <ul>4. <u>Fecha de recibo</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Indique la fecha exacta en que la institución recibió los fondos.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul>B. Aportaciones a través de agencias locales</ul></ul>
+                <ul>
+                    <ul>B. Aportaciones a través de agencias locales</ul>
+                </ul>
             </tr>
             <tr>
-                <ul><ul><ul>1. <u>Nombre de la agencia local</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Se refiere a aquellas aportaciones que recibe de algunas agencias del gobierno del Estado Libre Asociado.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>2. <u>Programa Local</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique el nombre del proyecto local bajo el cual se recibe la aportación.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>3. <u>Cantidad recibida</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Igual a la Instrucción 1-A-3.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>4. <u>Fecha de recibo</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Igual a la Instrucción 1-A-4.</ul></ul></ul>
+                <ul>
+                    <ul>
+                        <ul>1. <u>Nombre de la agencia local</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Se refiere a aquellas aportaciones que recibe de algunas agencias del gobierno del
+                            Estado Libre Asociado.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul>C. Indique:</ul></ul>
-            </tr>
-            <tr>
-                <ul><ul><ul>1. El número total de estudiantes matriculados en la Institución, el número de estudiantes que reciban Pell Grant y la cantidad recibida, entiéndase el valor ($).</ul></ul></ul>
-                <ul><ul><ul>2. Número de estudiantes no residentes.</ul></ul></ul>
-                <ul><ul><ul>3. Gasto estimado por estudiantes no residentes. (Favor de incluir gastos de matrícula, alojamiento, libros y otros).</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul>D. Préstamos federales a estudiantes “Guaranteed Student Loan”-GSL y otros efectuados fuera de Puerto Rico.</ul></ul>
-            </tr>
-            <tr>
-                <ul><ul><ul>1. <u>Prestamos otorgados duarante el año</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Se refiere al valor ($) que recibe la Institución por concepto de préstamos otorgados a estudiantes en préstamos GSL u otros efectuados en instituciones bancarias en el exterior.</ul></ul></ul>
+                <ul>
+                    <ul>
+                        <ul>2. <u>Programa Local</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Indique el nombre del proyecto local bajo el cual se recibe la aportación.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul>E. Donativos recibidos de Estados Unidos y países extranjeros.</ul></ul>
-                <ul><ul><ul>Se refiere a todo donativo que recibe la Institución durante el año que cubre el informe procedente de otras Instituciones no gubernamentales ubicadas fuera de Puerto Rico. Indique el nombre de la Institución que hizo el donativo, cantidad recibida y fecha en que la recibió.</u></ul></ul></ul>
+                <ul>
+                    <ul>
+                        <ul>3. <u>Cantidad recibida</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Igual a la Instrucción 1-A-3.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul>F. Pagos hechos a personas o firmas en el exterior.<br>&emsp;&emsp;No incluye aquellos pagos por los cuaes rindió planilla de retención en el origen.</ul></ul>
+                <ul>
+                    <ul>
+                        <ul>4. <u>Fecha de recibo</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Igual a la Instrucción 1-A-4.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul><ul>1. <u>Servicios profecionales, consultivos y honorarios</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique la cantidad pagada y la fecha en que se efectuó el pago por conceptos aquí especificados.</ul></ul></ul>
+                <ul>
+                    <ul>C. Indique:</ul>
+                </ul>
+            </tr>
+            <tr>
+                <ul>
+                    <ul>
+                        <ul>1. El número total de estudiantes matriculados en la Institución, el número de estudiantes
+                            que reciban Pell Grant y la cantidad recibida, entiéndase el valor ($).</ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>2. Número de estudiantes no residentes.</ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>3. Gasto estimado por estudiantes no residentes. (Favor de incluir gastos de matrícula,
+                            alojamiento, libros y otros).</ul>
+                    </ul>
+                </ul>
+            </tr>
+            <br>
+            <tr>
+                <ul>
+                    <ul>D. Préstamos federales a estudiantes “Guaranteed Student Loan”-GSL y otros efectuados fuera de
+                        Puerto Rico.</ul>
+                </ul>
+            </tr>
+            <tr>
+                <ul>
+                    <ul>
+                        <ul>1. <u>Prestamos otorgados duarante el año</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Se refiere al valor ($) que recibe la Institución por concepto de préstamos otorgados
+                            a estudiantes en préstamos GSL u otros efectuados en instituciones bancarias en el exterior.
+                        </ul>
+                    </ul>
+                </ul>
+            </tr>
+            <br>
+            <tr>
+                <ul>
+                    <ul>E. Donativos recibidos de Estados Unidos y países extranjeros.</ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>Se refiere a todo donativo que recibe la Institución durante el año que cubre el informe
+                            procedente de otras Instituciones no gubernamentales ubicadas fuera de Puerto Rico. Indique
+                            el nombre de la Institución que hizo el donativo, cantidad recibida y fecha en que la
+                            recibió.</u></ul>
+                    </ul>
+                </ul>
+            </tr>
+            <br>
+            <tr>
+                <ul>
+                    <ul>F. Pagos hechos a personas o firmas en el exterior.<br>&emsp;&emsp;No incluye aquellos pagos por
+                        los cuaes rindió planilla de retención en el origen.</ul>
+                </ul>
+            </tr>
+            <br>
+            <tr>
+                <ul>
+                    <ul>
+                        <ul>1. <u>Servicios profecionales, consultivos y honorarios</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Indique la cantidad pagada y la fecha en que se efectuó el pago por conceptos aquí
+                            especificados.</ul>
+                    </ul>
+                </ul>
                 <br>
-                <ul><ul><ul>2. <u>Otros</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Especifique cualquier otro pago enviado al exterior y el concepto por lo cual se efectuó el pago por los conceptos aquí especificados.</ul></ul></ul>
+                <ul>
+                    <ul>
+                        <ul>2. <u>Otros</u></ul>
+                    </ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>&emsp;Especifique cualquier otro pago enviado al exterior y el concepto por lo cual se
+                            efectuó el pago por los conceptos aquí especificados.</ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <tr>
-                <ul><ul>G. Inversiones en valores del gobierno federal</ul></ul>
-                <ul><ul><ul>Si su Institución tiene inversiones en valores del gobierno federal, indique en los apartados del 1 al 3 la información correspondiente.</u></ul></ul></ul>
+                <ul>
+                    <ul>G. Inversiones en valores del gobierno federal</ul>
+                </ul>
+                <ul>
+                    <ul>
+                        <ul>Si su Institución tiene inversiones en valores del gobierno federal, indique en los
+                            apartados del 1 al 3 la información correspondiente.</u></ul>
+                    </ul>
+                </ul>
             </tr>
             <br>
             <br>
             <br>
             <br>
 
-            </table>
-        </form>
-    </main>
-  </body>
-</html>
+        </table>
+    </form>
+</main>
+{% endblock %}
