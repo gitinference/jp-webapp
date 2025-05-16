@@ -1,458 +1,545 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}JP-529{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-529-qtr.css' %}" />
+{% endblock %}
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JP-529</title>
-  
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
-  
-    <link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-529-qtr.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
+{% block header %}
+<table>
+  <tr>
+    <td id="header_left">
+      JP-529 Rev. (7/2017)<br>
+      Junta de Planificación<br>
+      Subprograma de Análisis Económico<br>
+    </td>
+    <td id="header_center">
+      <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image" /><br>
+      <strong>Relación de Aportaciones y Donativos Federales Recibidos
+        <br>quaterly
+      </strong><br>
+      (INSTITUCIONES PRIVADAS)<br>
+    </td>
+    <td id="header_right">
+      Centro Gubernamental Roberto Sánchez Vilella<br>
+      Apartado 41119<br>
+      San Juan, Puerto Rico 00940-1119
+    </td>
+  </tr>
+</table>
+{% endblock %}
+{% block form_content %}
 
-  <body>
-    <!-- Header -->
-    <section class="header">
-      <table>
-        <tr>
-          <td id="header_left">
-            JP-529 Rev. (7/2017)<br>
-              Junta de Planificación<br>
-              Subprograma de Análisis Económico<br>
-          </td>
-          <td id="header_center">
-            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image"/><br>
-            <strong>Relación de Aportaciones y Donativos Federales Recibidos 
-                <br>quaterly
-            </strong><br>
-            (INSTITUCIONES PRIVADAS)<br>
-          </td>
-          <td id="header_right">
-            Centro Gubernamental Roberto Sánchez Vilella<br>
-            Apartado 41119<br>
-            San Juan, Puerto Rico 00940-1119
-          </td>
-        </tr>
-      </table>
+<!-- Main -->
+<main>
+  <form method="POST" action="{% url 'web_app:JP-529-qtr' %}">
+    {% csrf_token %}
+    <section class="trimester">
+      <select name="dropdown_fiscal_year_2">
+        <option value="">Select Trimester</option>
+        <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
+        <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
+        <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
+        <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
+      </select>
+      <input type="number" id="year" name="year1" min="1000" max="9999" placeholder="Año" required>
     </section>
 
-    <!-- Main -->
-    <main>
-      <form method="POST" action="{% url 'web_app:JP-529-qtr' %}">
-        {% csrf_token %}
-        <section class="trimester">
-            <select name="dropdown_fiscal_year_2">
-                <option value="">Select Trimester</option>
-                <option value="Q1-(Jan-Mar)">Q1-(Jan-Mar)</option>
-                <option value="Q2-(Apr-Jun)">Q2-(Apr-Jun)</option>
-                <option value="Q3-(Jul-Sep)">Q3-(Jul-Sep)</option>
-                <option value="Q4-(Oct-Dec)">Q4-(Oct-Dec)</option>
-            </select>
-            <input type="number" id="year" name="year1" min="1000" max="9999" placeholder="Año" required>
-        </section>
+    <table>
+      <tr>
+        <th id="left_box" colspan="2">Nombre de la Institución: <input type="text" id="nombre" name="company"
+            placeholder="Company Name" required></th>
+        <th id="right_box">Dirección: <input type="text" id="direccion" name="address" placeholder="Address" required>
+        </th>
+      </tr>
+      <tr>
+        <th id="left_box">Persona de Contacto: <input type="text" id="contacto" name="liaison_officer"
+            placeholder="Liaison Officer" required></th>
+        <th id="no_border">Correo Electrónico: <input type="text" id="title" name="email" placeholder="sophie@email.com"
+            required></th>
+        <th id="right_box">Teléfono: <input type="tel" id="telefono" name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            minlength="12" maxlength="12" name="tel" placeholder="123-456-7890" required></th>
+      </tr>
+    </table>
 
-        <table>
-          <tr>
-          <th id="left_box" colspan="2">Nombre de la Institución: <input type="text" id="nombre" name="company" placeholder="Company Name" required></th>
-          <th id="right_box">Dirección: <input type="text" id="direccion" name="address" placeholder="Address" required></th>
-        </tr>
-        <tr>
-          <th id="left_box">Persona de Contacto: <input type="text" id="contacto" name="liaison_officer" placeholder="Liaison Officer" required></th>
-          <th id="no_border">Correo Electrónico: <input type="text" id="title" name="email" placeholder="sophie@email.com" required></th>
-          <th id="right_box">Teléfono: <input type="tel" id="telefono" name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="12" maxlength="12" name="tel" placeholder="123-456-7890" required></th>
-          </tr>
-        </table>
+    <section>
+      <br>
+      Es Institución sin Fines de Lucro?
+      <input type="radio" id="radio-3" name="choice" required value="Si">Sí
+      <input type="radio" id="radio-3" name="choice" required value="No">No
+      <p>
+        <strong>I. APORTACIONES FEDERALES RECIBIDAS</strong><br>
+      <ul>A. Aportaciones federales directas</ul>
+      <ul>
+        <h6>En miles de dólares ($000)</h6>
+      </ul>
+      </p>
+    </section>
 
-        <section>
-          <br>
-            Es Institución sin Fines de Lucro?
-            <input type="radio" id="radio-3" name="choice" required value="Si">Sí
-		    <input type="radio" id="radio-3" name="choice" required value="No">No
+    <table>
+      <tr>
+        <td id="table_header">
           <p>
-            <strong>I. APORTACIONES FEDERALES RECIBIDAS</strong><br>
-            <ul>A. Aportaciones federales directas</ul>
-            <ul><h6>En miles de dólares ($000)</h6></ul>
+            Nombre de la<br>
+            Agencia Federal
           </p>
-        </section>
+        </td>
+        <td id="table_header">
+          <p>
+            Programa Federal
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Cantidad Recibida $
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Fecha de Recibo
+          </p>
+        </td>
+      </tr>
 
-        <table>
-          <tr>
-            <td id="table_header">
-              <p>
-                Nombre de la<br>
-                Agencia Federal
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Programa Federal
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Cantidad Recibida $
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Fecha de Recibo
-              </p>
-            </td>
-          </tr>
-          
-          <tr>
-            <td> <input type="text" name="agencia_a1" placeholder="Federal Company Name" required></input></td>
-            <td> <input type="text" name="federal_program_a1" placeholder="Federal Program" required></input></td>
-            <td> <input type="number" name="quantity_a1" placeholder="Recived Money" required></input></td>
-            <td> <input type="text" name="date_a1" placeholder="MM/DD/YYYY" required></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_a2" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_a2" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_a2" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_a2" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_a3" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_a3" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_a3" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_a3" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_a4" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_a4" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_a4" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_a4" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_a5" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_a5" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_a5" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_a5" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_a6" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_a6" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_a6" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_a6" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_a7" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_a7" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_a7" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_a7" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_a8" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_a8" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_a8" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_a8" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-        </table>
+      <tr>
+        <td> <input type="text" name="agencia_a1" placeholder="Federal Company Name" required></input></td>
+        <td> <input type="text" name="federal_program_a1" placeholder="Federal Program" required></input></td>
+        <td> <input type="number" name="quantity_a1" placeholder="Recived Money" required></input></td>
+        <td> <input type="text" name="date_a1" placeholder="MM/DD/YYYY" required></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_a2" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_a2" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_a2" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_a2" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_a3" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_a3" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_a3" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_a3" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_a4" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_a4" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_a4" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_a4" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_a5" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_a5" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_a5" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_a5" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_a6" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_a6" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_a6" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_a6" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_a7" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_a7" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_a7" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_a7" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_a8" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_a8" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_a8" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_a8" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+    </table>
 
+    <p>
+    <ul>B. Aportaciones a través de agencias locales</ul>
+    </p>
+
+    <table>
+      <tr>
+        <td id="table_header">
+          <p>
+            Nombre de la<br>
+            Agencia Federal
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Programa Federal
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Cantidad Recibida $
+          </p>
+        </td>
+        <td id="table_header">
+          <p>
+            Fecha de Recibo
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td> <input type="text" name="agencia_b1" placeholder="Federal Company Name" required></input></td>
+        <td> <input type="text" name="federal_program_b1" placeholder="Federal Program" required></input></td>
+        <td> <input type="number" name="quantity_b1" placeholder="Recived Money" required></input></td>
+        <td> <input type="text" name="date_b1" placeholder="MM/DD/YYYY" required></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_b2" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_b2" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_b2" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_b2" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_b3" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_b3" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_b3" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_b3" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_b4" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_b4" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_b4" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_b4" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_b5" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_b5" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_b5" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_b5" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_b6" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_b6" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_b6" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_b6" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_b7" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_b7" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_b7" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_b7" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="agencia_b8" placeholder="Federal Company Name"></input></td>
+        <td> <input type="text" name="federal_program_b8" placeholder="Federal Program"></input></td>
+        <td> <input type="number" name="quantity_b8" placeholder="Recived Money"></input></td>
+        <td> <input type="text" name="date_b8" placeholder="MM/DD/YYYY"></input></td>
+      </tr>
+    </table>
+
+    <p id="page-number">1</p>
+</main>
+
+<!-- --------------------------------- Second Table --------------------------------- -->
+<main id="second-table">
+  <section>
+    <br>
+
+    <p>
+      <strong>II. DONATIVOS RECIBIDOS Y ENVIADOS DE ESTADOS UNIDOS Y PAISES EXTRANJEROS</strong><br>
+    <ul>A. Recibidos de Estados Unidos y países extranjeros</ul>
+    </p>
+  </section>
+
+  <section class="divider-container">
+    <table>
+      <tr>
+        <th rowspan="2">Nombre de la Institución o Empresa Privada</th>
+        <th rowspan="2">Cantidad $</th>
+        <th rowspan="2">Fecha de Recibido</th>
+      </tr>
+
+      <!-- Line 1 -->
+      <tr>
+      <tr>
+        <td><input type="text" name="instuition1" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money1" placeholder="$"></td>
+        <td><input type="text" name="date1" placeholder="MM/DD/YYYY"></td>
+      </tr>
+      </tr>
+
+      <!-- Line 2 -->
+      <tr>
+        <td><input type="text" name="instuition2" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money2" placeholder="$"></td>
+        <td><input type="text" name="date2" placeholder="MM/DD/YYYY"></td>
+      </tr>
+
+      <!-- Line 3 -->
+      <tr>
+        <td><input type="text" name="instuition3" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money3" placeholder="$"></td>
+        <td><input type="text" name="date3" placeholder="MM/DD/YYYY"></td>
+      </tr>
+
+      <!-- Line 4 -->
+      <tr>
+        <td><input type="text" name="instuition4" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money4" placeholder="$"></td>
+        <td><input type="text" name="date4" placeholder="MM/DD/YYYY"></td>
+      </tr>
+
+      <!-- Line 5 -->
+      <tr>
+        <td><input type="text" name="instuition5" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money5" placeholder="$"></td>
+        <td><input type="text" name="date5" placeholder="MM/DD/YYYY"></td>
+      </tr>
+    </table>
+
+    <p>
+    <ul>B. Enviados a Estados Unidos y países extranjeros</ul>
+    </p>
+
+    <table>
+      <tr>
+        <th rowspan="2">Nombre de la Institución o Empresa Privada</th>
+        <th rowspan="2">Cantidad $</th>
+        <th rowspan="2">Fecha de Recibido</th>
+      </tr>
+
+      <!-- Line 1 -->
+      <tr>
+      <tr>
+        <td><input type="text" name="instuition6" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money6" placeholder="$"></td>
+        <td><input type="text" name="date6" placeholder="MM/DD/YYYY"></td>
+      </tr>
+      </tr>
+
+      <!-- Line 2 -->
+      <tr>
+        <td><input type="text" name="instuition7" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money7" placeholder="$"></td>
+        <td><input type="text" name="date7" placeholder="MM/DD/YYYY"></td>
+      </tr>
+
+      <!-- Line 3 -->
+      <tr>
+        <td><input type="text" name="instuition8" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money8" placeholder="$"></td>
+        <td><input type="text" name="date8" placeholder="MM/DD/YYYY"></td>
+      </tr>
+
+      <!-- Line 4 -->
+      <tr>
+        <td><input type="text" name="instuition9" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money9" placeholder="$"></td>
+        <td><input type="text" name="date9" placeholder="MM/DD/YYYY"></td>
+      </tr>
+
+      <!-- Line 5 -->
+      <tr>
+        <td><input type="text" name="instuition10" placeholder="Instuition's Name"></td>
+        <td><input type="number" name="money10" placeholder="$"></td>
+        <td><input type="text" name="date10" placeholder="MM/DD/YYYY"></td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="big-box-bottom">
+      <div class="left-signature">
+        <input type="text" id="name" name="name" placeholder="Nombre" required></input> <!-- Signature Input -->
+        <hr> <!-- Signature Line -->
         <p>
-            <ul>B. Aportaciones a través de agencias locales</ul>
+          Nombre de la persona que suple la información:<br>
         </p>
+      </div>
 
-        <table>
-          <tr>
-            <td id="table_header">
-              <p>
-                Nombre de la<br>
-                Agencia Federal
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Programa Federal
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Cantidad Recibida $
-              </p>
-            </td>
-            <td id="table_header">
-              <p>
-                Fecha de Recibo
-              </p>
-            </td>
-          </tr>
-          
-          <tr>
-            <td> <input type="text" name="agencia_b1" placeholder="Federal Company Name" required></input></td>
-            <td> <input type="text" name="federal_program_b1" placeholder="Federal Program" required></input></td>
-            <td> <input type="number" name="quantity_b1" placeholder="Recived Money" required></input></td>
-            <td> <input type="text" name="date_b1" placeholder="MM/DD/YYYY" required></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_b2" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_b2" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_b2" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_b2" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_b3" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_b3" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_b3" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_b3" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_b4" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_b4" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_b4" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_b4" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_b5" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_b5" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_b5" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_b5" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_b6" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_b6" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_b6" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_b6" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_b7" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_b7" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_b7" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_b7" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-          <tr>
-            <td> <input type="text" name="agencia_b8" placeholder="Federal Company Name" ></input></td>
-            <td> <input type="text" name="federal_program_b8" placeholder="Federal Program" ></input></td>
-            <td> <input type="number" name="quantity_b8" placeholder="Recived Money" ></input></td>
-            <td> <input type="text" name="date_b8" placeholder="MM/DD/YYYY" ></input></td>
-          </tr>
-        </table>
-
-        <p id="page-number">1</p>
-    </main>
-
-    <!-- --------------------------------- Second Table --------------------------------- -->
-    <main id="second-table">
-        <section>
-            <br>
-
-          <p>
-            <strong>II. DONATIVOS RECIBIDOS Y ENVIADOS DE ESTADOS UNIDOS Y PAISES EXTRANJEROS</strong><br>
-            <ul>A. Recibidos de Estados Unidos y países extranjeros</ul>
-          </p>
-        </section>
-
-        <section class="divider-container">
-            <table>
-                <tr>
-                    <th rowspan="2">Nombre de la Institución o Empresa Privada</th>
-                    <th rowspan="2">Cantidad $</th>
-                    <th rowspan="2">Fecha de Recibido</th>
-                </tr>
-                
-                <!-- Line 1 -->
-                <tr><tr>
-                    <td><input type="text" name="instuition1" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money1" placeholder="$"></td>
-                    <td><input type="text" name="date1" placeholder="MM/DD/YYYY"></td>
-                </tr></tr>
-
-                <!-- Line 2 -->
-                <tr>
-                    <td><input type="text" name="instuition2" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money2" placeholder="$"></td>
-                    <td><input type="text" name="date2" placeholder="MM/DD/YYYY"></td>
-                </tr>
-
-                <!-- Line 3 -->
-                <tr>
-                    <td><input type="text" name="instuition3" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money3" placeholder="$"></td>
-                    <td><input type="text" name="date3" placeholder="MM/DD/YYYY"></td>
-                </tr>
-
-                <!-- Line 4 -->
-                <tr>
-                    <td><input type="text" name="instuition4" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money4" placeholder="$"></td>
-                    <td><input type="text" name="date4" placeholder="MM/DD/YYYY"></td>
-                </tr>
-
-                <!-- Line 5 -->
-                <tr>
-                    <td><input type="text" name="instuition5" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money5" placeholder="$"></td>
-                    <td><input type="text" name="date5" placeholder="MM/DD/YYYY"></td>
-                </tr>
-            </table>
-
-            <p>
-                <ul>B. Enviados a Estados Unidos y países extranjeros</ul>
-            </p>
-
-            <table>
-                <tr>
-                    <th rowspan="2">Nombre de la Institución o Empresa Privada</th>
-                    <th rowspan="2">Cantidad $</th>
-                    <th rowspan="2">Fecha de Recibido</th>
-                </tr>
-                
-                <!-- Line 1 -->
-                <tr><tr>
-                    <td><input type="text" name="instuition6" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money6" placeholder="$"></td>
-                    <td><input type="text" name="date6" placeholder="MM/DD/YYYY"></td>
-                </tr></tr>
-
-                <!-- Line 2 -->
-                <tr>
-                    <td><input type="text" name="instuition7" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money7" placeholder="$"></td>
-                    <td><input type="text" name="date7" placeholder="MM/DD/YYYY"></td>
-                </tr>
-
-                <!-- Line 3 -->
-                <tr>
-                    <td><input type="text" name="instuition8" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money8" placeholder="$"></td>
-                    <td><input type="text" name="date8" placeholder="MM/DD/YYYY"></td>
-                </tr>
-
-                <!-- Line 4 -->
-                <tr>
-                    <td><input type="text" name="instuition9" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money9" placeholder="$"></td>
-                    <td><input type="text" name="date9" placeholder="MM/DD/YYYY"></td>
-                </tr>
-
-                <!-- Line 5 -->
-                <tr>
-                    <td><input type="text" name="instuition10" placeholder="Instuition's Name"></td>
-                    <td><input type="number" name="money10" placeholder="$"></td>
-                    <td><input type="text" name="date10" placeholder="MM/DD/YYYY"></td>
-                </tr>
-            </table>
-        </section>
-
-        <section>
-            <div class="big-box-bottom">
-                <div class="left-signature">
-                    <input type="text" id="name" name="name" placeholder="Nombre" required></input> <!-- Signature Input -->
-                    <hr> <!-- Signature Line -->
-                    <p>
-                        Nombre de la persona que suple la información:<br>
-                    </p>
-                </div>
-
-                <div class="center-signature">
-                  <input type="text" id="position" name="puesto" placeholder="Título" required><!-- Signature Input -->
-                  <hr> <!-- Signature Line -->
-                  <p>
-                      Título o puesto:<br>
-                  </p>
-              </div>
-
-              <div class="right-signature">
-                <input type="date" id="date" name="date" placeholder="Date" required></input> <!-- Signature Input -->
-                <hr> <!-- Signature Line -->
-                <p>
-                    Date<br>
-                </p>
-            </div>
-            </div>
-        </section>
-        <section class = 'submit-button-container'>
-          <input type="submit" value="SUBMIT" class="submit-button"></input>
-        </section>
-      </form>
-
-      <p id="page-number">2</p>
-    </main>
-
-    <!-- --------------------------------- Instructions PAGE 3--------------------------------- -->
-    <main id="instruction-page">
-        <p class="instruction-header" id="center_text">
-            <br>
-            INSTRUCCIONES PARA LLENAR EL FORMULARIO JP-529<br>
-            INSTRUCCIONES PRIVADAS<br>
+      <div class="center-signature">
+        <input type="text" id="position" name="puesto" placeholder="Título" required><!-- Signature Input -->
+        <hr> <!-- Signature Line -->
+        <p>
+          Título o puesto:<br>
         </p>
+      </div>
 
-        <table>
-            <tr>
-                <b><ul>&emsp;I. APORTACIONES FEDERALES RECIBIDAS</ul></b>
-                <ul><ul>A. Recibidos de Estados Unidos y países extranjeros</ul></ul>
-                <ul><ul><ul>Aquellas aportaciones que se reciben directamente de la agencia federal</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>1. <u>Nombre de la agencia federal</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique el nombre de la agencia federal de la cual se recibe directamente la aportación.
-                Este es el caso en que <u>no media</u> el gobierno estatal o alguna otra dependecia.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>2. <u>Programa Federal</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Se refiere a aquellos programas para los cuales la institucón recibe fondos.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>3. <u>Cantidad recibida</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique el valor ($) de las aportaciones federales recibidas durante el periodo de tiempo que cubre este informe.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>4. <u>Fecha de recibo</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique la fecha exacta en que la institución recibió los fondos.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul>B. Aportaciones a través de agencias locales</ul></ul>
-            </tr>
-            <tr>
-                <ul><ul><ul>1. <u>Nombre de la agencia local</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Se refiere a aquellas aportaciones que recibe de algunas agencias del gobierno del Estado Libre Asociado.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>2. <u>Programa Local</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Indique el nombre del proyecto local bajo el cual se recibe la aportación.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>3. <u>Cantidad recibida</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Igual a la Instrucción 1-A-3.</ul></ul></ul>
-            </tr>
-            <br>
-            <tr>
-                <ul><ul><ul>4. <u>Fecha de recibo</u></ul></ul></ul>
-                <ul><ul><ul>&emsp;Igual a la Instrucción 1-A-4.</ul></ul></ul>
-            </tr>
-            <br>
-            <table>
-                <tr>
-                    <b><ul>&emsp;II. DONATIVOS RECIBIDOS Y ENVIADOS</ul></b>
-                    <ul><ul><u>A. Recibidos de Estados Unidos y países extranjeros</u></ul></ul>
-                    <ul><ul>&emsp;Se refiere a todo donativo que <u>recibe</u> la Institución procedente de otras Instituciones <u>no gubernamentales</u> ubicadas fuere de Puerto Rico durante el año que cubre el informe.</ul></ul></ul>
-                </tr>
-                <br>
-                <tr>
-                    <ul><ul><u>B. Enviadas a Estados unidos y países extranjeros</u></ul></ul>
-                    <ul><ul>&emsp;Se refiere a todo donativo <u>enviados</u> a Instituciones ubicadas fuera de Puerto Rico durante el año que cubre el informe.</ul></ul></ul>
-                </tr>
-                <br>
-                <br>
-                <br>
-            
-        </table>
-        <p id="page-number">3</p>
-    </main>
-  </body>
-</html>
+      <div class="right-signature">
+        <input type="date" id="date" name="date" placeholder="Date" required></input> <!-- Signature Input -->
+        <hr> <!-- Signature Line -->
+        <p>
+          Date<br>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class='submit-button-container'>
+    <input type="submit" value="SUBMIT" class="submit-button"></input>
+  </section>
+  </form>
+
+  <p id="page-number">2</p>
+</main>
+
+<!-- --------------------------------- Instructions PAGE 3--------------------------------- -->
+<main id="instruction-page">
+  <p class="instruction-header" id="center_text">
+    <br>
+    INSTRUCCIONES PARA LLENAR EL FORMULARIO JP-529<br>
+    INSTRUCCIONES PRIVADAS<br>
+  </p>
+
+  <table>
+    <tr>
+      <b>
+        <ul>&emsp;I. APORTACIONES FEDERALES RECIBIDAS</ul>
+      </b>
+      <ul>
+        <ul>A. Recibidos de Estados Unidos y países extranjeros</ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>Aquellas aportaciones que se reciben directamente de la agencia federal</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <tr>
+      <ul>
+        <ul>
+          <ul>1. <u>Nombre de la agencia federal</u></ul>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>&emsp;Indique el nombre de la agencia federal de la cual se recibe directamente la aportación.
+            Este es el caso en que <u>no media</u> el gobierno estatal o alguna otra dependecia.</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <tr>
+      <ul>
+        <ul>
+          <ul>2. <u>Programa Federal</u></ul>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>&emsp;Se refiere a aquellos programas para los cuales la institucón recibe fondos.</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <tr>
+      <ul>
+        <ul>
+          <ul>3. <u>Cantidad recibida</u></ul>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>&emsp;Indique el valor ($) de las aportaciones federales recibidas durante el periodo de tiempo que cubre
+            este informe.</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <tr>
+      <ul>
+        <ul>
+          <ul>4. <u>Fecha de recibo</u></ul>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>&emsp;Indique la fecha exacta en que la institución recibió los fondos.</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <tr>
+      <ul>
+        <ul>B. Aportaciones a través de agencias locales</ul>
+      </ul>
+    </tr>
+    <tr>
+      <ul>
+        <ul>
+          <ul>1. <u>Nombre de la agencia local</u></ul>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>&emsp;Se refiere a aquellas aportaciones que recibe de algunas agencias del gobierno del Estado Libre
+            Asociado.</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <tr>
+      <ul>
+        <ul>
+          <ul>2. <u>Programa Local</u></ul>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>&emsp;Indique el nombre del proyecto local bajo el cual se recibe la aportación.</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <tr>
+      <ul>
+        <ul>
+          <ul>3. <u>Cantidad recibida</u></ul>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>&emsp;Igual a la Instrucción 1-A-3.</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <tr>
+      <ul>
+        <ul>
+          <ul>4. <u>Fecha de recibo</u></ul>
+        </ul>
+      </ul>
+      <ul>
+        <ul>
+          <ul>&emsp;Igual a la Instrucción 1-A-4.</ul>
+        </ul>
+      </ul>
+    </tr>
+    <br>
+    <table>
+      <tr>
+        <b>
+          <ul>&emsp;II. DONATIVOS RECIBIDOS Y ENVIADOS</ul>
+        </b>
+        <ul>
+          <ul><u>A. Recibidos de Estados Unidos y países extranjeros</u></ul>
+        </ul>
+        <ul>
+          <ul>&emsp;Se refiere a todo donativo que <u>recibe</u> la Institución procedente de otras Instituciones <u>no
+              gubernamentales</u> ubicadas fuere de Puerto Rico durante el año que cubre el informe.</ul>
+        </ul>
+        </ul>
+      </tr>
+      <br>
+      <tr>
+        <ul>
+          <ul><u>B. Enviadas a Estados unidos y países extranjeros</u></ul>
+        </ul>
+        <ul>
+          <ul>&emsp;Se refiere a todo donativo <u>enviados</u> a Instituciones ubicadas fuera de Puerto Rico durante el
+            año que cubre el informe.</ul>
+        </ul>
+        </ul>
+      </tr>
+      <br>
+      <br>
+      <br>
+
+    </table>
+    <p id="page-number">3</p>
+</main>
+{% endblock %}
