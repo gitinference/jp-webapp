@@ -177,4 +177,6 @@ data/cuestionarios/*
 notebooks/*
 !notebooks/*.qmd
 # vscode
-.vscode
+*.vscode
+*.ddb
+*.wal

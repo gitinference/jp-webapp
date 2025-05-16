@@ -38,11 +38,9 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_HOST: postgres
     volumes:
-      - ./data_staging:/app/data
+      - ./data:/app/data
     ports:
       - 7001:8000
-    labels:
-        - "com.centurylinklabs.watchtower.enable=true"
     networks:
       - postgres_network
 
