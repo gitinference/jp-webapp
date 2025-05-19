@@ -2,440 +2,470 @@
 {% load static %}
 
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Importaciones y Exportaciones</title>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-        <!-- Favicons -->
-        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-        <link rel="apple-touch-icon" href="{% static 'images/favicon-16x16.png' %}" />
-        <link rel="apple-touch-icon" href="{% static 'images/favicon-32x32.png' %}" />
-        <link rel="apple-touch-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-        <link rel="apple-touch-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
+<head>
+    <meta charset="UTF-8">
+    <title>Importaciones y Exportaciones</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="{% static 'css/imports_and_exports.css' %}">
-        <link rel="stylesheet" href="{% static 'css/website.css' %}">
-    </head>
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/favicon-16x16.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/favicon-32x32.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/imports_and_exports.css' %}">
+    <link rel="stylesheet" href="{% static 'css/website.css' %}">
+
+    <!-- JS -->
+    <script src="{% static 'js/exportcsv.js' %}" defer></script>
+</head>
 
 
-    <body>
-        <div class="container">
-            <div class="burger" onclick="toggleBurgerMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="burger_menu">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/centro-de-datos-macroeconomicos/">Centro de Datos Macroeconómicos</a></li>
-                <li><a href="/ciclos-economicos/">Ciclos Económicos</a></li>
-                <li><a href="/indicadores-mensuales/">Indicadores Mensuales</a></li>
-                <li><a href="/datos-demograficos/">Datos Demográficos</a></li>
-            </ul>
-
-            <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
+<body>
+    <div class="container">
+        <div class="burger" onclick="toggleBurgerMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
+        <ul class="burger_menu">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/centro-de-datos-macroeconomicos/">Centro de Datos Macroeconómicos</a></li>
+            <li><a href="/ciclos-economicos/">Ciclos Económicos</a></li>
+            <li><a href="/indicadores-mensuales/">Indicadores Mensuales</a></li>
+            <li><a href="/datos-demograficos/">Datos Demográficos</a></li>
+        </ul>
 
-        <div class="introduction">
-            <h1>Importaciones y Exportaciones en Puerto Rico:</h1>
-        
-            <h2>Introducción</h2>
+        <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
+    </div>
+
+    <div class="introduction">
+        <h1>Importaciones y Exportaciones en Puerto Rico:</h1>
+
+        <h2>Introducción</h2>
+        <p>
+            En el contexto de Puerto Rico, las importaciones y exportaciones son fundamentales para la economía de la
+            isla.
+            Estos intercambios comerciales permiten a Puerto Rico acceder a productos y servicios que no se producen
+            localmente
+            y al mismo tiempo, proporcionan oportunidades para la exportación de bienes y servicios únicos a mercados
+            internacionales.
+            Comprender estos aspectos es esencial para la planificación fiscal y el desarrollo económico de la isla.
+        </p>
+
+        <h2>Importaciones en Puerto Rico</h2>
+        <p>
+            Puerto Rico importa una amplia gama de productos, desde bienes de consumo hasta materias primas necesarias
+            para diversas industrias.
+            Las importaciones incluyen alimentos, maquinaria, productos farmacéuticos, y otros bienes esenciales que no
+            se producen localmente en la isla.
+            La gestión eficiente de las importaciones es crucial para mantener el equilibrio en la balanza comercial y
+            asegurar la estabilidad económica.
+        </p>
+
+        <h2>Exportaciones de Puerto Rico</h2>
+        <p>
+            Puerto Rico también se destaca en la exportación de productos como productos farmacéuticos, dispositivos
+            médicos, y productos manufacturados.
+            Las exportaciones contribuyen significativamente al ingreso nacional y al desarrollo económico de la isla.
+            Fortalecer las oportunidades de exportación
+            puede impulsar el crecimiento económico y crear empleos en diversas industrias.
+        </p>
+    </div>
+
+
+    <div class="instructions">
+        <h1>Instrucciones para usar la gráfica interactiva:</h1>
+        <div>
             <p>
-                En el contexto de Puerto Rico, las importaciones y exportaciones son fundamentales para la economía de la isla. 
-                Estos intercambios comerciales permiten a Puerto Rico acceder a productos y servicios que no se producen localmente 
-                y al mismo tiempo, proporcionan oportunidades para la exportación de bienes y servicios únicos a mercados internacionales. 
-                Comprender estos aspectos es esencial para la planificación fiscal y el desarrollo económico de la isla.
+                <strong>Descripción de la Gráfica:</strong> Las gráficas muestran un desglose de importaciones y
+                exportaciones por país en forma de un gráfico
+                de pastel. Cada porción representa el porcentaje de importaciones de un país específico.
             </p>
-        
-            <h2>Importaciones en Puerto Rico</h2>
+
             <p>
-                Puerto Rico importa una amplia gama de productos, desde bienes de consumo hasta materias primas necesarias para diversas industrias. 
-                Las importaciones incluyen alimentos, maquinaria, productos farmacéuticos, y otros bienes esenciales que no se producen localmente en la isla. 
-                La gestión eficiente de las importaciones es crucial para mantener el equilibrio en la balanza comercial y asegurar la estabilidad económica.
+                <strong>Selecciona una frecuencia:</strong> En la parte superior de la gráfica, encontrarás un menú
+                desplegable.
+                Haz clic en el menú y selecciona una frecuencia en específico para ver los datos de importaciones en esa
+                frecuancia.
             </p>
-        
-            <h2>Exportaciones de Puerto Rico</h2>
+
             <p>
-                Puerto Rico también se destaca en la exportación de productos como productos farmacéuticos, dispositivos médicos, y productos manufacturados. 
-                Las exportaciones contribuyen significativamente al ingreso nacional y al desarrollo económico de la isla. Fortalecer las oportunidades de exportación 
-                puede impulsar el crecimiento económico y crear empleos en diversas industrias.
+                <strong>Selecciona un Periodo:</strong> Para visualizar los datos de importaciones al cambiar la
+                frecuencia, el segundo menú desplegable
+                te permitirá seleccionar un periodo específico. Por ejemplo, si seleccionas "Monthly" podrás seleccionar
+                un mes específico.
+            </p>
+
+            <p>
+                <strong>Información Detallada:</strong> Si deseas ver la información detallada de las importaciones de
+                un país en específico,
+                puedes pasar el cursor sobre la porción del pastel que representa el país y verás la información
+                detallada.
+            </p>
+
+            <p>
+                <strong>Actualización de la Gráfica:</strong> Para actualizar la gráfica con la frecuencia y periodo
+                seleccionado, haz clic en el botón "Submit".
+                En la parte superior de la gráfica, encontrarás tu frecuencia y periodo seleccionados.
             </p>
         </div>
-        
+    </div>
 
-        <div class="instructions">
-            <h1>Instrucciones para usar la gráfica interactiva:</h1>
-            <div>
-                <p>
-                    <strong>Descripción de la Gráfica:</strong> Las gráficas muestran un desglose de importaciones y exportaciones por país en forma de un gráfico 
-                    de pastel. Cada porción representa el porcentaje de importaciones de un país específico.
-                </p>
-
-                <p>
-                    <strong>Selecciona una frecuencia:</strong> En la parte superior de la gráfica, encontrarás un menú desplegable. 
-                    Haz clic en el menú y selecciona una frecuencia en específico para ver los datos de importaciones en esa frecuancia.
-                </p>
-
-                <p>
-                    <strong>Selecciona un Periodo:</strong> Para visualizar los datos de importaciones al cambiar la frecuencia, el segundo menú desplegable
-                    te permitirá seleccionar un periodo específico. Por ejemplo, si seleccionas "Monthly" podrás seleccionar un mes específico.
-                </p>
-
-                <p>
-                    <strong>Información Detallada:</strong> Si deseas ver la información detallada de las importaciones de un país en específico,
-                    puedes pasar el cursor sobre la porción del pastel que representa el país y verás la información detallada.
-                </p>
-
-                <p>
-                    <strong>Actualización de la Gráfica:</strong> Para actualizar la gráfica con la frecuencia y periodo seleccionado, haz clic en el botón "Submit".
-                    En la parte superior de la gráfica, encontrarás tu frecuencia y periodo seleccionados.
-                </p>
-            </div>
-        </div>
-
-        <form id="import-form" method="post">
-            {% csrf_token %}
-            <div class="graph_container_1">
-                <a id="import-graph-anchor"></a>
-                <h1 id="graph_title">Importaciones</h1>
-                <section id="buttons">
-                    <section id="dropdowns">
-                        <label id="drop_title" for="frequency">Frecuencia:</label>
-                        <select name="frequency" id="frequency" onchange="updateSecondDropdown(); updateDownloadLink();">
-                            <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
-                            <option value="Monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly</option>
-                            <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly</option>
-                        </select>
-                    </section>
-                
-                    <section id="dropdowns">
-                        <label id="drop_title" for="second_dropdown">Periodo:</label>
-                        <select name="second_dropdown" id="second_dropdown">
-                            <option value="default_value" {% if selected_second_dropdown == "default_value" %}selected{% endif %}>Default</option>
-                        </select>
-                    </section>
-                
-                    <section id="dropdowns">
-                        <label id="drop_title" for="third_dropdown">Año:</label>
-                        <select name="third_dropdown" id="third_dropdown">
-                            <option value="default_value" {% if selected_third_dropdown == "default_value" %}selected{% endif %}>Default</option>
-                        </select>
-                    </section>
-                
-                    <button id="submit" type="submit">Submit</button>
-            
-                    <div class="download_container">
-                        <a id="download_button" href="https://api.econlabs.net/files/trade/jp/?types=country&agg=yearly&agr=false&group=false" class="button">Descargar Datos</a>
-                    </div>
-                </section>                                
-            
-                <div id="graph_1">
-                    {{ imports|safe }}
-                </div>
-            </div>
-            
-            <script>
-                function updateDownloadLink() {
-                    const frequency = document.getElementById('frequency').value;
-                    const downloadButton = document.getElementById('download_button');
-                    let timeParam = 'yearly';
-            
-                    if (frequency === 'Monthly') {
-                        timeParam = 'monthly';
-                    } else if (frequency === 'Quarterly') {
-                        timeParam = 'qrt';
-                    }
-            
-                    downloadButton.href = `https://api.econlabs.net/files/trade/jp/?types=country&agg=${timeParam}&agr=false&group=false`;
-                }
-            </script>
-        </form>
-    
-        <form id="export-form" method="post">
-            {% csrf_token %}
-            <div class="graph_container_2">
-                <a id="export-graph-anchor"></a>
-                <h1 id="graph_title_2">Exportaciones</h1>
-                <section id="buttons">
-                    <section id="dropdowns">
-                        <label id="drop_title" for="frequency_2">Frecuencia:</label>
-                        <select name="frequency_2" id="frequency_2" onchange="updateSecondDropdown2(); updateDownloadLink2();">
-                            <option value="Yearly" {% if selected_frequency_2 == "Yearly" %}selected{% endif %}>Yearly</option>
-                            <option value="Monthly" {% if selected_frequency_2 == "Monthly" %}selected{% endif %}>Monthly</option>
-                            <option value="Quarterly" {% if selected_frequency_2 == "Quarterly" %}selected{% endif %}>Quarterly</option>
-                        </select>
-                    </section>
-                    <section id="dropdowns">
-                        <label id="drop_title" for="second_dropdown_2">Periodo:</label>
-                        <select name="second_dropdown_2" id="second_dropdown_2">
-                            <option value="default_value" {% if selected_second_dropdown_2 == "default_value" %}selected{% endif %}>Default</option>
-                            {% if selected_frequency_2 == "Quarterly" %}
-                                <option value="1" {% if selected_second_dropdown_2 == "1" %}selected{% endif %}>Qtr 1</option>
-                                <option value="2" {% if selected_second_dropdown_2 == "2" %}selected{% endif %}>Qtr 2</option>
-                                <option value="3" {% if selected_second_dropdown_2 == "3" %}selected{% endif %}>Qtr 3</option>
-                                <option value="4" {% if selected_second_dropdown_2 == "4" %}selected{% endif %}>Qtr 4</option>
-                            {% endif %}
-                        </select>
-                    </section>
-                    <section id="dropdowns">
-                        <label id="drop_title" for="third_dropdown_2">Año:</label>
-                        <select name="third_dropdown_2" id="third_dropdown_2">
-                            <option value="default_value" {% if selected_third_dropdown_2 == "default_value" %}selected{% endif %}>Default</option>
-                        </select>
-                    </section>
-                    <button id="submit_2" type="submit">Submit</button>
-        
-                    <div class="download_container_2">
-                        <a id="download_button_2" href="https://api.econlabs.net/files/trade/jp/?types=country&agg=yearly&agr=false&group=false" class="button">Descargar Datos</a>
-                    </div>
+    <form id="import-form" method="post">
+        {% csrf_token %}
+        <div class="graph_container_1">
+            <a id="import-graph-anchor"></a>
+            <h1 id="graph_title">Importaciones</h1>
+            <section id="buttons">
+                <section id="dropdowns">
+                    <label id="drop_title" for="frequency">Frecuencia:</label>
+                    <select name="frequency" id="frequency" onchange="updateSecondDropdown(); updateDownloadLink();">
+                        <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
+                        <option value="Monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly
+                        </option>
+                        <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
+                        </option>
+                    </select>
                 </section>
-                
-                <div id="graph_2">
-                    {{ exports|safe }}
+
+                <section id="dropdowns">
+                    <label id="drop_title" for="second_dropdown">Periodo:</label>
+                    <select name="second_dropdown" id="second_dropdown">
+                        <option value="default_value" {% if selected_second_dropdown == "default_value" %}selected{% endif %}>Default</option>
+                    </select>
+                </section>
+
+                <section id="dropdowns">
+                    <label id="drop_title" for="third_dropdown">Año:</label>
+                    <select name="third_dropdown" id="third_dropdown">
+                        <option value="default_value" {% if selected_third_dropdown == "default_value" %}selected{% endif %}>Default</option>
+                    </select>
+                </section>
+
+                <button id="submit" type="submit">Submit</button>
+
+                <div class="download_container">
+                    <button type="button" id="submit_3" onclick="downloadCSV('frequency','country')" title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
                 </div>
+            </section>
+
+            <div id="graph_1">
+                {{ imports|safe }}
             </div>
+        </div>
 
-            <script>
-                function updateDownloadLink2() {
-                    const frequency2 = document.getElementById('frequency_2').value;
-                    const downloadButton2 = document.getElementById('download_button_2');
-                    let timeParam2 = 'yearly';
-            
-                    if (frequency2 === 'Monthly') {
-                        timeParam2 = 'monthly';
-                    } else if (frequency2 === 'Quarterly') {
-                        timeParam2 = 'qrt';
-                    }
-            
-                    downloadButton2.href = `https://api.econlabs.net/files/trade/jp/?types=country&agg=${timeParam2}&agr=false&group=false`;
+        <script>
+            function updateDownloadLink() {
+                const frequency = document.getElementById('frequency').value;
+                const downloadButton = document.getElementById('download_button');
+                let timeParam = 'yearly';
+
+                if (frequency === 'Monthly') {
+                    timeParam = 'monthly';
+                } else if (frequency === 'Quarterly') {
+                    timeParam = 'qrt';
                 }
-            </script>
-        </form>
-        
 
-          <!-- ------------------ FOOTER --------------------- -->
-          <footer>
-              <main>
-                  <section>
-                      <h1>Contáctanos</h1>
-                  </section>
-                  <section>
-                      <div class="footer-container">
-                          <div class="left-container">
-                              <h2>Oficiales de Información <br> (Ley 141-2019)</h2>
-                              <p>
-                                  Sr. Edgardo Vázquez Rivera <br>
-                                  Secretario Oficina de Secretaría <br>
-                                  <a href="mailto:Vazquez_e@jp.pr.gov" class="custom-link">Vazquez_e@jp.pr.gov</a> <br>
-                                  787 723-6200 ext. 16637 <br><br>
-                  
-                                  Plan. Erika Rivera Felicié <br>
-                                  Ayudante Especial <br>
-                                  <a href="mailto:ivera_e1@jp.pr.gov" class="custom-link">ivera_e1@jp.pr.gov</a> <br><br>
-                  
-                                  Lcda Aida Silver Cintrón <br>
-                                  Abogada Oficina Asuntos Legales <br>
-                                  <a href="mailto:Silver_A@jp.pr.gov" class="custom-link">Silver_A@jp.pr.gov</a> <br>
-                                  787 723-6200 ext. 16016
-                              </p>
-                              <h2>Oficina de Datos PRITS</h2>
-                              <p>
-                                  Carlos Castillo Domena <br>
-                                  Director Oficina de Administración Interna <br>
-                                  <a href="mailto:castillo_r@jp.pr.gov" class="custom-link">castillo_r@jp.pr.gov</a> <br>
-                                  787 723-6200 ext. 16019 <br><br>
-                                  <a href="https://jppr.sharepoint.com/sites/BibliotecaDigital" class="custom-link">BDV (Uso interno)</a>
-                              </p>
-                          </div>
-                          <div class="right-container">
-                              <h2><strong>Dirección Postal</strong></h2>
-                              <p>
-                                  PO Box 4119 <br>
-                                  San Juan P.R. 00940-1119 <br>
-                                  Tel: (787) 723-6200 (Cuadro)<br>
-                                  <h2><strong>Dirección Física</strong></h2>
-                                  <p>
-                                      Centro Gubernamental<br>
-                                      Roberto Sánchez Vilella<br>
-                                      Ave. De Diego, Pda 22, <br>
-                                      Santurce<br>
-                                  </p>
-                              </p>
-                              <section class="maps">
-                                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.7501887340845!2d-66.0698374248245!3d18.
+                downloadButton.href = `https://api.econlabs.net/files/trade/jp/?types=country&agg=${timeParam}&agr=false&group=false`;
+            }            
+        </script>
+    </form>
+
+    <form id="export-form" method="post">
+        {% csrf_token %}
+        <div class="graph_container_2">
+            <a id="export-graph-anchor"></a>
+            <h1 id="graph_title_2">Exportaciones</h1>
+            <section id="buttons">
+                <section id="dropdowns">
+                    <label id="drop_title" for="frequency_2">Frecuencia:</label>
+                    <select name="frequency_2" id="frequency_2"
+                        onchange="updateSecondDropdown2(); updateDownloadLink2();">
+                        <option value="Yearly" {% if selected_frequency_2 == "Yearly" %}selected{% endif %}>Yearly
+                        </option>
+                        <option value="Monthly" {% if selected_frequency_2 == "Monthly" %}selected{% endif %}>Monthly
+                        </option>
+                        <option value="Quarterly" {% if selected_frequency_2 == "Quarterly" %}selected{% endif %}>
+                            Quarterly</option>
+                    </select>
+                </section>
+                <section id="dropdowns">
+                    <label id="drop_title" for="second_dropdown_2">Periodo:</label>
+                    <select name="second_dropdown_2" id="second_dropdown_2">
+                        <option value="default_value" {% if selected_second_dropdown_2 == "default_value" %}selected{% endif %}>Default</option>
+                        {% if selected_frequency_2 == "Quarterly" %}
+                        <option value="1" {% if selected_second_dropdown_2 == "1" %}selected{% endif %}>Qtr 1</option>
+                        <option value="2" {% if selected_second_dropdown_2 == "2" %}selected{% endif %}>Qtr 2</option>
+                        <option value="3" {% if selected_second_dropdown_2 == "3" %}selected{% endif %}>Qtr 3</option>
+                        <option value="4" {% if selected_second_dropdown_2 == "4" %}selected{% endif %}>Qtr 4</option>
+                        {% endif %}
+                    </select>
+                </section>
+                <section id="dropdowns">
+                    <label id="drop_title" for="third_dropdown_2">Año:</label>
+                    <select name="third_dropdown_2" id="third_dropdown_2">
+                        <option value="default_value" {% if selected_third_dropdown_2 == "default_value" %}selected{% endif %}>Default</option>
+                    </select>
+                </section>
+                <button id="submit_2" type="submit">Submit</button>
+
+                <div class="download_container_2">
+                        <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','country')" title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
+                </div>
+            </section>
+
+            <div id="graph_2">
+                {{ exports|safe }}
+            </div>
+        </div>
+
+        <script>
+            function updateDownloadLink2() {
+                const frequency2 = document.getElementById('frequency_2').value;
+                const downloadButton2 = document.getElementById('download_button_2');
+                let timeParam2 = 'yearly';
+
+                if (frequency2 === 'Monthly') {
+                    timeParam2 = 'monthly';
+                } else if (frequency2 === 'Quarterly') {
+                    timeParam2 = 'qrt';
+                }
+
+                downloadButton2.href = `https://api.econlabs.net/files/trade/jp/?types=country&agg=${timeParam2}&agr=false&group=false`;
+            }
+        </script>
+    </form>
+
+
+    <!-- ------------------ FOOTER --------------------- -->
+    <footer>
+        <main>
+            <section>
+                <h1>Contáctanos</h1>
+            </section>
+            <section>
+                <div class="footer-container">
+                    <div class="left-container">
+                        <h2>Oficiales de Información <br> (Ley 141-2019)</h2>
+                        <p>
+                            Sr. Edgardo Vázquez Rivera <br>
+                            Secretario Oficina de Secretaría <br>
+                            <a href="mailto:Vazquez_e@jp.pr.gov" class="custom-link">Vazquez_e@jp.pr.gov</a> <br>
+                            787 723-6200 ext. 16637 <br><br>
+
+                            Plan. Erika Rivera Felicié <br>
+                            Ayudante Especial <br>
+                            <a href="mailto:ivera_e1@jp.pr.gov" class="custom-link">ivera_e1@jp.pr.gov</a> <br><br>
+
+                            Lcda Aida Silver Cintrón <br>
+                            Abogada Oficina Asuntos Legales <br>
+                            <a href="mailto:Silver_A@jp.pr.gov" class="custom-link">Silver_A@jp.pr.gov</a> <br>
+                            787 723-6200 ext. 16016
+                        </p>
+                        <h2>Oficina de Datos PRITS</h2>
+                        <p>
+                            Carlos Castillo Domena <br>
+                            Director Oficina de Administración Interna <br>
+                            <a href="mailto:castillo_r@jp.pr.gov" class="custom-link">castillo_r@jp.pr.gov</a> <br>
+                            787 723-6200 ext. 16019 <br><br>
+                            <a href="https://jppr.sharepoint.com/sites/BibliotecaDigital" class="custom-link">BDV (Uso
+                                interno)</a>
+                        </p>
+                    </div>
+                    <div class="right-container">
+                        <h2><strong>Dirección Postal</strong></h2>
+                        <p>
+                            PO Box 4119 <br>
+                            San Juan P.R. 00940-1119 <br>
+                            Tel: (787) 723-6200 (Cuadro)<br>
+                        <h2><strong>Dirección Física</strong></h2>
+                        <p>
+                            Centro Gubernamental<br>
+                            Roberto Sánchez Vilella<br>
+                            Ave. De Diego, Pda 22, <br>
+                            Santurce<br>
+                        </p>
+                        </p>
+                        <section class="maps">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.7501887340845!2d-66.0698374248245!3d18.
                                           449648171336893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c036f497801a7b7%3A0x68ace32a0663b72f!2sGov
                                           ernor%20Roberto%20S%C3%A1nchez%20Vilella%20Government%20Center!5e0!3m2!1sen!2sus!4v1717000266481!5m2!1sen!2sus"
-                                          width="490" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                                  </iframe>
-                              </section>
-                          </div>
-                      </div>
-                  </section>
-              </main>
-          </footer>
-        <script src="{% static 'js/header_menu.js' %}"></script>
-        <script>
-            function updateSecondDropdown() {
-                const frequency = document.getElementById('frequency').value;
-                const secondDropdown = document.getElementById('second_dropdown');
-                const thirdDropdown = document.getElementById('third_dropdown');
-                const thirdDropdownLabel = document.querySelector('label[for="third_dropdown"]'); // Select the label for "Año"
-            
-                // Clear existing options
-                secondDropdown.innerHTML = '';
-                thirdDropdown.innerHTML = '';
-            
-                let options = [];
-                let options2 = [];
-            
-                // Logic for second dropdown options
-                if (frequency === 'Yearly') {
-                    options = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
-            
-                    // Hide third dropdown and label
-                    thirdDropdown.style.visibility = 'hidden';
-                    thirdDropdownLabel.style.visibility = 'hidden';
-                } else if (frequency === 'Monthly' || frequency === 'Quarterly') {
-                    // Show third dropdown and label
-                    thirdDropdown.style.visibility = 'visible';
-                    thirdDropdownLabel.style.visibility = 'visible';
-            
-                    if (frequency === 'Monthly') {
-                        options = [
-                            { value: 1, text: 'January' },
-                            { value: 2, text: 'February' },
-                            { value: 3, text: 'March' },
-                            { value: 4, text: 'April' },
-                            { value: 5, text: 'May' },
-                            { value: 6, text: 'June' },
-                            { value: 7, text: 'July' },
-                            { value: 8, text: 'August' },
-                            { value: 9, text: 'September' },
-                            { value: 10, text: 'October' },
-                            { value: 11, text: 'November' },
-                            { value: 12, text: 'December' }
-                        ];
-                    } else {
-                        options = [
-                            { value: 1, text: 'Qtr 1' },
-                            { value: 2, text: 'Qtr 2' },
-                            { value: 3, text: 'Qtr 3' },
-                            { value: 4, text: 'Qtr 4' }
-                        ];
-                    }
-            
-                    options2 = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
+                                width="490" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </footer>
+    <script src="{% static 'js/header_menu.js' %}"></script>
+    <script>
+        function updateSecondDropdown() {
+            const frequency = document.getElementById('frequency').value;
+            const secondDropdown = document.getElementById('second_dropdown');
+            const thirdDropdown = document.getElementById('third_dropdown');
+            const thirdDropdownLabel = document.querySelector('label[for="third_dropdown"]'); // Select the label for "Año"
+
+            // Clear existing options
+            secondDropdown.innerHTML = '';
+            thirdDropdown.innerHTML = '';
+
+            let options = [];
+            let options2 = [];
+
+            // Logic for second dropdown options
+            if (frequency === 'Yearly') {
+                options = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
+
+                // Hide third dropdown and label
+                thirdDropdown.style.visibility = 'hidden';
+                thirdDropdownLabel.style.visibility = 'hidden';
+            } else if (frequency === 'Monthly' || frequency === 'Quarterly') {
+                // Show third dropdown and label
+                thirdDropdown.style.visibility = 'visible';
+                thirdDropdownLabel.style.visibility = 'visible';
+
+                if (frequency === 'Monthly') {
+                    options = [
+                        { value: 1, text: 'January' },
+                        { value: 2, text: 'February' },
+                        { value: 3, text: 'March' },
+                        { value: 4, text: 'April' },
+                        { value: 5, text: 'May' },
+                        { value: 6, text: 'June' },
+                        { value: 7, text: 'July' },
+                        { value: 8, text: 'August' },
+                        { value: 9, text: 'September' },
+                        { value: 10, text: 'October' },
+                        { value: 11, text: 'November' },
+                        { value: 12, text: 'December' }
+                    ];
+                } else {
+                    options = [
+                        { value: 1, text: 'Qtr 1' },
+                        { value: 2, text: 'Qtr 2' },
+                        { value: 3, text: 'Qtr 3' },
+                        { value: 4, text: 'Qtr 4' }
+                    ];
                 }
-            
-                // Populate second dropdown
-                options.forEach(option => {
+
+                options2 = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
+            }
+
+            // Populate second dropdown
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option.value;
+                opt.text = option.text;
+                secondDropdown.appendChild(opt);
+            });
+
+            // Populate third dropdown if 'Monthly' or 'Quarterly'
+            if (frequency === 'Monthly' || frequency === 'Quarterly') {
+                options2.forEach(option => {
                     const opt = document.createElement('option');
                     opt.value = option.value;
                     opt.text = option.text;
-                    secondDropdown.appendChild(opt);
+                    thirdDropdown.appendChild(opt);
                 });
-            
-                // Populate third dropdown if 'Monthly' or 'Quarterly'
-                if (frequency === 'Monthly' || frequency === 'Quarterly') {
-                    options2.forEach(option => {
-                        const opt = document.createElement('option');
-                        opt.value = option.value;
-                        opt.text = option.text;
-                        thirdDropdown.appendChild(opt);
-                    });
-                }
             }
-            
-            document.addEventListener('DOMContentLoaded', () => {
-                updateSecondDropdown();  // Initialize dropdowns on page load
-            });                      
-            
-            function updateSecondDropdown2() {
-                const frequency2 = document.getElementById('frequency_2').value;
-                const secondDropdown2 = document.getElementById('second_dropdown_2');
-                const thirdDropdown2 = document.getElementById('third_dropdown_2');
-                const thirdDropdownLabel2 = document.querySelector('label[for="third_dropdown_2"]'); // Label for the third dropdown
-                
-                // Clear existing options
-                secondDropdown2.innerHTML = '';
-                thirdDropdown2.innerHTML = '';
-            
-                let options = [];
-                let options2 = [];
-            
-                if (frequency2 === 'Yearly') {
-                    options = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
-            
-                    // Hide third dropdown and label
-                    thirdDropdown2.style.visibility = 'hidden';
-                    thirdDropdownLabel2.style.visibility = 'hidden';
-                } else if (frequency2 === 'Monthly' || frequency2 === 'Quarterly') {
-                    // Show third dropdown and label
-                    thirdDropdown2.style.visibility = 'visible';
-                    thirdDropdownLabel2.style.visibility = 'visible';
-            
-                    if (frequency2 === 'Monthly') {
-                        options = [
-                            { value: 1, text: 'January' },
-                            { value: 2, text: 'February' },
-                            { value: 3, text: 'March' },
-                            { value: 4, text: 'April' },
-                            { value: 5, text: 'May' },
-                            { value: 6, text: 'June' },
-                            { value: 7, text: 'July' },
-                            { value: 8, text: 'August' },
-                            { value: 9, text: 'September' },
-                            { value: 10, text: 'October' },
-                            { value: 11, text: 'November' },
-                            { value: 12, text: 'December' }
-                        ];
-                    } else {
-                        options = [
-                            { value: 1, text: 'Qtr 1' },
-                            { value: 2, text: 'Qtr 2' },
-                            { value: 3, text: 'Qtr 3' },
-                            { value: 4, text: 'Qtr 4' }
-                        ];
-                    }
-            
-                    options2 = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSecondDropdown();  // Initialize dropdowns on page load
+        });
+
+        function updateSecondDropdown2() {
+            const frequency2 = document.getElementById('frequency_2').value;
+            const secondDropdown2 = document.getElementById('second_dropdown_2');
+            const thirdDropdown2 = document.getElementById('third_dropdown_2');
+            const thirdDropdownLabel2 = document.querySelector('label[for="third_dropdown_2"]'); // Label for the third dropdown
+
+            // Clear existing options
+            secondDropdown2.innerHTML = '';
+            thirdDropdown2.innerHTML = '';
+
+            let options = [];
+            let options2 = [];
+
+            if (frequency2 === 'Yearly') {
+                options = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
+
+                // Hide third dropdown and label
+                thirdDropdown2.style.visibility = 'hidden';
+                thirdDropdownLabel2.style.visibility = 'hidden';
+            } else if (frequency2 === 'Monthly' || frequency2 === 'Quarterly') {
+                // Show third dropdown and label
+                thirdDropdown2.style.visibility = 'visible';
+                thirdDropdownLabel2.style.visibility = 'visible';
+
+                if (frequency2 === 'Monthly') {
+                    options = [
+                        { value: 1, text: 'January' },
+                        { value: 2, text: 'February' },
+                        { value: 3, text: 'March' },
+                        { value: 4, text: 'April' },
+                        { value: 5, text: 'May' },
+                        { value: 6, text: 'June' },
+                        { value: 7, text: 'July' },
+                        { value: 8, text: 'August' },
+                        { value: 9, text: 'September' },
+                        { value: 10, text: 'October' },
+                        { value: 11, text: 'November' },
+                        { value: 12, text: 'December' }
+                    ];
+                } else {
+                    options = [
+                        { value: 1, text: 'Qtr 1' },
+                        { value: 2, text: 'Qtr 2' },
+                        { value: 3, text: 'Qtr 3' },
+                        { value: 4, text: 'Qtr 4' }
+                    ];
                 }
-            
-                // Populate second dropdown
-                options.forEach(option => {
+
+                options2 = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
+            }
+
+            // Populate second dropdown
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option.value;
+                opt.text = option.text;
+                secondDropdown2.appendChild(opt);
+            });
+
+            // Populate third dropdown if 'Monthly' or 'Quarterly'
+            if (frequency2 === 'Monthly' || frequency2 === 'Quarterly') {
+                options2.forEach(option => {
                     const opt = document.createElement('option');
                     opt.value = option.value;
                     opt.text = option.text;
-                    secondDropdown2.appendChild(opt);
+                    thirdDropdown2.appendChild(opt);
                 });
-            
-                // Populate third dropdown if 'Monthly' or 'Quarterly'
-                if (frequency2 === 'Monthly' || frequency2 === 'Quarterly') {
-                    options2.forEach(option => {
-                        const opt = document.createElement('option');
-                        opt.value = option.value;
-                        opt.text = option.text;
-                        thirdDropdown2.appendChild(opt);
-                    });
-                }
             }
-            
-            document.addEventListener('DOMContentLoaded', () => {
-                updateSecondDropdown2();  // Initialize dropdowns for graph_2 on page load
-            });            
-    
-            document.getElementById('frequency').addEventListener('change', updateSecondDropdown);
-            document.getElementById('frequency_2').addEventListener('change', updateSecondDropdown2);
-    
-            document.getElementById('import-form').addEventListener('submit', () => {
-                window.location.hash = 'import-graph-anchor';
-            });
-    
-            document.getElementById('export-form').addEventListener('submit', () => {
-                window.location.hash = 'export-graph-anchor';
-            });
-        </script>               
-    </body>    
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSecondDropdown2();  // Initialize dropdowns for graph_2 on page load
+        });
+
+        document.getElementById('frequency').addEventListener('change', updateSecondDropdown);
+        document.getElementById('frequency_2').addEventListener('change', updateSecondDropdown2);
+
+        document.getElementById('import-form').addEventListener('submit', () => {
+            window.location.hash = 'import-graph-anchor';
+        });
+
+        document.getElementById('export-form').addEventListener('submit', () => {
+            window.location.hash = 'export-graph-anchor';
+        });
+    </script>
+</body>
+
 </html>
