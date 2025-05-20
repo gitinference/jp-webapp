@@ -1,7 +1,7 @@
 function downloadCSV(frec, lev, api) {
 
     
-    const frequency = "";
+    let frequency = "";
     let frequencyLower = "";
     let levelLower = "";
     let apiurl = "";
@@ -25,7 +25,6 @@ function downloadCSV(frec, lev, api) {
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = `importaciones_${frequencyLower}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
