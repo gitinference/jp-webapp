@@ -1,25 +1,12 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}IP-620 Servicios de Salud{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/ingreso_neto/IP-110.css' %}" />
+{% endblock %}
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-
-    <title>IP-620 Servicios de Salud</title>
-
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
-
-    <link rel="stylesheet" href="{% static 'css/forms/ingreso_neto/IP-110.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
-
-  <body>
-    <!-- Header -->
-    <section class="header">
+<!-- Header -->
+{% block header %}
       <table>
         <tr>
           <td id="header_left">
@@ -49,8 +36,9 @@
           </td>
         </tr>
       </table>
-    </section>
-    
+{% endblock %}
+{% block form_content %}
+  <!-- Main -->  
     <main>
       <form method="POST" action="{% url 'web_app:IP-620' %}">
         {% csrf_token %}
@@ -409,5 +397,4 @@
         </section>
       <form>
     </main>
-  </body>
-</html>
+{% endblock %}
