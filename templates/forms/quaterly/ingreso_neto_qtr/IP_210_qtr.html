@@ -1,13 +1,25 @@
-{% extends "forms/base/base_form.html" %}
+<!DOCTYPE html>
 {% load static %}
-{% block title %}IP-210 Mineria quaterly{% endblock %}
-{% block cssheader %}
-<link rel="stylesheet" href="{% static 'css/forms/ingreso_neto/IP-210-qtr.css' %}" />
-{% endblock %}
 
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
 
+    <title>IP-210 Mineria quaterly</title>
 
-{% block header %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/forms/ingreso_neto/IP-210-qtr.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <section class="header">
       <table>
         <tr>
           <td id="header_left">
@@ -37,9 +49,8 @@
           </td>
         </tr>
       </table>
-{% endblock %}
-{% block form_content %}
-  <!-- Main -->    
+    </section>
+    
     <main>
       <form method="POST" action="{% url 'web_app:IP-210-qtr' %}">
         {% csrf_token %}
@@ -325,4 +336,5 @@
         </section>
       <form>
     </main>
-{% endblock %}
+  </body>
+</html>
