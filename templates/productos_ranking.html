@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="{% static 'css/indicadores.css' %}" />
     <link rel="stylesheet" href="{% static 'css/product_hts.css' %}" />
     <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+
+    <!-- JS -->
+    <script src="{% static 'js/exportcsv.js' %}" defer></script>
   </head>
 
   <body>
@@ -65,13 +68,12 @@
       <div id="graph_import_top">{{ graph_import_top|safe }}</div>
 
       <div id="graph_export_bottom">{{ graph_import_bottom|safe }}</div>
-      <div class="download_container_2">
+      <div class="download_container">
         <button type="button" id="submit_3" onclick="downloadCSV('','','files/trade/moving')" title="Descargar archivo CSV Importaciones / Exportaciones">Descargar CSV</button>
       </div>
     </main>
 
-    <!-- --- -->
-    --------------- FOOTER --------------------- -->
+    <!-- FOOTER -->
     <footer>
       <main>
         <section>
