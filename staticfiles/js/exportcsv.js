@@ -1,26 +1,30 @@
-function downloadCSV(frec, lev) {
-    const frequency = document.getElementById(frec).value.trim();
-    const allowedFrequencies = ['quarterly', 'monthly'];
-    let frequencyLower = frequency.toLowerCase();
-    if (!allowedFrequencies.includes(frequencyLower)) {
-        console.error('Invalid frequency value');
-        return;
+function downloadCSV(frec, lev, api) {
+
+    
+    let frequency = "";
+    let frequencyLower = "";
+    let levelLower = "";
+    let apiurl = "";
+    if (frec != "") {
+
+        frequency = document.getElementById(frec).value;
+        frequencyLower = frequency.toLowerCase();
+        if (frequencyLower === 'quarterly') {
+            frequencyLower = 'qrt';
+        }
     }
-    if (frequencyLower === 'quarterly') {
-        frequencyLower = 'qrt';
+    if (lev != "") {
+
+        levelLower = lev.toLowerCase();
     }
-    const levelLower = lev.toLowerCase().trim();
-    const allowedLevels = ['low', 'medium', 'high']; // Example allowed values
-    if (!allowedLevels.includes(levelLower)) {
-        console.error('Invalid level value');
-        return;
-    }
-    const url = `http://192.168.50.24:7001/files/trade/jp/?level=${encodeURIComponent(levelLower)}&time_frame=${encodeURIComponent(frequencyLower)}&agr=false&group=false`;
-    //alert(url)
+    apiurl = api;
+    let url = `http://192.168.50.24:7001/${apiurl}/?level=${levelLower}&time_frame=${frequencyLower}&agr=false&group=false`;
+
+/*     alert(apiurl)
+    return false */ 
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = `importaciones_${frequencyLower}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
