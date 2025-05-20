@@ -1,25 +1,11 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}JP-363 Transactions in Puerto Rico of External Insurance Companies{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-363.css' %}" />
+{% endblock %}
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JP-363 Transactions in Puerto Rico of External Insurance Companies</title>
-    
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-
-    <link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-363.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
-
-  <body>
-    <!-- Header -->
-    <section class="header">
+{% block header %}
         <div class="left-header">
             <strong>Puerto Rico Planning Board</strong><br>
             Program of Economic and Social Planning<br>
@@ -31,8 +17,8 @@
         <div class="right-header">
             <div><img src="https://assets-global.website-files.com/60ddbc422188bb3fab87d219/60ddbc422188bbbe5a87d251_gobierno-de-puerto-rico.png" alt="Logo"></div>
         </div>
-    </section>
-
+{% endblock %}
+{% block form_content %}
     <main>
       <form method="POST" action="{% url 'web_app:JP-363' %}">
         {% csrf_token %}
@@ -281,5 +267,4 @@
         </section>
       </form>
     </main>
-  </body>
-</html>
+{% endblock %}

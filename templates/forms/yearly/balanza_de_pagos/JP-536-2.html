@@ -1,175 +1,174 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}JP-536.2 Información para el Producto Bruto{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-536-2.css' %}" />
+{% endblock %}
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JP-536.2 Información para el Producto Bruto</title>
-  
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
-  
-    <link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-536-2.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
+{% block header %}
+<table>
+  <tr>
+    <td id="header_left">
+      JP-536.2<br>
+      Junta de Planificación<br>
+      Programa de Planificación Económica y Social<br>
+      Subprograma de Análisis Económico<br>
+    </td>
+    <td id="header_center">
+      <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image" /><br>
+      <strong>Empresas Públicas</strong><br>
+      <strong>Información para el Producto Bruto</strong><br>
+      (Años fiscales terminen el 30 de junio)<br>
+    <td id="header_right">
+      Centro Gubernamental Roberto Sánchez Vilella<br>
+      P.O.BOX 41119<br>
+      San Juan, Puerto Rico 00940-1119
+    </td>
+  </tr>
+</table>
+{% endblock %}
+{% block form_content %}
 
-  <body>
-    <!-- Header -->
-    <section class="header">
+<!-- Main -->
+<main>
+  <form method="POST" action="{% url 'web_app:JP-536-2' %}">
+    {% csrf_token %}
+    <section class="divider-container">
       <table>
         <tr>
-          <td id="header_left">
-            JP-536.2<br>
-              Junta de Planificación<br>
-              Programa de Planificación Económica y Social<br>
-              Subprograma de Análisis Económico<br>
-          </td>
-          <td id="header_center">
-            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image"/><br>
-            <strong>Empresas Públicas</strong><br>
-            <strong>Información para el Producto Bruto</strong><br>
-            (Años fiscales terminen el 30 de junio)<br>
-          <td id="header_right">
-            Centro Gubernamental Roberto Sánchez Vilella<br>
-            P.O.BOX 41119<br>
-            San Juan, Puerto Rico 00940-1119
-          </td>
+          <th rowspan="3">
+            <h3>PARTIDAS</h3>
+          </th>
+          <th colspan="2">CIFRA EN MILES DE DOLARES</th>
+        </tr>
+
+        <!-- Line 1 -->
+        <tr>
+        <tr>
+          <td>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Año: <input type="number" id="year"
+              name="start_year" min="1000" max="9999" placeholder="year" required></input></td>
+          <td>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Año: <input type="number" id="year"
+              name="end_year" min="1000" max="9999" placeholder="year" required></input></td>
+        </tr>
+        </tr>
+
+        <!-- Line 2 -->
+        <tr>
+          <td>1. Inventario final al cierre del año fiscal 1\</td>
+          <td><input type="number" name="inventario1" placeholder="$" required></td>
+          <td><input type="number" name="inventario2" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 3 -->
+        <tr>
+          <td>2. Compras de maquinarias y equipo 2\</td>
+          <td><input type="number" name="compras1" placeholder="$" required></td>
+          <td><input type="number" name="compras2" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 4 -->
+        <tr>
+          <td>3. Depreciación 3\</td>
+          <td><input type="number" name="depre1" placeholder="$" required></td>
+          <td><input type="number" name="depre2" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 5 -->
+        <tr>
+          <td>&emsp;a. Maquinaria y equipo</td>
+          <td><input type="number" name="maquinaria1" placeholder="$" required></td>
+          <td><input type="number" name="maquinaria2" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 6 -->
+        <tr>
+          <td>b. Equipo</td>
+          <td><input type="number" name="equipo1" placeholder="$"></td>
+          <td><input type="number" name="equipo2" placeholder="$"></td>
+        </tr>
+
+        <!-- Line 7 -->
+        <tr>
+          <td>4. Equipo de computadoras hard-software</td>
+          <td><input type="number" name="computadora1" placeholder="$" required></td>
+          <td><input type="number" name="computadora2" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 8 -->
+        <tr>
+          <td>5. Alquiler de equipo de computadora hard-software</td>
+          <td><input type="number" name="alquiler1" placeholder="$" required></td>
+          <td><input type="number" name="alquiler2" placeholder="$" required></td>
+        </tr>
+
+        <!-- Line 9 -->
+        <tr>
+          <td>6. Pago de licencia programa de computadora</td>
+          <td><input type="number" name="licencia1" placeholder="$" required></td>
+          <td><input type="number" name="licencia2" placeholder="$" required></td>
         </tr>
       </table>
     </section>
+    <br>
 
-    <!-- Main -->
-    <main>
-        <form method="POST" action="{% url 'web_app:JP-536-2' %}">
-            {% csrf_token %}
-          <section class="divider-container">
-              <table>
-                  <tr>
-                      <th rowspan="3"><h3>PARTIDAS</h3></th>
-                      <th colspan="2">CIFRA EN MILES DE DOLARES</th>
-                  </tr>
-                  
-                  <!-- Line 1 -->
-                  <tr>
-                      <tr>
-                      <td>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Año: <input type="number" id="year" name="start_year" min="1000" max="9999" placeholder="year" required></input></td>
-                      <td>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Año: <input type="number" id="year" name="end_year" min="1000" max="9999" placeholder="year" required></input></td>
-                  </tr></tr>
-  
-                  <!-- Line 2 -->
-                  <tr>
-                      <td>1. Inventario final al cierre del año fiscal 1\</td>
-                      <td><input type="number" name="inventario1" placeholder="$" required></td>
-                      <td><input type="number" name="inventario2" placeholder="$" required></td>
-                  </tr>
-  
-                  <!-- Line 3 -->
-                  <tr>
-                      <td>2. Compras de maquinarias y equipo 2\</td>
-                      <td><input type="number" name="compras1" placeholder="$" required></td>
-                      <td><input type="number" name="compras2" placeholder="$" required></td>
-                  </tr>
-                  
-                  <!-- Line 4 -->
-                  <tr>
-                      <td>3. Depreciación 3\</td>
-                      <td><input type="number" name="depre1" placeholder="$" required></td>
-                      <td><input type="number" name="depre2" placeholder="$" required></td>
-                  </tr>
-                  
-                  <!-- Line 5 -->
-                  <tr>
-                      <td>&emsp;a. Maquinaria y equipo</td>
-                      <td><input type="number" name="maquinaria1" placeholder="$" required></td>
-                      <td><input type="number" name="maquinaria2" placeholder="$" required></td>
-                  </tr>
-  
-                  <!-- Line 6 -->
-                  <tr>
-                      <td>b. Equipo</td>
-                      <td><input type="number" name="equipo1" placeholder="$"></td>
-                      <td><input type="number" name="equipo2" placeholder="$"></td>
-                  </tr>
-  
-                    <!-- Line 7 -->
-                  <tr>
-                    <td>4. Equipo de computadoras hard-software</td>
-                    <td><input type="number" name="computadora1" placeholder="$" required></td>
-                    <td><input type="number" name="computadora2" placeholder="$" required></td>
-                  </tr>
+    <div id="custom-line"></div>
+    <div>
+      1/ / Favor de informar las cantidades correspondientes, si es que la empresa mantiene una partida de Inventarios,
+      según el Estado de Situación.<br><br>
 
-                    <!-- Line 8 -->
-                <tr>
-                    <td>5. Alquiler de equipo de computadora hard-software</td>
-                    <td><input type="number" name="alquiler1" placeholder="$" required></td>
-                    <td><input type="number" name="alquiler2" placeholder="$" required></td>
-                </tr>
+      2/ Inclúyase como parte de ésta, la maquinaria y equipo que no es parte de la inversión en construcción y que está
+      sujeta a un ajuste por depreciación, como por ejemplo: vehículo de motor, equipo pesado, equipo de oficina,
+      etcétera.<br><br>
 
-                    <!-- Line 9 -->
-                <tr>
-                    <td>6. Pago de licencia programa de computadora</td>
-                    <td><input type="number" name="licencia1" placeholder="$" required></td>
-                    <td><input type="number" name="licencia2" placeholder="$" required></td>
-                </tr>
-              </table>
-          </section>
-          <br>
-  
-          <div id="custom-line"></div>
-          <div>
-              1/ /  Favor de informar las cantidades correspondientes, si es que la empresa mantiene una partida de Inventarios, según el Estado de Situación.<br><br>
-  
-              2/ Inclúyase como parte de ésta, la maquinaria y equipo que no es parte de la inversión en construcción y que está sujeta a un ajuste por depreciación, como por ejemplo: vehículo de motor, equipo pesado, equipo de oficina, etcétera.<br><br>
-  
-              3/ Inclúyase como parte de ésta, la maquinaria y equipo que no es parte de la inversión en construcción y que está sujeta a un ajuste por depreciación, como por ejemplo: vehículo de motor, equipo pesado, equipo de oficina, etcétera.<br>
-          <div>
+      3/ Inclúyase como parte de ésta, la maquinaria y equipo que no es parte de la inversión en construcción y que está
+      sujeta a un ajuste por depreciación, como por ejemplo: vehículo de motor, equipo pesado, equipo de oficina,
+      etcétera.<br>
+      <div>
 
-          <section>
-            <div class="big-box-bottom">
-              <div class="left-signature">
-                <input type="text" id="signature" name="company_name" placeholder="Company name" required></input> <!-- Signature Input -->
-                <hr> <!-- Signature Line -->
-                <p>
-                    Nombre de la empresa pública<br>
-                </p>
-              </div>
-  
-              <div class="right-signature">
-                <input type="tel" id="position" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="12" maxlength="12" name="phone" placeholder="123-456-7890" required><!-- Signature Input -->
-                <hr> <!-- Signature Line -->
-                <p>
-                    Número de teléfono<br>
-                </p>
-              </div>
+        <section>
+          <div class="big-box-bottom">
+            <div class="left-signature">
+              <input type="text" id="signature" name="company_name" placeholder="Company name" required></input>
+              <!-- Signature Input -->
+              <hr> <!-- Signature Line -->
+              <p>
+                Nombre de la empresa pública<br>
+              </p>
             </div>
-  
-            <div class="big-box-bottom" id="signature-bottom">
-              <div class="left-signature">
-                <input type="text" id="date" name="name_title" placeholder="Name-Position" required></input> <!-- Signature Input -->
-                <hr> <!-- Signature Line -->
-                <p>
-                    Nombre y título de la persona que suministra la información<br>
-                </p>
-              </div>
 
-              <div class="right-signature">
-                <input type="date" id="phone" name="date" placeholder="Date" required></input> <!-- Signature Input -->
-                <hr> <!-- Signature Line -->
-                <p>
-                    Date<br>
-                </p>
-              </div>
+            <div class="right-signature">
+              <input type="tel" id="position" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" minlength="12" maxlength="12"
+                name="phone" placeholder="123-456-7890" required><!-- Signature Input -->
+              <hr> <!-- Signature Line -->
+              <p>
+                Número de teléfono<br>
+              </p>
             </div>
-          </section>
-  
-          <section class = 'submit-button-container'>
-            <input type="submit" value="SUBMIT" class="submit-button"></input>
-          </section>
+          </div>
+
+          <div class="big-box-bottom" id="signature-bottom">
+            <div class="left-signature">
+              <input type="text" id="date" name="name_title" placeholder="Name-Position" required></input>
+              <!-- Signature Input -->
+              <hr> <!-- Signature Line -->
+              <p>
+                Nombre y título de la persona que suministra la información<br>
+              </p>
+            </div>
+
+            <div class="right-signature">
+              <input type="date" id="phone" name="date" placeholder="Date" required></input> <!-- Signature Input -->
+              <hr> <!-- Signature Line -->
+              <p>
+                Date<br>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class='submit-button-container'>
+          <input type="submit" value="SUBMIT" class="submit-button"></input>
+        </section>
         <form>
-      </main>
-    </body>
-  </html>
+</main>
+{% endblock %}

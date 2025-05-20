@@ -1,55 +1,44 @@
-<!DOCTYPE html>
+{% extends "forms/base/base_form.html" %}
 {% load static %}
+{% block title %}JP-361 Transactions in Puerto Rico of External Insurance Companies{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-547.css' %}" />
+{% endblock %}
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-
-    <title>JP-547 Federal Government Agencies Transactions in Puerto Rico</title>
-
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
-
-    <link rel="stylesheet" href="{% static 'css/forms/balanza_de_pagos/JP-547.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-  </head>
-
-  <body>
-    <!-- Header -->
-    <section class="header">
-      <table>
-        <tr>
-          <td id="header_left">
+{% block header %}
+<table>
+    <tr>
+        <td id="header_left">
             JP-547<br>
             Rev. Jul. 17<br>
             P.O. Box 41119<br>
             San Juan, Puerto Rico 00940<br>
-          </td>
-          <td id="header_center">
+        </td>
+        <td id="header_center">
             Puerto Rico Planning Board<br>
             Program of Economic and Social Planning<br>
             Subprogram of Economics Analysis<br>
             <br>
             <h3>FEDERAL GOVERNMENT AGENCIES TRANSACTIONS IN PUERTO RICO</h3><br>
-          </td>
-          <td id="header_right">
-            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image"/><br>
-          </td>
-        </tr>
-      </table>
-    </section>
-    
-    <main>
-      <form method="POST" action="{% url 'web_app:JP-547' %}">
+        </td>
+        <td id="header_right">
+            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo Junta Planificación" id="header_image" /><br>
+        </td>
+    </tr>
+</table>
+{% endblock %}
+{% block form_content %}
+
+<main>
+    <form method="POST" action="{% url 'web_app:JP-547' %}">
         {% csrf_token %}
         <div id="input" class="big-box-bottom-left">
-            From:&emsp;<input id="flex_inputs" class="text-box space-between" name="agency_form" placeholder="Agency" required>
+            From:&emsp;<input id="flex_inputs" class="text-box space-between" name="agency_form" placeholder="Agency"
+                required>
         </div>
         <div id="input" class="big-box-bottom-left">
-            To:&emsp;<input id="flex_inputs" class="text-box space-between" name="agency_to" placeholder="Agency" required><br>
+            To:&emsp;<input id="flex_inputs" class="text-box space-between" name="agency_to" placeholder="Agency"
+                required><br>
         </div>
 
         <section class="divider-container">
@@ -58,13 +47,14 @@
                     <th colspan="3"></th>
                     <th colspan="1">In Dollars</th>
                 </tr>
-                
+
                 <!-- Line 1 -->
                 <tr>
-                    <tr>
-                        <td colspan="3">&emsp;A. Disbursements in Puerto Rico</th>
-                        <th colspan="1"></th>
-                    </tr></tr>
+                <tr>
+                    <td colspan="3">&emsp;A. Disbursements in Puerto Rico</th>
+                    <th colspan="1"></th>
+                </tr>
+                </tr>
 
                 <!-- Line 2 -->
                 <tr>
@@ -75,15 +65,15 @@
                 <!-- Line 3 -->
                 <tr>
                     <td colspan="3">&emsp;&emsp;2. U.S. Government contributions to:</th>
-                        <th></th>
+                    <th></th>
                 </tr>
-                
+
                 <!-- Line 4 -->
                 <tr>
                     <td colspan="3">&emsp;&emsp;&emsp;&emsp;a. Civil service retirement</th>
                     <td><input type="number" name="civil_service" placeholder="$" required></td>
                 </tr>
-                
+
                 <!-- Line 5 -->
                 <tr>
                     <td colspan="3">&emsp;&emsp;&emsp;&emsp;b. Federal employee retirement system (FERS)</th>
@@ -111,7 +101,7 @@
                 <!-- Line 9 -->
                 <tr>
                     <td colspan="3">&emsp;&emsp;&emsp;&emsp;f. Other (specify)</th>
-                    <td><input type="number" name="other_disbursements" placeholder="$" ></td>
+                    <td><input type="number" name="other_disbursements" placeholder="$"></td>
                 </tr>
 
                 <!-- Line 10 -->
@@ -134,7 +124,8 @@
 
                 <!-- Line 13 -->
                 <tr>
-                    <td colspan="3">&emsp;&emsp;6. Equipment, materials, and supplies received from other mainland Federal Government agencies</th>
+                    <td colspan="3">&emsp;&emsp;6. Equipment, materials, and supplies received from other mainland
+                        Federal Government agencies</th>
                     <td><input type="number" name="equipment_supplies" placeholder="$" required></td>
                 </tr>
 
@@ -206,19 +197,22 @@
 
                 <!-- Line 25 -->
                 <tr>
-                    <td colspan="3"><input id="other_inputs_1" type="text" name="other_collections_1" placeholder="Other"></td>
+                    <td colspan="3"><input id="other_inputs_1" type="text" name="other_collections_1"
+                            placeholder="Other"></td>
                     <td><input type="number" name="other_collections_amount_1" placeholder="$"></td>
                 </tr>
 
                 <!-- Line 26 -->
                 <tr>
-                    <td colspan="3"><input id="other_inputs_1" type="text" name="other_collections_2" placeholder="Other"></td>
+                    <td colspan="3"><input id="other_inputs_1" type="text" name="other_collections_2"
+                            placeholder="Other"></td>
                     <td><input type="number" name="other_collections_amount_2" placeholder="$"></td>
                 </tr>
 
                 <!-- Line 27 -->
                 <tr>
-                    <td colspan="3"><input id="other_inputs_1" type="text" name="other_collections_3" placeholder="Other"></td>
+                    <td colspan="3"><input id="other_inputs_1" type="text" name="other_collections_3"
+                            placeholder="Other"></td>
                     <td><input type="number" name="other_collections_amount_3" placeholder="$"></td>
                 </tr>
 
@@ -278,7 +272,8 @@
 
                 <!-- Line 37 -->
                 <tr>
-                    <td colspan="3">&emsp;&emsp;8. Other (specify): <input id="other_inputs" type="text" name="other_deductions" placeholder="Other"></td>
+                    <td colspan="3">&emsp;&emsp;8. Other (specify): <input id="other_inputs" type="text"
+                            name="other_deductions" placeholder="Other"></td>
                     <td><input type="number" name="other_deductions_amount" placeholder="$"></td>
                 </tr>
 
@@ -338,13 +333,15 @@
 
                 <!-- Line 47 -->
                 <tr>
-                    <td colspan="3"><input id="other_inputs_2" type="text" name="other_payments_1" placeholder="Other"></td>
+                    <td colspan="3"><input id="other_inputs_2" type="text" name="other_payments_1" placeholder="Other">
+                    </td>
                     <td><input type="number" name="other_payments_amount_1" placeholder="$"></td>
                 </tr>
 
                 <!-- Line 48 -->
                 <tr>
-                    <td colspan="3"><input id="other_inputs_2" type="text" name="other_payments_2" placeholder="Other"></td>
+                    <td colspan="3"><input id="other_inputs_2" type="text" name="other_payments_2" placeholder="Other">
+                    </td>
                     <td><input type="number" name="other_payments_amount_2" placeholder="$"></td>
                 </tr>
 
@@ -368,7 +365,8 @@
 
                 <!-- Line 52 -->
                 <tr>
-                    <td colspan="3">&emsp;&emsp;3. Total amount of loans made in Puerto Rico and sold to individuals and /or financial institutions in Puerto Rico</td>
+                    <td colspan="3">&emsp;&emsp;3. Total amount of loans made in Puerto Rico and sold to individuals and
+                        /or financial institutions in Puerto Rico</td>
                     <td><input type="number" name="total_loans_amount" placeholder="$"></td>
                 </tr>
 
@@ -386,10 +384,12 @@
 
                 <!-- Line 55 -->
                 <tr>
-                    <td colspan="3">&emsp;&emsp;6. Amount of principal of loans and advances outstanding as of 
-                        <input id="amount_input" type="text" name="loans_and_advances" placeholder="Enter your text here..."></td>
+                    <td colspan="3">&emsp;&emsp;6. Amount of principal of loans and advances outstanding as of
+                        <input id="amount_input" type="text" name="loans_and_advances"
+                            placeholder="Enter your text here...">
+                    </td>
                     <td><input type="number" name="loans_and_advances_amount" placeholder="$"></td>
-                </tr>    
+                </tr>
 
                 <!-- Line 56 -->
                 <tr>
@@ -399,30 +399,28 @@
 
                 <!-- Line 57 -->
                 <tr>
-                    <td colspan="3">&emsp;&emsp;8.  Forgiveness credit to Puerto Rican residents</td>
+                    <td colspan="3">&emsp;&emsp;8. Forgiveness credit to Puerto Rican residents</td>
                     <td><input type="number" name="forgiveness_credit" placeholder="$"></td>
                 </tr>
 
             </table>
-          <br>
-          <br>
+            <br>
+            <br>
 
         </section>
         <br>
         <div id="input">
-            Reporting Agency: &emsp;<input id="flex_inputs" class="text-box space-between" name="reporting_agency" placeholder="Agency" required><br>
+            Reporting Agency: &emsp;<input id="flex_inputs" class="text-box space-between" name="reporting_agency"
+                placeholder="Agency" required><br>
         </div>
         <br>
         Puerto Rico Planning Board<br>
         <br>
-            
-    </main>
-    <br>
-    
-    <section class = 'submit-button-container'>
-      <input type="submit" value="SUBMIT" class="submit-button"></input>
-    </section>
 
-  </body>
-</html>
-      
+</main>
+
+<section class='submit-button-container'>
+    <input type="submit" value="SUBMIT" class="submit-button"></input>
+</section>
+
+{% endblock %}
