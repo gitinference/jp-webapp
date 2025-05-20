@@ -21,7 +21,7 @@ function downloadCSV(frec, lev, api) {
     let url = `http://192.168.50.24:7001/${apiurl}/?level=${levelLower}&time_frame=${frequencyLower}&agr=false&group=false`;
 
 /*     alert(apiurl)
-    return false */
+    return false */ 
 
     const a = document.createElement('a');
     a.href = url;
