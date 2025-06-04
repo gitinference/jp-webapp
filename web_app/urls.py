@@ -94,5 +94,7 @@ urlpatterns = [
     re_path(r"^IP-210-mineria-qtr/$", views.IP_210_qtr, name="IP-210-qtr"),    
     re_path(r"^IP-220-utilidades-qtr/$", views.IP_220_qtr, name="IP-220_qtr"),
     re_path(r"^IP-230-construccion-qtr/$", views.IP_230_qtr, name="IP-230-qtr"),
+
+    re_path(r"^idh-index/csv/$", views.idh_index_csv, name="idh_index_csv"),    # for IDH index CSV download
 ]
 

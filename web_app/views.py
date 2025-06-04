@@ -1,4 +1,7 @@
 import pandas as pd
+import os
+from django.conf import settings
+from django.http import FileResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -107,6 +110,14 @@ def indice_desarrollo_humano(request):
     }
     
     return render(request, "indice_desarrollo_humano.html", context)
+
+# Generate the IDH index CSV file response
+def idh_index_csv(request):
+    file_path = os.path.join(settings.BASE_DIR, "data", "processed", "idh_index.csv")
+    return FileResponse(open(file_path, "rb"),
+                        as_attachment=True,
+                        filename="idh_index.csv",
+                        content_type="text/csv")
 
 def datos_demograficos(request):
     # Generate the annual demographic graph
