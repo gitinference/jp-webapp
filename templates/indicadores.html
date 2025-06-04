@@ -16,6 +16,9 @@
         <!-- CSS -->
         <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
         <link rel="stylesheet" href="{% static 'css/website.css' %}">
+
+        <!-- JS -->
+        <script src="{% static 'js/exportcsv.js' %}" defer></script>
     </head>
 
     <body>
@@ -109,10 +112,21 @@
                 {{ indicadores|safe }}
             </div>
         </main>
+                <div class="download_container">
+                    <section id="dropdowns">
+                    <label id="drop_title" for="frequency">Frecuencia:</label>
+                    <select name="frequency" id="frequency">
+                        <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
+                        <option value="Monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly
+                        </option>
+                        <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
+                        <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
+                        </option>
+                    </select>
+                    <button type="button" id="submit" onclick="downloadCSV('frequency','', 'files/index/indicators')"
+                            title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
+                </div>
 
-        <div class="download_container">
-            <a id="download_button" href="https://api.econlabs.net/files/index/jp_index?update=false" class="button">Descargar Datos</a>
-        </div>
 
         <!-- ------------------ FOOTER --------------------- -->
         <footer>
