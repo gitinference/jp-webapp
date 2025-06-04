@@ -32,7 +32,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = DEBUG_FLAG
 
-ALLOWED_HOSTS = ["localhost", "dev.econlabs.net", "127.0.0.1", "192.168.50.24"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "dev.econlabs.net",
+    "jp.econlabs.net",
+    "127.0.0.1",
+    "192.168.50.24",
+]
 
 CSRF_TRUSTED_ORIGINS = ["https://dev.econlabs.net"]
 
@@ -138,7 +144,7 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [
     BASE_DIR / "staticfiles",
-    ]
+]
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 
