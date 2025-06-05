@@ -94,5 +94,16 @@ urlpatterns = [
     re_path(r"^IP-210-mineria-qtr/$", views.IP_210_qtr, name="IP-210-qtr"),    
     re_path(r"^IP-220-utilidades-qtr/$", views.IP_220_qtr, name="IP-220_qtr"),
     re_path(r"^IP-230-construccion-qtr/$", views.IP_230_qtr, name="IP-230-qtr"),
+    
+    # Gastos intangibles
+    
+    re_path(r"^medicion-activos-ID-en-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^concesiones-recursos-naturales-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^medicion-licencias-propiedad-intelectual-marcas-registradas/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^medicion-gastos-comercializacion-formacion-marca/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^medicion-productos-entretenimiento-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^medicion-software-bases-de-datos-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^gastos-comercialización-y-formacion-marca/$", views.IP_230_qtr, name="IP-230-qtr"),
+    
 ]
 
