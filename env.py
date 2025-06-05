@@ -23,7 +23,7 @@ def get_db_credentials() -> list:
     else:
         HOST = "postgres"
         DATABASE_URL = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
-        API_URL = "FastAPI"
+        API_URL = str(os.getenv("API_URL")).strip()
     return [
         USER,
         PASSWORD,

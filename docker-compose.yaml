@@ -5,7 +5,7 @@ services:
       context: .
     restart: always
     ports:
-      - 5071:3000
+      - 8000:8000
     environment:
       DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
@@ -15,8 +15,9 @@ services:
       POSTGRES_DB: jp_db_staging
       POSTGRES_PORT: 5432
       POSTGRES_HOST: postgres
+      API_URL: http://jp_api_staging:8000/
       DEV: False
-      DEBUG: False
+      DEBUG: True
     command: >
       sh -c "python manage.py migrate &&
              python manage.py shell -c 'from django.contrib.auth.models import User; User.objects.filter(username=\"${DJANGO_SUPERUSER_USERNAME}\").exists() or User.objects.create_superuser(\"${DJANGO_SUPERUSER_USERNAME}\", \"${DJANGO_SUPERUSER_EMAIL}\", \"${DJANGO_SUPERUSER_PASSWORD}\")' &&
