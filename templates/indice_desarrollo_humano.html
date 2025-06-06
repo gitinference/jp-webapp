@@ -12,8 +12,11 @@
         <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
         <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
 
-        <link rel="stylesheet" type="text/css" href="{% static 'css/indice.css' %}">
+        <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
         <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/indice.css' %}"> -->
+
+        <script src="{% static 'js/idh_download.js' %}" defer></script>
     </head>
 
     <body>
@@ -125,8 +128,7 @@
                         <p class="main_content">4. Si pasa el cursor sobre la línea deseada, se mostrará la información que necesita.</p>
 
                     <!-- Graph 1 (indexes) -->
-
-                    <body>
+                    
                     <h3>Gráfica de Índices</h3>
                     <div class="graph_container"></div>
                         <div class="graph1"> <!-- Apply the "graph" class here -->
@@ -134,16 +136,40 @@
                         </div> <!-- Render adjusted indexes graph -->
                     </div>
 
-                    <!-- Graph 1 (adjusted indexes) -->
+                    <!--  Botón de descarga que llama a la funcion -->                    
+                    <div class="download_container">
+                        <section id="buttons">
+                            <label for="idh_csv">Descarga archivo de IDH: </label>
+                            <button type="button"                                    
+                                    id = "submit"
+                                    onclick="downloadIDHCSV()"
+                                    title="Descargar CSV de IDH">
+                                Descargar CSV
+                            </button>
+                        </section>
+                    </div>
 
-                    <body>
+                    <!-- Graph 1 (adjusted indexes) -->
+                    
                     <h3>Gráfica de Índices Ajustados</h3>
                     <div class="graph_container">
                         <div class="graph2"> <!-- Apply the "graph" class here -->
                             {{ adjusted_graph_html | safe }}
                         </div> <!-- Render adjusted indexes graph -->
                     </div>
-                    </body>
+                    
+                    <!--  Botón de descarga que llama a la funcion -->                    
+                    <div class="download_container">
+                        <section id="buttons">
+                            <label for="idh_csv">Descarga archivo de IDH: </label>
+                            <button type="button"
+                                    id = "submit_2"
+                                    onclick="downloadIDHCSV()"
+                                    title="Descargar CSV de IDH">
+                                Descargar CSV
+                            </button>
+                        </section>
+                    </div>
 
 					<!-- <p class="image_subtitle">
 						<a href="https://hdr.undp.org/sites/default/files/2023-24_HDR/HDR23-24_Statistical_Annex_HDI_Table.xlsx"> Descarga de los datos más recientes del IDH de la página de PNUD</a>.
