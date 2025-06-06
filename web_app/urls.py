@@ -96,5 +96,16 @@ urlpatterns = [
     re_path(r"^IP-230-construccion-qtr/$", views.IP_230_qtr, name="IP-230-qtr"),
 
     re_path(r"^idh-index/csv/$", views.idh_index_csv, name="idh_index_csv"),    # for IDH index CSV download
+    
+    # Gastos intangibles
+    
+    re_path(r"^medicion-activos-ID-en-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^concesiones-recursos-naturales-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^medicion-licencias-propiedad-intelectual-marcas-registradas/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^medicion-gastos-comercializacion-formacion-marca/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^medicion-productos-entretenimiento-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^medicion-software-bases-de-datos-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^gastos-comercialización-y-formacion-marca/$", views.IP_230_qtr, name="IP-230-qtr"),
+    
 ]
 
