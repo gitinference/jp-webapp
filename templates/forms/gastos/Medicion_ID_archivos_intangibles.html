@@ -1,0 +1,257 @@
+{% extends "forms/base/base_form.html" %}
+{% load static %}
+{% block title %}IP-230 Construcción quaterly{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/gastos/gastos.css' %}" />
+{% endblock %}
+
+    
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+  </head>
+
+{% block header %}
+      <table>
+        <tr>
+          <td id="header_left">
+            JP-304 Rev.<br>
+            Junta de Planificación<br>
+            Subprograma de Análisis Económico
+          </td>
+          <td id="header_center">
+            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo JP" id="header_image"><br>
+            <b>RELACIÓN DE APORTACIONES FEDERALES APROBADAS,<br>
+                RECIBIDAS Y GASTADAS</b><br>
+            Orden Ejecutiva 12372
+          </td>
+          <td id="header_right">
+            Centro Gubernamental Roberto Sánchez Vilella<br>
+            Apartado 41119<br>
+            San Juan, Puerto Rico 00940-1119
+          </td>
+        </tr>
+      </table>
+{% endblock %}
+{% block form_content %}
+  <!-- Main -->  
+    <main>
+      <div class="form-contenedor">
+        <h2>CUESTIONARIO DE MEDICIÓN DE I+D EN ACTIVOS INTANGIBLES</h2>
+        
+        <h3>I. Información General de la Empresa</h3>
+        <form method="POST" action="{% url 'web_app:IP-230-qtr' %}">
+          {% csrf_token %}
+            <ol>
+                <li>
+                    Nombre de la empresa:
+                    <input type="text" name="nombre_empresa" style="width: 300px;">
+                </li>
+                <li>
+                    Número EIN:
+                    <input type="text" name="numero_ein" style="width: 200px;">
+                </li>
+                <li>
+                    Código NAICS de la empresa:
+                    <input type="text" name="codigo_naics" style="width: 300px;">
+                </li>
+                <li>
+                    Tamaño de la empresa:<br>
+                    <input type="radio" name="tamano_empresa" value="micro"> Micro (1-10 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="pequena"> Pequeña (11-50 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="mediana"> Mediana (51-250 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="grande"> Grande (más de 250 empleados)<br>
+                </li>
+                <li>
+                    ¿Su empresa realiza actividades de I+D?<br>
+                    <input type="radio" name="realiza_id" value="si"> Sí<br>
+                    <input type="radio" name="realiza_id" value="no"> No (si su respuesta es no, finalice el
+                    cuestionario)
+                </li>
+                <li>
+                    Año de referencia:
+                    <input type="text" name="anio_referencia" style="width: 100px;">
+                </li>
+            </ol>
+            <hr>
+            <h3>II. Gastos en I+D</h3>
+            <ol start="7">
+                <li>
+                    ¿Cuánto invirtió su empresa en I+D en el año de referencia?
+                    <span style="font-size:small">(en moneda local)</span><br>
+                    &emsp;Total: <input type="text" name="total_inversion_id" style="width: 150px;">
+                </li>
+                <li>
+                    Desglose de los gastos de I+D:
+                    <ol type="a">
+                        <li>Gastos de personal en actividades de I+D: <input type="text" name="personal_id"
+                                style="width: 150px;"></li>
+                        <li>Compra de equipos y software para I+D: <input type="text" name="equipos_software_id"
+                                style="width: 150px;"></li>
+                        <li>Contratación de servicios de consultoría externa en I+D: <input type="text"
+                                name="consultoria_externa_id" style="width: 150px;"></li>
+                        <li>Materiales y suministros para I+D: <input type="text" name="materiales_id"
+                                style="width: 150px;"></li>
+                        <li>Otros gastos relacionados con I+D (especifique): <input type="text" name="otros_gastos_id"
+                                style="width: 150px;"></li>
+                    </ol>
+                </li>
+                <li>
+                    ¿Cómo se financia la I+D en su empresa?
+                    <span style="font-size:small">(puede seleccionar varias opciones)</span><br>
+                    <input type="checkbox" name="financiacion_id" value="fondos_propios"> Fondos propios<br>
+                    <input type="checkbox" name="financiacion_id" value="subvenciones_gubernamentales"> Subvenciones
+                    gubernamentales<br>
+                    <input type="checkbox" name="financiacion_id" value="prestamos_bancarios"> Préstamos bancarios<br>
+                    <input type="checkbox" name="financiacion_id" value="inversionistas_externos"> Inversionistas
+                    externos<br>
+                    <input type="checkbox" name="financiacion_id" value="otros"> Otros (especifique): <input type="text"
+                        name="financiacion_otros" style="width: 150px;">
+                </li>
+            </ol>
+            <hr>
+
+            <h3>III. Recursos Humanos en I+D</h3>
+            <ol start="10">
+                <li>
+                    ¿Cuántos empleados participaron en actividades de I+D durante el año de referencia?<br>
+                    &emsp;Total: <input type="text" name="total_empleados_id" style="width: 100px;"><br>
+                    &emsp;De los cuales son investigadores: <input type="text" name="investigadores_id"
+                        style="width: 100px;"><br>
+                    &emsp;Personal técnico: <input type="text" name="personal_tecnico_id" style="width: 100px;"><br>
+                    &emsp;Personal de apoyo: <input type="text" name="personal_apoyo_id" style="width: 100px;">
+                </li>
+                <li>
+                    ¿El personal de I+D tiene formación especializada?<br>
+                    <input type="radio" name="formacion_especializada_id" value="si"> Sí<br>
+                    <input type="radio" name="formacion_especializada_id" value="no"> No<br>
+                    <input type="radio" name="formacion_especializada_id" value="parcialmente"> Parcialmente
+                </li>
+            </ol>
+            <hr>
+
+            <h3>IV. Resultados de la I+D</h3>
+            <ol start="13">
+                <li>
+                    ¿Su empresa ha desarrollado alguno de los siguientes resultados a partir de la I+D realizada?
+                    <span style="font-size:small">(marque las opciones que correspondan)</span><br>
+                    <input type="checkbox" name="resultados_id" value="patentes_registradas"> Patentes registradas<br>
+                    <input type="checkbox" name="resultados_id" value="modelos_utilidad"> Modelos de utilidad<br>
+                    <input type="checkbox" name="resultados_id" value="disenos_industriales"> Diseños industriales<br>
+                    <input type="checkbox" name="resultados_id" value="software_desarrollado"> Software desarrollado<br>
+                    <input type="checkbox" name="resultados_id" value="publicaciones_cientificas"> Publicaciones
+                    científicas
+                    o técnicas<br>
+                    <input type="checkbox" name="resultados_id" value="prototipos_desarrollados"> Prototipos
+                    desarrollados
+                </li>
+                <li>
+                    ¿Cuántas solicitudes de patente ha presentado en los últimos 3 años?<br>
+                    <input type="radio" name="solicitudes_patente" value="ninguna"> Ninguna<br>
+                    <input type="radio" name="solicitudes_patente" value="1_3"> 1-3<br>
+                    <input type="radio" name="solicitudes_patente" value="4_10"> 4-10<br>
+                    <input type="radio" name="solicitudes_patente" value="mas_de_10"> Más de 10
+                </li>
+                <li>
+                    ¿Cuál ha sido el impacto de la I+D en su empresa?
+                    <span style="font-size:small">(marque las opciones que correspondan)</span><br>
+                    <input type="checkbox" name="impacto_id" value="mejora_calidad"> Mejora en la calidad de
+                    productos/servicios<br>
+                    <input type="checkbox" name="impacto_id" value="reduccion_costos"> Reducción de costos<br>
+                    <input type="checkbox" name="impacto_id" value="expansion_mercado"> Expansión de mercado<br>
+                    <input type="checkbox" name="impacto_id" value="incremento_ingresos"> Incremento en ingresos<br>
+                    <input type="checkbox" name="impacto_id" value="fortalecimiento_imagen"> Fortalecimiento de la
+                    imagen de
+                    la empresa
+                </li>
+            </ol>
+            <hr>
+
+            <h3>V. Gestión de la I+D</h3>
+            <ol start="14">
+                <li>
+                    ¿Su empresa tiene un departamento o unidad dedicada a la I+D?<br>
+                    <input type="radio" name="departamento_id" value="si"> Sí<br>
+                    <input type="radio" name="departamento_id" value="no"> No
+                </li>
+                <li>
+                    ¿Se lleva un registro contable separado para los gastos de I+D?<br>
+                    <input type="radio" name="registro_contable_id" value="si"> Sí<br>
+                    <input type="radio" name="registro_contable_id" value="no"> No
+                </li>
+                <li>
+                    ¿La empresa cuenta con una estrategia formal de I+D?<br>
+                    <input type="radio" name="estrategia_formal_id" value="si"> Sí<br>
+                    <input type="radio" name="estrategia_formal_id" value="no"> No
+                </li>
+            </ol>
+            <hr>
+
+            <h3>VI. Colaboraciones en I+D</h3>
+            <ol start="17">
+                <li>
+                    ¿Su empresa colabora con alguna de las siguientes entidades en actividades de I+D?
+                    <span style="font-size:small">(puede seleccionar varias opciones)</span><br>
+                    <input type="checkbox" name="colabora_entidades_id" value="universidades"> Universidades<br>
+                    <input type="checkbox" name="colabora_entidades_id" value="centros_investigacion"> Centros de
+                    investigación<br>
+                    <input type="checkbox" name="colabora_entidades_id" value="empresas_nacionales"> Otras empresas
+                    nacionales<br>
+                    <input type="checkbox" name="colabora_entidades_id" value="empresas_internacionales"> Otras empresas
+                    internacionales<br>
+                    <input type="checkbox" name="colabora_entidades_id" value="organismos_gubernamentales"> Organismos
+                    gubernamentales
+                </li>
+                <li>
+                    ¿Qué tipo de colaboración realiza principalmente?<br>
+                    <input type="checkbox" name="tipo_colaboracion_id" value="financiamiento_conjunto"> Financiamiento
+                    conjunto<br>
+                    <input type="checkbox" name="tipo_colaboracion_id" value="transferencia_tecnologia"> Transferencia
+                    de
+                    tecnología<br>
+                    <input type="checkbox" name="tipo_colaboracion_id" value="proyectos_compartidos"> Proyectos de
+                    innovación compartidos<br>
+                    <input type="checkbox" name="tipo_colaboracion_id" value="acceso_infraestructura"> Acceso a
+                    infraestructura/laboratorios
+                </li>
+            </ol>
+            <hr>
+            <h3>VII. Perspectivas y desafíos en I+D</h3>
+            <ol start="19">
+                <li>
+                    ¿Cuáles son las principales barreras que enfrenta su empresa para invertir en I+D?
+                    <span style="font-size:small">(seleccione las 3 principales)</span><br>
+                    <input type="checkbox" name="barreras_id" value="falta_financiamiento"> Falta de financiamiento<br>
+                    <input type="checkbox" name="barreras_id" value="falta_personal_capacitado"> Falta de personal
+                    capacitado<br>
+                    <input type="checkbox" name="barreras_id" value="incertidumbre_resultados"> Incertidumbre en los
+                    resultados<br>
+                    <input type="checkbox" name="barreras_id" value="altos_costos_inversion"> Altos costos de
+                    inversión<br>
+                    <input type="checkbox" name="barreras_id" value="regulaciones_gubernamentales"> Regulaciones
+                    gubernamentales<br>
+                    <input type="checkbox" name="barreras_id" value="otros"> Otros (especifique): <input type="text"
+                        name="barreras_otros" style="width: 200px;">
+                </li>
+                <li>
+                    ¿Tiene planes de aumentar su inversión en I+D en los próximos 3 años?<br>
+                    <input type="radio" name="planes_inversion" value="si"> Sí<br>
+                    <input type="radio" name="planes_inversion" value="no"> No<br>
+                    <input type="radio" name="planes_inversion" value="no_esta_seguro"> No está seguro
+                </li>
+            </ol>
+            <hr>
+
+            <h3>VIII. Información adicional</h3>
+            <ol start="21">
+                <li>
+                    ¿Desea proporcionar algún comentario adicional sobre las actividades de I+D en su empresa?<br>
+                    <textarea name="comentarios_adicionales" rows="3" cols="80"></textarea>
+                </li>
+            </ol>
+        <section class = 'submit-button-container'>
+          <input type="submit" value="SUBMIT" class="submit-button"></input>
+        </section>
+        </form>
+    </div> 
+
+    </main>
+{% endblock %}
