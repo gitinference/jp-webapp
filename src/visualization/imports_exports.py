@@ -13,102 +13,49 @@ api = creds[6]
 
 def web_app_imports_exports(request):
 
-    df1_imports = requests.get(f"{api}data/trade/jp/?time_frame=yearly&level=country&agg=none&agr=false&group=false&datetime=2009").json()
-    df1_imports = pd.DataFrame(df1_imports)
-
     # IMPORTS GRAPH 
-    fig = px.pie(df1_imports, values='imports', names='country')
-    fig.update_traces(textposition='inside', textinfo='percent+label')
 
     if request.method == "POST":
         frequency = request.POST.get("frequency")
         second_dropdown = request.POST.get("second_dropdown")
         third_dropdown = request.POST.get("third_dropdown")
 
-        if frequency == "Yearly":
-            df1_imports = requests.get(f"{api}data/trade/jp/?time_frame=yearly&level=country&agg=none&agr=false&group=false&datetime={second_dropdown}").json()
-            fig = px.pie(df1_imports, values='imports', names='country')
-        elif frequency == "Monthly":
-            df1_imports = requests.get(f"{api}data/trade/jp/?time_frame=monthly&level=country&agg=none&agr=false&group=false&datetime={second_dropdown}-{third_dropdown}").json()
-            fig = px.pie(df1_imports, values='imports', names='country')
-        elif frequency == "Quarterly":
-            df1_imports = requests.get(f"{api}data/trade/jp/?time_frame=qrt&level=country&agg=none&agr=false&group=false&datetime={second_dropdown}-{third_dropdown}").json()
-            fig = px.pie(df1_imports, values='imports', names='country')
-
         if frequency is None and second_dropdown is None:
             frequency = "Yearly"
             second_dropdown = 2009
+        
+        imports_graph = requests.get(
+            f"{api}graph/import-export/?level=country&time_frame=yearly&datetime=2009&group=false&frequency={frequency}&second_dropdown={second_dropdown}&third_dropdown={third_dropdown}&type=imports"
+        )
+    else:
+        imports_graph = requests.get(
+            f"{api}graph/import-export/?level=country&time_frame=yearly&group=false&frequency=Yearly&second_dropdown=2009&datetime=2009&type=imports"
+        )
 
-        if third_dropdown is None:
-            fig.update_layout(
-                title={
-                    'text': f"Time: {frequency} / {second_dropdown}",
-                    'x': 0.5,
-                    'font': {'color': 'black'}
-                },
-            )
-        else:
-            fig.update_layout(
-                title={
-                    'text': f"Time: {frequency} / {second_dropdown} / {third_dropdown}",
-                    'x': 0.5,
-                    'font': {'color': 'black'}
-                },
-            )
-
-    fig.update_traces(textposition='inside', textinfo='percent+label')
-
-    imports = fig.to_html(full_html=False, default_height=500, default_width=700)
+    imports = imports_graph.json()
 
     # ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     # EXPORTS GRAPH
-    
-    df1_exports = requests.get(f"{api}data/trade/jp/?time_frame=yearly&level=country&agg=none&agr=false&group=false&datetime=2009").json()
-    df1_exports = pd.DataFrame(df1_exports)
-    
-    fig1 = px.pie(df1_exports, values='exports', names='country')
-    fig1.update_traces(textposition='inside', textinfo='percent+label')
 
     if request.method == "POST":
         frequency_2 = request.POST.get("frequency_2")
         second_dropdown_2 = request.POST.get("second_dropdown_2")
         third_dropdown_2 = request.POST.get("third_dropdown_2")
 
-        if frequency_2 == "Yearly":
-            df1_exports = requests.get(f"{api}data/trade/jp/?time_frame=yearly&level=country&agg=none&agr=false&group=false&datetime={second_dropdown_2}").json()
-            fig1 = px.pie(df1_exports, values='exports', names='country')
-        elif frequency_2 == "Monthly":
-            df1_exports = requests.get(f"{api}data/trade/jp/?time_frame=monthly&level=country&agg=none&agr=false&group=false&datetime={second_dropdown_2}-{third_dropdown_2}").json()
-            fig1 = px.pie(df1_exports, values='exports', names='country')
-        elif frequency_2 == "Quarterly":
-            df1_exports = requests.get(f"{api}data/trade/jp/?time_frame=qrt&level=country&agg=none&agr=false&group=false&datetime={second_dropdown_2}-{third_dropdown_2}").json()
-            fig1 = px.pie(df1_exports, values='exports', names='country')
-
         if frequency_2 is None and second_dropdown_2 is None:
             frequency_2 = "Yearly"
             second_dropdown_2 = 2009
 
-        if third_dropdown_2 is None:
-            fig1.update_layout(
-                title={
-                    'text': f"Time: {frequency_2} / {second_dropdown_2}",
-                    'x': 0.5,
-                    'font': {'color': 'black'}
-                },
-            )
-        else:
-            fig1.update_layout(
-                title={
-                    'text': f"Time: {frequency_2} / {second_dropdown_2} / {third_dropdown_2}",
-                    'x': 0.5,
-                    'font': {'color': 'black'}
-                },
-            )
+        exports_graph = requests.get(
+            f"{api}graph/import-export/?level=country&time_frame=yearly&datetime=2009&group=false&frequency={frequency_2}&second_dropdown={second_dropdown_2}&third_dropdown={third_dropdown_2}&type=exports"
+        )
+    else:
+        exports_graph = requests.get(
+            f"{api}graph/import-export/?level=country&time_frame=yearly&group=false&frequency=Yearly&second_dropdown=2009&datetime=2009&type=exports"
+        )
 
-    fig1.update_traces(textposition='inside', textinfo='percent+label')
-
-    exports = fig1.to_html(full_html=False, default_height=500, default_width=700)
+    exports = exports_graph.json()
 
     # ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
