@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cuestionario Intangibles Marketing y Marca</title>
+  <link rel="stylesheet" href="{% static 'css/cuestionario_intangibles_spanish.css' %}"/>
+  
+ 
+</head>
+
+<body>
+  <!-- Header -->
+  <section class="header">
+    <table id="header_line">
+      <tr>
+        <td id="header_left">
+          <!-- logo o información adicional -->
+        </td>
+        <td id="header_center">
+          <img src="{% static 'images/Logo_Intangibles.jpg' %}" alt="Logo Intangibles" id="header_image"/><br>
+          <h1>Cuestionario Para Medir los Gastos de Marketing y Capacitación de Marca Como Activos Intangibles en Cuentas Nacionales</h1>
+        </td>
+        <td id="header_right">
+          <!-- Información adicional -->
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="intro">
+    <p>
+      Este cuestionario tiene como objetivo recopilar información sobre la inversión, gestión y beneficios económicos
+      futuros asociados a los gastos de comercialización y formación de marca, con el fin de evaluar su clasificación
+      como activos intangibles en las cuentas nacionales. La información proporcionada será tratada de forma confidencial
+      y utilizada únicamente con fines estadísticos.
+    </p>
+  </section>
+
+  <main>
+    <form id="questionnaireIntangibles" class="question-box">
+      <!-- I. Información General de la Empresa -->
+      <fieldset class="section" id="sectionI">
+        <legend><strong>I. Información General de la Empresa</strong></legend>
+
+        <div class="form-group"><br/>
+          <label for="company_name"><strong>1. Nombre de la empresa:</strong></label>
+          <input type="text" id="company_name" name="company_name" required placeholder="Ingrese el nombre de la empresa"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label for="ein"><strong>2. EIN:</strong></label>
+          <input type="text" id="ein" name="ein" required placeholder="Ingrese el EIN"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label for="naics"><strong>3. NAICS:</strong></label>
+          <input type="text" id="naics" name="naics" required placeholder="Ingrese el código NAICS"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>4. Tamaño de la empresa:</strong></label><br/>
+          <input type="radio" id="size_micro" name="company_size" value="Micro" required/>
+          <label for="size_micro">&emsp;Micro (1-10 empleados)</label><br/>
+          <input type="radio" id="size_small" name="company_size" value="Pequeña"/>
+          <label for="size_small">&emsp;Pequeña (11-50 empleados)</label><br/>
+          <input type="radio" id="size_medium" name="company_size" value="Mediana"/>
+          <label for="size_medium">&emsp;Mediana (51-250 empleados)</label><br/>
+          <input type="radio" id="size_large" name="company_size" value="Grande"/>
+          <label for="size_large">&emsp;Grande (más de 250 empleados)</label>
+        </div>
+
+        <div class="form-group"><br/>
+          <label for="reference_year"><strong>5. Año de referencia:</strong></label>
+          <input type="number" id="reference_year" name="reference_year" required min="1900" max="2100" placeholder="YYYY"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>6. ¿Su empresa ha realizado inversiones en comercialización y formación de marca en el año de referencia?</strong></label><br/>
+          <input type="radio" id="investments_yes" name="made_investments" value="Sí" required/>
+          <label for="investments_yes">&emsp;Sí</label><br/>
+          <input type="radio" id="investments_no" name="made_investments" value="No"/>
+          <label for="investments_no">&emsp;No</label>
+          <small class="note">(Si la respuesta es “No”, haga clic en el botón para enviar el cuestionario.)</small>
+        </div>
+      </fieldset>
+
+      <!-- II. Inversión en Comercialización y Formación de Marca -->
+      <fieldset class="section" id="sectionII" style="display: none;">
+        <legend><strong>II. Inversión en Comercialización y Formación de Marca</strong></legend>
+
+        <div class="form-group"><br/>
+          <label for="investment_total"><strong>7. ¿Cuál fue el monto total invertido en actividades de comercialización y formación de marca durante el año de referencia? (en moneda local)</strong></label>
+          <input type="number" id="investment_total" name="investment_total" min="0" step="0.01" required placeholder="Ingrese el monto total"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>8. ¿En qué áreas se realizaron las inversiones en comercialización y formación de marca?</strong></label><br/>
+          <input type="checkbox" id="area_advertising" name="investment_areas[]" value="Publicidad"/>
+          <label for="area_advertising">&emsp;Publicidad (TV, radio, digital, impresa)</label><br/>
+          <input type="checkbox" id="area_digital_marketing" name="investment_areas[]" value="Marketing Digital"/>
+          <label for="area_digital_marketing">&emsp;Estrategias de marketing digital (SEO, SEM, redes sociales)</label><br/>
+          <input type="checkbox" id="area_events" name="investment_areas[]" value="Eventos"/>
+          <label for="area_events">&emsp;Eventos promocionales y patrocinios</label><br/>
+          <input type="checkbox" id="area_corporate_identity" name="investment_areas[]" value="Identidad Corporativa"/>
+          <label for="area_corporate_identity">&emsp;Desarrollo de identidad corporativa (logos, diseño, eslogan)</label><br/>
+          <input type="checkbox" id="area_market_research" name="investment_areas[]" value="Investigación de mercado"/>
+          <label for="area_market_research">&emsp;Investigación de mercado y análisis de clientes</label><br/>
+          <input type="checkbox" id="area_loyalty" name="investment_areas[]" value="Fidelización"/>
+          <label for="area_loyalty">&emsp;Fidelización y programas de lealtad</label><br/>
+          <input type="checkbox" id="area_training" name="investment_areas[]" value="Formación Equipo Comercial"/>
+          <label for="area_training">&emsp;Formación y capacitación del equipo comercial</label><br/>
+          <input type="checkbox" id="area_other_II" name="investment_areas[]" value="Otros"/>
+          <label for="area_other_II">&emsp;Otros (especifique):</label>
+          <input type="text" id="other_area_specify" name="other_area_specify" placeholder="Especifique"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>9. ¿Cómo financió la empresa estas inversiones?</strong></label><br/>
+          <input type="checkbox" id="funding_equity" name="funding_sources[]" value="Fondos Propios"/>
+          <label for="funding_equity">&emsp;Fondos propios</label><br/>
+          <input type="checkbox" id="funding_loans" name="funding_sources[]" value="Créditos Bancarios"/>
+          <label for="funding_loans">&emsp;Créditos bancarios</label><br/>
+          <input type="checkbox" id="funding_foreign" name="funding_sources[]" value="Inversión Extranjera"/>
+          <label for="funding_foreign">&emsp;Inversión extranjera</label><br/>
+          <input type="checkbox" id="funding_grants" name="funding_sources[]" value="Subvenciones Gubernamentales"/>
+          <label for="funding_grants">&emsp;Subvenciones gubernamentales</label><br/>
+          <input type="checkbox" id="funding_other_II" name="funding_sources[]" value="Otros"/>
+          <label for="funding_other_II">&emsp;Otros (especifique):</label>
+          <input type="text" id="other_funding_specify" name="other_funding_specify" placeholder="Especifique"/>
+        </div>
+      </fieldset>
+
+      <!-- III. Beneficios Económicos Futuros -->
+      <fieldset class="section" id="sectionIII" style="display: none;">
+        <legend><strong>III. Beneficios Económicos Futuros</strong></legend>
+
+        <div class="form-group"><br/>
+          <label><strong>10. ¿Considera que estas inversiones generarán beneficios económicos futuros controlados por la empresa?</strong></label><br/>
+          <input type="radio" id="benefits_yes" name="future_benefits" value="Sí" required/>
+          <label for="benefits_yes">&emsp;Sí</label><br/>
+          <input type="radio" id="benefits_no" name="future_benefits" value="No"/>
+          <label for="benefits_no">&emsp;No</label><br/>
+          <input type="radio" id="benefits_uncertain" name="future_benefits" value="No está seguro"/>
+          <label for="benefits_uncertain">&emsp;No está seguro</label>
+        </div>
+
+        <div class="form-group" id="benefits_materialization" style="display: none;"><br/>
+          <label><strong>11. Si respondió “Sí”, ¿de qué manera espera que se materialicen estos beneficios?</strong></label><br/>
+          <input type="checkbox" id="materialization_sales" name="benefit_materialization[]" value="Aumento Ventas"/>
+          <label for="materialization_sales">&emsp;Aumento en las ventas o ingresos futuros</label><br/>
+          <input type="checkbox" id="materialization_expansion" name="benefit_materialization[]" value="Expansión Mercados"/>
+          <label for="materialization_expansion">&emsp;Expansión a nuevos mercados o segmentos</label><br/>
+          <input type="checkbox" id="materialization_loyalty" name="benefit_materialization[]" value="Fidelización"/>
+          <label for="materialization_loyalty">&emsp;Mayor fidelización de clientes</label><br/>
+          <input type="checkbox" id="materialization_perception" name="benefit_materialization[]" value="Percepción Marca"/>
+          <label for="materialization_perception">&emsp;Fortalecimiento de la percepción de marca</label><br/>
+          <input type="checkbox" id="materialization_cost_reduction" name="benefit_materialization[]" value="Reducción Costos"/>
+          <label for="materialization_cost_reduction">&emsp;Reducción de costos de adquisición de clientes</label><br/>
+          <input type="checkbox" id="materialization_other" name="benefit_materialization[]" value="Otros"/>
+          <label for="materialization_other">&emsp;Otros (especifique):</label>
+          <input type="text" id="other_materialization_specify" name="other_materialization_specify" placeholder="Especifique"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>12. ¿La empresa puede medir de manera precisa los beneficios generados por las actividades de comercialización y marca?</strong></label><br/>
+          <input type="radio" id="measure_precise" name="benefit_measurement" value="Sí, mediante indicadores específicos" required/>
+          <label for="measure_precise">&emsp;Sí, mediante indicadores específicos</label><br/>
+          <input type="radio" id="measure_difficult" name="benefit_measurement" value="No, es difícil medir el impacto directo"/>
+          <label for="measure_difficult">&emsp;No, es difícil medir el impacto directo</label><br/>
+          <input type="radio" id="measure_partial" name="benefit_measurement" value="Parcialmente, con aproximaciones indirectas"/>
+          <label for="measure_partial">&emsp;Parcialmente, con aproximaciones indirectas</label>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>13. ¿La empresa tiene mecanismos para controlar y proteger estos beneficios (por ejemplo, derechos de marca, acuerdos de exclusividad)?</strong></label><br/>
+          <input type="radio" id="protect_yes" name="benefit_protection" value="Sí" required/>
+          <label for="protect_yes">&emsp;Sí</label><br/>
+          <input type="radio" id="protect_no" name="benefit_protection" value="No"/>
+          <label for="protect_no">&emsp;No</label>
+        </div>
+      </fieldset>
+
+      <!-- IV. Registro Contable y Valorización -->
+      <fieldset class="section" id="sectionIV" style="display: none;">
+        <legend><strong>IV. Registro Contable y Valorización</strong></legend>
+
+        <div class="form-group"><br/>
+          <label><strong>14. ¿Se registran los gastos de comercialización y formación de marca como activos intangibles en los estados financieros de la empresa?</strong></label><br/>
+          <input type="radio" id="record_full" name="accounting_record" value="Sí, totalmente" required/>
+          <label for="record_full">&emsp;Sí, totalmente</label><br/>
+          <input type="radio" id="record_partial" name="accounting_record" value="Sí, parcialmente"/>
+          <label for="record_partial">&emsp;Sí, parcialmente</label><br/>
+          <input type="radio" id="record_expense" name="accounting_record" value="No, se registran como gastos operativos"/>
+          <label for="record_expense">&emsp;No, se registran como gastos operativos</label>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>15. ¿Cómo se valoran estos gastos en su empresa?</strong></label><br/>
+          <input type="radio" id="valuation_historical" name="valuation_method" value="Costo histórico de adquisición" required/>
+          <label for="valuation_historical">&emsp;Costo histórico de adquisición</label><br/>
+          <input type="radio" id="valuation_npv" name="valuation_method" value="VPN de flujos futuros"/>
+          <label for="valuation_npv">&emsp;Valor presente neto (VPN) de los flujos futuros</label><br/>
+          <input type="radio" id="valuation_market" name="valuation_method" value="Valor de mercado"/>
+          <label for="valuation_market">&emsp;Valor de mercado</label><br/>
+          <input type="radio" id="valuation_other" name="valuation_method" value="Otros"/>
+          <label for="valuation_other">&emsp;Otros (especifique):</label>
+          <input type="text" id="other_valuation_specify" name="other_valuation_specify" placeholder="Especifique"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>16. ¿La empresa realiza evaluaciones periódicas para determinar la vida útil y el deterioro de los activos intangibles relacionados con la marca?</strong></label><br/>
+          <input type="radio" id="impairment_yes" name="impairment_assessment" value="Sí" required/>
+          <label for="impairment_yes">&emsp;Sí</label><br/>
+          <input type="radio" id="impairment_no" name="impairment_assessment" value="No"/>
+          <label for="impairment_no">&emsp;No</label>
+        </div>
+      </fieldset>
+
+      <!-- V. Resultados y Rendimiento de la Inversión -->
+      <fieldset class="section" id="sectionV" style="display: none;">
+        <legend><strong>V. Resultados y Rendimiento de la Inversión</strong></legend>
+
+        <div class="form-group"><br/>
+          <label><strong>17. ¿Ha observado la empresa un impacto positivo en los siguientes indicadores como resultado de la inversión en marca?</strong></label><br/>
+          <input type="checkbox" id="impact_recognition" name="investment_impact[]" value="Reconocimiento Marca"/>
+          <label for="impact_recognition">&emsp;Aumento en el reconocimiento de la marca</label><br/>
+          <input type="checkbox" id="impact_market_share" name="investment_impact[]" value="Participación Mercado"/>
+          <label for="impact_market_share">&emsp;Incremento en la participación de mercado</label><br/>
+          <input type="checkbox" id="impact_loyalty" name="investment_impact[]" value="Fidelidad Cliente"/>
+          <label for="impact_loyalty">&emsp;Mayor fidelidad del cliente</label><br/>
+          <input type="checkbox" id="impact_reputation" name="investment_impact[]" value="Reputación Corporativa"/>
+          <label for="impact_reputation">&emsp;Mejora en la reputación corporativa</label><br/>
+          <input type="checkbox" id="impact_other" name="investment_impact[]" value="Otros"/>
+          <label for="impact_other">&emsp;Otros (especifique):</label>
+          <input type="text" id="other_impact_specify" name="other_impact_specify" placeholder="Especifique"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>18. ¿Cuál ha sido el retorno estimado sobre la inversión (ROI) de las actividades de comercialización y formación de marca?</strong></label><br/>
+          <input type="radio" id="roi_less_10" name="estimated_roi" value="Menos del 10%" required/>
+          <label for="roi_less_10">&emsp;Menos del 10%</label><br/>
+          <input type="radio" id="roi_10_30" name="estimated_roi" value="10% - 30%"/>
+          <label for="roi_10_30">&emsp;10% - 30%</label><br/>
+          <input type="radio" id="roi_31_50" name="estimated_roi" value="31% - 50%"/>
+          <label for="roi_31_50">&emsp;31% - 50%</label><br/>
+          <input type="radio" id="roi_more_50" name="estimated_roi" value="Más del 50%"/>
+          <label for="roi_more_50">&emsp;Más del 50%</label><br/>
+          <input type="radio" id="roi_not_calculated" name="estimated_roi" value="No se ha calculado"/>
+          <label for="roi_not_calculated">&emsp;No se ha calculado</label>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>19. ¿Se han realizado ajustes estratégicos basados en el rendimiento de las inversiones en marca?</strong></label><br/>
+          <input type="radio" id="strategic_yes" name="strategic_adjustments" value="Sí" required/>
+          <label for="strategic_yes">&emsp;Sí</label><br/>
+          <input type="radio" id="strategic_no" name="strategic_adjustments" value="No"/>
+          <label for="strategic_no">&emsp;No</label><br/>
+          <input type="radio" id="strategic_evaluation" name="strategic_adjustments" value="En evaluación"/>
+          <label for="strategic_evaluation">&emsp;En evaluación</label>
+        </div>
+      </fieldset>
+
+      <!-- VI. Riesgos y Desafíos -->
+      <fieldset class="section" id="sectionVI" style="display: none;">
+        <legend><strong>VI. Riesgos y Desafíos</strong></legend>
+
+        <div class="form-group"><br/>
+          <label><strong>20. ¿Cuáles considera que son los principales riesgos asociados a la inversión en comercialización y formación de marca?</strong></label><br/>
+          <input type="checkbox" id="risk_consumer_preference" name="investment_risks[]" value="Cambios Preferencia Consumidor"/>
+          <label for="risk_consumer_preference">&emsp;Cambios en la preferencia del consumidor</label><br/>
+          <input type="checkbox" id="risk_competition" name="investment_risks[]" value="Competencia Agresiva"/>
+          <label for="risk_competition">&emsp;Competencia agresiva</label><br/>
+          <input type="checkbox" id="risk_brand_diff" name="investment_risks[]" value="Falta Diferenciación Marca"/>
+          <label for="risk_brand_diff">&emsp;Falta de diferenciación de la marca</label><br/>
+          <input type="checkbox" id="risk_regulatory" name="investment_risks[]" value="Cambios Regulatorios"/>
+          <label for="risk_regulatory">&emsp;Cambios regulatorios o legales</label><br/>
+          <input type="checkbox" id="risk_other" name="investment_risks[]" value="Otros"/>
+          <label for="risk_other">&emsp;Otros (especifique):</label>
+          <input type="text" id="other_risk_specify" name="other_risk_specify" placeholder="Especifique"/>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>21. ¿Ha implementado la empresa estrategias para mitigar estos riesgos?</strong></label><br/>
+          <input type="radio" id="mitigation_yes" name="risk_mitigation" value="Sí" required/>
+          <label for="mitigation_yes">&emsp;Sí</label><br/>
+          <input type="radio" id="mitigation_no" name="risk_mitigation" value="No"/>
+          <label for="mitigation_no">&emsp;No</label>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>22. ¿Ha enfrentado la empresa litigios relacionados con el uso de su marca o derechos de propiedad intelectual?</strong></label><br/>
+          <input type="radio" id="litigation_yes" name="litigation" value="Sí" required/>
+          <label for="litigation_yes">&emsp;Sí</label><br/>
+          <input type="radio" id="litigation_no" name="litigation" value="No"/>
+          <label for="litigation_no">&emsp;No</label>
+        </div>
+      </fieldset>
+
+      <!-- VII. Proyecciones y Estrategias Futuras -->
+      <fieldset class="section" id="sectionVII" style="display: none;">
+        <legend><strong>VII. Proyecciones y Estrategias Futuras</strong></legend>
+
+        <div class="form-group"><br/>
+          <label><strong>23. ¿Planea la empresa incrementar su inversión en comercialización y formación de marca en los próximos 3 años?</strong></label><br/>
+          <input type="radio" id="future_investment_yes" name="future_investment_plan" value="Sí" required/>
+          <label for="future_investment_yes">&emsp;Sí</label><br/>
+          <input type="radio" id="future_investment_no" name="future_investment_plan" value="No"/>
+          <label for="future_investment_no">&emsp;No</label><br/>
+          <input type="radio" id="future_investment_uncertain" name="future_investment_plan" value="No está seguro"/>
+          <label for="future_investment_uncertain">&emsp;No está seguro</label>
+        </div>
+
+        <div class="form-group"><br/>
+          <label><strong>24. ¿Qué áreas considera prioritarias para futuras inversiones en marca?</strong></label><br/>
+          <input type="checkbox" id="priority_international" name="future_investment_areas[]" value="Expansión Mercados Internacionales"/>
+          <label for="priority_international">&emsp;Expansión a mercados internacionales</label><br/>
+          <input type="checkbox" id="priority_digital" name="future_investment_areas[]" value="Marketing Digital"/>
+          <label for="priority_digital">&emsp;Mayor inversión en marketing digital</label><br/>
+          <input type="checkbox" id="priority_innovation" name="future_investment_areas[]" value="Innovación Productos"/>
+          <label for="priority_innovation">&emsp;Innovación en productos y servicios</label><br/>
+          <input type="checkbox" id="priority_collaborations" name="future_investment_areas[]" value="Colaboraciones Estratégicas"/>
+          <label for="priority_collaborations">&emsp;Colaboraciones estratégicas</label><br/>
+          <input type="checkbox" id="priority_other" name="future_investment_areas[]" value="Otros"/>
+          <label for="priority_other">&emsp;Otros (especifique):</label>
+          <input type="text" id="other_priority_specify" name="other_priority_specify" placeholder="Especifique"/>
+        </div>
+      </fieldset>
+
+      <!-- VIII. Comentarios Adicionales -->
+      <fieldset class="section" id="sectionVIII" style="display: none;">
+        <legend><strong>VIII. Comentarios Adicionales</strong></legend>
+
+        <div class="form-group"><br/>
+          <label for="additional_comments"><strong>25. ¿Desea proporcionar algún comentario adicional sobre la gestión de gastos de comercialización y formación de marca en su empresa?</strong></label><br/>
+          <textarea id="additional_comments" name="additional_comments" rows="4" cols="50" placeholder="Ingrese sus comentarios aquí"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- Botón de envío -->
+      <div class="form-group" id="submitSection" style="display: none; text-align: center;">
+        <button type="submit">Enviar Cuestionario</button>
+      </div>
+    </form>
+
+    <!-- Mensaje de agradecimiento que se mostrará tras enviar -->
+    <div id="thankYouMessage">
+      Gracias por su participación. Sus respuestas ayudarán a mejorar la comprensión de los gastos de comercialización y formación de marca como activos intangibles en las cuentas nacionales.
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Referencias generales
+      const form = document.getElementById('questionnaireIntangibles');
+      const thankYou = document.getElementById('thankYouMessage');
+      const submitSection = document.getElementById('submitSection');
+
+      // Referencias a cada sección
+      const sectionII = document.getElementById('sectionII');
+      const sectionIII = document.getElementById('sectionIII');
+      const sectionIV = document.getElementById('sectionIV');
+      const sectionV = document.getElementById('sectionV');
+      const sectionVI = document.getElementById('sectionVI');
+      const sectionVII = document.getElementById('sectionVII');
+      const sectionVIII = document.getElementById('sectionVIII');
+
+      // 1) Cuando el formulario se envíe
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();            // Evita el envío tradicional
+        form.style.display = 'none';       // Oculta todo el formulario
+        submitSection.style.display = 'none'; // Oculta el botón
+        thankYou.style.display = 'block';  // Muestra el mensaje de agradecimiento
+      });
+
+      // 2) Mostrar/ocultar Sección II al responder pregunta 6
+      document.getElementById('investments_yes').addEventListener('change', function() {
+        sectionII.style.display = 'block';
+        // Ocultar secciones posteriores si venían visibles
+        sectionIII.style.display = 'none';
+        sectionIV.style.display = 'none';
+        sectionV.style.display = 'none';
+        sectionVI.style.display = 'none';
+        sectionVII.style.display = 'none';
+        sectionVIII.style.display = 'none';
+        submitSection.style.display = 'none';
+        // Si estaba visible el mensaje de agradecimiento, ocultarlo
+        thankYou.style.display = 'none';
+      });
+
+      document.getElementById('investments_no').addEventListener('change', function() {
+        // Si marca “No”, ocultar todas las secciones posteriores
+        sectionII.style.display = 'none';
+        sectionIII.style.display = 'none';
+        sectionIV.style.display = 'none';
+        sectionV.style.display = 'none';
+        sectionVI.style.display = 'none';
+        sectionVII.style.display = 'none';
+        sectionVIII.style.display = 'none';
+        // Mostrar directamente el botón de envío
+        submitSection.style.display = 'block';
+        // Ocultar el mensaje de agradecimiento si estuviera visible
+        thankYou.style.display = 'none';
+      });
+
+      // 3) Validar que, al cambiar de “No” a “Sí” o viceversa, se restaure visibilidad correcta
+      document.getElementById('investments_yes').addEventListener('change', function() {
+        form.style.display = 'block';
+      });
+      document.getElementById('investments_no').addEventListener('change', function() {
+        form.style.display = 'block';
+      });
+
+      // 4) Mostrar sección III en cuanto se ingrese un monto en campo 7
+      document.getElementById('investment_total').addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+          sectionIII.style.display = 'block';
+        } else {
+          sectionIII.style.display = 'none';
+        }
+      });
+
+      // 5) Mostrar/ocultar detalle de materialización en sección III y habilitar sección IV
+      const benefitsRadios = document.getElementsByName('future_benefits');
+      benefitsRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.value === 'Sí') {
+            document.getElementById('benefits_materialization').style.display = 'block';
+          } else {
+            document.getElementById('benefits_materialization').style.display = 'none';
+          }
+          sectionIV.style.display = 'block';
+        });
+      });
+
+      // 6) En sección IV: al elegir cualquier radio de "valuation_method", habilitar sección V
+      const valuationRadios = document.getElementsByName('valuation_method');
+      valuationRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          sectionV.style.display = 'block';
+        });
+      });
+
+      // 7) En sección V: al marcar cualquier checkbox/radio, habilitar sección VI
+      const impactInputs = document.querySelectorAll('#sectionV input');
+      impactInputs.forEach(input => {
+        input.addEventListener('change', function() {
+          sectionVI.style.display = 'block';
+        });
+      });
+
+      // 8) En sección VI: al responder la última pregunta (litigios), habilitar sección VII
+      const litigationRadios = document.getElementsByName('litigation');
+      litigationRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          sectionVII.style.display = 'block';
+        });
+      });
+
+      // 9) En sección VII: al responder la primera pregunta, habilitar sección VIII y botón de envío
+      const futureInvestmentRadios = document.getElementsByName('future_investment_plan');
+      futureInvestmentRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          sectionVIII.style.display = 'block';
+          submitSection.style.display = 'block';
+        });
+      });
+
+      // 10) Mantener oculta por defecto la sección II en adelante y el botón/envío/mensaje
+      sectionII.style.display = 'none';
+      sectionIII.style.display = 'none';
+      sectionIV.style.display = 'none';
+      sectionV.style.display = 'none';
+      sectionVI.style.display = 'none';
+      sectionVII.style.display = 'none';
+      sectionVIII.style.display = 'none';
+      submitSection.style.display = 'none';
+      thankYou.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
