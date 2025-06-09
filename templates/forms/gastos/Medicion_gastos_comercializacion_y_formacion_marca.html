@@ -1,0 +1,302 @@
+{% extends "forms/base/base_form.html" %}
+{% load static %}
+{% block title %}Cuestionario para medir los gastos de Comercialización y formación de marca{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/gastos/gastos.css' %}" />
+{% endblock %}
+
+    
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+  </head>
+
+{% block header %}
+      <table>
+        <tr>
+          <td id="header_left">
+            JP-304 Rev.<br>
+            Junta de Planificación<br>
+            Subprograma de Análisis Económico
+          </td>
+          <td id="header_center">
+            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo JP" id="header_image"><br>
+            <b>RELACIÓN DE APORTACIONES FEDERALES APROBADAS,<br>
+                RECIBIDAS Y GASTADAS</b><br>
+            Orden Ejecutiva 12372
+          </td>
+          <td id="header_right">
+            Centro Gubernamental Roberto Sánchez Vilella<br>
+            Apartado 41119<br>
+            San Juan, Puerto Rico 00940-1119
+          </td>
+        </tr>
+      </table>
+{% endblock %}
+{% block form_content %}
+  <!-- Main -->  
+    <main>
+      <div class="form-contenedor">
+        <h2 style="margin-bottom: 8px;">CUESTIONARIO PARA MEDIR LOS GASTOS DE COMERCIALIZACIÓN Y FORMACIÓN DE MARCA COMO
+            ACTIVOS INTANGIBLES EN LAS CUENTAS NACIONALES </h2>
+        <p style="text-align: center; font-size: 1.06em; margin-top: 0; margin-bottom: 30px;">
+            Este cuestionario tiene como objetivo recopilar información sobre la inversión, gestión y beneficios
+            económicos futuros asociados a los <b>gastos de comercialización y formación de marca</b>, con el fin de
+            evaluar su clasificación como activos intangibles en las cuentas nacionales. La información proporcionada
+            será tratada de forma confidencial y utilizada únicamente con fines estadísticos.
+        </p>
+        <hr>
+        
+        <h3>I. Información General de la Empresa</h3>
+        <form method="POST" action="{% url 'web_app:medicion-gastos-comercializacion-formacion-marca' %}">
+          {% csrf_token %}
+            <ol>
+                <li>
+                    <b>Nombre de la empresa:</b>
+                    <input type="text" name="nombre_empresa" style="width:320px;">
+                </li>
+                <li>
+                    <b>EIN:</b>
+                    <input type="text" name="ein" style="width:130px;">
+                </li>
+                <li>
+                    <b>NAICS:</b>
+                    <input type="text" name="naics" style="width:150px;">
+                </li>
+                <li>
+                    <b>Tamaño de la empresa:</b><br>
+                    <input type="radio" name="tamano_empresa" value="micro"> Micro (1-10 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="pequena"> Pequeña (11-50 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="mediana"> Mediana (51-250 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="grande"> Grande (más de 250 empleados)
+                </li>
+                <li>
+                    <b>Año de referencia:</b>
+                    <input type="text" name="anio_referencia" style="width:90px;">
+                </li>
+                <li>
+                    <b>¿Su empresa ha realizado inversiones en comercialización y formación de marca en el año de
+                        referencia?</b><br>
+                    <input type="radio" name="inversiones_comercializacion" value="si"> Sí<br>
+                    <input type="radio" name="inversiones_comercializacion" value="no"> No (si su respuesta es "No",
+                    finalice el cuestionario)
+                </li>
+            </ol>
+            <hr>
+            <h2>II. Inversión en Comercialización y Formación de Marca</h2>
+            <ol start="7">
+                <li>
+                    <b>¿Cuál fue el monto total invertido en actividades de comercialización y formación de marca
+                        durante el año de referencia?</b>
+                    <span style="font-size:small;">(en moneda local)</span><br>
+                    &emsp;Total: <input type="text" name="total_inversion_marca" style="width:160px;">
+                </li>
+                <li>
+                    <b>¿En qué áreas se realizaron las inversiones en comercialización y formación de marca?</b><br>
+                    <input type="checkbox" name="areas_inversion" value="publicidad"> Publicidad (TV, radio, digital,
+                    impresa)<br>
+                    <input type="checkbox" name="areas_inversion" value="marketing_digital"> Estrategias de marketing
+                    digital (SEO, SEM, redes sociales)<br>
+                    <input type="checkbox" name="areas_inversion" value="eventos_patrocinios"> Eventos promocionales y
+                    patrocinios<br>
+                    <input type="checkbox" name="areas_inversion" value="identidad_corporativa"> Desarrollo de identidad
+                    corporativa (logos, diseño, eslogan)<br>
+                    <input type="checkbox" name="areas_inversion" value="investigacion_mercado"> Investigación de
+                    mercado y análisis de clientes<br>
+                    <input type="checkbox" name="areas_inversion" value="fidelizacion"> Fidelización y programas de
+                    lealtad<br>
+                    <input type="checkbox" name="areas_inversion" value="formacion_equipo"> Formación y capacitación del
+                    equipo comercial<br>
+                    <input type="checkbox" name="areas_inversion" value="otros"> Otros (especifique): <input type="text"
+                        name="areas_inversion_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿Cómo financió la empresa estas inversiones?</b><br>
+                    <input type="checkbox" name="financiacion_inversion" value="fondos_propios"> Fondos propios<br>
+                    <input type="checkbox" name="financiacion_inversion" value="creditos_bancarios"> Créditos
+                    bancarios<br>
+                    <input type="checkbox" name="financiacion_inversion" value="inversion_extranjera"> Inversión
+                    extranjera<br>
+                    <input type="checkbox" name="financiacion_inversion" value="subvenciones"> Subvenciones
+                    gubernamentales<br>
+                    <input type="checkbox" name="financiacion_inversion" value="otros"> Otros (especifique): <input
+                        type="text" name="financiacion_inversion_otros" style="width:180px;">
+                </li>
+            </ol>
+            <hr>
+            <h2>III. Beneficios Económicos Futuros</h2>
+            <ol start="10">
+                <li>
+                    <b>¿Considera que estas inversiones generarán beneficios económicos futuros controlados por la
+                        empresa?</b><br>
+                    <input type="radio" name="beneficios_futuros" value="si"> Sí<br>
+                    <input type="radio" name="beneficios_futuros" value="no"> No<br>
+                    <input type="radio" name="beneficios_futuros" value="no_esta_seguro"> No está seguro
+                </li>
+                <li>
+                    <b>Si respondió "Sí", ¿de qué manera espera que se materialicen estos beneficios?</b><br>
+                    <input type="checkbox" name="materializacion_beneficios" value="aumento_ventas"> Aumento en las
+                    ventas o ingresos futuros<br>
+                    <input type="checkbox" name="materializacion_beneficios" value="expansion_mercados"> Expansión a
+                    nuevos mercados o segmentos<br>
+                    <input type="checkbox" name="materializacion_beneficios" value="fidelizacion_clientes"> Mayor
+                    fidelización de clientes<br>
+                    <input type="checkbox" name="materializacion_beneficios" value="fortalecimiento_marca">
+                    Fortalecimiento de la percepción de marca<br>
+                    <input type="checkbox" name="materializacion_beneficios" value="reduccion_costos"> Reducción de
+                    costos de adquisición de clientes<br>
+                    <input type="checkbox" name="materializacion_beneficios" value="otros"> Otros (especifique): <input
+                        type="text" name="materializacion_beneficios_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿La empresa puede medir de manera precisa los beneficios generados por las actividades de
+                        comercialización y marca?</b><br>
+                    <input type="radio" name="medicion_beneficios" value="indicadores"> Sí, mediante indicadores
+                    específicos<br>
+                    <input type="radio" name="medicion_beneficios" value="dificil_medir"> No, es difícil medir el
+                    impacto directo<br>
+                    <input type="radio" name="medicion_beneficios" value="parcialmente"> Parcialmente, con
+                    aproximaciones indirectas
+                </li>
+                <li>
+                    <b>¿La empresa tiene mecanismos para controlar y proteger estos beneficios (por ejemplo, derechos de
+                        marca, acuerdos de exclusividad)?</b><br>
+                    <input type="radio" name="control_proteccion_beneficios" value="si"> Sí<br>
+                    <input type="radio" name="control_proteccion_beneficios" value="no"> No
+                </li>
+            </ol>
+            <hr>
+            <h2>IV. Registro Contable y Valorización</h2>
+            <ol start="14">
+                <li>
+                    <b>¿Se registran los gastos de comercialización y formación de marca como activos intangibles en los
+                        estados financieros de la empresa?</b><br>
+                    <input type="radio" name="registro_gastos" value="totalmente"> Sí, totalmente<br>
+                    <input type="radio" name="registro_gastos" value="parcialmente"> Sí, parcialmente<br>
+                    <input type="radio" name="registro_gastos" value="no_operativos"> No, se registran como gastos
+                    operativos
+                </li>
+                <li>
+                    <b>¿Cómo se valoran estos gastos en su empresa?</b><br>
+                    <input type="checkbox" name="valoracion_gastos" value="costo_adquisicion"> Costo histórico de
+                    adquisición<br>
+                    <input type="checkbox" name="valoracion_gastos" value="vpn_flujos_futuros"> Valor presente neto
+                    (VPN) de los flujos futuros<br>
+                    <input type="checkbox" name="valoracion_gastos" value="valor_mercado"> Valor de mercado<br>
+                    <input type="checkbox" name="valoracion_gastos" value="otros"> Otros (especifique): <input
+                        type="text" name="valoracion_gastos_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿La empresa realiza evaluaciones periódicas para determinar la vida útil y el deterioro de los
+                        activos intangibles relacionados con la marca?</b><br>
+                    <input type="radio" name="evaluaciones_periodicas" value="si"> Sí<br>
+                    <input type="radio" name="evaluaciones_periodicas" value="no"> No
+                </li>
+            </ol>
+            <hr>
+            <h2>V. Resultados y Rendimiento de la Inversión</h2>
+            <ol start="17">
+                <li>
+                    <b>¿Ha observado la empresa un impacto positivo en los siguientes indicadores como resultado de la
+                        inversión en marca?</b><br>
+                    <input type="checkbox" name="impacto_positivo" value="reconocimiento_marca"> Aumento en el
+                    reconocimiento de la marca<br>
+                    <input type="checkbox" name="impacto_positivo" value="participacion_mercado"> Incremento en la
+                    participación de mercado<br>
+                    <input type="checkbox" name="impacto_positivo" value="fidelidad_cliente"> Mayor fidelidad del
+                    cliente<br>
+                    <input type="checkbox" name="impacto_positivo" value="reputacion_corporativa"> Mejora en la
+                    reputación corporativa<br>
+                    <input type="checkbox" name="impacto_positivo" value="otros"> Otros (especifique): <input
+                        type="text" name="impacto_positivo_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿Cuál ha sido el retorno estimado sobre la inversión (ROI) de las actividades de comercialización
+                        y formación de marca?</b><br>
+                    <input type="radio" name="roi_estimado" value="menos_10"> Menos del 10%<br>
+                    <input type="radio" name="roi_estimado" value="10_30"> 10% - 30%<br>
+                    <input type="radio" name="roi_estimado" value="31_50"> 31% - 50%<br>
+                    <input type="radio" name="roi_estimado" value="mas_50"> Más del 50%<br>
+                    <input type="radio" name="roi_estimado" value="no_calculado"> No se ha calculado
+                </li>
+                <li>
+                    <b>¿Se han realizado ajustes estratégicos basados en el rendimiento de las inversiones en
+                        marca?</b><br>
+                    <input type="radio" name="ajustes_estrategicos" value="si"> Sí<br>
+                    <input type="radio" name="ajustes_estrategicos" value="no"> No<br>
+                    <input type="radio" name="ajustes_estrategicos" value="en_evaluacion"> En evaluación
+                </li>
+            </ol>
+            <hr>
+            <h2>VI. Riesgos y Desafíos</h2>
+            <ol start="20">
+                <li>
+                    <b>¿Cuáles considera que son los principales riesgos asociados a la inversión en comercialización y
+                        formación de marca?</b><br>
+                    <input type="checkbox" name="riesgo" value="cambio_preferencia"> Cambios en la preferencia del
+                    consumidor<br>
+                    <input type="checkbox" name="riesgo" value="competencia_agresiva"> Competencia agresiva<br>
+                    <input type="checkbox" name="riesgo" value="falta_diferenciacion"> Falta de diferenciación de la
+                    marca<br>
+                    <input type="checkbox" name="riesgo" value="cambio_regulatorio"> Cambios regulatorios o legales<br>
+                    <input type="checkbox" name="riesgo" value="otros"> Otros (especifique): <input type="text"
+                        name="riesgo_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿Ha implementado la empresa estrategias para mitigar estos riesgos?</b><br>
+                    <input type="radio" name="mitigacion" value="si"> Sí<br>
+                    <input type="radio" name="mitigacion" value="no"> No
+                </li>
+                <li>
+                    <b>¿Ha enfrentado la empresa litigios relacionados con el uso de su marca o derechos de propiedad
+                        intelectual?</b><br>
+                    <input type="radio" name="litigios" value="si"> Sí<br>
+                    <input type="radio" name="litigios" value="no"> No
+                </li>
+            </ol>
+            <hr>
+            <h2>VII. Proyecciones y Estrategias Futuras</h2>
+            <ol start="23">
+                <li>
+                    <b>¿Planea la empresa incrementar su inversión en comercialización y formación de marca en los
+                        próximos 3 años?</b><br>
+                    <input type="radio" name="incrementar_inversion" value="si"> Sí<br>
+                    <input type="radio" name="incrementar_inversion" value="no"> No<br>
+                    <input type="radio" name="incrementar_inversion" value="no_seguro"> No está seguro
+                </li>
+                <li>
+                    <b>¿Qué áreas considera prioritarias para futuras inversiones en marca?</b><br>
+                    <input type="checkbox" name="area_prioritaria" value="expansion_internacional"> Expansión a mercados
+                    internacionales<br>
+                    <input type="checkbox" name="area_prioritaria" value="marketing_digital"> Mayor inversión en
+                    marketing digital<br>
+                    <input type="checkbox" name="area_prioritaria" value="innovacion"> Innovación en productos y
+                    servicios<br>
+                    <input type="checkbox" name="area_prioritaria" value="colaboraciones"> Colaboraciones
+                    estratégicas<br>
+                    <input type="checkbox" name="area_prioritaria" value="otros"> Otros (especifique): <input
+                        type="text" name="area_prioritaria_otros" style="width:200px;">
+                </li>
+            </ol>
+            <hr>
+
+            <h2>VIII. Comentarios Adicionales</h2>
+            <ol start="25">
+                <li>
+                    <b>¿Desea proporcionar algún comentario adicional sobre la gestión de gastos de comercialización y
+                        formación de marca en su empresa?</b><br>
+                    <textarea name="comentarios_adicionales" rows="3" cols="80"></textarea>
+                </li>
+            </ol>
+            <hr>
+            <p>
+                Gracias por su participación. Sus respuestas ayudarán a mejorar la medición de los gastos de
+                comercialización y formación de marca como activos intangibles en las cuentas nacionales.
+            </p>
+
+        <section class = 'submit-button-container'>
+          <input type="submit" value="SUBMIT" class="submit-button"></input>
+        </section>
+        </form>
+    </div> 
+
+    </main>
+{% endblock %}
