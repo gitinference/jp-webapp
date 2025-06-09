@@ -1,7 +1,4 @@
 from django.shortcuts import render
-import pandas as pd
-import plotly.graph_objects as go
-import plotly.express as px
 import requests
 from env import get_db_credentials
 
