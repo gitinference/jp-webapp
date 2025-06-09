@@ -100,7 +100,7 @@ urlpatterns = [
     # Gastos intangibles
     
     re_path(r"^medicion-activos-ID-en-activos-intangibles/$", views.Medicion_ID_archivos_intangibles, name="Medicion-ID-archivos-intangibles"),
-    re_path(r"^concesiones-recursos-naturales-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^concesiones-recursos-naturales-activos-intangibles/$", views.Medicion_concesiones_recursos_naturales, name="Medicion-concesiones-recursos-naturales"),
     re_path(r"^medicion-licencias-propiedad-intelectual-marcas-registradas/$", views.IP_230_qtr, name="IP-230-qtr"),
     re_path(r"^medicion-gastos-comercializacion-formacion-marca/$", views.IP_230_qtr, name="IP-230-qtr"),
     re_path(r"^medicion-productos-entretenimiento-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),

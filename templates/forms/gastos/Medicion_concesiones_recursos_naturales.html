@@ -1,0 +1,304 @@
+{% extends "forms/base/base_form.html" %}
+{% load static %}
+{% block title %}Medición concesiones recursos naturales{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/gastos/gastos.css' %}" />
+{% endblock %}
+
+    
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+  </head>
+
+{% block header %}
+      <table>
+        <tr>
+          <td id="header_left">
+            JP-304 Rev.<br>
+            Junta de Planificación<br>
+            Subprograma de Análisis Económico
+          </td>
+          <td id="header_center">
+            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo JP" id="header_image"><br>
+            <b>RELACIÓN DE APORTACIONES FEDERALES APROBADAS,<br>
+                RECIBIDAS Y GASTADAS</b><br>
+            Orden Ejecutiva 12372
+          </td>
+          <td id="header_right">
+            Centro Gubernamental Roberto Sánchez Vilella<br>
+            Apartado 41119<br>
+            San Juan, Puerto Rico 00940-1119
+          </td>
+        </tr>
+      </table>
+{% endblock %}
+{% block form_content %}
+  <!-- Main -->  
+    <main>
+      <div class="form-contenedor">
+        <h2 style="margin-bottom: 8px;">
+            CUESTIONARIO PARA MEDIR CONCESIONES PARA RECURSOS NATURALES COMO ACTIVOS INTANGIBLES EN LAS CUENTAS
+            NACIONALES
+        </h2>
+        <p style="text-align: center; font-size: 1.06em; margin-top: 0; margin-bottom: 30px;">
+            Este cuestionario tiene como objetivo recopilar información sobre la inversión, gestión y valoración de
+            <b>concesiones para recursos naturales</b> (minería, pesca, espectro radioeléctrico, etc.) como activos
+            intangibles en las cuentas nacionales.
+            La información será tratada de forma confidencial y utilizada exclusivamente con fines estadísticos.
+        </p>
+        <hr>
+        <form method="POST" action="{% url 'web_app:Medicion-concesiones-recursos-naturales' %}">
+          {% csrf_token %}
+                      <ol>
+                <li>
+                    <b>Nombre de la empresa:</b>
+                    <input type="text" name="nombre_empresa" style="width: 340px;">
+                </li>
+                <li>
+                    <b>EIN:</b>
+                    <input type="text" name="ein" style="width: 220px;">
+                </li>
+                <li>
+                    <b>NAICS:</b>
+                    <input type="text" name="naics" style="width: 220px;">
+                </li>
+                <li>
+                    <b>Tamaño de la empresa:</b><br>
+                    <input type="radio" name="tamano_empresa" value="micro"> Micro (1-10 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="pequena"> Pequeña (11-50 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="mediana"> Mediana (51-250 empleados)<br>
+                    <input type="radio" name="tamano_empresa" value="grande"> Grande (más de 250 empleados)
+                </li>
+                <li>
+                    <b>Año de referencia:</b>
+                    <input type="text" name="anio_referencia" style="width: 120px;">
+                </li>
+                <li>
+                    <b>Tipo de concesión que posee la empresa:</b><br>
+                    <input type="checkbox" name="tipo_concesion" value="mineria"> Minería<br>
+                    <input type="checkbox" name="tipo_concesion" value="pesca"> Pesca<br>
+                    <input type="checkbox" name="tipo_concesion" value="espectro_radioelectrico"> Espectro
+                    radioeléctrico<br>
+                    <input type="checkbox" name="tipo_concesion" value="recursos_forestales"> Recursos forestales<br>
+                    <input type="checkbox" name="tipo_concesion" value="recursos_hidricos"> Recursos hídricos<br>
+                    <input type="checkbox" name="tipo_concesion" value="otros"> Otros (especifique):
+                    <input type="text" name="tipo_concesion_otros" style="width:180px;">
+                </li>
+            </ol>
+            <hr>
+            <h3>II. Inversión en Concesiones</h3>
+            <ol start="7">
+                <li>
+                    <b>¿Cuál es el monto total invertido en la concesión de recursos naturales durante el año de
+                        referencia?</b>
+                    <span style="font-size:small;">(en moneda local)</span><br>
+                    &emsp;Total: <input type="text" name="total_invertido_concesion" style="width: 160px;">
+                </li>
+                <li>
+                    <b>¿Cuáles fueron los principales conceptos de inversión relacionados con la concesión?</b><br>
+                    <input type="checkbox" name="concepto_inversion" value="pago_inicial"> Pago inicial por la
+                    concesión:
+                    <input type="text" name="pago_inicial" style="width: 150px;"><br>
+                    <input type="checkbox" name="concepto_inversion" value="derechos_explotacion"> Derechos de
+                    explotación periódicos:
+                    <input type="text" name="derechos_explotacion" style="width: 150px;"><br>
+                    <input type="checkbox" name="concepto_inversion" value="impacto_ambiental"> Estudios de impacto
+                    ambiental:
+                    <input type="text" name="impacto_ambiental" style="width: 150px;"><br>
+                    <input type="checkbox" name="concepto_inversion" value="tecnologia_equipos"> Tecnología y equipos
+                    especializados:
+                    <input type="text" name="tecnologia_equipos" style="width: 150px;"><br>
+                    <input type="checkbox" name="concepto_inversion" value="asesoria"> Asesoría legal y administrativa:
+                    <input type="text" name="asesoria" style="width: 150px;"><br>
+                    <input type="checkbox" name="concepto_inversion" value="otros"> Otros (especifique):
+                    <input type="text" name="otros_concepto" style="width: 150px;">
+                </li>
+                <li>
+                    <b>¿Cuál es la fuente de financiamiento de la concesión?</b><br>
+                    <input type="checkbox" name="fuente_financiamiento" value="fondos_propios"> Fondos propios<br>
+                    <input type="checkbox" name="fuente_financiamiento" value="creditos_bancarios"> Créditos
+                    bancarios<br>
+                    <input type="checkbox" name="fuente_financiamiento" value="inversion_extranjera"> Inversión
+                    extranjera<br>
+                    <input type="checkbox" name="fuente_financiamiento" value="subvenciones"> Subvenciones
+                    gubernamentales<br>
+                    <input type="checkbox" name="fuente_financiamiento" value="otros"> Otros (especifique):
+                    <input type="text" name="fuente_financiamiento_otros" style="width: 150px;">
+                </li>
+            </ol>
+            <hr>
+            <h3>III. Duración y Condiciones de la Concesión</h3>
+            <ol start="10">
+                <li>
+                    <b>¿Cuál es el período de duración de la concesión otorgada?</b><br>
+                    <input type="radio" name="duracion_concesion" value="menos_5"> Menos de 5 años<br>
+                    <input type="radio" name="duracion_concesion" value="entre_5_10"> Entre 5 y 10 años<br>
+                    <input type="radio" name="duracion_concesion" value="mas_10"> Más de 10 años
+                </li>
+                <li>
+                    <b>¿La concesión tiene posibilidad de renovación?</b><br>
+                    <input type="radio" name="posibilidad_renovacion" value="si"> Sí<br>
+                    <input type="radio" name="posibilidad_renovacion" value="no"> No<br>
+                    <input type="radio" name="posibilidad_renovacion" value="evaluacion"> En evaluación
+                </li>
+                <li>
+                    <b>¿La concesión está sujeta a requisitos de cumplimiento ambiental o social?</b><br>
+                    <input type="radio" name="requisitos_cumplimiento" value="ambos"> Sí, ambos<br>
+                    <input type="radio" name="requisitos_cumplimiento" value="solo_ambiental"> Solo ambiental<br>
+                    <input type="radio" name="requisitos_cumplimiento" value="solo_social"> Solo social<br>
+                    <input type="radio" name="requisitos_cumplimiento" value="no"> No
+                </li>
+            </ol>
+            <hr>
+            <h3>IV. Valoración de la Concesión</h3>
+            <ol start="13">
+                <li>
+                    <b>¿La empresa ha registrado la concesión como un activo intangible en sus estados
+                        financieros?</b><br>
+                    <input type="radio" name="registrada_activo_intangible" value="si"> Sí<br>
+                    <input type="radio" name="registrada_activo_intangible" value="no"> No
+                </li>
+                <li>
+                    <b>¿Cuál es el método utilizado para valorar la concesión?</b><br>
+                    <input type="checkbox" name="metodo_valoracion" value="costo_historico"> Costo histórico de
+                    adquisición<br>
+                    <input type="checkbox" name="metodo_valoracion" value="vpn_flujos_futuros"> Valor presente neto
+                    (VPN) de los flujos futuros<br>
+                    <input type="checkbox" name="metodo_valoracion" value="valor_mercado"> Valor de mercado<br>
+                    <input type="checkbox" name="metodo_valoracion" value="otros"> Otros (especifique): <input
+                        type="text" name="metodo_valoracion_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿La empresa ha realizado revalorizaciones de la concesión?</b><br>
+                    <input type="radio" name="revalorizaciones" value="si"> Sí<br>
+                    <input type="radio" name="revalorizaciones" value="no"> No
+                </li>
+                <li>
+                    <b>¿Ha experimentado su empresa deterioro en el valor de la concesión debido a cambios regulatorios
+                        o de mercado?</b><br>
+                    <input type="radio" name="deterioro_valor" value="si"> Sí<br>
+                    <input type="radio" name="deterioro_valor" value="no"> No
+                </li>
+            </ol>
+            <hr>
+            <h3>V. Ingresos y Beneficios Relacionados con la Concesión</h3>
+            <ol start="17">
+                <li>
+                    <b>¿Qué porcentaje de los ingresos totales de la empresa proviene de la explotación de la
+                        concesión?</b><br>
+                    <input type="radio" name="porcentaje_ingresos" value="menos_10"> Menos del 10%<br>
+                    <input type="radio" name="porcentaje_ingresos" value="10_30"> 10% - 30%<br>
+                    <input type="radio" name="porcentaje_ingresos" value="31_50"> 31% - 50%<br>
+                    <input type="radio" name="porcentaje_ingresos" value="mas_50"> Más del 50%
+                </li>
+                <li>
+                    <b>¿Cuáles son las principales fuentes de ingresos generadas por la concesión?</b><br>
+                    <input type="checkbox" name="fuentes_ingresos" value="productos_derivados"> Venta de productos
+                    derivados de la concesión (minerales, pesca, etc.)<br>
+                    <input type="checkbox" name="fuentes_ingresos" value="subarrendamiento"> Subarrendamiento o cesión
+                    parcial de derechos<br>
+                    <input type="checkbox" name="fuentes_ingresos" value="servicios_complementarios"> Servicios
+                    complementarios relacionados con la concesión<br>
+                    <input type="checkbox" name="fuentes_ingresos" value="otros"> Otros (especifique): <input
+                        type="text" name="fuentes_ingresos_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿La empresa ha realizado exportaciones relacionadas con la concesión?</b><br>
+                    <input type="radio" name="exportaciones" value="si"> Sí<br>
+                    <input type="radio" name="exportaciones" value="no"> No
+                </li>
+            </ol>
+            <hr>
+            <h3>VI. Costos Operativos y Obligaciones</h3>
+            <ol start="20">
+                <li>
+                    <b>¿Cuáles son los principales costos operativos relacionados con la concesión?</b><br>
+                    <input type="checkbox" name="costos_operativos" value="mantenimiento_infraestructura"> Mantenimiento
+                    de la infraestructura<br>
+                    <input type="checkbox" name="costos_operativos" value="canones_regalias"> Pago de cánones o regalías
+                    al gobierno<br>
+                    <input type="checkbox" name="costos_operativos" value="regulaciones_ambientales"> Cumplimiento de
+                    regulaciones ambientales<br>
+                    <input type="checkbox" name="costos_operativos" value="exploracion_evaluacion"> Costos de
+                    exploración y evaluación<br>
+                    <input type="checkbox" name="costos_operativos" value="seguridad_vigilancia"> Seguridad y vigilancia
+                    del área concesionada<br>
+                    <input type="checkbox" name="costos_operativos" value="otros"> Otros (especifique): <input
+                        type="text" name="costos_operativos_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿Cuáles son las principales obligaciones legales asociadas a la concesión?</b><br>
+                    <input type="checkbox" name="obligaciones_legales" value="informes_periodicos"> Informes periódicos
+                    a autoridades<br>
+                    <input type="checkbox" name="obligaciones_legales" value="remediacion_ambiental"> Planes de
+                    remediación ambiental<br>
+                    <input type="checkbox" name="obligaciones_legales" value="responsabilidad_social_corporativa">
+                    Responsabilidad social corporativa<br>
+                    <input type="checkbox" name="obligaciones_legales" value="cumplimiento_limites_explotacion">
+                    Cumplimiento de límites de explotación<br>
+            </ol>
+            <hr>
+            <h3>VII. Riesgos y Desafíos</h3>
+            <ol start="22">
+                <li>
+                    <b>¿Cuáles considera que son los principales riesgos asociados a la concesión?</b><br>
+                    <input type="checkbox" name="riesgos" value="cambios_regulacion"> Cambios en la regulación
+                    gubernamental<br>
+                    <input type="checkbox" name="riesgos" value="fluctuaciones_demanda"> Fluctuaciones en la demanda de
+                    los recursos explotados<br>
+                    <input type="checkbox" name="riesgos" value="impacto_ambiental"> Impacto ambiental y social
+                    adverso<br>
+                    <input type="checkbox" name="riesgos" value="inestabilidad_politica"> Inestabilidad política o
+                    social<br>
+                    <input type="checkbox" name="riesgos" value="otros"> Otros (especifique): <input type="text"
+                        name="riesgos_otros" style="width:180px;">
+                </li>
+                <li>
+                    <b>¿Ha implementado la empresa estrategias para mitigar estos riesgos?</b><br>
+                    <input type="radio" name="estrategias_mitigacion" value="si"> Sí<br>
+                    <input type="radio" name="estrategias_mitigacion" value="no"> No
+                </li>
+                <li>
+                    <b>¿La empresa ha enfrentado litigios o conflictos relacionados con la concesión?</b><br>
+                    <input type="radio" name="litigios_conflictos" value="si"> Sí<br>
+                    <input type="radio" name="litigios_conflictos" value="no"> No
+                </li>
+            </ol>
+            <hr>
+            <h3>VIII. Proyecciones y Perspectivas</h3>
+            <ol start="24">
+                <li>
+                    <b>¿Planea la empresa realizar nuevas inversiones en concesiones en los próximos 3 años?</b><br>
+                    <input type="radio" name="nuevas_inversiones" value="si"> Sí<br>
+                    <input type="radio" name="nuevas_inversiones" value="no"> No<br>
+                    <input type="radio" name="nuevas_inversiones" value="no_esta_seguro"> No está seguro
+                </li>
+                <li>
+                    <b>¿Cuál considera que será la principal tendencia en la gestión de concesiones en su
+                        sector?</b><br>
+                    <input type="checkbox" name="tendencia" value="mayor_regulacion"> Mayor regulación gubernamental<br>
+                    <input type="checkbox" name="tendencia" value="aumento_costos"> Aumento de costos de explotación<br>
+                    <input type="checkbox" name="tendencia" value="tecnologias_sostenibles"> Adopción de tecnologías
+                    sostenibles<br>
+                    <input type="checkbox" name="tendencia" value="crecimiento_demanda"> Crecimiento de la demanda
+                    global
+                </li>
+            </ol>
+            <hr>
+
+            <h3>IX. Comentarios Adicionales</h3>
+            <ol start="26">
+                <li>
+                    <b>¿Desea proporcionar algún comentario adicional sobre la gestión de concesiones en su
+                        empresa?</b><br>
+                    <textarea name="comentarios_adicionales" rows="3" style="width: 80%;"></textarea>
+                </li>
+            </ol>
+
+        <section class = 'submit-button-container'>
+          <input type="submit" value="SUBMIT" class="submit-button"></input>
+        </section>
+        </form>
+    </div> 
+
+    </main>
+{% endblock %}
