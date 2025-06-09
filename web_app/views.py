@@ -77,6 +77,16 @@ from src.formularios.quaterly.ingreso_neto_qtr.form_ip_110_qtr import IP_110_qtr
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_210_qtr import IP_210_qtr
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_220_qtr import IP_220_qtr
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
+
+# Formularios Gastos Intangibles
+from src.formularios.gastos.form_medicion_ID_archivos_intangibles import Medicion_ID_archivos_intangibles
+from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
+from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
+from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
+from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
+from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
+from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
+
 from src.data.proyecciones import *
 from src.data.demografic import *
 from src.data.idh import *

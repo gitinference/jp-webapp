@@ -1,0 +1,231 @@
+body {
+    background: #f8f9fa;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header {
+    margin-bottom: 30px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 26px;
+    border-radius: 8px;
+}
+
+.header {
+    max-width: 950px;
+    min-width: 350px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.header div {
+    flex: 1;
+    text-align: center;
+}
+
+
+/* HEADER */
+#header_image {
+    width: 50px;
+    height: 50px;
+}
+
+#header_left {
+    padding-top: 1px;
+    line-height: 1.5;
+    margin-right: 30%;
+    text-align: left;
+    border:none;
+}
+
+#header_center {
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 20px;
+    border:none;
+}
+
+#header_right {
+    padding-top: 1px;
+    line-height: 1.5;
+    margin-left: 30%;
+    text-align: right;
+    border:none;
+}
+
+
+.form-contenedor {
+    background: #fff;
+    margin: 40px auto;
+    padding: 36px 42px 36px 42px;
+    max-width: 900px;
+    min-width: 350px;
+    box-shadow: 0 2px 16px #0001;
+    border-radius: 12px;
+}
+
+h2,
+h3 {
+    text-align: center;
+    margin-top: 0;
+}
+
+form {
+    width: 100%;
+    margin: 0 auto;
+}
+
+ol {
+    margin-left: 0;
+    padding-left: 1.1em;
+}
+
+li{
+    font-size: 1.1em;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    border: none;
+    border-bottom: 1px solid #222;
+    outline: none;
+    background: none;
+    padding: 2px 4px;
+    font-size: 1.1em;
+    width: 200px;
+    margin-bottom: 4px;
+    display: inline-block;
+    transition: border-bottom 0.2s;
+}
+
+textarea {
+    width: 80%;
+    min-height: 32px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-bottom: 2.5px solid #1976d2;
+    background: #f5f8fa;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: #1976d2;
+    margin-right: 6px;
+    transform: scale(1.1);
+}
+
+label {
+    margin-right: 16px;
+    vertical-align: middle;
+}
+
+hr {
+    border: none;
+    border-bottom: 2px solid #222;
+    margin: 28px 0 28px 0;
+    width: 100%;
+    opacity: 0.85;
+}
+
+.encabezado-form {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    /* Importante: que las columnas tengan la misma altura */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #0002;
+    padding: 28px 36px;
+    font-size: 1.1em;
+    min-height: 175px;
+    /* Da uniformidad mínima */
+}
+
+.encabezado-col {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 170px;
+    text-align: left;
+}
+
+.encabezado-col.centro {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.encabezado-col.izquierda {
+    padding-right: 24px;
+}
+
+.encabezado-col.derecha {
+    text-align: right;
+    padding-left: 24px;
+}
+
+.logo-encabezado {
+    width: 60px;
+    margin-bottom: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.submit-button-container {
+    justify-content: center;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 80px;
+}
+
+.submit-button {
+    font-size: 20px;
+    width: 120px;
+    height: 35px;
+    border: 0.5px solid #5a5a5a;
+    border-radius: 30px;
+    background-color: rgb(44, 143, 255);
+}
+
+.submit-button:hover {
+    background-color: rgb(6, 122, 255);
+}
+
+
+@media (max-width: 800px) {
+    .form-contenedor {
+        padding: 18px 5vw;
+        max-width: 98vw;
+    }
+
+    .encabezado-form {
+        flex-direction: column;
+        text-align: center;
+        padding: 18px 10px;
+        min-height: unset;
+    }
+
+    .encabezado-col {
+        min-width: unset;
+        padding: 4px 0;
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    .encabezado-col.izquierda,
+    .encabezado-col.derecha {
+        text-align: center;
+        padding: 0;
+    }
+}
