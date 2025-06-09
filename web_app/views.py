@@ -80,7 +80,7 @@ from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
 
 # Formularios Gastos Intangibles
 from src.formularios.gastos.form_medicion_ID_archivos_intangibles import Medicion_ID_archivos_intangibles
-from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
+from src.formularios.gastos.form_medicion_concesiones_recursos_naturales import Medicion_concesiones_recursos_naturales
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
