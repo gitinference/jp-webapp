@@ -1,49 +1,23 @@
 from django.shortcuts import render
-import pandas as pd
-import plotly.graph_objects as go
-import plotly.express as px
 import requests
+from env import get_db_credentials
+
+creds = get_db_credentials()
+
+api = creds[6]
 
 def web_app_income_employment(request):
-  df = pd.read_parquet("data/external/naics4_df.parquet")
-  df = pd.DataFrame(df)
-  
-  df_sorted = df.sort_values(by=["year", "qtr"], ascending=True)
-  df_sorted = df_sorted[df_sorted["year"] < 2024]
   
   naics = None
   
   if request.method == "POST":
     naics_time = request.POST.get("naics_time")
-    
-    df_filtered = df_sorted[df_sorted["first_4_naics_code"] == naics_time]
-    df_filtered = df_filtered.sort_values(by=["year", "qtr"], ascending=True)
-    
-    x_axis = df_filtered.apply(lambda row: f"Q{row['qtr']} {row['year']}", axis=1)
-    
-    y_axis = df_filtered["total_employment_sum"]
-    
-    title = "Employment in the US by Quater for NAICS " + naics_time
-    
   else:
     naics_time = "1111"
-    df_filtered = df_sorted[df_sorted["first_4_naics_code"] == naics_time]
-    df_filtered = df_filtered.sort_values(by=["year", "qtr"], ascending=True)
-      
-    x_axis = df_filtered.apply(lambda row: f"Q{row['qtr']} {row['year']}", axis=1)
-    y_axis = df_filtered["total_employment_sum"]
     
-  title = f"Employment in the US by Quater for NAICS {naics_time}"
+  response = requests.get(f"{api}graph/naics/?naics_code={naics_time}")
+  graph, naics = response.json()
     
-  naics = df_sorted.sort_values(by="first_4_naics_code")
-  naics = naics[naics["first_4_naics_code"] != "0"]["first_4_naics_code"].unique()
-    
-  context = {
-    'naics_code': naics,
-  }
-    
-  fig = go.Figure()
-  fig.add_trace(go.Scatter(x=x_axis, y=y_axis, mode='lines+markers'))
+  html_graph = f'<div style="padding-left: 120px;">{graph}</div>'
 
-  fig.update_layout(title=title)
-  return render(request, "income_employment.html", {'graph': fig.to_html(), **context})
+  return render(request, "income_employment.html", {'graph': html_graph, **naics})
