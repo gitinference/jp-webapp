@@ -98,7 +98,7 @@ urlpatterns = [
     re_path(r"^idh-index/csv/$", views.idh_index_csv, name="idh_index_csv"),    # for IDH index CSV download
     
     # Gastos intangibles
-    
+   
     re_path(r"^medicion-activos-ID-en-activos-intangibles/$", views.Medicion_ID_archivos_intangibles, name="Medicion-ID-archivos-intangibles"),
     re_path(r"^concesiones-recursos-naturales-activos-intangibles/$", views.Medicion_concesiones_recursos_naturales, name="Medicion-concesiones-recursos-naturales"),
     re_path(r"^medicion-licencias-propiedad-intelectual-marcas-registradas/$", views.Medicion_licencias_uso_propiedad_intelectual_o_marcas_registradas, name="medicion-licencias-propiedad-intelectual-marcas-registradas"),
@@ -106,6 +106,8 @@ urlpatterns = [
     re_path(r"^medicion-productos-entretenimiento-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
     re_path(r"^medicion-software-bases-de-datos-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
     re_path(r"^gastos-comercialización-y-formacion-marca/$", views.IP_230_qtr, name="IP-230-qtr"),
-    
+    re_path(r"^cuestionario-gastos-de-comercialización-y-formación-de-marca/$", views.Cuestionario_gastos_de_comercialización_y_formación_de_marca, name="Cuestionario-gastos-de-comercialización-y-formación-de-marca"),   # cuestionario gastos comercialización y formación de marca
+    re_path(r"^cuestionario-productos-de-entretenimiento-como-activos-intangibles/$", views.Cuestionario_productos_de_entretenimiento_como_activos_intangibles, name="Cuestionario-productos-de-entretenimiento-como-activos-intangibles"),   # cuestionario medir software bases de datos como activos intangibles
+    re_path(r"^cuestionario-medir-software-bases-de-datos-como-activos-intangibles/$", views.Cuestionario_medir_software_bases_de_datos_como_activos_intangibles, name="Cuestionario-medir-software-bases-de-datos-como-activos-intangibles"),   # cuestionario medir software bases de datos como activos intangibles
 ]
 

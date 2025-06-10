@@ -1,42 +1,50 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cuestionario Productos de Entretenimiento como Activos Intangibles</title>
-  <link rel="stylesheet" href="{% static 'css/cuestionario_intangibles.css' %}"> <!-- Basado en el CSS del formulario anterior --> 
+{% extends "forms/base/base_form.html" %}
+{% load static %}
+{% block title %}Cuestionario Productos de Entretenimiento como Activos Intangibles{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/gastos/gastos.css' %}" />
+{% endblock %}
 
-</head>
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
 
-<body>
-  <!-- Encabezado -->
-  <section class="header">
-    <table id="header_line">
-      <tr>
+
+{% block header %}
+<table>
+    <tr>
         <td id="header_left">
-          <!-- Espacio para logo o texto adicional -->
+            JP-304 Rev.<br>
+            Junta de Planificación<br>
+            Subprograma de Análisis Económico
         </td>
         <td id="header_center">
-          <img src="{% static 'images/logo_entretencion.jpg' %}" alt="Logo Productos de Entretenimiento" id="header_image"/><br>
-          <h1>Cuestionario para Medir Productos de Entretenimiento como Activos Intangibles en las Cuentas Nacionales</h1>
+            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo JP" id="header_image"><br>
+        <b>RELACIÓN DE APORTACIONES FEDERALES APROBADAS,<br>
+            RECIBIDAS Y GASTADAS</b><br>
+            Orden Ejecutiva 12372
         </td>
         <td id="header_right">
-          <!-- Espacio para logo adicional o texto -->
+            Centro Gubernamental Roberto Sánchez Vilella<br>
+            Apartado 41119<br>
+            San Juan, Puerto Rico 00940-1119
         </td>
-      </tr>
-    </table>
-  </section>
+    </tr>
+</table>
+{% endblock %}
 
-  <!-- Introducción -->
-  <section>
-    <p>
-      Este cuestionario tiene como objetivo recopilar información sobre la inversión en productos de entretenimiento, literatura y arte originales, considerados activos intangibles dentro de las cuentas nacionales. La información será tratada de forma confidencial y utilizada únicamente con fines estadísticos.
-    </p>
-  </section>
-
+{% block form_content %}
+  <!-- Main -->  
+  
   <!-- Inicio del formulario -->
   <main>
     <form id="entretenimientoForm" class="question-box">
+      <br><h2>Cuestionario para Medir Productos de Entretenimiento como Activos Intangibles en las Cuentas Nacionales</h2>
+      <form method="POST" action="{% url 'web_app:Cuestionario-medir-software-bases-de-datos-como-activos-intangibles' %}"></form>
+      <!-- Introducción -->
+      <section>
+        <p>
+          Este cuestionario tiene como objetivo recopilar información sobre la inversión en productos de entretenimiento, literatura y arte originales, considerados activos intangibles dentro de las cuentas nacionales. La información será tratada de forma confidencial y utilizada únicamente con fines estadísticos.
+        </p>
+      </section>
       <!-- Sección I: Información General de la Empresa -->
       <fieldset class="section" id="sectionI">
         <legend><strong>I. Información General de la Empresa</strong></legend>
@@ -362,7 +370,7 @@
 
       <!-- Botón de envío -->
       <div id="submitSection" style="display: none; text-align: center;">
-        <button type="submit">Enviar Cuestionario</button>
+        <button type="submit" class="submit-button" >Submit</button>
       </div>
 
       <!-- Mensaje de agradecimiento que se mostrará tras enviar -->
@@ -520,5 +528,4 @@
       thankYou.style.display    = 'none';
     });
   </script>
-</body>
-</html>
+{% endblock %}
