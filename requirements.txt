@@ -52,7 +52,7 @@ python-dotenv==1.0.1
     # via jp-webapp (pyproject.toml)
 pytz==2024.2
     # via pandas
-requests==2.32.3
+requests==2.32.4
     # via jp-webapp (pyproject.toml)
 scipy==1.15.1
     # via jp-webapp (pyproject.toml)
