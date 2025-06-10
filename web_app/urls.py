@@ -74,6 +74,7 @@ urlpatterns = [
     re_path(r"^productos_ranking/$", views.productos_ranking, name='productos_ranking'),
     re_path(r"^ingresos-de-empleos/$", views.web_app_income_employment, name='income_employment'),
     re_path(r"^indice-al-consumidor/$", views.indice_consumidor, name='indice_consumidor'),
+    re_path(r"^awards/$", views.awards, name='awards'),
 
     re_path(r"^cuestionario-del-viajero/$", views.travel_questionaire, name='travel_questionaire'),
     re_path(r"^cuestionario-del-viajero-english/$", views.cuestionario_viajero_english, name='cuestionario_viajero_english'),
