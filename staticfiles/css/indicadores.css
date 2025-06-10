@@ -19,7 +19,7 @@ h2 {
   margin-right: 8vw;
 }
 
-p {
+p, ul {
   display: block;
   font-size: 1.2em;
   text-align: justify;
