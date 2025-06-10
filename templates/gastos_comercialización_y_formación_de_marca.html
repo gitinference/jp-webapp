@@ -1,0 +1,272 @@
+{% extends "forms/base/base_form.html" %}
+{% load static %}
+{% block title %}Gastos de Comercialización y Formación de Marca{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/gastos/gastos.css' %}" />
+{% endblock %}
+
+
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+    </head>
+
+{% block header %}
+      <table>
+        <tr>
+          <td id="header_left">
+            JP-480 Rev.<br>
+            Junta de Planificación<br>
+            Subprograma de Análisis Económico
+          </td>
+          <td id="header_center">
+            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo JP" id="header_image"><br>
+            <b>RELACIÓN DE APORTACIONES FEDERALES APROBADAS,<br>
+                RECIBIDAS Y GASTADAS</b><br>
+            Orden Ejecutiva 12372
+          </td>
+          <td id="header_right">
+            Centro Gubernamental Roberto Sánchez Vilella<br>
+            Apartado 41119<br>
+            San Juan, Puerto Rico 00940-1119
+          </td>
+        </tr>
+      </table>
+{% endblock %}
+{% block form_content %}
+  <!-- Main -->  
+    <main>
+        <div class="form-contenedor"></div>
+        <form id="brandingForm" class="question-box">
+            <h2>Gastos de Comercialización y Formación de Marca</h2>
+            <form method="POST" action="{% url 'web_app:JP-480' %}">
+                {% csrf_token %}
+            <!-- Introducción y Objetivo -->
+            <section>
+                <p>
+                    En las <strong>Cuentas Nacionales</strong>, los <strong>gastos de comercialización y formación de marca</strong> se definen como aquellas inversiones realizadas por las empresas para fortalecer su presencia en el mercado, mejorar el reconocimiento de su marca y fomentar la lealtad del consumidor. Estos gastos incluyen actividades destinadas a posicionar productos o servicios y construir una identidad corporativa duradera.
+                </p>
+
+                <div>
+                    <br><h2>Clasificación en las Cuentas Nacionales</h2>
+
+                    <p>
+                        Según el <strong>Sistema de Cuentas Nacionales (SCN 2008, 2025)</strong> y otros marcos contables como el <strong>Manual de Balanza de Pagos del FMI</strong>, estos gastos pueden considerarse activos intangibles solo si cumplen con ciertos criterios, principalmente:
+                    </p>
+                    
+                    <label><strong>1. Beneficios económicos futuros controlados por la empresa: </strong></label><br>                    
+                    <ul>
+                        <li>
+                            La empresa debe poder demostrar que los gastos generan un retorno financiero predecible y sostenible en el futuro, como mayores ingresos o expansión del mercado. <br>Seleccione a continuación si cumple o no:<br>
+                            
+                            <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
+                            <label for="invest_yes">&emsp;Sí</label><br>
+                            <input type="radio" id="invest_no" name="invest_flag" value="No">
+                            <label for="invest_no">&emsp;No</label>
+                        </li>
+
+                        <li>
+                            Se requiere que la empresa tenga derechos de propiedad o control, como marcas registradas o estrategias exclusivas de marketing. <br>Seleccione a continuación si cumple o no:<br>
+                            <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
+                            <label for="invest_yes">&emsp;Sí</label><br>
+                            <input type="radio" id="invest_no" name="invest_flag" value="No">
+                            <label for="invest_no">&emsp;No</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <label><strong>2. Vida útil mayor a un año: </strong></label><br>
+                    <ul>
+                        <li>
+                            Los gastos de comercialización deben generar valor a lo largo del tiempo y no ser simplemente gastos operativos recurrentes. <br>Seleccione a continuación si cumple o no:<br>
+                            
+                            <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
+                            <label for="invest_yes">&emsp;Sí</label><br>
+                            <input type="radio" id="invest_no" name="invest_flag" value="No">
+                            <label for="invest_no">&emsp;No</label>
+                        </li>                
+                    </ul>
+                </div>
+
+                <div>
+                    <label><strong>3. Capacidad de medición confiable: </strong></label><br>
+                    <ul>
+                        <li>
+                            La empresa debe poder estimar de manera razonable los costos de inversión y los beneficios económicos futuros. <br>Seleccione a continuación si cumple o no:<br>
+                            
+                            <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
+                            <label for="invest_yes">&emsp;Sí</label><br>
+                            <input type="radio" id="invest_no" name="invest_flag" value="No">
+                            <label for="invest_no">&emsp;No</label>
+                        </li>                
+                    </ul>
+                </div>
+
+                
+                <p>
+                    Si estos criterios no se cumplen, los gastos de comercialización se consideran gastos corrientes en lugar de activos intangibles, es decir, se registran como costos operativos en la cuenta de producción y distribución de bienes y servicios, y no como acumulación de capital.
+                </p>
+
+                
+                <div>
+                    <br><h2>Principales Componentes de los Gastos de Comercialización y Formación de Marca</h2>
+                    <p>
+                        Entre los elementos que pueden formar parte de esta categoría se incluyen:
+                    </p>
+                    <label><strong>1. Publicidad y promoción: </strong></label><br>
+                    <ul>
+                        <li>
+                            Campañas en medios tradicionales (TV, radio, prensa) y digitales (SEO, redes sociales, marketing de contenidos). <br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div><br>                   
+                        </li>
+
+                        <li>
+                            Publicidad pagada, patrocinios y eventos promocionales.<br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div>   
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <label><strong>2. Desarrollo de identidad de marca: </strong></label><br>
+                    <ul>
+                        <li>
+                            Creación de logotipos, eslóganes, manuales de identidad corporativa. <br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div><br>                   
+                        </li>
+
+                        <li>
+                            Registro y gestión de marcas comerciales.<br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div>   
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <label><strong>3. Investigación de mercado y estrategias de posicionamiento: </strong></label><br>
+                    <ul>
+                        <li>
+                            Análisis de consumidores, estudios de mercado, segmentación de clientes. <br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div><br>                   
+                        </li>
+
+                        <li>
+                            Definición de estrategias de diferenciación frente a la competencia.<br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div>   
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <label><strong>4. Programas de fidelización y relaciones públicas: </strong></label><br>
+                    <ul>
+                        <li>
+                            Programas de recompensas, suscripciones, marketing relacional. <br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div><br>                   
+                        </li>
+
+                        <li>
+                            Gestión de la reputación corporativa y comunicación estratégica.<br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div>   
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <label><strong>5. Formación y capacitación del equipo comercial: </strong></label><br>
+                    <ul>
+                        <li>
+                            Inversión en el desarrollo de habilidades del equipo de ventas y atención al cliente. <br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total">
+                            </div><br>                   
+                        </li>
+
+                        <li>
+                            Implementación de nuevas herramientas para mejorar la experiencia de marca. <br>
+                            <div>
+                            <label for="totalInvestment"><strong>¿Cuál fue el monto total invertido (en moneda local): </strong></label>
+                            <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" required placeholder="Ingrese el monto total"><br>
+                            </div>   
+                        </li>
+                    </ul>
+                </div>
+
+                
+                <div>
+                    <br><h2>Tratamiento Contable en las Cuentas Nacionales</h2>
+                    <p>
+                        <ul>
+                            <li><strong>Si los gastos cumplen con los criterios de activos intangibles</strong>, se registran en la <strong>Formación Bruta de Capital Fijo (FBCF)</strong> como parte de los activos no producidos en la cuenta de acumulación de capital.</li>
+                            <li><strong>Si no cumplen los criterios</strong>, se incluyen en los gastos operativos de la cuenta de producción, impactando en el cálculo del PIB como consumo intermedio.</li>
+                        </ul>
+                    </p>
+
+                    <br><h2>Ejemplos Prácticos de Clasificación</h2>
+                    <label><strong>1. Caso que califica como activo intangible: </strong></label><br>
+                    <ul>
+                        <li>
+                            Una empresa de tecnología invierte en una nueva identidad de marca registrada, con una estrategia exclusiva que se espera mantenga beneficios futuros a lo largo de 5 años. <br>                                      
+                        </li>
+                    </ul>
+                    
+                    <label><strong>2. Caso que no califica como activo intangible: </strong></label><br>
+                    <ul>
+                        <li>
+                            Una empresa gasta en una campaña publicitaria temporal para aumentar las ventas de un trimestre, sin garantía de beneficios a largo plazo ni propiedad sobre los elementos de la campaña. <br>                                      
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div>
+                    <br><h2>Conclusión</h2>
+                    <p>
+                        Los <strong>gastos de comercialización y formación de marca</strong>  pueden considerarse activos intangibles en las cuentas nacionales si generan beneficios económicos futuros controlados por la empresa, tienen una vida útil prolongada y pueden ser valorados de manera fiable. En caso contrario, se tratan como gastos operativos que afectan el resultado financiero del periodo en que se incurren.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Comentarios Adicionales -->
+            <div id="section_comments">
+                <br><h2>Comentarios Adicionales</h2>
+                <div>
+                    <label for="additionalComments"><strong>¿Desea proporcionar algún comentario adicional sobre la gestión de gastos de comercialización y formación de marca en su empresa?</strong></label><br>
+                    <textarea id="additionalComments" name="additional_comments" rows="4" placeholder="Escriba sus comentarios aquí..."></textarea>
+                </div>
+                <br>
+            </div>
+
+            <!-- Botón de envío -->
+            <div>
+                <button type="submit" id="submitBtn">Enviar Cuestionario</button>
+            </div>
+            <br>
+        </form>
+        </div>
+    </main>
+{% endblock %}

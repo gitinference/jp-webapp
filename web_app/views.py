@@ -82,7 +82,7 @@ from src.data.demografic import *
 from src.data.idh import *
 from src.visualization.cuestionario_viajero_english import cuestionario_viajero_english
 from src.visualization.cuestionario_viajero_spanish import cuestionario_viajero_spanish
-
+from src.formularios.form_jp_480 import JP_480
 
 def home(request):
     return render(request, "home.html")

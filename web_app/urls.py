@@ -105,7 +105,8 @@ urlpatterns = [
     re_path(r"^medicion-gastos-comercializacion-formacion-marca/$", views.IP_230_qtr, name="IP-230-qtr"),
     re_path(r"^medicion-productos-entretenimiento-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
     re_path(r"^medicion-software-bases-de-datos-activos-intangibles/$", views.IP_230_qtr, name="IP-230-qtr"),
-    re_path(r"^gastos-comercialización-y-formacion-marca/$", views.IP_230_qtr, name="IP-230-qtr"),
+    re_path(r"^gastos-comercialización-y-formacion-marca/$", views.JP_480, name="JP-480"),
+    
     
 ]
 
