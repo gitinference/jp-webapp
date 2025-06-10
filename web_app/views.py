@@ -95,6 +95,7 @@ from src.data.idh import *
 from src.visualization.cuestionario_viajero_english import cuestionario_viajero_english
 from src.visualization.cuestionario_viajero_spanish import cuestionario_viajero_spanish
 from src.formularios.form_jp_480 import JP_480
+from src.formularios.gastos.form_definicion_gastos_comercialización_y_formación_de_marca import Definicion_gastos_comercialización_y_formación_de_marca
 
 def home(request):
     return render(request, "home.html")
