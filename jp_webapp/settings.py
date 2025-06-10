@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
     "192.168.50.24",
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://dev.econlabs.net"]
+CSRF_TRUSTED_ORIGINS = ["https://dev.econlabs.net", "https://jp.econlabs.net"]
 
 
 # Application definition
