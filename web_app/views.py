@@ -7,6 +7,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from web_app import graphics_function as gf
+import requests
+from env import get_db_credentials
 from .models import *
 from src.visualization.income_employment import web_app_income_employment
 from src.visualization.product_hts import products_hts
@@ -21,6 +23,7 @@ from src.visualization.indicadores import web_app_indicadores
 from src.visualization.macro import web_app_macro
 from src.visualization.login import log_in_page 
 from src.visualization.imports_exports import web_app_imports_exports
+from src.visualization.energy import energy_data
 from src.formularios.form_ip_110 import IP_110
 from src.formularios.form_jp_304 import JP_304
 from src.formularios.form_jp_361 import JP_361
@@ -218,6 +221,9 @@ def ciclos_economicos(request):
 
     context = {"ciclos_economicos": ciclos_economicos}
     return render(request, "ciclos_economicos.html", context)
+
+def energy(request):
+    return energy_data(request)
 
 def indicadores(request):
     return web_app_indicadores(request)
