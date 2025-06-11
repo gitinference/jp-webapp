@@ -48,64 +48,63 @@
                         
                         <fieldset class="section" id="sectionI">
                             <legend><strong>I. Clasificación</strong></legend>
-                            <div>
-                                <br><h2>Clasificación en las Cuentas Nacionales</h2>
-                                
-                                <p>
-                                    Según el <strong>Sistema de Cuentas Nacionales (SCN 2008, 2025)</strong> y otros marcos contables como el <strong>Manual de Balanza de Pagos del FMI</strong>, estos gastos pueden considerarse activos intangibles solo si cumplen con ciertos criterios, principalmente:
-                                </p>
-                                
-                            <label><strong>1. Beneficios económicos futuros controlados por la empresa: </strong></label><br>                    
-                            <ul>
-                                <li>
-                                    La empresa debe poder demostrar que los gastos generan un retorno financiero predecible y sostenible en el futuro, como mayores ingresos o expansión del mercado. <br>Seleccione a continuación si cumple o no:<br>
+                                <div>
+                                    <br><h2>Clasificación en las Cuentas Nacionales</h2>
                                     
-                                    <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
-                                    <label for="invest_yes">&emsp;Sí</label><br>
-                                    <input type="radio" id="invest_no" name="invest_flag" value="No">
-                                    <label for="invest_no">&emsp;No</label>
-                                </li><br> 
+                                    <p>
+                                        Según el <strong>Sistema de Cuentas Nacionales (SCN 2008, 2025)</strong> y otros marcos contables como el <strong>Manual de Balanza de Pagos del FMI</strong>, estos gastos pueden considerarse activos intangibles solo si cumplen con ciertos criterios, principalmente:
+                                    </p>
+                                </div>
+                                <div class="form-group"><br/>
+                                    <label><strong>1. Beneficios económicos futuros controlados por la empresa:</strong></label><br/>
+                                    <ul>
+                                        <li>
+                                        <p>La empresa debe poder demostrar que los gastos generan un retorno financiero predecible y sostenible en el futuro, como mayores ingresos o expansión del mercado. 
+                                            <strong><br>Seleccione a continuación si cumple o no:</strong></p>
+                                        <input type="radio" id="investments_yes" name="made_investments" value="Sí" required/>
+                                        <label for="investments_yes">&emsp;Sí</label><br/>
+                                        <input type="radio" id="investments_no" name="made_investments" value="No"/>
+                                        <label for="investments_no">&emsp;No</label><br>           
+                                        </li>
+                                        <li>    
+                                        <p>Se requiere que la empresa tenga derechos de propiedad o control, como marcas registradas o estrategias exclusivas de marketing. 
+                                            <strong><br>Seleccione a continuación si cumple o no:</strong></p>
+                                        <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
+                                        <label for="invest_yes">&emsp;Sí</label><br>
+                                        <input type="radio" id="invest_no" name="invest_flag" value="No">
+                                        <label for="invest_no">&emsp;No</label>
+                                        </li>
+                                    </ul>
 
-                                <li>   
-                                    Se requiere que la empresa tenga derechos de propiedad o control, como marcas registradas o estrategias exclusivas de marketing. <br>Seleccione a continuación si cumple o no:<br>
-                                    <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
-                                    <label for="invest_yes">&emsp;Sí</label><br>
-                                    <input type="radio" id="invest_no" name="invest_flag" value="No">
-                                    <label for="invest_no">&emsp;No</label>
-                                </li>
-                            </ul>
-                        </div>
+                                    <label><strong>2. Vida útil mayor a un año:</strong></label><br/>
+                                    <ul>
+                                        <li>
+                                        <p>Los gastos de comercialización deben generar valor a lo largo del tiempo y no ser simplemente gastos operativos recurrentes. 
+                                            <strong><br>Seleccione a continuación si cumple o no:</strong></p>
+                                        <input type="radio" id="investments2_yes" name="made_investments2" value="Sí" required/>
+                                        <label for="investments2_yes">&emsp;Sí</label><br/>
+                                        <input type="radio" id="investments2_no" name="made_investments2" value="No"/>
+                                        <label for="investments2_no">&emsp;No</label><br>           
+                                        </li>                                        
+                                    </ul>
 
-                        <div>
-                            <label><strong>2. Vida útil mayor a un año: </strong></label><br>
-                            <ul>
-                                <li>
-                                    Los gastos de comercialización deben generar valor a lo largo del tiempo y no ser simplemente gastos operativos recurrentes. <br>Seleccione a continuación si cumple o no:<br>
-                                    
-                                    <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
-                                    <label for="invest_yes">&emsp;Sí</label><br>
-                                    <input type="radio" id="invest_no" name="invest_flag" value="No">
-                                    <label for="invest_no">&emsp;No</label>
-                                </li>                
-                            </ul>
-                        </div>
 
-                        <div>
-                            <label><strong>3. Capacidad de medición confiable: </strong></label><br>
-                            <ul>
-                                <li>
-                                    La empresa debe poder estimar de manera razonable los costos de inversión y los beneficios económicos futuros. <br>Seleccione a continuación si cumple o no:<br>
-                                    
-                                    <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required>
-                                    <label for="invest_yes">&emsp;Sí</label><br>
-                                    <input type="radio" id="invest_no" name="invest_flag" value="No">
-                                    <label for="invest_no">&emsp;No</label>
-                                </li>                
-                            </ul>
-                        </div>
-                        <p>
-                            <strong>Si estos criterios no se cumplen, los gastos de comercialización se consideran gastos corrientes en lugar de activos intangibles, es decir, se registran como costos operativos en la cuenta de producción y distribución de bienes y servicios, y no como acumulación de capital.</strong>
-                        </p>
+                                    <label><strong>3. Capacidad de medición confiable: </strong></label><br>
+                                    <ul>
+                                        <li>
+                                            La empresa debe poder estimar de manera razonable los costos de inversión y los beneficios económicos futuros. 
+                                            <strong><br>Seleccione a continuación si cumple o no:</strong></p>                                            
+                                            <input type="radio" id="invest3_yes" name="made_investments3" value="Sí" required>
+                                            <label for="invest_yes">&emsp;Sí</label><br>
+                                            <input type="radio" id="invest3_no3" name="made_investments3" value="No">
+                                            <label for="invest_no">&emsp;No</label>
+                                        </li>                
+                                    </ul>
+
+                                    <p>
+                                        <strong>Si estos criterios no se cumplen, los gastos de comercialización se consideran gastos corrientes en lugar de activos intangibles, es decir, se registran como costos operativos en la cuenta de producción y distribución de bienes y servicios, y no como acumulación de capital.</strong>
+                                    </p>
+                                </div>     
                     </fieldset>
                     
 
