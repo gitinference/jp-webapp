@@ -14,16 +14,21 @@ def web_app_awards(request):
     if request.method == "POST":
         frequency = request.POST.get("frequency")
         category = request.POST.get("categories")
-        year = request.POST.get("second_dropdown")
-        period = request.POST.get("third_dropdown")
+        second_dropdown = request.POST.get("second_dropdown")
+        third_dropdown = request.POST.get("third_dropdown")
 
         if frequency is None and year is None:
             frequency = "yearly"
             year = 2013
-        if period is None:
-            period = 1
         if category is None:
             category = 'awarding_agency_name'
+
+        if frequency == 'yearly':
+            year = second_dropdown
+            period = 1
+        else:
+            year = third_dropdown
+            period = second_dropdown
         
         category_graph, categories = requests.get(
             f"{API_URL}graph/awards/category/?dropdown={year}&second_dropdown={period}&third_dropdown={category}&time_frame={frequency}"
