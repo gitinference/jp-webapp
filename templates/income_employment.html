@@ -18,6 +18,9 @@
         <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
         <link rel="stylesheet" href="{% static 'css/product_hts.css' %}">
         <link rel="stylesheet" href="{% static 'css/website.css' %}">
+
+        <!-- JS -->
+        <script src="{% static 'js/exportcsv.js' %}" defer></script>
     </head>
 
     <body>
@@ -72,6 +75,8 @@
                         </section>
                     
                         <button id="submit" type="submit">Submit</button>
+                        <button type="button" id="submit_3" onclick="downloadCSV('naics_time','','files/qcew/employment')" title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
+
                     </section>                                
             
                     <div id="graph">
