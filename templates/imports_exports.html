@@ -127,7 +127,7 @@
                         <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
                         <option value="Monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly
                         </option>
-                        <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
+                        <option value="Qrt" {% if selected_frequency == "Qrt" %}selected{% endif %}>Quarterly
                         </option>
                     </select>
                 </section>
@@ -189,7 +189,7 @@
                         </option>
                         <option value="Monthly" {% if selected_frequency_2 == "Monthly" %}selected{% endif %}>Monthly
                         </option>
-                        <option value="Quarterly" {% if selected_frequency_2 == "Quarterly" %}selected{% endif %}>
+                        <option value="Qrt" {% if selected_frequency_2 == "Qrt" %}selected{% endif %}>
                             Quarterly</option>
                     </select>
                 </section>
@@ -197,7 +197,7 @@
                     <label id="drop_title" for="second_dropdown_2">Periodo:</label>
                     <select name="second_dropdown_2" id="second_dropdown_2">
                         <option value="default_value" {% if selected_second_dropdown_2 == "default_value" %}selected{% endif %}>Default</option>
-                        {% if selected_frequency_2 == "Quarterly" %}
+                        {% if selected_frequency_2 == "Qrt" %}
                         <option value="1" {% if selected_second_dropdown_2 == "1" %}selected{% endif %}>Qtr 1</option>
                         <option value="2" {% if selected_second_dropdown_2 == "2" %}selected{% endif %}>Qtr 2</option>
                         <option value="3" {% if selected_second_dropdown_2 == "3" %}selected{% endif %}>Qtr 3</option>
@@ -214,7 +214,7 @@
                 <button id="submit_2" type="submit">Submit</button>
 
                 <div class="download_container_2">
-                        <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','country')" title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
+                        <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','country','files/trade/jp')" title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
                 </div>
             </section>
 
@@ -326,7 +326,7 @@
                 // Hide third dropdown and label
                 thirdDropdown.style.visibility = 'hidden';
                 thirdDropdownLabel.style.visibility = 'hidden';
-            } else if (frequency === 'Monthly' || frequency === 'Quarterly') {
+            } else if (frequency === 'Monthly' || frequency === 'Qrt') {
                 // Show third dropdown and label
                 thirdDropdown.style.visibility = 'visible';
                 thirdDropdownLabel.style.visibility = 'visible';
@@ -367,7 +367,7 @@
             });
 
             // Populate third dropdown if 'Monthly' or 'Quarterly'
-            if (frequency === 'Monthly' || frequency === 'Quarterly') {
+            if (frequency === 'Monthly' || frequency === 'Qrt') {
                 options2.forEach(option => {
                     const opt = document.createElement('option');
                     opt.value = option.value;
@@ -400,7 +400,7 @@
                 // Hide third dropdown and label
                 thirdDropdown2.style.visibility = 'hidden';
                 thirdDropdownLabel2.style.visibility = 'hidden';
-            } else if (frequency2 === 'Monthly' || frequency2 === 'Quarterly') {
+            } else if (frequency2 === 'Monthly' || frequency2 === 'Qrt') {
                 // Show third dropdown and label
                 thirdDropdown2.style.visibility = 'visible';
                 thirdDropdownLabel2.style.visibility = 'visible';
@@ -441,7 +441,7 @@
             });
 
             // Populate third dropdown if 'Monthly' or 'Quarterly'
-            if (frequency2 === 'Monthly' || frequency2 === 'Quarterly') {
+            if (frequency2 === 'Monthly' || frequency2 === 'Qrt') {
                 options2.forEach(option => {
                     const opt = document.createElement('option');
                     opt.value = option.value;
