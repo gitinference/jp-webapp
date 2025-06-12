@@ -38,12 +38,12 @@
             <br><h2>Cuestionario Para Medir Software y Bases de Datos Como Activos Intangibles</h2>
             <form method="POST" action="{% url 'web_app:Cuestionario-medir-software-bases-de-datos-como-activos-intangibles' %}"></form>
             <!-- Objetivo -->
+            <form id="intangibleForm" class="question-box">
             <section class="intro">
                 <p>
-                Este cuestionario está diseñado para recopilar información sobre el software y las bases de datos como parte de los activos intangibles en las cuentas nacionales. Sus respuestas serán tratadas de forma confidencial y se utilizarán únicamente con fines estadísticos.
+                    Este cuestionario está diseñado para recopilar información sobre el software y las bases de datos como parte de los activos intangibles en las cuentas nacionales. Sus respuestas serán tratadas de forma confidencial y se utilizarán únicamente con fines estadísticos.
                 </p>
             </section>
-            <form id="intangibleForm" class="question-box">
                 <!-- Sección I: Información General de la Empresa -->
             <fieldset id="sectionI">
                 <legend><strong>I. Información General de la Empresa</strong></legend>
@@ -370,11 +370,11 @@
                 <button type="submit" class="submit-button" >Submit</button>
             </div>
             </form>
-
             <!-- Mensaje de agradecimiento que se mostrará tras enviar -->
             <div id="thankYouMessage">
-            Gracias por su participación. Sus respuestas ayudarán a mejorar la comprensión del software y las bases de datos como activos intangibles en las cuentas nacionales.
+            <strong>Gracias por su participación. Sus respuestas ayudarán a mejorar la comprensión del software y las bases de datos como activos intangibles en las cuentas nacionales.</strong>
             </div>
+
         </div>
     </main>
 

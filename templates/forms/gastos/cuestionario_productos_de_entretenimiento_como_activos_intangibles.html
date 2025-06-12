@@ -33,15 +33,15 @@
 
 {% block form_content %}
   <!-- Main -->  
- 
+
   <!-- Inicio del formulario -->
   <main>
-    <div class="form-contenedor">
+    <div class="form-contenedor">      
+      <br><h2>Cuestionario para Medir Productos de Entretenimiento como Activos Intangibles en las Cuentas Nacionales</h2>
+      <form method="POST" action="{% url 'web_app:Cuestionario-medir-software-bases-de-datos-como-activos-intangibles' %}"></form>
       <form id="entretenimientoForm" class="question-box">
-        <br><h2>Cuestionario para Medir Productos de Entretenimiento como Activos Intangibles en las Cuentas Nacionales</h2>
-        <form method="POST" action="{% url 'web_app:Cuestionario-medir-software-bases-de-datos-como-activos-intangibles' %}"></form>
         <!-- Introducción -->
-        <section>
+        <section class="intro">
           <p>
             Este cuestionario tiene como objetivo recopilar información sobre la inversión en productos de entretenimiento, literatura y arte originales, considerados activos intangibles dentro de las cuentas nacionales. La información será tratada de forma confidencial y utilizada únicamente con fines estadísticos.
           </p>
@@ -374,11 +374,11 @@
           <button type="submit" class="submit-button" >Submit</button>
         </div>
 
-        <!-- Mensaje de agradecimiento que se mostrará tras enviar -->
-        <div id="thankYouMessage" style="text-align: center;">
-          Gracias por su participación. Sus respuestas ayudarán a mejorar la comprensión de los productos de entretenimiento como activos intangibles en las cuentas nacionales.
-        </div>
       </form>
+      <!-- Mensaje de agradecimiento que se mostrará tras enviar -->
+      <div id="thankYouMessage" style="text-align: center;">
+        <strong>Gracias por su participación. Sus respuestas ayudarán a mejorar la comprensión de los productos de entretenimiento como activos intangibles en las cuentas nacionales.</strong>
+      </div>
     </div>
   </main>
 
@@ -405,7 +405,7 @@
         form.style.display = 'none';        // Oculta todo el formulario
         submitSection.style.display = 'none'; // Oculta el botón
         thankYou.style.display = 'block';   // Muestra el mensaje de agradecimiento
-      });
+      });      
 
       // 4) Mostrar/Ocultar Sección II según pregunta 6 (“produce_entretenimiento”)
       document.getElementById('produce_si').addEventListener('change', function() {
