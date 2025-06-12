@@ -29,23 +29,6 @@
         <span></span>
         <span></span>
       </div>
-      <ul class="burger_menu">
-        <li>
-          <a href="/">Inicio</a>
-        </li>
-        <li>
-          <a href="/centro-de-datos-macroeconomicos/">Centro de Datos Macroeconómicos</a>
-        </li>
-        <li>
-          <a href="/ciclos-economicos/">Ciclos Económicos</a>
-        </li>
-        <li>
-          <a href="/indicadores-mensuales/">Indicadores Mensuales</a>
-        </li>
-        <li>
-          <a href="/datos-demograficos/">Datos Demográficos</a>
-        </li>
-      </ul>
 
       <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
     </div>
@@ -58,12 +41,94 @@
 
       <!-- Descripción -->
       <section>
-        <p>TODO</p>
+        <form id="awards-form" method="post">
+                {% csrf_token %}
+                        <div class="graph_container">
+                          <a id="graph-anchor"></a>
+                          <section id="buttons">
+                            <section id="dropdowns">
+                                <label id="drop_title" for="frequency">Frecuencia:</label>
+                                <select name="frequency" id="frequency"
+                                    onchange="updateSecondDropdown();">
+                                    <option value="yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly
+                                    </option>
+                                    <option value="monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly
+                                    </option>
+                                    <option value="quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>
+                                        Quarterly</option>
+                                </select>
+                            </section>
+                            <section id="dropdowns">
+                                <label id="drop_title" for="second_dropdown">Periodo:</label>
+                                <select name="second_dropdown" id="second_dropdown">
+                                    <option value="default_value" {% if selected_second_dropdown == "default_value" %}selected{% endif %}>Default</option>
+                                    {% if selected_frequency == "Qrt" %}
+                                    <option value="1" {% if selected_second_dropdown == "1" %}selected{% endif %}>Qtr 1</option>
+                                    <option value="2" {% if selected_second_dropdown == "2" %}selected{% endif %}>Qtr 2</option>
+                                    <option value="3" {% if selected_second_dropdown == "3" %}selected{% endif %}>Qtr 3</option>
+                                    <option value="4" {% if selected_second_dropdown == "4" %}selected{% endif %}>Qtr 4</option>
+                                    {% endif %}
+                                </select>
+                            </section>
+                            <section id="dropdowns">
+                                <label id="drop_title" for="third_dropdown">Año:</label>
+                                <select name="third_dropdown" id="third_dropdown">
+                                    <option value="default_value" {% if selected_third_dropdown == "default_value" %}selected{% endif %}>Default</option>
+                                </select>
+                            </section>
+
+                            <label id="categories" for="categories">Category:</label>
+                            <select name="categories" id="categories">
+                                {% for category in categories %}
+                                    <option value="{{ category }}">{{ category }}</option>
+                                {% endfor %}
+                            </select>
+                            <button id="submit" type="submit">Submit</button>
+                            <button type="button" id="submit_3" onclick="downloadCSV('','','files/awards')" title="Descargar archivo CSV Awards">Descargar CSV</button>
+                        </section>
+                    </section>                                
+                </div>
+            </form>
       </section>
 
-      <div class="download_container">
-        <button type="button" id="submit_3" onclick="downloadCSV('','','files/trade/moving')" title="Descargar archivo CSV Importaciones / Exportaciones">Descargar CSV</button>
-      </div>
+      <section class="graph-container">
+          {{ categorygraph|safe }}
+      </section>
+
+      <form id="awards-form" method="post">
+        {% csrf_token %}
+          <div class="graph_container">
+            <a id="graph-anchor"></a>
+            <section id="buttons">
+              <section id="dropdowns">
+                  <label id="drop_title" for="frequency_2">Frecuencia:</label>
+                  <select name="frequency_2" id="frequency_2"
+                      onchange="updateSecondDropdown();">
+                      <option value="yearly" {% if selected_frequency_2 == "yearly" %}selected{% endif %}>Yearly
+                      </option>
+                      <option value="monthly" {% if selected_frequency_2 == "monthly" %}selected{% endif %}>Monthly
+                      </option>
+                      <option value="quarterly" {% if selected_frequency_2 == "quarterly" %}selected{% endif %}>
+                          Quarterly</option>
+                  </select>
+              </section>
+              <label id="agencies" for="agencies">Agency:</label>
+              <select name="agencies" id="agencies">
+                  {% for agency in agencies %}
+                      <option value="{{ agency }}">{{ agency }}</option>
+                  {% endfor %}
+              </select>
+              <button id="submit" type="submit">Submit</button>
+              <button type="button" id="submit_3" onclick="downloadCSV('','','files/awards')" title="Descargar archivo CSV Awards">Descargar CSV</button>
+          </section>
+        </div>
+      </form>
+
+    <section class="graph-container">
+          {{ sectergraph|safe }}
+    </section>
+
+</section> 
     </main>
 
     <!--- FOOTER -->
@@ -125,5 +190,83 @@
       </main>
     </footer>
     <script src="{% static 'js/header_menu.js' %}"></script>
+    <script>
+        function updateSecondDropdown() {
+            const frequency = document.getElementById('frequency').value;
+            const secondDropdown = document.getElementById('second_dropdown');
+            const thirdDropdown = document.getElementById('third_dropdown');
+            const thirdDropdownLabel = document.querySelector('label[for="third_dropdown"]'); // Select the label for "Año"
+
+            // Clear existing options
+            secondDropdown.innerHTML = '';
+            thirdDropdown.innerHTML = '';
+
+            let options = [];
+            let options2 = [];
+
+            // Logic for second dropdown options
+            if (frequency === 'yearly') {
+                options = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
+
+                // Hide third dropdown and label
+                thirdDropdown.style.visibility = 'hidden';
+                thirdDropdownLabel.style.visibility = 'hidden';
+            } else if (frequency === 'monthly' || frequency === 'quarterly') {
+                // Show third dropdown and label
+                thirdDropdown.style.visibility = 'visible';
+                thirdDropdownLabel.style.visibility = 'visible';
+
+                if (frequency === 'monthly') {
+                    options = [
+                        { value: 1, text: 'January' },
+                        { value: 2, text: 'February' },
+                        { value: 3, text: 'March' },
+                        { value: 4, text: 'April' },
+                        { value: 5, text: 'May' },
+                        { value: 6, text: 'June' },
+                        { value: 7, text: 'July' },
+                        { value: 8, text: 'August' },
+                        { value: 9, text: 'September' },
+                        { value: 10, text: 'October' },
+                        { value: 11, text: 'November' },
+                        { value: 12, text: 'December' }
+                    ];
+                } else {
+                    options = [
+                        { value: 1, text: 'Qtr 1' },
+                        { value: 2, text: 'Qtr 2' },
+                        { value: 3, text: 'Qtr 3' },
+                        { value: 4, text: 'Qtr 4' }
+                    ];
+                }
+
+                options2 = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
+            }
+
+            // Populate second dropdown
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option.value;
+                opt.text = option.text;
+                secondDropdown.appendChild(opt);
+            });
+
+            // Populate third dropdown if 'Monthly' or 'Quarterly'
+            if (frequency === 'monthly' || frequency === 'quarterly') {
+                options2.forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option.value;
+                    opt.text = option.text;
+                    thirdDropdown.appendChild(opt);
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSecondDropdown();  // Initialize dropdowns on page load
+        });
+
+        document.getElementById('frequency').addEventListener('change', updateSecondDropdown);
+    </script>
   </body>
 </html>
