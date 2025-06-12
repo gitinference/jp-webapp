@@ -107,13 +107,9 @@
                 </p>
             </section>
 
-            <!-- Contenedor de la gráfica -->
-            <div class="graph_container">
-                {{ indicadores|safe }}
-            </div>
-        </main>
-                <div class="download_container">
-                    <section id="dropdowns">
+            <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
+                {% csrf_token %}
+                <section id="dropdowns">
                     <label id="drop_title" for="frequency">Frecuencia:</label>
                     <select name="frequency" id="frequency">
                         <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
@@ -123,6 +119,16 @@
                         <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
                         </option>
                     </select>
+                    <button id="submit" type="submit">Submit</button>
+                </section>
+
+                <!-- Contenedor de la gráfica -->
+                <div class="graph_container">
+                    {{ indicadores|safe }}
+                </div>
+            </form>
+        </main>
+                <div class="download_container">
                     <button type="button" id="submit" onclick="downloadCSV('frequency','', 'files/index/indicators')"
                             title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
                 </div>

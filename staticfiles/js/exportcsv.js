@@ -5,24 +5,24 @@ function downloadCSV(frec, lev, api) {
     let frequencyLower = "";
     let levelLower = "";
     let apiurl = "";
+    let baseUrl = "";
     if (frec != "") {
 
         frequency = document.getElementById(frec).value;
         frequencyLower = frequency.toLowerCase();
-        if (frequencyLower === 'quarterly') {
-            frequencyLower = 'qrt';
-        }
     }
     if (lev != "") {
 
         levelLower = lev.toLowerCase();
     }
     apiurl = api;
-    let url = `http://192.168.50.24:7001/${apiurl}/?level=${levelLower}&time_frame=${frequencyLower}&agr=false&group=false`;
+    baseUrl = "http://192.168.50.24:7001/"+apiurl+"/?";
+    
+    let params = [];
+    if (frequencyLower) params.push("time_frame=" + encodeURIComponent(frequencyLower));
+    if (levelLower)    params.push("level=" + encodeURIComponent(levelLower));
 
-/*     alert(apiurl)
-    return false */ 
-
+    url = baseUrl + params.join("&");
     const a = document.createElement('a');
     a.href = url;
     document.body.appendChild(a);

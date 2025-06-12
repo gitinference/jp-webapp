@@ -11,6 +11,8 @@ from .models import *
 from src.visualization.income_employment import web_app_income_employment
 from src.visualization.product_hts import products_hts
 from src.visualization.productos_ranking import productos_ranking
+from src.visualization.indice_consumidor import web_app_indice_consumidor
+from src.visualization.awards import awards
 from src.visualization.cuestionario_salida import cuestionario_viajero_salida
 from src.visualization.cuestionario_viajero import travel_questionaire
 from src.visualization.account_settings import account_setting
@@ -95,7 +97,8 @@ from src.data.demografic import *
 from src.data.idh import *
 from src.visualization.cuestionario_viajero_english import cuestionario_viajero_english
 from src.visualization.cuestionario_viajero_spanish import cuestionario_viajero_spanish
-
+from src.formularios.form_jp_480 import JP_480
+from src.formularios.gastos.form_definicion_gastos_comercialización_y_formación_de_marca import Definicion_gastos_comercialización_y_formación_de_marca
 
 def home(request):
     return render(request, "home.html")
@@ -111,6 +114,9 @@ def macro(request):
   
 def imports_and_exports(request):
     return web_app_imports_exports(request)
+
+def indice_consumidor(request):
+    return web_app_indice_consumidor(request)
 
 def indice_desarrollo_humano(request):
     # Generate the idh index graphs

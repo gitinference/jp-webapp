@@ -4,7 +4,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>HTS Ranking</title>
+    <title>Indice al Consumidor</title>
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
@@ -30,21 +30,6 @@
         <span></span>
       </div>
       <ul class="burger_menu">
-        <li>
-          <a href="/">Inicio</a>
-        </li>
-        <li>
-          <a href="/centro-de-datos-macroeconomicos/">Centro de Datos Macroeconómicos</a>
-        </li>
-        <li>
-          <a href="/ciclos-economicos/">Ciclos Económicos</a>
-        </li>
-        <li>
-          <a href="/indicadores-mensuales/">Indicadores Mensuales</a>
-        </li>
-        <li>
-          <a href="/datos-demograficos/">Datos Demográficos</a>
-        </li>
       </ul>
 
       <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
@@ -53,24 +38,80 @@
     <main>
       <!-- Título -->
       <section>
-        <h1>Ranking de Products HTS</h1>
+        <h1>Indice al Consumidor</h1>
       </section>
 
       <!-- Descripción -->
-      <section>
-        <p>TODO</p>
+      <section class="instructions">
+          <p>
+              <strong>1. Selección de Indice al Consumidor:</strong> 
+              Utiliza el menú desplegable en la parte superior derecha 
+              de la gráfica para seleccionar diferentes indices de consumidores. 
+              Cada opción del menú modifica los datos mostrados en el eje Y.
+              Para desplazar el menú desplegable hacia arriba o hacia abajo, utiliza 
+              la barra de desplazamiento ubicada en el lado derecho del menú.
+          </p>
+
+          <p>
+              <strong>2. Navegación y Visualización:</strong> 
+              Puedes mover el cursor sobre cualquier punto en la gráfica para 
+              ver detalles específicos del dato en ese punto. La gráfica muestra 
+              las fechas en el eje X (horizontal) y los valores de la categoria
+              seleccionada en el eje Y (vertical).
+          </p>
+          
+          <p>
+              <strong>3. Personalización de la Gráfica:</strong>
+              Los botones en la parte superior permiten personalizar la gráfica. 
+              Puedes elegir diferentes categorias y ajustar la visualización según tus necesidades.
+          </p>
+
+          <p><strong>4. Ajuste del Rango del Eje X:</strong></p>
+          <ul>
+              <li id="instruction_li">
+                  <strong>Anual:</strong> Selecciona esta opción para ver la gráfica con el eje X mostrando los datos por años completos.
+              </li>
+              <li id="instruction_li">
+                  <strong>Fiscal:</strong> Selecciona esta opción para ver la gráfica con el eje X mostrando los datos por años fiscales.
+              </li>
+              <li id="instruction_li">
+                  <strong>Mensual:</strong> Elige esta opción para ajustar el eje X y ver la gráfica con datos segmentados por meses.
+              </li>
+              <li id="instruction_li">
+                  <strong>Trimestral:</strong> Selecciona esta opción para ajustar el eje X y mostrar los datos segmentados por trimestres.
+              </li>
+          </ul>
+
+          <p>
+              <strong>Nota:</strong> Las opciones de ajuste del eje X permiten una visualización más detallada y específica según el intervalo de tiempo seleccionado, facilitando un análisis preciso de las tendencias económicas.
+          </p>
       </section>
 
-      <div class='graph-container' style="padding-bottom: 20px;" id="graph_export_top">{{ graph_export_top|safe }}</div>
+      <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
+          {% csrf_token %}
+          <section id="dropdowns">
+              <label id="drop_title" for="frequency">Frecuencia:</label>
+              <select name="frequency" id="frequency">
+                  <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
+                  <option value="Monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly
+                  </option>
+                  <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
+                  <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
+                  </option>
+              </select>
+              <button id="submit" type="submit">Submit</button>
 
-      <div class='graph-container' style="padding-bottom: 20px;" id="graph_export_bottom">{{ graph_export_bottom|safe }}</div>
+              <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/index/consumer_index')" title="Descargar archivo CSV Importaciones / Exportaciones">Descargar CSV</button>
 
-      <div class='graph-container' style="padding-bottom: 20px;" id="graph_import_top">{{ graph_import_top|safe }}</div>
 
-      <div class='graph-container' style="padding-bottom: 20px;" id="graph_export_bottom">{{ graph_import_bottom|safe }}</div>
-      <div class="download_container">
-        <button type="button" id="submit_3" onclick="downloadCSV('','','files/trade/moving')" title="Descargar archivo CSV Ranking de Productos">Descargar CSV</button>
-      </div>
+          </section>
+
+          <!-- Contenedor de la gráfica -->
+          <div class="graph_container">
+              {{ consumer|safe }}
+          </div>
+      </form>
+
     </main>
 
     <!--- FOOTER -->
@@ -131,5 +172,6 @@
         </section>
       </main>
     </footer>
+    <script src="{% static 'js/header_menu.js' %}"></script>
   </body>
 </html>
