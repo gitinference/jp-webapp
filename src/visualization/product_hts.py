@@ -23,5 +23,5 @@ def products_hts(request):
     graph, context = requests.get(f"{API_URL}/graph/product-hts/?level=hts&time_frame={frequency}&agriculture_filter=false&group=false&level_filter={hts_code}&trade_type={trade_type}").json()
     html_graph = f'<div style="padding-left: 120px;">{graph}</div>'
 
-    return render(request, "product_hts.html", {"graph": html_graph, **context})
+    return render(request, "product_hts.html", {"graph": html_graph, "api": API_URL, **context})
 
