@@ -1,42 +1,49 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cuestionario Para Medir Software y Bases de Datos Como Activos Intangibles</title>
-  <link rel="stylesheet" href="{% static 'css/cuestionario_intangibles_spanish.css' %}">
-  
-</head>
+{% extends "forms/base/base_form.html" %}
+{% load static %}
+{% block title %}Cuestionario Para Medir Software y Bases de Datos Como Activos Intangibles{% endblock %}
+{% block cssheader %}
+<link rel="stylesheet" href="{% static 'css/forms/gastos/gastos.css' %}" />
+{% endblock %}
 
-<body>
-    <!-- Header -->
-    <section class="header">
-        <table id="header_line">
-        <tr>
-            <td id="header_left">
-            <!-- Logo o texto adicional -->
-            </td>
-            <td id="header_center">
-            <img src="{% static 'images/Logo_Intangibles.jpg' %}" alt="Logo Activos Intangibles" id="header_image"/><br>
-            <h1>Cuestionario Para Medir Software y Bases de Datos Como Activos Intangibles</h1>
-            </td>
-            <td id="header_right">
-            <!-- Texto o imagen adicional a la derecha -->
-            </td>
-        </tr>
-        </table>
-    </section>
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
 
-    <!-- Objetivo -->
-    <section class="intro">
-        <p>
-        Este cuestionario está diseñado para recopilar información sobre el software y las bases de datos como parte de los activos intangibles en las cuentas nacionales. Sus respuestas serán tratadas de forma confidencial y se utilizarán únicamente con fines estadísticos.
-        </p>
-    </section>
 
+{% block header %}
+<table>
+    <tr>
+        <td id="header_left">
+            JP-304 Rev.<br>
+            Junta de Planificación<br>
+            Subprograma de Análisis Económico
+        </td>
+        <td id="header_center">
+            <img src="{% static 'images/JP_poster.jpg' %}" alt="Logo JP" id="header_image"><br>
+        <b>RELACIÓN DE APORTACIONES FEDERALES APROBADAS,<br>
+            RECIBIDAS Y GASTADAS</b><br>
+            Orden Ejecutiva 12372
+        </td>
+        <td id="header_right">
+            Centro Gubernamental Roberto Sánchez Vilella<br>
+            Apartado 41119<br>
+            San Juan, Puerto Rico 00940-1119
+        </td>
+    </tr>
+</table>
+{% endblock %}
+    
+{% block form_content %}
+    <!-- Main -->  
     <main>
+        <br><h2>Cuestionario Para Medir Software y Bases de Datos Como Activos Intangibles</h2>
+        <form method="POST" action="{% url 'web_app:Cuestionario-medir-software-bases-de-datos-como-activos-intangibles' %}"></form>
+        <!-- Objetivo -->
+        <section class="intro">
+            <p>
+            Este cuestionario está diseñado para recopilar información sobre el software y las bases de datos como parte de los activos intangibles en las cuentas nacionales. Sus respuestas serán tratadas de forma confidencial y se utilizarán únicamente con fines estadísticos.
+            </p>
+        </section>
         <form id="intangibleForm" class="question-box">
-        <!-- Sección I: Información General de la Empresa -->
+            <!-- Sección I: Información General de la Empresa -->
         <fieldset id="sectionI">
             <legend><strong>I. Información General de la Empresa</strong></legend>
 
@@ -359,7 +366,7 @@
 
         <!-- Botón de envío -->
         <div id="submitSection" style="text-align: center; margin-top: 20px;">
-            <button type="submit" id="submitBtn">Enviar Cuestionario</button>
+            <button type="submit" class="submit-button" >Submit</button>
         </div>
         </form>
 
@@ -499,5 +506,4 @@
         thankYou.style.display = 'none';
         });
     </script>
-</body>
-</html>
+{% endblock %}
