@@ -18,4 +18,4 @@ def web_app_indicadores(request):
     indicadores_html = response.json()
     graph = f"<div style='overflow-x: auto; white-space: nowrap; width: 90%; padding-bottom: 20px;'>{indicadores_html}</div>"
 
-    return render(request, "indicadores.html", {"indicadores": graph})
+    return render(request, "indicadores.html", {"indicadores": graph, "api": api})

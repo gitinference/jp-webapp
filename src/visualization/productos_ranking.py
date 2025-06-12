@@ -22,6 +22,7 @@ def productos_ranking(request):
         "graph_export_bottom": export_bottom,
         "graph_import_top": import_top,
         "graph_import_bottom": import_bottom,
+        "api": API_URL
     }
 
     # Validate required columns

@@ -20,4 +20,4 @@ def web_app_income_employment(request):
     
   html_graph = f'<div style="padding-left: 120px;">{graph}</div>'
 
-  return render(request, "income_employment.html", {'graph': html_graph, **naics})
+  return render(request, "income_employment.html", {'graph': html_graph, 'api': api, **naics})

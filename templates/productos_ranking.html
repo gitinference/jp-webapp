@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{% static 'css/website.css' %}" />
 
     <!-- JS -->
+    <script> window.API_URL = "{{ api|escapejs }}";</script>
     <script src="{% static 'js/exportcsv.js' %}" defer></script>
   </head>
 
