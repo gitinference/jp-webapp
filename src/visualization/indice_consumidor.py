@@ -18,5 +18,5 @@ def web_app_indice_consumidor(request):
     indice_consumidor_html = response.json()
     graph = f"<div style='overflow-x: auto; white-space: nowrap; width: 90%; padding-bottom: 20px;'>{indice_consumidor_html}</div>"
 
-    return render(request, "indice_consumidor.html", {"consumer": graph})
+    return render(request, "indice_consumidor.html", {"consumer": graph, "api": API_URL})
 
