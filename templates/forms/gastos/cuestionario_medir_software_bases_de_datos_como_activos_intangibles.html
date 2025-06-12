@@ -30,349 +30,351 @@
     </tr>
 </table>
 {% endblock %}
-    
+   
 {% block form_content %}
     <!-- Main -->  
     <main>
-        <br><h2>Cuestionario Para Medir Software y Bases de Datos Como Activos Intangibles</h2>
-        <form method="POST" action="{% url 'web_app:Cuestionario-medir-software-bases-de-datos-como-activos-intangibles' %}"></form>
-        <!-- Objetivo -->
-        <section class="intro">
-            <p>
-            Este cuestionario está diseñado para recopilar información sobre el software y las bases de datos como parte de los activos intangibles en las cuentas nacionales. Sus respuestas serán tratadas de forma confidencial y se utilizarán únicamente con fines estadísticos.
-            </p>
-        </section>
-        <form id="intangibleForm" class="question-box">
-            <!-- Sección I: Información General de la Empresa -->
-        <fieldset id="sectionI">
-            <legend><strong>I. Información General de la Empresa</strong></legend>
+        <div class="form-contenedor">
+            <br><h2>Cuestionario Para Medir Software y Bases de Datos Como Activos Intangibles</h2>
+            <form method="POST" action="{% url 'web_app:Cuestionario-medir-software-bases-de-datos-como-activos-intangibles' %}"></form>
+            <!-- Objetivo -->
+            <section class="intro">
+                <p>
+                Este cuestionario está diseñado para recopilar información sobre el software y las bases de datos como parte de los activos intangibles en las cuentas nacionales. Sus respuestas serán tratadas de forma confidencial y se utilizarán únicamente con fines estadísticos.
+                </p>
+            </section>
+            <form id="intangibleForm" class="question-box">
+                <!-- Sección I: Información General de la Empresa -->
+            <fieldset id="sectionI">
+                <legend><strong>I. Información General de la Empresa</strong></legend>
 
-            <div class="form-group">
-            <label for="companyName"><strong>1. Nombre de la empresa: </strong><input type="text" id="companyName" name="company_name" required placeholder="Ingrese el nombre de la empresa"/></label><br>
-            
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label for="einNumber"><strong>2. Número EIN: </strong><input type="text" id="einNumber" name="ein_number" required placeholder="Ingrese el EIN"/></label><br>
-            
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label for="naicsCode"><strong>3. Código NAICS:</strong> <input type="text" id="naicsCode" name="naics_code" required placeholder="Ingrese el código NAICS"/></label><br>
-            
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label for="ciiuCode"><strong>4. Sector económico (CIIU): </strong><input type="text" id="ciiuCode" name="ciiu_code" required placeholder="Ingrese el código CIIU"/></label><br>
-            
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>5. Tamaño de la empresa:</strong></label><br/>
-            <input type="radio" id="size_micro" name="company_size" value="Micro" required/>
-            <label for="size_micro">&emsp;Micro (1-10 empleados)</label><br/>
-            <input type="radio" id="size_small" name="company_size" value="Pequeña"/>
-            <label for="size_small">&emsp;Pequeña (11-50 empleados)</label><br/>
-            <input type="radio" id="size_medium" name="company_size" value="Mediana"/>
-            <label for="size_medium">&emsp;Mediana (51-250 empleados)</label><br/>
-            <input type="radio" id="size_large" name="company_size" value="Grande"/>
-            <label for="size_large">&emsp;Grande (más de 250 empleados)</label>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label for="referenceYear"><strong>6. Año de referencia: </strong><input type="number" id="referenceYear" name="reference_year" required min="2000" max="2099" placeholder="Ej. 2024"/></label><br/>
-            </div>
-            <br/>
-        </fieldset>
-
-        <!-- Sección II: Inversión en Software y Bases de Datos -->
-        <fieldset id="sectionII">
-            <legend><strong>II. Inversión en Software y Bases de Datos</strong></legend>
-
-            <div class="form-group">
-            <label><strong>7. ¿La empresa ha invertido en software o bases de datos en el año de referencia?</strong></label><br/>
-            <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required/>
-            <label for="invest_yes">&emsp;Sí</label><br/>
-            <input type="radio" id="invest_no" name="invest_flag" value="No"/>
-            <label for="invest_no">&emsp;No (si su respuesta es “No”, pase a la sección VIII)</label>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label for="totalInvestment"><strong>8. ¿Cuál fue el monto total invertido en software y bases de datos durante el año de referencia? (en moneda local)</strong></label><br/>
-            <label for="ciiuCode">  &emsp;a. Total: <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" placeholder="Ingrese el monto total"/></label><br>
-            
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>9. ¿Cómo se distribuyeron los gastos?</strong></label><br/>
-            <div style="margin-left: 20px;">
-                <label for="cost_standard_software">&emsp;a. Compra de software estándar (licencias comerciales): <input type="number" id="cost_standard_software" name="cost_standard_software" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                <div class="form-group">
+                <label for="companyName"><strong>1. Nombre de la empresa: </strong><input type="text" id="companyName" name="company_name" required placeholder="Ingrese el nombre de la empresa"/></label><br>
                 
-                <label for="cost_internal_development">&emsp;b. Desarrollo interno de software personalizado: <input type="number" id="cost_internal_development" name="cost_internal_development" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label for="einNumber"><strong>2. Número EIN: </strong><input type="text" id="einNumber" name="ein_number" required placeholder="Ingrese el EIN"/></label><br>
                 
-                <label for="cost_external_services">&emsp;c. Contratación de servicios externos para desarrollo de software:  <input type="number" id="cost_external_services" name="cost_external_services" min="0" step="0.01" required placeholder="Monto"/><br/></label>
-               
-                <label for="cost_purchased_databases">&emsp;d. Bases de datos compradas o adquiridas: <input type="number" id="cost_purchased_databases" name="cost_purchased_databases" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label for="naicsCode"><strong>3. Código NAICS:</strong> <input type="text" id="naicsCode" name="naics_code" required placeholder="Ingrese el código NAICS"/></label><br>
                 
-                <label for="cost_internal_databases">&emsp;e. Bases de datos desarrolladas internamente: <input type="number" id="cost_internal_databases" name="cost_internal_databases" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label for="ciiuCode"><strong>4. Sector económico (CIIU): </strong><input type="text" id="ciiuCode" name="ciiu_code" required placeholder="Ingrese el código CIIU"/></label><br>
                 
-                <label for="cost_other_software">&emsp;f. Otros gastos relacionados con software y bases de datos (especifique):</label><br/>
-                <label for="cost_other_software_label">&emsp;&emsp;Descripción: <input type="text" id="cost_other_software_label" name="cost_other_software_label" placeholder="Descripción"/></label>                
-                <input type="number" id="cost_other_software" name="cost_other_software" min="0" step="0.01" placeholder="Monto"/><br/>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>5. Tamaño de la empresa:</strong></label><br/>
+                <input type="radio" id="size_micro" name="company_size" value="Micro" required/>
+                <label for="size_micro">&emsp;Micro (1-10 empleados)</label><br/>
+                <input type="radio" id="size_small" name="company_size" value="Pequeña"/>
+                <label for="size_small">&emsp;Pequeña (11-50 empleados)</label><br/>
+                <input type="radio" id="size_medium" name="company_size" value="Mediana"/>
+                <label for="size_medium">&emsp;Mediana (51-250 empleados)</label><br/>
+                <input type="radio" id="size_large" name="company_size" value="Grande"/>
+                <label for="size_large">&emsp;Grande (más de 250 empleados)</label>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label for="referenceYear"><strong>6. Año de referencia: </strong><input type="number" id="referenceYear" name="reference_year" required min="2000" max="2099" placeholder="Ej. 2024"/></label><br/>
+                </div>
+                <br/>
+            </fieldset>
+
+            <!-- Sección II: Inversión en Software y Bases de Datos -->
+            <fieldset id="sectionII">
+                <legend><strong>II. Inversión en Software y Bases de Datos</strong></legend>
+
+                <div class="form-group">
+                <label><strong>7. ¿La empresa ha invertido en software o bases de datos en el año de referencia?</strong></label><br/>
+                <input type="radio" id="invest_yes" name="invest_flag" value="Sí" required/>
+                <label for="invest_yes">&emsp;Sí</label><br/>
+                <input type="radio" id="invest_no" name="invest_flag" value="No"/>
+                <label for="invest_no">&emsp;No (si su respuesta es “No”, pase a la sección VIII)</label>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label for="totalInvestment"><strong>8. ¿Cuál fue el monto total invertido en software y bases de datos durante el año de referencia? (en moneda local)</strong></label><br/>
+                <label for="ciiuCode">  &emsp;a. Total: <input type="number" id="totalInvestment" name="total_investment" min="0" step="0.01" placeholder="Ingrese el monto total"/></label><br>
+                
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>9. ¿Cómo se distribuyeron los gastos?</strong></label><br/>
+                <div style="margin-left: 20px;">
+                    <label for="cost_standard_software">&emsp;a. Compra de software estándar (licencias comerciales): <input type="number" id="cost_standard_software" name="cost_standard_software" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                    
+                    <label for="cost_internal_development">&emsp;b. Desarrollo interno de software personalizado: <input type="number" id="cost_internal_development" name="cost_internal_development" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                    
+                    <label for="cost_external_services">&emsp;c. Contratación de servicios externos para desarrollo de software:  <input type="number" id="cost_external_services" name="cost_external_services" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                
+                    <label for="cost_purchased_databases">&emsp;d. Bases de datos compradas o adquiridas: <input type="number" id="cost_purchased_databases" name="cost_purchased_databases" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                    
+                    <label for="cost_internal_databases">&emsp;e. Bases de datos desarrolladas internamente: <input type="number" id="cost_internal_databases" name="cost_internal_databases" min="0" step="0.01" required placeholder="Monto"/><br/></label>
+                    
+                    <label for="cost_other_software">&emsp;f. Otros gastos relacionados con software y bases de datos (especifique):</label><br/>
+                    <label for="cost_other_software_label">&emsp;&emsp;Descripción: <input type="text" id="cost_other_software_label" name="cost_other_software_label" placeholder="Descripción"/></label>                
+                    <input type="number" id="cost_other_software" name="cost_other_software" min="0" step="0.01" placeholder="Monto"/><br/>
+                </div>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>10. ¿Cómo financió la inversión en software y bases de datos?</strong></label><br/>
+                <input type="radio" id="fin_funds" name="financing" value="Fondos propios" required/>
+                <label for="fin_funds">&emsp;Fondos propios</label><br/>
+                <input type="radio" id="fin_grants" name="financing" value="Subvenciones gubernamentales"/>
+                <label for="fin_grants">&emsp;Subvenciones gubernamentales</label><br/>
+                <input type="radio" id="fin_loans" name="financing" value="Créditos o préstamos bancarios"/>
+                <label for="fin_loans">&emsp;Créditos o préstamos bancarios</label><br/>
+                <input type="radio" id="fin_other" name="financing" value="Otros"/>
+                <label for="fin_other">&emsp;Otros (especifique):</label>
+                <input type="text" id="fin_other_text" name="fin_other_text" placeholder="Descripción"/>
+                </div>
+            </fieldset> 
+
+            <!-- Sección III: Recursos Humanos en Software y Bases de Datos -->
+            <fieldset id="sectionIII">
+                <legend><strong>III. Recursos Humanos en Software y Bases de Datos</strong></legend>
+
+                <div class="form-group">
+                <label for="totalEmployees"><strong>11. ¿Cuántos empleados participaron en actividades relacionadas con software y bases de datos durante el año de referencia?</strong></label><br/>
+                <label for="total_employees">&emsp;a. Total <input type="number" id="totalEmployees" name="total_employees" min="0" required placeholder="Total de empleados"/></label>            
+                </div>
+                
+                <div class="form-group">
+                <label for="devStaff">&emsp;b. Personal de desarrollo de software: <input type="number" id="devStaff" name="dev_staff" min="0" placeholder="Cantidad de desarrolladores"/></label><br/>            
+                </div>
+
+                <div class="form-group">
+                <label for="dbStaff">&emsp;c. Personal de gestión de bases de datos: <input type="number" id="dbStaff" name="db_staff" min="0" placeholder="Cantidad de gestores de bases de datos"/></label><br/>            
+                </div>
+                
+
+                <div class="form-group"><br/>
+                <label><strong>12. ¿El personal relacionado con estas actividades tiene formación especializada?</strong></label><br/>
+                <input type="radio" id="staff_training_yes" name="staff_training" value="Sí" required/>
+                <label for="staff_training_yes">&emsp;Sí</label><br/>
+                <input type="radio" id="staff_training_no" name="staff_training" value="No"/>
+                <label for="staff_training_no">&emsp;No</label><br/>
+                <input type="radio" id="staff_training_partial" name="staff_training" value="Parcialmente"/>
+                <label for="staff_training_partial">&emsp;Parcialmente</label>
+                </div>
+            </fieldset>
+
+            <!-- Sección IV: Uso de Software y Bases de Datos -->
+            <fieldset id="sectionIV">
+                <legend><strong>IV. Uso de Software y Bases de Datos</strong></legend>
+
+                <div class="form-group">
+                <label><strong>13. ¿Para qué utiliza principalmente el software en su empresa? (puede seleccionar varias opciones)</strong></label><br/>
+                <input type="checkbox" id="use_admin" name="use_software[]" value="Gestión administrativa y contable"/>
+                <label for="use_admin">&emsp;Gestión administrativa y contable</label><br/>
+                <input type="checkbox" id="use_production" name="use_software[]" value="Producción o fabricación"/>
+                <label for="use_production">&emsp;Producción o fabricación</label><br/>
+                <input type="checkbox" id="use_sales" name="use_software[]" value="Ventas y marketing"/>
+                <label for="use_sales">&emsp;Ventas y marketing</label><br/>
+                <input type="checkbox" id="use_rd" name="use_software[]" value="Desarrollo de nuevos productos o servicios"/>
+                <label for="use_rd">&emsp;Desarrollo de nuevos productos o servicios</label><br/>
+                <input type="checkbox" id="use_security" name="use_software[]" value="Seguridad de la información"/>
+                <label for="use_security">&emsp;Seguridad de la información</label><br/>
+                <input type="checkbox" id="use_other" name="use_software[]" value="Otro"/>
+                <label for="use_other">&emsp;Otro (especifique):</label>
+                <input type="text" id="use_other_text" name="use_other_text" placeholder="Descripción"/>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>14. ¿Cómo utiliza las bases de datos en su empresa? (puede seleccionar varias opciones)</strong></label><br/>
+                <input type="checkbox" id="db_customers" name="use_databases[]" value="Almacenamiento de datos de clientes"/>
+                <label for="db_customers">&emsp;Almacenamiento de datos de clientes</label><br/>
+                <input type="checkbox" id="db_analysis" name="use_databases[]" value="Análisis de datos para la toma de decisiones"/>
+                <label for="db_analysis">&emsp;Análisis de datos para la toma de decisiones</label><br/>
+                <input type="checkbox" id="db_operations" name="use_databases[]" value="Gestión de operaciones internas"/>
+                <label for="db_operations">&emsp;Gestión de operaciones internas</label><br/>
+                <input type="checkbox" id="db_rd" name="use_databases[]" value="Investigación y desarrollo"/>
+                <label for="db_rd">&emsp;Investigación y desarrollo</label><br/>
+                <input type="checkbox" id="db_other" name="use_databases[]" value="Otro"/>
+                <label for="db_other">&emsp;Otro (especifique):</label>
+                <input type="text" id="db_other_text" name="db_other_text" placeholder="Descripción"/>
+                </div>
+            </fieldset>
+
+            <!-- Sección V: Resultados de la Inversión en Software y Bases de Datos -->
+            <fieldset id="sectionV">
+                <legend><strong>V. Resultados de la Inversión en Software y Bases de Datos</strong></legend>
+
+                <div class="form-group">
+                <label><strong>15. ¿Cuáles han sido los principales beneficios de la inversión en software y bases de datos? (puede seleccionar varias opciones)</strong></label><br/>
+                <input type="checkbox" id="benefit_productivity" name="investment_benefits[]" value="Incremento en la productividad"/>
+                <label for="benefit_productivity">&emsp;Incremento en la productividad</label><br/>
+                <input type="checkbox" id="benefit_cost" name="investment_benefits[]" value="Reducción de costos operativos"/>
+                <label for="benefit_cost">&emsp;Reducción de costos operativos</label><br/>
+                <input type="checkbox" id="benefit_decisions" name="investment_benefits[]" value="Mejora en la toma de decisiones"/>
+                <label for="benefit_decisions">&emsp;Mejora en la toma de decisiones</label><br/>
+                <input type="checkbox" id="benefit_market" name="investment_benefits[]" value="Expansión de mercado o clientes"/>
+                <label for="benefit_market">&emsp;Expansión de mercado o clientes</label><br/>
+                <input type="checkbox" id="benefit_quality" name="investment_benefits[]" value="Mejora en la calidad de productos o servicios"/>
+                <label for="benefit_quality">&emsp;Mejora en la calidad de productos o servicios</label><br/>
+                <input type="checkbox" id="benefit_other" name="investment_benefits[]" value="Otros"/>
+                <label for="benefit_other">&emsp;Otros (especifique):</label>
+                <input type="text" id="benefit_other_text" name="benefit_other_text" placeholder="Descripción"/>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>16. ¿Ha registrado algún activo de software o bases de datos como parte de sus activos intangibles en los estados financieros?</strong></label><br/>
+                <input type="radio" id="registered_yes" name="registered_flag" value="Sí" required/>
+                <label for="registered_yes">&emsp;Sí</label><br/>
+                <input type="radio" id="registered_no" name="registered_flag" value="No"/>
+                <label for="registered_no">&emsp;No</label><br/>
+                <input type="radio" id="registered_na" name="registered_flag" value="No aplica"/>
+                <label for="registered_na">&emsp;No aplica</label>
+                </div>
+            </fieldset>
+
+            <!-- Sección VI: Gestión del Software y las Bases de Datos -->
+            <fieldset id="sectionVI">
+                <legend><strong>VI. Gestión del Software y las Bases de Datos</strong></legend>
+
+                <div class="form-group">
+                <label><strong>17. ¿La empresa realiza actualizaciones regulares de su software?</strong></label><br/>
+                <input type="radio" id="updates_yes" name="updates_flag" value="Sí" required/>
+                <label for="updates_yes">&emsp;Sí</label><br/>
+                <input type="radio" id="updates_no" name="updates_flag" value="No"/>
+                <label for="updates_no">&emsp;No</label>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>18. ¿Qué medidas de seguridad aplica para proteger sus bases de datos? (puede seleccionar varias opciones)</strong></label><br/>
+                <input type="checkbox" id="sec_backup" name="db_security[]" value="Copias de seguridad periódicas"/>
+                <label for="sec_backup">&emsp;Copias de seguridad periódicas</label><br/>
+                <input type="checkbox" id="sec_encryption" name="db_security[]" value="Encriptación de datos"/>
+                <label for="sec_encryption">&emsp;Encriptación de datos</label><br/>
+                <input type="checkbox" id="sec_access" name="db_security[]" value="Restricción de acceso según roles"/>
+                <label for="sec_access">&emsp;Restricción de acceso según roles</label><br/>
+                <input type="checkbox" id="sec_audits" name="db_security[]" value="Auditorías de seguridad"/>
+                <label for="sec_audits">&emsp;Auditorías de seguridad</label><br/>
+                <input type="checkbox" id="sec_other" name="db_security[]" value="Otros"/>
+                <label for="sec_other">&emsp;Otros (especifique):</label>
+                <input type="text" id="sec_other_text" name="sec_other_text" placeholder="Descripción"/>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>19. ¿Lleva un registro contable específico para los gastos en software y bases de datos?</strong></label><br/>
+                <input type="radio" id="accounting_yes" name="accounting_flag" value="Sí" required/>
+                <label for="accounting_yes">&emsp;Sí</label><br/>
+                <input type="radio" id="accounting_no" name="accounting_flag" value="No"/>
+                <label for="accounting_no">&emsp;No</label>
+                </div>
+            </fieldset>
+
+            <!-- Sección VII: Colaboración y Desarrollo de Software/Bases de Datos -->
+            <fieldset id="sectionVII">
+                <legend><strong>VII. Colaboración y Desarrollo de Software/Bases de Datos</strong></legend>
+
+                <div class="form-group">
+                <label><strong>20. ¿Su empresa colabora con terceros en el desarrollo de software o bases de datos?</strong></label><br/>
+                <input type="radio" id="collab_yes" name="collaboration_flag" value="Sí" required/>
+                <label for="collab_yes">&emsp;Sí</label><br/>
+                <input type="radio" id="collab_no" name="collaboration_flag" value="No"/>
+                <label for="collab_no">&emsp;No</label>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>21. Si respondió "Sí", ¿con quién colabora principalmente?</strong></label><br/>
+                <input type="checkbox" id="collab_tech_providers" name="collaboration_partners[]" value="Empresas proveedoras de tecnología"/>
+                <label for="collab_tech_providers">&emsp;Empresas proveedoras de tecnología</label><br/>
+                <input type="checkbox" id="collab_universities" name="collaboration_partners[]" value="Universidades o centros de investigación"/>
+                <label for="collab_universities">&emsp;Universidades o centros de investigación</label><br/>
+                <input type="checkbox" id="collab_consultants" name="collaboration_partners[]" value="Consultores independientes"/>
+                <label for="collab_consultants">&emsp;Consultores independientes</label><br/>
+                <input type="checkbox" id="collab_other" name="collaboration_partners[]" value="Otros"/>
+                <label for="collab_other">&emsp;Otros (especifique):</label>
+                <input type="text" id="collab_other_text" name="collaboration_other_text" placeholder="Descripción"/>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>22. ¿Qué tipo de colaboración realiza?</strong></label><br/>
+                <input type="checkbox" id="collab_joint_development" name="collaboration_type[]" value="Desarrollo conjunto"/>
+                <label for="collab_joint_development">&emsp;Desarrollo conjunto</label><br/>
+                <input type="checkbox" id="collab_tech_transfer" name="collaboration_type[]" value="Transferencia de tecnología"/>
+                <label for="collab_tech_transfer">&emsp;Transferencia de tecnología</label><br/>
+                <input type="checkbox" id="collab_licensing" name="collaboration_type[]" value="Licenciamiento de software"/>
+                <label for="collab_licensing">&emsp;Licenciamiento de software</label><br/>
+                <input type="checkbox" id="collab_type_other" name="collaboration_type[]" value="Otros"/>
+                <label for="collab_type_other">&emsp;Otros (especifique):</label>
+                <input type="text" id="collab_type_other_text" name="collaboration_type_other_text" placeholder="Descripción"/>
+                </div>
+            </fieldset>
+
+            <!-- Sección VIII: Perspectivas y Desafíos -->
+            <fieldset id="sectionVIII">
+                <legend><strong>VIII. Perspectivas y Desafíos</strong></legend>
+
+                <div class="form-group">
+                <label><strong>23. ¿Cuáles son las principales barreras para invertir en software o bases de datos? (seleccione las 3 principales)</strong></label><br/>
+                <input type="checkbox" id="barrier_costs" name="barriers[]" value="Costos elevados"/>
+                <label for="barrier_costs">&emsp;Costos elevados</label><br/>
+                <input type="checkbox" id="barrier_skill" name="barriers[]" value="Falta de personal capacitado"/>
+                <label for="barrier_skill">&emsp;Falta de personal capacitado</label><br/>
+                <input type="checkbox" id="barrier_resources" name="barriers[]" value="Falta de tiempo o recursos"/>
+                <label for="barrier_resources">&emsp;Falta de tiempo o recursos</label><br/>
+                <input type="checkbox" id="barrier_uncertainty" name="barriers[]" value="Incertidumbre en el retorno de la inversión"/>
+                <label for="barrier_uncertainty">&emsp;Incertidumbre en el retorno de la inversión</label><br/>
+                <input type="checkbox" id="barrier_other" name="barriers[]" value="Otros"/>
+                <label for="barrier_other">&emsp;Otros (especifique):</label>
+                <input type="text" id="barrier_other_text" name="barrier_other_text" placeholder="Descripción"/>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label><strong>24. ¿Tiene planes de aumentar la inversión en software y bases de datos en los próximos 3 años?</strong></label><br/>
+                <input type="radio" id="future_yes" name="future_investment" value="Sí" required/>
+                <label for="future_yes">&emsp;Sí</label><br/>
+                <input type="radio" id="future_no" name="future_investment" value="No"/>
+                <label for="future_no">&emsp;No</label><br/>
+                <input type="radio" id="future_not_sure" name="future_investment" value="No está seguro"/>
+                <label for="future_not_sure">&emsp;No está seguro</label>
+                </div>
+            </fieldset>
+
+            <!-- Sección IX: Comentarios adicionales -->
+            <fieldset id="sectionIX">
+                <legend><strong>IX. Comentarios adicionales</strong></legend>
+
+                <div class="form-group">
+                <label for="additionalComments"><strong>25. ¿Desea agregar algún comentario sobre el uso o la inversión en software y bases de datos en su empresa?</strong></label><br/>
+                <textarea id="additionalComments" name="additional_comments" rows="4" placeholder="Escriba sus comentarios aquí..."></textarea>
+                </div>
+            </fieldset>
+
+            <!-- Botón de envío -->
+            <div id="submitSection" style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="submit-button" >Submit</button>
             </div>
+            </form>
+
+            <!-- Mensaje de agradecimiento que se mostrará tras enviar -->
+            <div id="thankYouMessage">
+            Gracias por su participación. Sus respuestas ayudarán a mejorar la comprensión del software y las bases de datos como activos intangibles en las cuentas nacionales.
             </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>10. ¿Cómo financió la inversión en software y bases de datos?</strong></label><br/>
-            <input type="radio" id="fin_funds" name="financing" value="Fondos propios" required/>
-            <label for="fin_funds">&emsp;Fondos propios</label><br/>
-            <input type="radio" id="fin_grants" name="financing" value="Subvenciones gubernamentales"/>
-            <label for="fin_grants">&emsp;Subvenciones gubernamentales</label><br/>
-            <input type="radio" id="fin_loans" name="financing" value="Créditos o préstamos bancarios"/>
-            <label for="fin_loans">&emsp;Créditos o préstamos bancarios</label><br/>
-            <input type="radio" id="fin_other" name="financing" value="Otros"/>
-            <label for="fin_other">&emsp;Otros (especifique):</label>
-            <input type="text" id="fin_other_text" name="fin_other_text" placeholder="Descripción"/>
-            </div>
-        </fieldset> 
-
-        <!-- Sección III: Recursos Humanos en Software y Bases de Datos -->
-        <fieldset id="sectionIII">
-            <legend><strong>III. Recursos Humanos en Software y Bases de Datos</strong></legend>
-
-            <div class="form-group">
-            <label for="totalEmployees"><strong>11. ¿Cuántos empleados participaron en actividades relacionadas con software y bases de datos durante el año de referencia?</strong></label><br/>
-            <label for="total_employees">&emsp;a. Total <input type="number" id="totalEmployees" name="total_employees" min="0" required placeholder="Total de empleados"/></label>            
-            </div>
-            
-            <div class="form-group">
-            <label for="devStaff">&emsp;b. Personal de desarrollo de software: <input type="number" id="devStaff" name="dev_staff" min="0" placeholder="Cantidad de desarrolladores"/></label><br/>            
-            </div>
-
-            <div class="form-group">
-            <label for="dbStaff">&emsp;c. Personal de gestión de bases de datos: <input type="number" id="dbStaff" name="db_staff" min="0" placeholder="Cantidad de gestores de bases de datos"/></label><br/>            
-            </div>
-            
-
-            <div class="form-group"><br/>
-            <label><strong>12. ¿El personal relacionado con estas actividades tiene formación especializada?</strong></label><br/>
-            <input type="radio" id="staff_training_yes" name="staff_training" value="Sí" required/>
-            <label for="staff_training_yes">&emsp;Sí</label><br/>
-            <input type="radio" id="staff_training_no" name="staff_training" value="No"/>
-            <label for="staff_training_no">&emsp;No</label><br/>
-            <input type="radio" id="staff_training_partial" name="staff_training" value="Parcialmente"/>
-            <label for="staff_training_partial">&emsp;Parcialmente</label>
-            </div>
-        </fieldset>
-
-        <!-- Sección IV: Uso de Software y Bases de Datos -->
-        <fieldset id="sectionIV">
-            <legend><strong>IV. Uso de Software y Bases de Datos</strong></legend>
-
-            <div class="form-group">
-            <label><strong>13. ¿Para qué utiliza principalmente el software en su empresa? (puede seleccionar varias opciones)</strong></label><br/>
-            <input type="checkbox" id="use_admin" name="use_software[]" value="Gestión administrativa y contable"/>
-            <label for="use_admin">&emsp;Gestión administrativa y contable</label><br/>
-            <input type="checkbox" id="use_production" name="use_software[]" value="Producción o fabricación"/>
-            <label for="use_production">&emsp;Producción o fabricación</label><br/>
-            <input type="checkbox" id="use_sales" name="use_software[]" value="Ventas y marketing"/>
-            <label for="use_sales">&emsp;Ventas y marketing</label><br/>
-            <input type="checkbox" id="use_rd" name="use_software[]" value="Desarrollo de nuevos productos o servicios"/>
-            <label for="use_rd">&emsp;Desarrollo de nuevos productos o servicios</label><br/>
-            <input type="checkbox" id="use_security" name="use_software[]" value="Seguridad de la información"/>
-            <label for="use_security">&emsp;Seguridad de la información</label><br/>
-            <input type="checkbox" id="use_other" name="use_software[]" value="Otro"/>
-            <label for="use_other">&emsp;Otro (especifique):</label>
-            <input type="text" id="use_other_text" name="use_other_text" placeholder="Descripción"/>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>14. ¿Cómo utiliza las bases de datos en su empresa? (puede seleccionar varias opciones)</strong></label><br/>
-            <input type="checkbox" id="db_customers" name="use_databases[]" value="Almacenamiento de datos de clientes"/>
-            <label for="db_customers">&emsp;Almacenamiento de datos de clientes</label><br/>
-            <input type="checkbox" id="db_analysis" name="use_databases[]" value="Análisis de datos para la toma de decisiones"/>
-            <label for="db_analysis">&emsp;Análisis de datos para la toma de decisiones</label><br/>
-            <input type="checkbox" id="db_operations" name="use_databases[]" value="Gestión de operaciones internas"/>
-            <label for="db_operations">&emsp;Gestión de operaciones internas</label><br/>
-            <input type="checkbox" id="db_rd" name="use_databases[]" value="Investigación y desarrollo"/>
-            <label for="db_rd">&emsp;Investigación y desarrollo</label><br/>
-            <input type="checkbox" id="db_other" name="use_databases[]" value="Otro"/>
-            <label for="db_other">&emsp;Otro (especifique):</label>
-            <input type="text" id="db_other_text" name="db_other_text" placeholder="Descripción"/>
-            </div>
-        </fieldset>
-
-        <!-- Sección V: Resultados de la Inversión en Software y Bases de Datos -->
-        <fieldset id="sectionV">
-            <legend><strong>V. Resultados de la Inversión en Software y Bases de Datos</strong></legend>
-
-            <div class="form-group">
-            <label><strong>15. ¿Cuáles han sido los principales beneficios de la inversión en software y bases de datos? (puede seleccionar varias opciones)</strong></label><br/>
-            <input type="checkbox" id="benefit_productivity" name="investment_benefits[]" value="Incremento en la productividad"/>
-            <label for="benefit_productivity">&emsp;Incremento en la productividad</label><br/>
-            <input type="checkbox" id="benefit_cost" name="investment_benefits[]" value="Reducción de costos operativos"/>
-            <label for="benefit_cost">&emsp;Reducción de costos operativos</label><br/>
-            <input type="checkbox" id="benefit_decisions" name="investment_benefits[]" value="Mejora en la toma de decisiones"/>
-            <label for="benefit_decisions">&emsp;Mejora en la toma de decisiones</label><br/>
-            <input type="checkbox" id="benefit_market" name="investment_benefits[]" value="Expansión de mercado o clientes"/>
-            <label for="benefit_market">&emsp;Expansión de mercado o clientes</label><br/>
-            <input type="checkbox" id="benefit_quality" name="investment_benefits[]" value="Mejora en la calidad de productos o servicios"/>
-            <label for="benefit_quality">&emsp;Mejora en la calidad de productos o servicios</label><br/>
-            <input type="checkbox" id="benefit_other" name="investment_benefits[]" value="Otros"/>
-            <label for="benefit_other">&emsp;Otros (especifique):</label>
-            <input type="text" id="benefit_other_text" name="benefit_other_text" placeholder="Descripción"/>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>16. ¿Ha registrado algún activo de software o bases de datos como parte de sus activos intangibles en los estados financieros?</strong></label><br/>
-            <input type="radio" id="registered_yes" name="registered_flag" value="Sí" required/>
-            <label for="registered_yes">&emsp;Sí</label><br/>
-            <input type="radio" id="registered_no" name="registered_flag" value="No"/>
-            <label for="registered_no">&emsp;No</label><br/>
-            <input type="radio" id="registered_na" name="registered_flag" value="No aplica"/>
-            <label for="registered_na">&emsp;No aplica</label>
-            </div>
-        </fieldset>
-
-        <!-- Sección VI: Gestión del Software y las Bases de Datos -->
-        <fieldset id="sectionVI">
-            <legend><strong>VI. Gestión del Software y las Bases de Datos</strong></legend>
-
-            <div class="form-group">
-            <label><strong>17. ¿La empresa realiza actualizaciones regulares de su software?</strong></label><br/>
-            <input type="radio" id="updates_yes" name="updates_flag" value="Sí" required/>
-            <label for="updates_yes">&emsp;Sí</label><br/>
-            <input type="radio" id="updates_no" name="updates_flag" value="No"/>
-            <label for="updates_no">&emsp;No</label>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>18. ¿Qué medidas de seguridad aplica para proteger sus bases de datos? (puede seleccionar varias opciones)</strong></label><br/>
-            <input type="checkbox" id="sec_backup" name="db_security[]" value="Copias de seguridad periódicas"/>
-            <label for="sec_backup">&emsp;Copias de seguridad periódicas</label><br/>
-            <input type="checkbox" id="sec_encryption" name="db_security[]" value="Encriptación de datos"/>
-            <label for="sec_encryption">&emsp;Encriptación de datos</label><br/>
-            <input type="checkbox" id="sec_access" name="db_security[]" value="Restricción de acceso según roles"/>
-            <label for="sec_access">&emsp;Restricción de acceso según roles</label><br/>
-            <input type="checkbox" id="sec_audits" name="db_security[]" value="Auditorías de seguridad"/>
-            <label for="sec_audits">&emsp;Auditorías de seguridad</label><br/>
-            <input type="checkbox" id="sec_other" name="db_security[]" value="Otros"/>
-            <label for="sec_other">&emsp;Otros (especifique):</label>
-            <input type="text" id="sec_other_text" name="sec_other_text" placeholder="Descripción"/>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>19. ¿Lleva un registro contable específico para los gastos en software y bases de datos?</strong></label><br/>
-            <input type="radio" id="accounting_yes" name="accounting_flag" value="Sí" required/>
-            <label for="accounting_yes">&emsp;Sí</label><br/>
-            <input type="radio" id="accounting_no" name="accounting_flag" value="No"/>
-            <label for="accounting_no">&emsp;No</label>
-            </div>
-        </fieldset>
-
-        <!-- Sección VII: Colaboración y Desarrollo de Software/Bases de Datos -->
-        <fieldset id="sectionVII">
-            <legend><strong>VII. Colaboración y Desarrollo de Software/Bases de Datos</strong></legend>
-
-            <div class="form-group">
-            <label><strong>20. ¿Su empresa colabora con terceros en el desarrollo de software o bases de datos?</strong></label><br/>
-            <input type="radio" id="collab_yes" name="collaboration_flag" value="Sí" required/>
-            <label for="collab_yes">&emsp;Sí</label><br/>
-            <input type="radio" id="collab_no" name="collaboration_flag" value="No"/>
-            <label for="collab_no">&emsp;No</label>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>21. Si respondió "Sí", ¿con quién colabora principalmente?</strong></label><br/>
-            <input type="checkbox" id="collab_tech_providers" name="collaboration_partners[]" value="Empresas proveedoras de tecnología"/>
-            <label for="collab_tech_providers">&emsp;Empresas proveedoras de tecnología</label><br/>
-            <input type="checkbox" id="collab_universities" name="collaboration_partners[]" value="Universidades o centros de investigación"/>
-            <label for="collab_universities">&emsp;Universidades o centros de investigación</label><br/>
-            <input type="checkbox" id="collab_consultants" name="collaboration_partners[]" value="Consultores independientes"/>
-            <label for="collab_consultants">&emsp;Consultores independientes</label><br/>
-            <input type="checkbox" id="collab_other" name="collaboration_partners[]" value="Otros"/>
-            <label for="collab_other">&emsp;Otros (especifique):</label>
-            <input type="text" id="collab_other_text" name="collaboration_other_text" placeholder="Descripción"/>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>22. ¿Qué tipo de colaboración realiza?</strong></label><br/>
-            <input type="checkbox" id="collab_joint_development" name="collaboration_type[]" value="Desarrollo conjunto"/>
-            <label for="collab_joint_development">&emsp;Desarrollo conjunto</label><br/>
-            <input type="checkbox" id="collab_tech_transfer" name="collaboration_type[]" value="Transferencia de tecnología"/>
-            <label for="collab_tech_transfer">&emsp;Transferencia de tecnología</label><br/>
-            <input type="checkbox" id="collab_licensing" name="collaboration_type[]" value="Licenciamiento de software"/>
-            <label for="collab_licensing">&emsp;Licenciamiento de software</label><br/>
-            <input type="checkbox" id="collab_type_other" name="collaboration_type[]" value="Otros"/>
-            <label for="collab_type_other">&emsp;Otros (especifique):</label>
-            <input type="text" id="collab_type_other_text" name="collaboration_type_other_text" placeholder="Descripción"/>
-            </div>
-        </fieldset>
-
-        <!-- Sección VIII: Perspectivas y Desafíos -->
-        <fieldset id="sectionVIII">
-            <legend><strong>VIII. Perspectivas y Desafíos</strong></legend>
-
-            <div class="form-group">
-            <label><strong>23. ¿Cuáles son las principales barreras para invertir en software o bases de datos? (seleccione las 3 principales)</strong></label><br/>
-            <input type="checkbox" id="barrier_costs" name="barriers[]" value="Costos elevados"/>
-            <label for="barrier_costs">&emsp;Costos elevados</label><br/>
-            <input type="checkbox" id="barrier_skill" name="barriers[]" value="Falta de personal capacitado"/>
-            <label for="barrier_skill">&emsp;Falta de personal capacitado</label><br/>
-            <input type="checkbox" id="barrier_resources" name="barriers[]" value="Falta de tiempo o recursos"/>
-            <label for="barrier_resources">&emsp;Falta de tiempo o recursos</label><br/>
-            <input type="checkbox" id="barrier_uncertainty" name="barriers[]" value="Incertidumbre en el retorno de la inversión"/>
-            <label for="barrier_uncertainty">&emsp;Incertidumbre en el retorno de la inversión</label><br/>
-            <input type="checkbox" id="barrier_other" name="barriers[]" value="Otros"/>
-            <label for="barrier_other">&emsp;Otros (especifique):</label>
-            <input type="text" id="barrier_other_text" name="barrier_other_text" placeholder="Descripción"/>
-            </div>
-            <br/>
-
-            <div class="form-group">
-            <label><strong>24. ¿Tiene planes de aumentar la inversión en software y bases de datos en los próximos 3 años?</strong></label><br/>
-            <input type="radio" id="future_yes" name="future_investment" value="Sí" required/>
-            <label for="future_yes">&emsp;Sí</label><br/>
-            <input type="radio" id="future_no" name="future_investment" value="No"/>
-            <label for="future_no">&emsp;No</label><br/>
-            <input type="radio" id="future_not_sure" name="future_investment" value="No está seguro"/>
-            <label for="future_not_sure">&emsp;No está seguro</label>
-            </div>
-        </fieldset>
-
-        <!-- Sección IX: Comentarios adicionales -->
-        <fieldset id="sectionIX">
-            <legend><strong>IX. Comentarios adicionales</strong></legend>
-
-            <div class="form-group">
-            <label for="additionalComments"><strong>25. ¿Desea agregar algún comentario sobre el uso o la inversión en software y bases de datos en su empresa?</strong></label><br/>
-            <textarea id="additionalComments" name="additional_comments" rows="4" placeholder="Escriba sus comentarios aquí..."></textarea>
-            </div>
-        </fieldset>
-
-        <!-- Botón de envío -->
-        <div id="submitSection" style="text-align: center; margin-top: 20px;">
-            <button type="submit" class="submit-button" >Submit</button>
-        </div>
-        </form>
-
-        <!-- Mensaje de agradecimiento que se mostrará tras enviar -->
-        <div id="thankYouMessage">
-        Gracias por su participación. Sus respuestas ayudarán a mejorar la comprensión del software y las bases de datos como activos intangibles en las cuentas nacionales.
         </div>
     </main>
 
