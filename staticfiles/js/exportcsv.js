@@ -1,5 +1,6 @@
-function downloadCSV(frec, lev, api) {
 
+function downloadCSV(frec, lev, api) {
+    const apienv = window.API_URL;
     
     let frequency = "";
     let frequencyLower = "";
@@ -16,7 +17,7 @@ function downloadCSV(frec, lev, api) {
         levelLower = lev.toLowerCase();
     }
     apiurl = api;
-    baseUrl = "http://192.168.50.24:7001/"+apiurl+"/?";
+    baseUrl = apienv+apiurl+"/?";
     
     let params = [];
     if (frequencyLower) params.push("time_frame=" + encodeURIComponent(frequencyLower));
