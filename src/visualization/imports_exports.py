@@ -61,7 +61,8 @@ def web_app_imports_exports(request):
 
     context = {
         "imports": imports,
-        "exports": exports
+        "exports": exports,
+        "api": api
     }
 
     return render(request, "imports_exports.html", context)
