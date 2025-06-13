@@ -17,9 +17,10 @@ def web_app_awards(request):
         second_dropdown = request.POST.get("second_dropdown")
         third_dropdown = request.POST.get("third_dropdown")
 
-        if frequency is None and year is None:
+        if frequency is None and second_dropdown is None:
             frequency = "yearly"
-            year = 2013
+            second_dropdown = 2013
+
         if category is None:
             category = 'awarding_agency_name'
 
@@ -45,7 +46,7 @@ def web_app_awards(request):
         dropdown_2 = request.POST.get("agencies")
 
         if frequency_2 is None and dropdown_2 is None:
-            frequency_2 = "Yearly"
+            frequency_2 = "yearly"
             dropdown_2 = 'department_of_defense'
 
         dropdown_2 = dropdown_2.lower().replace(" ", "_")
