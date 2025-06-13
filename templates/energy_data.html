@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
     <link rel="stylesheet" href="{% static 'css/website.css' %}">
 
+    <!-- JS -->
+    <script> window.API_URL = "{{ api|escapejs }}";</script>
+    <script src="{% static 'js/exportcsv.js' %}" defer></script>
+
     <!-- Ajustes de alineación: centro pero texto alineado a la izquierda dentro del contenedor -->
     <style>
         .content-wrapper {
@@ -111,7 +115,10 @@
         </div>
     </form>
 </main>
-</div>
+        <div class="download_container">
+            <button type="button" id="submit" onclick="downloadCSV('frequency','metric','files/index/energy')"
+                    title="Descargar archivo CSV Energy data"> Descargar CSV </button>
+        </div>
 
 <!-- ---------- FOOTER (idéntico al tuyo) ----------- -->
 <footer>

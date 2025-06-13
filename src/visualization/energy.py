@@ -4,7 +4,7 @@ from env import get_db_credentials
 
 creds = get_db_credentials()
 
-API_URL = creds[6]
+api = creds[6]
 
 metric_list = [
     "generacion_bruta_mkwh",
@@ -175,7 +175,7 @@ def energy_data(request):
     period  = request.POST.get("frequency", "monthly")
     metric  = request.POST.get("metric",    metric_list[0])
 
-    resp = requests.get(f"{API_URL}/graph/energia/",
+    resp = requests.get(f"{api}/graph/energia/",
                     params={"period": period, "metric": metric})
     graph_html = resp.json()
 
@@ -184,4 +184,5 @@ def energy_data(request):
         "metrics": metric_list,
         "selected_metric": metric,
         "selected_period": period,
+        "api":api
     })
