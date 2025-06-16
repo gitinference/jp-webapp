@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{% static 'css/website.css' %}" />
 
     <!-- JS -->
+     <script> window.API_URL = "{{ api|escapejs }}";</script>
     <script src="{% static 'js/exportcsv.js' %}" defer></script>
   </head>
 
@@ -77,14 +78,14 @@
                                 </select>
                             </section>
 
-                            <label id="categories" for="categories">Category:</label>
+                            <label id="categoria" for="categoria">Category:</label>
                             <select name="categories" id="categories">
                                 {% for category in categories %}
                                     <option value="{{ category }}">{{ category }}</option>
                                 {% endfor %}
                             </select>
                             <button id="submit" type="submit">Submit</button>
-                            <button type="button" id="submit_3" onclick="downloadCSV('','','files/awards')" title="Descargar archivo CSV Awards">Descargar CSV</button>
+                            <button type="button" id="submit_3" onclick="downloadAwardsCategoryCSV('frequency','second_dropdown', 'third_dropdown', 'categories', 'files/index/awards/category')" title="Descargar archivo CSV Awards">Descargar CSV</button>
                         </section>
                     </section>                                
                 </div>
@@ -119,7 +120,7 @@
                   {% endfor %}
               </select>
               <button id="submit" type="submit">Submit</button>
-              <button type="button" id="submit_3" onclick="downloadCSV('','','files/awards')" title="Descargar archivo CSV Awards">Descargar CSV</button>
+              <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','agencies','files/index/awards/secter')" title="Descargar archivo CSV Awards">Descargar CSV</button>
           </section>
         </div>
       </form>

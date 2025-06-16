@@ -61,5 +61,5 @@ def web_app_awards(request):
 
 
     # Validate required columns
-    return render(request, "awards.html", {'sectergraph': secter_graph, 'categorygraph': category_graph, **agencies, **categories})
+    return render(request, "awards.html", {'sectergraph': secter_graph, 'categorygraph': category_graph, **agencies, **categories, "api":API_URL})
 
