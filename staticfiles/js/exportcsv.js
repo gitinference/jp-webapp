@@ -47,7 +47,7 @@ function downloadAwardsCategoryCSV(frec, sec, thrd, cat, api) {
         category = document.getElementById(cat).value;
     }
 
-    if (frec == 'yearly') {
+    if (frec != 'yearly') {
         if (thrd != "") {
             third_dropdown = document.getElementById(thrd).value;
         }
