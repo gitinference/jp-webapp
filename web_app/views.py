@@ -7,12 +7,14 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from web_app import graphics_function as gf
+import requests
+from env import get_db_credentials
 from .models import *
 from src.visualization.income_employment import web_app_income_employment
 from src.visualization.product_hts import products_hts
 from src.visualization.productos_ranking import productos_ranking
 from src.visualization.indice_consumidor import web_app_indice_consumidor
-from src.visualization.awards import awards
+from src.visualization.awards import web_app_awards
 from src.visualization.cuestionario_salida import cuestionario_viajero_salida
 from src.visualization.cuestionario_viajero import travel_questionaire
 from src.visualization.account_settings import account_setting
@@ -21,6 +23,7 @@ from src.visualization.indicadores import web_app_indicadores
 from src.visualization.macro import web_app_macro
 from src.visualization.login import log_in_page 
 from src.visualization.imports_exports import web_app_imports_exports
+from src.visualization.energy import energy_data
 from src.formularios.form_ip_110 import IP_110
 from src.formularios.form_jp_304 import JP_304
 from src.formularios.form_jp_361 import JP_361
@@ -85,6 +88,9 @@ from src.formularios.gastos.form_medicion_ID_archivos_intangibles import Medicio
 from src.formularios.gastos.form_medicion_concesiones_recursos_naturales import Medicion_concesiones_recursos_naturales
 from src.formularios.gastos.form_medicion_licencias_uso_propiedad_intelectual_marcas_registradas import Medicion_licencias_uso_propiedad_intelectual_o_marcas_registradas
 from src.formularios.gastos.form_medicion_gastos_comercializacion_formacion_marca import Medicion_gastos_comercializacion_formacion_marca
+from src.formularios.gastos.form_cuestionario_gastos_de_comercialización_y_formación_de_marca import Cuestionario_gastos_de_comercialización_y_formación_de_marca
+from src.formularios.gastos.form_cuestionario_productos_de_entretenimiento_como_activos_intangibles import Cuestionario_productos_de_entretenimiento_como_activos_intangibles
+from src.formularios.gastos.form_cuestionario_medir_software_bases_de_datos_como_activos_intangibles import Cuestionario_medir_software_bases_de_datos_como_activos_intangibles
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
 from src.formularios.quaterly.ingreso_neto_qtr.form_ip_230_qtr import IP_230_qtr
@@ -114,6 +120,9 @@ def imports_and_exports(request):
 
 def indice_consumidor(request):
     return web_app_indice_consumidor(request)
+
+def awards(request):
+    return web_app_awards(request)
 
 def indice_desarrollo_humano(request):
     # Generate the idh index graphs
@@ -218,6 +227,9 @@ def ciclos_economicos(request):
 
     context = {"ciclos_economicos": ciclos_economicos}
     return render(request, "ciclos_economicos.html", context)
+
+def energy(request):
+    return energy_data(request)
 
 def indicadores(request):
     return web_app_indicadores(request)

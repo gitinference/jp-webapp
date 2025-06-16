@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Datos Energéticos</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/favicon-16x16.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/favicon-32x32.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
+
+    <!-- CSS comunes -->
+    <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
+    <link rel="stylesheet" href="{% static 'css/website.css' %}">
+
+    <!-- JS -->
+    <script> window.API_URL = "{{ api|escapejs }}";</script>
+    <script src="{% static 'js/exportcsv.js' %}" defer></script>
+
+    <!-- Ajustes de alineación: centro pero texto alineado a la izquierda dentro del contenedor -->
+    <style>
+        .content-wrapper {
+            max-width: 2000px; /* ajusta al gusto */
+            margin: 0 auto;   /* centra todo el bloque */
+            padding: 0 1rem;
+        }
+        .content-wrapper * {
+            text-align: left;
+        }
+        /* El div donde Vega‑Embed coloca el gráfico */
+        #vis.vega-embed,
+        #graph {
+            width: 100%;
+            margin-top: 18px; /* espacio entre el título y el gráfico */
+        }
+            /* alineación específica de título y párrafo para que coincidan con el gráfico */
+        .content-wrapper h1,
+        .content-wrapper .main_content {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+        }
+            /* alineación H2 */
+        .graph_container h2 {
+            text-align: left;
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+<!-- ---------- NAVEGACIÓN ----------- -->
+<div class="container">
+    <div class="burger" onclick="toggleBurgerMenu()">
+        <span></span><span></span><span></span>
+    </div>
+    <ul class="burger_menu">
+        <a href="/">Home</a>
+        <a href="/centro-de-datos-macroeconomicos/">Centro De Datos Macroeconómicos</a>
+        <a href="/ciclos-economicos/">Ciclos Económicos</a>
+        <a href="/indicadores-mensuales/">Indicadores Mensuales</a>
+        <a href="/datos-demograficos/">Datos Demográficos</a>
+    </ul>
+    <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="logo" id="logo" />
+</div>
+
+<div class="content-wrapper">
+<main>
+    <!-- TÍTULO -->
+    <section>
+        <h1>Datos Energéticos</h1>
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+    <section>
+        <p class="main_content">
+            En esta sección se presentan estadísticas de generación, demanda y precios de
+            energía en Puerto Rico. Utilice los controles para elegir la métrica y el período;
+            la gráfica se actualizará automáticamente.
+        </p>
+    </section>
+
+    <!-- FORMULARIO + GRÁFICA -->
+    <form method="post" id="energy-form">
+        {% csrf_token %}
+        <div class="graph_container">
+            <h2>Datos de energía</h2>
+            <section id="buttons">
+                <!-- Frecuencia -->
+                <label for="frequency">Frecuencia: </label>
+                <select name="frequency" id="frequency">
+                    <option value="monthly"   {% if selected_period == 'monthly'   %}selected{% endif %}>Mensual</option>
+                    <option value="quarterly" {% if selected_period == 'quarterly' %}selected{% endif %}>Trimestral</option>
+                    <option value="yearly"    {% if selected_period == 'yearly'    %}selected{% endif %}>Anual</option>
+                    <option value="fiscal"    {% if selected_period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
+                </select>
+
+                <!-- Métrica -->
+                <label for="metric">Métrica:</label>
+                <select name="metric" id="metric">
+                    {% for m in metrics %}
+                        <option value="{{ m }}" {% if selected_metric == m %}selected{% endif %}>{{ m }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" id="submit">Submit</button>
+            </section>
+
+            <!-- Aquí entra el HTML del gráfico -->
+            <div id="graph">
+                {{ graph|safe }}
+            </div>
+        </div>
+    </form>
+</main>
+        <div class="download_container">
+            <button type="button" id="submit" onclick="downloadCSV('frequency','metric','files/index/energy')"
+                    title="Descargar archivo CSV Energy data"> Descargar CSV </button>
+        </div>
+
+<!-- ---------- FOOTER (idéntico al tuyo) ----------- -->
+<footer>
+    <main>
+        <section><h1>Contáctanos</h1></section>
+        <section>
+            <div class="footer-container">
+                <div class="left-container"><!-- … contactos … --></div>
+                <div class="right-container"><!-- … direcciones … --></div>
+            </div>
+        </section>
+    </main>
+</footer>
+
+<script src="{% static 'js/header_menu.js' %}" defer></script>
+</body>
+</html>

@@ -10,7 +10,11 @@ maintainers = [
 ]
 license = { text = "GPL-3.0-or-later" }
 name = "jp-webapp"
+<<<<<<< 216-fix-pagina-nuestro-equipo
 version = "1.9.4"
+=======
+version = "1.9.6"
+>>>>>>> main
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
