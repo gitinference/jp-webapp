@@ -121,6 +121,13 @@
                         <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
                         </option>
                     </select>
+
+                    <label id="drop_title" for="column">Columna:</label>
+                    <select name="columns" id="columns">
+                        {% for column in columns %}
+                            <option value="{{ column }}">{{ column }}</option>
+                        {% endfor %}
+                    </select>
                     <button id="submit" type="submit">Submit</button>
                 </section>
 
