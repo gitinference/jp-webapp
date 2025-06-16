@@ -53,6 +53,8 @@
                                     onchange="updateSecondDropdown();">
                                     <option value="yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly
                                     </option>
+                                    <option value="fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal
+                                    </option>
                                     <option value="monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly
                                     </option>
                                     <option value="quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>
@@ -107,6 +109,8 @@
                       onchange="updateSecondDropdown();">
                       <option value="yearly" {% if selected_frequency_2 == "yearly" %}selected{% endif %}>Yearly
                       </option>
+                      <option value="fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal
+                      </option>
                       <option value="monthly" {% if selected_frequency_2 == "monthly" %}selected{% endif %}>Monthly
                       </option>
                       <option value="quarterly" {% if selected_frequency_2 == "quarterly" %}selected{% endif %}>
@@ -125,9 +129,9 @@
         </div>
       </form>
 
-    <section class="graph-container">
-          {{ sectergraph|safe }}
-    </section>
+    <div style="padding-right: 50px;" class="graph-container">
+      {{ sectergraph|safe }}
+    </div>
 
 </section> 
     </main>
@@ -206,7 +210,7 @@
             let options2 = [];
 
             // Logic for second dropdown options
-            if (frequency === 'yearly') {
+            if (frequency === 'yearly' || frequency === 'fiscal') {
                 options = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
 
                 // Hide third dropdown and label

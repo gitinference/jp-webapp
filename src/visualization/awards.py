@@ -24,7 +24,7 @@ def web_app_awards(request):
         if category is None:
             category = 'awarding_agency_name'
 
-        if frequency == 'yearly':
+        if frequency == 'yearly' or frequency == 'fiscal':
             year = second_dropdown
             period = 1
         else:
@@ -59,6 +59,7 @@ def web_app_awards(request):
             f"{API_URL}graph/awards/secter/?dropdown=department_of_defense&time_frame=yearly"
         ).json()
 
+    secter_graph = f"<div style='overflow-x: auto; white-space: nowrap; width: 100%; padding-bottom: 20px;'>{secter_graph}</div>"
 
     # Validate required columns
     return render(request, "awards.html", {'sectergraph': secter_graph, 'categorygraph': category_graph, **agencies, **categories, "api":API_URL})
