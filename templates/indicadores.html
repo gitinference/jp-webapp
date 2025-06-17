@@ -122,10 +122,10 @@
                         </option>
                     </select>
 
-                    <label id="drop_title" for="column">Columna:</label>
+                    <label id="drop_title" for="column">Y-axis:</label>
                     <select name="columns" id="columns">
                         {% for column in columns %}
-                            <option value="{{ column }}">{{ column }}</option>
+                            <option value="{{ column.value }}">{{ column.label }}</option>
                         {% endfor %}
                     </select>
                     <button id="submit" type="submit">Submit</button>
