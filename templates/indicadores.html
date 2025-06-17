@@ -20,6 +20,7 @@
         <!-- JS -->
         <script> window.API_URL = "{{ api|escapejs }}";</script>
         <script src="{% static 'js/exportcsv.js' %}" defer></script>
+        <script src="{% static 'js/resetSession.js' %}" defer></script>
         
     </head>
 
@@ -121,6 +122,13 @@
                         <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
                         </option>
                     </select>
+
+                    <label id="drop_title" for="column">Y-axis:</label>
+                    <select name="columns" id="columns">
+                        {% for column in columns %}
+                            <option value="{{ column.value }}">{{ column.label }}</option>
+                        {% endfor %}
+                    </select>
                     <button id="submit" type="submit">Submit</button>
                 </section>
 
@@ -200,5 +208,26 @@
         <!-- Scripts -->
         <script src="{% static 'js/indicadores.js' %}" defer></script>
         <script src="{% static 'js/header_menu.js' %}" defer></script>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", function () {
+                const saved_frequency = sessionStorage.getItem("indicadores_frequency");
+                const saved_dropdown = sessionStorage.getItem("indicadores_dropdown");
+                if (saved_frequency) {
+                    document.getElementById("frequency").value = saved_frequency;
+                }
+                if (saved_dropdown) {
+                    document.getElementById("columns").value = saved_dropdown;
+                }
+            });
+
+            document.getElementById("frequency").addEventListener("change", function () {
+                sessionStorage.setItem("indicadores_frequency", this.value);
+            });
+
+            document.getElementById("columns").addEventListener("change", function () {
+                sessionStorage.setItem("indicadores_dropdown", this.value);
+            });
+        </script>
     </body>
 </html>
