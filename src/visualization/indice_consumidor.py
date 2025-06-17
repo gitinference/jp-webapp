@@ -13,13 +13,14 @@ def web_app_indice_consumidor(request):
     #-----------------------------------------------------------------#
     if request.method == "POST":
         frequency = request.POST.get("frequency").lower()
+        column = request.POST.get("columns")
     else:
         frequency = "yearly"
+        column = 'ropa'
 
     # Fetch graph from the API
-    response = requests.get(f"{API_URL}graph/consumer/?time_frame={frequency}")
-    indice_consumidor_html = response.json()
-    graph = f"<div style='overflow-x: auto; white-space: nowrap; width: 90%; padding-bottom: 20px;'>{indice_consumidor_html}</div>"
+    response = requests.get(f"{API_URL}graph/consumer/?time_frame={frequency}&column={column}")
+    indice_consumidor_html, context = response.json()
 
     # Indices Precios
     #-----------------------------------------------------------------#
@@ -34,7 +35,7 @@ def web_app_indice_consumidor(request):
 
 
     response = requests.get(f"{API_URL}graph/indices/precios/?time_frame={frequency_2}&data_type={data_type}&column={column_2}")
-    indice_precios_html, precios = response.json()
+    indice_precios_html, context_2 = response.json()
 
-    return render(request, "indice_consumidor.html", {"consumer": graph, "api": API_URL, "indices_precios": indice_precios_html, **precios,})
+    return render(request, "indice_consumidor.html", {"consumer": indice_consumidor_html, "api": API_URL, "indices_precios": indice_precios_html, **context, **context_2,})
 

@@ -102,6 +102,13 @@
                   <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
                   </option>
               </select>
+
+              <label id="drop_title" for="column">Y-axis:</label>
+              <select name="columns" id="columns">
+                {% for column in columns %}
+                    <option value="{{ column.value }}">{{ column.label }}</option>
+                {% endfor %}
+              </select>
               <button id="submit" type="submit">Submit</button>
 
               <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/index/consumer_index')" title="Descargar archivo CSV Importaciones / Exportaciones">Descargar CSV</button>
