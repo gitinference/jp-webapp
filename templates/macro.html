@@ -14,8 +14,10 @@
         <link rel="apple-touch-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
 
         <!-- CSS -->
-        <link rel="stylesheet" href="{% static 'css/macro.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/macro.css' %}">-->
+        <link rel="stylesheet" href="{% static 'css/ciclos_economicos.css' %}" />
         <link rel="stylesheet" href="{% static 'css/website.css' %}">
+        <link rel="stylesheet" href="{% static 'css/forms/jquery-ui_1.10.2.css' %}" />
     </head>
 
     <body>
@@ -26,11 +28,12 @@
                 <span></span>
             </div>
             <ul class="burger_menu">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/centro-de-datos-macroeconomicos/">Centro de Datos Macroeconómicos</a></li>
-                <li><a href="/ciclos-economicos/">Ciclos Económicos</a></li>
-                <li><a href="/indicadores-mensuales/">Indicadores Mensuales</a></li>
+                <li><a href="/">Home</a></li>
+                <strong><li><a href="/proyectos/">Proyectos</a></li></strong>
+                <li><a href="/indicadores-mensuales/">Indicadores Económicos</a></li>
                 <li><a href="/datos-demograficos/">Datos Demográficos</a></li>
+                <li><a href="/proyecciones/">Proyecciones Poblacionales</a></li>
+                <li><a href="/indice-desarrollo-humano/">Indice Desarrollo Humano</a></li>
             </ul>
 
             <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
@@ -64,7 +67,7 @@
             
             <section class="instructions">
                 <p>
-                    <strong>1. Selección de Datos Macroeconómicos:</strong> 
+                     <strong>1. Selección de Datos Macroeconómicos:</strong> 
                     Utiliza el menú desplegable en la parte superior 
                     de la gráfica para seleccionar diferentes datos macroeconómicos. 
                     Cada opción del menú modifica los datos mostrados en el eje Y.

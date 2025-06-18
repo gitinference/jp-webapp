@@ -24,22 +24,23 @@
     </header>
 
 	<!-- NAVIGATION -->
-		<div class="container">
-			<div class="burger" onclick="toggleBurgerMenu()">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<ul class="burger_menu">
-				<a href='/'>Home</a>
-				<a href='/centro-de-datos-macroeconomicos/'>Centro De Datos Macroeconómicos</a>
-				<a href='/ciclos-economicos/'>Ciclos Económicos</a>
-				<a href='/indicadores-mensuales/'>Indicadores Mensuales</a>
-				<a href='/datos-demograficos/'>Datos Demográficos</a>
-			</ul>
-
-			<img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="logo" id="logo" />
+	<div class="container">
+		<div class="burger" onclick="toggleBurgerMenu()">
+			<span></span>
+			<span></span>
+			<span></span>
 		</div>
+		<ul class="burger_menu">
+			<a href='/'>Home</a>
+			<strong><li><a href="/proyectos/">Proyectos</a></li></strong>
+			<a href='/indicadores-mensuales/'>Indicadores Mensuales</a>
+			<a href='/datos-demograficos/'>Datos Demográficos</a>
+			<a href='/centro-de-datos-macroeconomicos/'>Datos Macroeconómicos</a>
+			<li><a href="/proyecciones/">Proyecciones Poblacionales</a></li>
+		</ul>
+
+		<img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="logo" id="logo" />
+	</div>
 
     <main>
 			<!-- TITLE -->
@@ -93,7 +94,7 @@
 			</section>
 
 			<!-- SUBBODY 2 -->
-			<section>
+			<section >
 				<div>
 					<h2>Instrucciones</h2>
 					<p>
