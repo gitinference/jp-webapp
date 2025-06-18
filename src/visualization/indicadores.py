@@ -20,4 +20,4 @@ def web_app_indicadores(request):
     indicadores_html, columns = response.json()
     graph = f"<div style='overflow-x: auto; white-space: nowrap; width: 90%; padding-bottom: 20px;'>{indicadores_html}</div>"
 
-    return render(request, "indicadores.html", {"indicadores": graph, "api": api, **columns})
+    return render(request, "indicadores.html", {"indicadores": graph, "api": api, "selected_frequency": frequency, "column_post": column, **columns})
