@@ -7,11 +7,13 @@ maintainers = [
   { name = "Bryan D. Vega Gonzalez", email = "bryan.vega7@upr.edu" },
   { name = "Edzel Enrique Ortiz Padilla", email = "edzel.ortiz@upr.edu" },
   { name = "Luis Jomyr Serrato Diaz", email = "luisjomyr.serrato@upr.edu" },
+  { name = "Diego F. Vasquez P.", email = "diego.vasquez@upr.edu" },
+
 ]
 license = { text = "GPL-3.0-or-later" }
 name = "jp-webapp"
-version = "1.9.10"
-description = "Add your description here"
+version = "1.9.12"
+description = "navigation-botton and footer for proyects"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

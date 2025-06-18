@@ -102,3 +102,16 @@ select:focus {
   justify-items: center;
   margin-left: 90px;
 }
+
+.instructions {
+  margin-left: 30px;
+}
+
+#instruction_li {
+  font-size: 1.2em;
+  text-align: justify;
+  margin-left: 8vw;
+  margin-right: 8vw;
+  line-height: 1.5;
+}
+
