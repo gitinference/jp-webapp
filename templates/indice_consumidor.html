@@ -91,6 +91,7 @@
 
       <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
           {% csrf_token %}
+          <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Índice al Consumidor</div>
           <section id="dropdowns">
               <label id="drop_title" for="frequency">Frecuencia:</label>
               <select name="frequency" id="frequency">
@@ -100,6 +101,13 @@
                   <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
                   <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
                   </option>
+              </select>
+
+              <label id="drop_title" for="column">Y-axis:</label>
+              <select name="columns" id="columns">
+                {% for column in columns %}
+                    <option value="{{ column.value }}">{{ column.label }}</option>
+                {% endfor %}
               </select>
               <button id="submit" type="submit">Submit</button>
 
@@ -111,6 +119,39 @@
           <!-- Contenedor de la gráfica -->
           <div class="graph_container">
               {{ consumer|safe }}
+          </div>
+
+          <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Índice de Precios al Consumidor</div>
+          <section id="dropdowns">
+              <label id="drop_title" for="frequency_2">Frecuencia:</label>
+              <select name="frequency_2" id="frequency_2">
+                  <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
+                  <option value="Monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly
+                  </option>
+                  <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
+                  <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
+                  </option>
+              </select>
+
+              <label id="drop_title" for="data_type">Tipo:</label>
+              <select name="data_type" id="data_type">
+                  <option value="indices_precio">Indices Precios</option>
+                  <option value="cambio_porcentual">Cambios Porcentuales</option>
+                  <option value="primera_diferencia">Primera Diferencia</option>
+              </select>
+
+              <label id="drop_title" for="column_2">Y-axis:</label>
+              <select name="columns_2" id="columns_2">
+                {% for column in columns_2 %}
+                    <option value="{{ column.value }}">{{ column.label }}</option>
+                {% endfor %}
+              </select>
+              <button id="submit" type="submit">Submit</button>
+          </section>
+
+          <!-- Contenedor de la gráfica -->
+          <div class="graph_container">
+              {{ indices_precios|safe }}
           </div>
       </form>
 
