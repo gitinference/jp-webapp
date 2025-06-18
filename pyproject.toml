@@ -7,11 +7,16 @@ maintainers = [
   { name = "Bryan D. Vega Gonzalez", email = "bryan.vega7@upr.edu" },
   { name = "Edzel Enrique Ortiz Padilla", email = "edzel.ortiz@upr.edu" },
   { name = "Luis Jomyr Serrato Diaz", email = "luisjomyr.serrato@upr.edu" },
+  { name = "Diego F. Vasquez P.", email = "diego.vasquez@upr.edu" },
+
 ]
 license = { text = "GPL-3.0-or-later" }
 name = "jp-webapp"
+263-proyectos-gastos-gobierno-federal-y-estatal
 version = "2.0.0"
 description = "Add your description here"
+
+main
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

@@ -25,16 +25,23 @@
   </head>
 
   <body>
+    <!-- NAVIGATION -->
     <div class="container">
-      <div class="burger" onclick="toggleBurgerMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul class="burger_menu">
-      </ul>
+        <div class="burger" onclick="toggleBurgerMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="burger_menu">
+            <li><a href="/">Home</a></li>
+            <strong><li><a href="/proyectos/">Proyectos</a></li></strong>
+            <li><a href="/productos_ranking/">Ranking de Products HTS</a></li>
+            <li><a href="/ingresos-de-empleos/">Ingresos de Empleos</a></li>
+            <li><a href="/awards/">Awards</a></li>
+            <li><a href="/datos-energia/">Datos Energéticos</a></li>
+        </ul>
 
-      <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
+        <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
     </div>
 
     <main>
