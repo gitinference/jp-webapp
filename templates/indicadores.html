@@ -115,15 +115,20 @@
                 <section id="dropdowns">
                     <label id="drop_title" for="frequency">Frecuencia:</label>
                     <select name="frequency" id="frequency">
-                        <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
-                        <option value="Monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly
-                        </option>
-                        <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
-                        <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
-                        </option>
+                        <option value="Yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly</option>
+                        <option value="Monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly</option>
+                        <option value="Quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly</option>
+                        <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
+                    </select>
+                    <label id="drop_title" for="column">Y-axis:</label>
+                    <select name="columns" id="columns">
+                        {% for column in columns %}
+                        <option value="{{ column.value }}" {% if column.value == column_post %}selected{% endif %}>{{ column.label }}</option>                        
+                        {% endfor %}
                     </select>
                     <button id="submit" type="submit">Submit</button>
                 </section>
+
 
                 <!-- Contenedor de la gráfica -->
                 <div class="graph_container">
@@ -201,5 +206,6 @@
         <!-- Scripts -->
         <script src="{% static 'js/indicadores.js' %}" defer></script>
         <script src="{% static 'js/header_menu.js' %}" defer></script>
+
     </body>
 </html>

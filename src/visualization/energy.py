@@ -1,188 +1,69 @@
-import requests
+# src/visualization/energy.py
+
+import logging
 from django.shortcuts import render
+import requests
 from env import get_db_credentials
 
+logger = logging.getLogger(__name__)
 creds = get_db_credentials()
-
 api = creds[6]
 
-metric_list = [
-    "generacion_bruta_mkwh",
-    "generacion_neta_mkwh",
-    "demanda_maxima_mw",
-    "generacion_bruta_total_aee_mkwh",
-    "generacion_bruta_con_petroleo_mkwh",
-    "generacion_bruta_con_hidroelectrica_mkwh",
-    "generacion_bruta_con_gas_natural_mkwh",
-    "generacion_netatotal_aee_mkwh",
-    "generacion_neta_con_petroleo_mkwh",
-    "generacion_neta_con_hidroelectrica_mkwh",
-    "generacion_neta_con_gas_natural_mkwh",
-    "generacion_total_con_energia_comprada_mkwh",
-    "generacion_con_energia_comprada_gas_natural_mkwh",
-    "generacion_con_energia_comprada_carbon_mkwh",
-    "generacion_con_energia_comprada_fotovoltaica_mkwh",
-    "generacion_con_energia_comprada_eolica_mkwh",
-    "generacion_con_energia_comprada_otros_varias_tecnologias1_mkwh",
-    "costo_por_kwh_comprado_cent_kwh2",
-    "consumo_residencial_mkwh",
-    "consumo_comercial_mkwh",
-    "consumo_industrial_mkwh",
-    "consumo_alumbrado_publico_mkwh",
-    "consumo_agricola_mkwh",
-    "consumo_otros_mkwh",
-    "consumo_total_mkwh",
-    "clientes_activos_clase_residencial",
-    "clientes_activos_clase_comercial",
-    "clientes_activos_clase_industrial3",
-    "clientes_activos_clase_alumbrado_publico",
-    "clientes_activos_clase_agricola",
-    "clientes_activos_clase_otros",
-    "clientes_activos_todas_las_clases",
-    "ingreso_basico_clase_residencial_mdollar",
-    "ingreso_basico_clase_comercial_mdollar",
-    "ingreso_basico_clase_industrial_mdollar",
-    "ingreso_basico_clase_alumbrado_publico_mdollar",
-    "ingreso_basico_clase_agricola_mdollar",
-    "ingreso_basico_clase_otros_mdollar",
-    "total_ingreso_basico_todas_las_clases_mdollar",
-    "ingreso_tarifa_provisional_clase_residencial_mdollar",
-    "ingreso_tarifa_provisional_clase_comercial_mdollar",
-    "ingreso_tarifa_provisional_clase_industrial_mdollar",
-    "ingreso_tarifa_provisional_clase_alumbrado_publico_mdollar",
-    "ingreso_tarifa_provisional_clase_agricola_mdollar",
-    "ingreso_tarifa_provisional_clase_otros_mdollar",
-    "total_ingreso_tarifa_provisional_todas_las_clases_mdollar",
-    "ingresos_ajuste_combustible_clase_residencial_mdollar",
-    "ingresos_ajuste_combustible_clase_comercial_mdollar",
-    "ingresos_ajuste_combustible_clase_industrial_mdollar",
-    "ingresos_ajuste_combustible_clase_alumbrado_publico_mdollar",
-    "ingresos_ajuste_combustible_clase_agricola_mdollar",
-    "ingresos_ajuste_combustible_clase_otros_mdollar",
-    "total_ingresos_ajuste_combustible_todas_las_clases_mdollar",
-    "ingresos_energia_comprada_clase_residencial_mdollar",
-    "ingresos_energia_comprada_clase_comercial_mdollar",
-    "ingresos_energia_comprada_clase_industrial_mdollar",
-    "ingresos_energia_comprada_clase_alumbrado_publico_mdollar",
-    "ingresos_energia_comprada_clase_agricola_mdollar",
-    "ingresos_energia_comprada_clase_otros_mdollar",
-    "total_energia_comprada_todas_las_clases_mdollar",
-    "ingresos_celi_clase_residencial_mdollar",
-    "ingresos_celi_clase_comercial_mdollar",
-    "ingresos_celi_clase_industrial_mdollar",
-    "ingresos_celi_clase_alumbrado_publico_mdollar",
-    "ingresos_celi_clase_agricola_mdollar",
-    "ingresos_celi_clase_otros_mdollar",
-    "total_ingresos_celi_todas_las_clases_mdollar",
-    "ingresos_subsidio_hh_clase_residencial_mdollar",
-    "ingresos_subsidio_hh_clase_comercial_mdollar",
-    "ingresos_subsidio_hh_clase_industrial_mdollar",
-    "ingresos_subsidio_hh_clase_alumbrado_publico_mdollar",
-    "ingresos_subsidio_hh_clase_agricola_mdollar",
-    "ingresos_subsidio_hh_clase_otros_mdollar",
-    "total_ingresos_subsidio_hh_todas_las_clases_mdollar",
-    "ingresos_subsidio_nhh_clase_residencial_mdollar",
-    "ingresos_subsidio_nhh_clase_comercial_mdollar",
-    "ingresos_subsidio_nhh_clase_industrial_mdollar",
-    "ingresos_subsidio_nhh_clase_alumbrado_publico_mdollar",
-    "ingresos_subsidio_nhh_clase_agricola_mdollar",
-    "ingresos_subsidio_nhh_clase_otros_mdollar",
-    "total_ingresos_subsidio_nhh_todas_las_clases_mdollar",
-    "ingresos_ee_clase_residencial_mdollar",
-    "ingresos_ee_clase_comercial_mdollar",
-    "ingresos_ee_clase_industrial_mdollar",
-    "ingresos_ee_clase_alumbrado_publico_mdollar",
-    "ingresos_ee_clase_agricola_mdollar",
-    "ingresos_ee_clase_otros_mdollar",
-    "total_ingresos_ee_todas_las_clases_mdollar",
-    "devolucion_tarifa_provisional_tup_clase_residencial_mdollar",
-    "devolucion_tarifa_provisional_tup_clase_comercial_mdollar",
-    "devolucion_tarifa_provisional_tup_clase_industrial_mdollar",
-    "devolucion_tarifa_provisional_tup_clase_alumbrado_publico_mdollar",
-    "devolucion_tarifa_provisional_tup_clase_agricola_mdollar",
-    "devolucion_tarifa_provisional_tup_clase_otros_mdollar",
-    "total_devolucion_tarifa_provisional_tup_todas_las_clases_mdollar",
-    "ingreso_total_clase_residencial_mdollar",
-    "ingreso_total_clase_comercial_mdollar",
-    "ingreso_total_clase_industrial_mdollar",
-    "ingreso_total_clase_alumbrado_publico_mdollar",
-    "ingreso_total_clase_agricola_mdollar",
-    "ingreso_total_clase_otros_mdollar",
-    "ingreso_total_todas_las_clases_mdollar",
-    "costo_promedio_ingreso_basico_clase_residencial_centkwh",
-    "costo_promedio_ingreso_basico_clase_comercial_centkwh",
-    "costo_promedio_ingreso_basico_clase_industrial_centkwh",
-    "costo_promedio_ingreso_basico_clase_alumbrado_publico_centkwh",
-    "costo_promedio_ingreso_basico_clase_agricola_centkwh",
-    "costo_promedio_ingreso_basico_clase_otros_centkwh",
-    "costo_promedio_ingreso_basico_todas_las_clases_centkwh",
-    "costo_promedio_ingreso_combustible_clase_residencial_centkwh",
-    "costo_promedio_ingreso_combustible_clase_comercial_centkwh",
-    "costo_promedio_ingreso_combustible_clase_industrial_centkwh",
-    "costo_promedio_ingreso_combustible_clase_alumbrado_publico_centkwh",
-    "costo_promedio_ingreso_combustible_clase_agricola_centkwh",
-    "costo_promedio_ingreso_combustible_clase_otros_centkwh",
-    "costo_promedio_ingreso_combustible_todas_las_clases_centkwh",
-    "costo_promedio_ingreso_energia_comprada_clase_residencial_centkwh",
-    "costo_promedio_ingreso_energia_comprada_clase_comercial_centkwh",
-    "costo_promedio_ingreso_energia_comprada_clase_industrial_cent",
-    "costo_promedio_ingreso_energia_comprada_clase_alumbrado_publico_centkwh",
-    "costo_promedio_ingreso_energia_comprada_clase_agricola_centkwh",
-    "costo_promedio_ingreso_energia_comprada_clase_otros_centkwh",
-    "costo_promedio_ingreso_energia_comprada_todas_las_clases_centkwh",
-    "costo_promedio_ingreso_celi_clase_residencial_centkwh",
-    "costo_promedio_ingreso_celi_clase_comercial_centkwh",
-    "costo_promedio_ingreso_celi_clase_industrial_centkwh",
-    "costo_promedio_ingreso_celi_clase_alumbrado_publico_centkwh",
-    "costo_promedio_ingreso_celi_clase_agricola_centkwh",
-    "costo_promedio_ingreso_celi_clase_otros_centkwh",
-    "total_costo_promedio_ingreso_celi_todas_las_clases_centkwh",
-    "costo_promedio_ingreso_subsidio_hh_clase_residencial_centkwh",
-    "costo_promedio_ingreso_subsidio_hh_clase_comercial_centkwh",
-    "costo_promedio_ingreso_subsidio_hh_clase_industrial_centkwh",
-    "costo_promedio_ingreso_subsidio_hh_clase_alumbrado_publico_centkwh",
-    "costo_promedio_ingreso_subsidio_hh_clase_agricola_centkwh",
-    "costo_promedio_ingreso_subsidio_hh_clase_otros_centkwh",
-    "total_costo_promedio_ingreso_subsidio_hh_todas_las_clases_centkwh",
-    "costo_promedio_ingreso_subsidio_nhh_clase_residencial_centkwh",
-    "costo_promedio_ingreso_subsidio_nhh_clase_comercial_centkwh",
-    "costo_promedio_ingreso_subsidio_nhh_clase_industrial_centkwh",
-    "costo_promedio_ingreso_subsidio_nhh_clase_alumbrado_publico_centkwh",
-    "costo_promedio_ingreso_subsidio_nhh_clase_agricola_centkwh",
-    "costo_promedio_ingreso_subsidio_nhh_clase_otros_centkwh",
-    "total_costo_promedio_ingreso_subsidio_nhh_todas_las_clases_centkwh",
-    "costo_promedio_ingreso_ee_clase_residencial_centkwh",
-    "costo_promedio_ingreso_ee_clase_comercial_centkwh",
-    "costo_promedio_ingreso_ee_clase_industrial_centkwh",
-    "costo_promedio_ingreso_ee_clase_alumbrado_publico_centkwh",
-    "costo_promedio_ingreso_ee_clase_agricola_centkwh",
-    "costo_promedio_ingreso_ee_clase_otros_centkwh",
-    "total_costo_promedio_ingreso_ee_todas_las_clases_centkwh",
-    "costo_promedio_centkwh_clase_residencial",
-    "costo_promedio_centkwh_clase_comercial",
-    "costo_promedio_centkwh_clase_industrial",
-    "costo_promedio_centkwh_clase_alumbrado_publico",
-    "costo_promedio_centkwh_clase_agricola",
-    "costo_promedio_centkwh_clase_otros",
-    "costo_promedio_centkwh_todas_las_clases",
-    "dollarbbl_quemados_residual",
-    "dollarbbl_quemados_destilado",
-    "dollarbbl_quemados_gas_natural",
-    "total_dollarbbl_quemados",
-]
-
 def energy_data(request):
-    period  = request.POST.get("frequency", "monthly")
-    metric  = request.POST.get("metric",    metric_list[0])
+    if request.method == "POST":
+        period = request.POST.get("period", "").lower()
+        metric = request.POST.get("metric", "")
+    else:
+        period = request.GET.get("period", "monthly").lower()
+        metric = request.GET.get("metric", "generacion_neta_mkwh")
 
-    resp = requests.get(f"{api}/graph/energia/",
-                    params={"period": period, "metric": metric})
-    graph_html = resp.json()
+    url = f"{api}graph/energia/?period={period}&metric={metric}"
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+    except requests.RequestException as e:
+        logger.error(f"Error al llamar a {url}: {e}")
+        context = {
+            "energia_graph": "",
+            "error": f"No pude obtener la gráfica de energía ({e})",
+            "period": period,
+            "metric": metric,
+        }
+        return render(request, "energy_data.html", context)
+    
+    try:
+        energy_html, energy_metrics = response.json()
+    except ValueError:
+        logger.error(
+            "JSONDecodeError en respuesta de energía. "
+            f"Status: {response.status_code}, Body: {response.text!r}"
+        )
+        context = {
+            "energia_graph": "",
+            "error": "La API de energía devolvió un formato inesperado.",
+            "period": period,
+            "metric": metric,
+        }
+        return render(request, "energy_data.html", context)
 
+    graph = f"""
+    <div style="
+      overflow-x: auto;
+      white-space: nowrap;
+      width: 90%;
+      padding-bottom: 20px;
+    ">
+      {energy_html}
+    </div>
+    """
+
+    context = {
+        "energia_graph": graph,
+        "period": period,
+        "metric": metric,
+        "energy_metrics": energy_metrics,
+    }
     return render(request, "energy_data.html", {
-        "graph": graph_html,
-        "metrics": metric_list,
-        "selected_metric": metric,
-        "selected_period": period,
-        "api":api
-    })
+    "graph": graph,
+    **energy_metrics
+})
