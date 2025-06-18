@@ -12,8 +12,8 @@ maintainers = [
 ]
 license = { text = "GPL-3.0-or-later" }
 name = "jp-webapp"
-version = "1.9.12"
-description = "navigation-botton and footer for proyects"
+version = "2.0.0"
+description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

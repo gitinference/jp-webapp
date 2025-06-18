@@ -75,13 +75,13 @@
                         <label id="drop_title" for="frequency">Frecuencia:</label>
                         <select name="frequency" id="frequency"
                             onchange="updateHtsCodeDropdown(); updateDownloadLink();">
-                            <option value="yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly
+                            <option value="yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly
                             </option>
-                            <option value="monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly
+                            <option value="monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly
                             </option>
-                            <option value="qrt" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
+                            <option value="qrt" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly
                             </option>
-                            <option value="fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal
+                            <option value="fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal
                             </option>
                         </select>
                     </section>
@@ -99,13 +99,13 @@
                     <section id="dropdowns">
                         <label id="drop_title" for="trade_type">Trade Type:</label>
                         <select name="trade_type" id="trade_type">
-                            <option value="imports" {% if selected_trade_type == "Import" %}selected{% endif %}>Imports
+                            <option value="imports" {% if selected_trade_type == "imports" %}selected{% endif %}>Imports
                             </option>
-                            <option value="exports" {% if selected_trade_type == "Export" %}selected{% endif %}>Exports
+                            <option value="exports" {% if selected_trade_type == "exports" %}selected{% endif %}>Exports
                             </option>
                         </select>
                     </section>
-
+                    <div>{{selected_trade_type}}</div>
                     <button id="submit" type="submit">Submit</button>
                     <div class="download_container_2">
                         <button type="button" id="submit_3" onclick="downloadCSV('frequency','hts', 'files/trade/jp')"
