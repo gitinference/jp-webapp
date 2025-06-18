@@ -23,26 +23,24 @@
     <!-- Ajustes de alineación: centro pero texto alineado a la izquierda dentro del contenedor -->
     <style>
         .content-wrapper {
-            max-width: 2000px; /* ajusta al gusto */
-            margin: 0 auto;   /* centra todo el bloque */
+            max-width: 2000px; 
+            margin: 0 auto;  
             padding: 0 1rem;
         }
         .content-wrapper * {
             text-align: left;
         }
-        /* El div donde Vega‑Embed coloca el gráfico */
+        
         #vis.vega-embed,
         #graph {
             width: 100%;
-            margin-top: 18px; /* espacio entre el título y el gráfico */
+            margin-top: 18px; 
         }
-            /* alineación específica de título y párrafo para que coincidan con el gráfico */
         .content-wrapper h1,
         .content-wrapper .main_content {
             margin-left: 0 !important;
             padding-left: 0 !important;
         }
-            /* alineación H2 */
         .graph_container h2 {
             text-align: left;
             margin-left: 0;
@@ -82,32 +80,29 @@
         </p>
     </section>
 
-    <!-- FORMULARIO + GRÁFICA -->
     <form method="post" id="energy-form">
         {% csrf_token %}
         <div class="graph_container">
             <h2>Datos de energía</h2>
             <section id="buttons">
-                <!-- Frecuencia -->
-                <label for="frequency">Frecuencia: </label>
-                <select name="frequency" id="frequency">
-                    <option value="monthly"   {% if selected_period == 'monthly'   %}selected{% endif %}>Mensual</option>
-                    <option value="quarterly" {% if selected_period == 'quarterly' %}selected{% endif %}>Trimestral</option>
-                    <option value="yearly"    {% if selected_period == 'yearly'    %}selected{% endif %}>Anual</option>
-                    <option value="fiscal"    {% if selected_period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
-                </select>
+            <label for="period">Frecuencia: </label>
+            <select name="period" id="period">
+                <option value="monthly"   {% if period == 'monthly'   %}selected{% endif %}>Mensual</option>
+                <option value="quarterly" {% if period == 'quarterly' %}selected{% endif %}>Trimestral</option>
+                <option value="yearly"    {% if period == 'yearly'    %}selected{% endif %}>Anual</option>
+                <option value="fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
+            </select>
 
-                <!-- Métrica -->
-                <label for="metric">Métrica:</label>
-                <select name="metric" id="metric">
-                    {% for m in metrics %}
-                        <option value="{{ m }}" {% if selected_metric == m %}selected{% endif %}>{{ m }}</option>
-                    {% endfor %}
-                </select>
+            <!-- Métrica -->
+            <label for="metric">Métrica:</label>
+            <select name="metric" id="metric">
+                {% for m in energy_metrics %}
+                <option value="{{ m.value }}">{{ m.label }}</option>
+                {% endfor %}
+            </select>
 
-                <button type="submit" id="submit">Submit</button>
+            <button type="submit" id="submit">Submit</button>
             </section>
-
             <!-- Aquí entra el HTML del gráfico -->
             <div id="graph">
                 {{ graph|safe }}
@@ -120,7 +115,7 @@
                     title="Descargar archivo CSV Energy data"> Descargar CSV </button>
         </div>
 
-<!-- ---------- FOOTER (idéntico al tuyo) ----------- -->
+<!-- ---------- FOOTER ----------- -->
 <footer>
     <main>
         <section><h1>Contáctanos</h1></section>
