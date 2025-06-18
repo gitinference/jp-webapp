@@ -13,29 +13,41 @@ def web_app_indice_consumidor(request):
     #-----------------------------------------------------------------#
     if request.method == "POST":
         frequency = request.POST.get("frequency").lower()
+        frequency_2 = request.POST.get("frequency_2").lower()
+        frequency_3 = request.POST.get("frequency_3").lower()
         column = request.POST.get("columns")
+        column_2 = request.POST.get("columns_2")
+        column_3 = request.POST.get("columns_3")
     else:
         frequency = "yearly"
+        frequency_2 = "yearly"
+        frequency_3 = "yearly"
         column = 'ropa'
+        column_2 = 'ropa'
+        column_3 = 'ropa'
 
     # Fetch graph from the API
-    response = requests.get(f"{API_URL}graph/consumer/?time_frame={frequency}&column={column}")
-    indice_consumidor_html, context = response.json()
+    response = requests.get(f"{API_URL}graph/consumer/?time_frame={frequency}&data_type=indices_precio&column={column}").json()
+    indice_consumidor_html, context = response
 
-    # Indices Precios
-    #-----------------------------------------------------------------#
-    if request.method == "POST":
-        frequency_2 = request.POST.get("frequency_2").lower()
-        data_type = request.POST.get("data_type")
-        column_2 = request.POST.get("columns_2")
-    else:
-        frequency_2 = "yearly"
-        data_type = 'indices_precio'
-        column_2 = 'hts_1_deflated'
+    response = requests.get(f"{API_URL}graph/consumer/?time_frame={frequency_2}&data_type=cambio_porcentual&column={column_2}").json()
+    cambio_porcentual_html, context = response
 
+    response = requests.get(f"{API_URL}graph/consumer/?time_frame={frequency_3}&data_type=primera_diferencia&column={column_3}").json()
+    primera_diferencia_html, context = response
 
-    response = requests.get(f"{API_URL}graph/indices/precios/?time_frame={frequency_2}&data_type={data_type}&column={column_2}")
-    indice_precios_html, context_2 = response.json()
-
-    return render(request, "indice_consumidor.html", {"consumer": indice_consumidor_html, "api": API_URL, "indices_precios": indice_precios_html, **context, **context_2,})
+    return render(request, "indice_consumidor.html", 
+            {
+                "consumer": indice_consumidor_html, 
+                "api": API_URL, 
+                "cambio_porcentual": cambio_porcentual_html, 
+                "primera_diferencia": primera_diferencia_html, 
+                **context, 
+                "selected_frequency": frequency, 
+                "selected_frequency_2": frequency_2,
+                "selected_frequency_3": frequency_3,
+                "selected_column": column,
+                "selected_column_2": column_2,
+                "selected_column_3": column_3
+            })
 
