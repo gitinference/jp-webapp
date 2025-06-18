@@ -39,13 +39,13 @@ def normal_indexes_graph():
         for i, y_column in enumerate(y_columns)
     ]
 
-    # Add a "Show All" button to display all traces
-    update_menu.append(
-        dict(label="Mostrar todo",
-             method="update",
-             args=[{"visible": [True] * len(y_columns)},  # Show all traces
-                   {"title": "Todas las Columnas"}])
-    )
+    # # Add a "Show All" button to display all traces
+    # update_menu.append(
+    #     dict(label="Mostrar todo",
+    #          method="update",
+    #          args=[{"visible": [True] * len(y_columns)},  # Show all traces
+    #                {"title": "Todas las Columnas"}])
+    # )
 
     # Update layout with the updatemenus dropdown and range slider
     fig.update_layout(
@@ -119,13 +119,13 @@ def adjusted_indexes_graph():
         for i, y_column in enumerate(y_columns)
     ]
 
-    # Add a "Show All" button to display all traces
-    update_menu.append(
-        dict(label="Mostrar todo",
-             method="update",
-             args=[{"visible": [True] * len(y_columns)},  # Show all traces
-                   {"title": "Todas las Columnas"}])
-    )
+    # # Add a "Show All" button to display all traces
+    # update_menu.append(
+    #     dict(label="Mostrar todo",
+    #          method="update",
+    #          args=[{"visible": [True] * len(y_columns)},  # Show all traces
+    #                {"title": "Todas las Columnas"}])
+    # )
 
     # Update layout with the updatemenus dropdown and range slider
     fig.update_layout(
