@@ -20,7 +20,7 @@
     </head>
 
     <body>
-        
+       
 
         <!-- --------------------- NAVIGATION ----------------- -->
         <div class="container">
@@ -31,10 +31,11 @@
             </div>
             <ul class="burger_menu">
                 <a href='/'>Home</a>
-                <a href='/centro-de-datos-macroeconomicos/'>Centro De Datos Macroeconómicos</a>
-                <a href='/ciclos-economicos/'>Ciclos Económicos</a>
-                <a href='/indicadores-mensuales/'>Indicadores Mensuales</a>
-                <a href='/datos-demograficos/'>Datos Demográficos</a>
+                <strong><li><a href="/proyectos/">Proyectos</a></li></strong>
+                <a href='/centro-de-datos-macroeconomicos/'>Datos Macroeconómicos</a>
+                <a href='/proyecciones/'>Proyecciones Poblacionales</a>
+                <a href='/transacciones-foraneas/'>Transacciones Foráneas</a>
+                <a href='/productos-hts/'>Productos HTS</a>
             </ul>
 
             <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="logo" id="logo" />
@@ -129,7 +130,7 @@
 
                     <!-- Graph 1 (indexes) -->
                     
-                    <h3>Gráfica de Índices</h3>
+                    <h2>Gráfica de Índices</h2>
                     <div class="graph_container"></div>
                         <div class="graph1"> <!-- Apply the "graph" class here -->
                             {{ graph_html | safe }}
@@ -151,7 +152,7 @@
 
                     <!-- Graph 1 (adjusted indexes) -->
                     
-                    <h3>Gráfica de Índices Ajustados</h3>
+                    <h2>Gráfica de Índices Ajustados</h2>
                     <div class="graph_container">
                         <div class="graph2"> <!-- Apply the "graph" class here -->
                             {{ adjusted_graph_html | safe }}

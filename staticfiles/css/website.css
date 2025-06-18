@@ -232,7 +232,8 @@ input:not(:placeholder-shown)~.reset {
     display: none;
     transition: 0.2s;
     z-index: 1;
-    width: 28vw;
+    width: 24vw;
+    margin-left: 0vw !important;
 }
 
 .burger_menu a {
@@ -340,3 +341,16 @@ footer p {
     cursor: pointer;
     text-decoration: none;
 }
+
+.instructions {
+  margin-left: 30px;
+}
+
+#instruction_li {
+  font-size: 1.2em;
+  text-align: justify;
+  margin-left: 8vw;
+  margin-right: 8vw;
+  line-height: 1.5;
+}
+
