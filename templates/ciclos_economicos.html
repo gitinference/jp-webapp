@@ -2,47 +2,47 @@
 {% load static %}
 
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
+	<head>
+		<meta charset="UTF-8" />
 
-    <title>Ciclos Económicos</title>
+		<title>Ciclos Económicos</title>
 
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
+		<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+		<link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-16x16.png' %}" />
+		<link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}" />
+		<link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
+		<link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
 
-    <link rel="stylesheet" href="{% static 'css/ciclos_economicos.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
-	<link rel="stylesheet" href="{% static 'css/forms/jquery-ui_1.10.2.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/ciclos_economicos.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/website.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/forms/jquery-ui_1.10.2.css' %}" />
 
-  </head>
+	</head>
 
-  <body>
-    <header>
-    </header>
+  	<body>
+		<header>
+		</header>
 
-	<!-- NAVIGATION -->
-	<div class="container">
-		<div class="burger" onclick="toggleBurgerMenu()">
-			<span></span>
-			<span></span>
-			<span></span>
+		<!-- NAVIGATION -->
+		<div class="container">
+			<div class="burger" onclick="toggleBurgerMenu()">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<ul class="burger_menu">
+				<a href='/'>Home</a>
+				<strong><li><a href="/proyectos/">Proyectos</a></li></strong>
+				<a href='/indicadores-mensuales/'>Indicadores Mensuales</a>
+				<a href='/datos-demograficos/'>Datos Demográficos</a>
+				<a href='/centro-de-datos-macroeconomicos/'>Datos Macroeconómicos</a>
+				<li><a href="/proyecciones/">Proyecciones Poblacionales</a></li>
+			</ul>
+
+			<img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="logo" id="logo" />
 		</div>
-		<ul class="burger_menu">
-			<a href='/'>Home</a>
-			<strong><li><a href="/proyectos/">Proyectos</a></li></strong>
-			<a href='/indicadores-mensuales/'>Indicadores Mensuales</a>
-			<a href='/datos-demograficos/'>Datos Demográficos</a>
-			<a href='/centro-de-datos-macroeconomicos/'>Datos Macroeconómicos</a>
-			<li><a href="/proyecciones/">Proyecciones Poblacionales</a></li>
-		</ul>
 
-		<img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="logo" id="logo" />
-	</div>
-
-    <main>
+		<main>
 			<!-- TITLE -->
 			<section>
 				<div>
@@ -201,7 +201,7 @@
 					</select>
 				</div>
 			</section>
-    </main>
+		</main>
 
 		<footer>
 			<main>
@@ -264,7 +264,7 @@
 			</main>
 		</footer>
 
-    <script src="{% static 'js/header_menu.js' %}" defer></script>
+		<script src="{% static 'js/header_menu.js' %}" defer></script>
 
-  </body>
+  	</body>
 </html>
