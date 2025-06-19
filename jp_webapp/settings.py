@@ -155,3 +155,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "web_app:forms"
 LOGIN_URL = "web_app:log_in_page"
+
+# CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    "https://jp.econlabs.net",
+    "https://jp-dev.econlabs.net",
+    "https://api.econlabs.net",
+]
