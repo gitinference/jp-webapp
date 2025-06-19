@@ -65,5 +65,6 @@ def energy_data(request):
     }
     return render(request, "energy_data.html", {
     "graph": graph,
+    "api" : api,
     **energy_metrics
 })
