@@ -76,7 +76,6 @@ urlpatterns = [
     re_path(r"^indice-al-consumidor/$", views.indice_consumidor, name='indice_consumidor'),
     re_path(r"^awards/$", views.awards, name='awards'),
     re_path(r"^datos-energia/$", views.energy_data, name="energy_data"),
-    re_path(r"^gastos-gobierno-federal/$", views.gastos_gobierno_federal, name="gastos_gobierno_federal"),
     re_path(r"^gastos-gobierno-estatal/$", views.gastos_gobierno_estatal, name="gastos_gobierno_estatal"),
 
     re_path(r"^cuestionario-del-viajero/$", views.travel_questionaire, name='travel_questionaire'),

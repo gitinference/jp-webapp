@@ -106,7 +106,7 @@
 
 
             <!-- Demographic Graph -->
-            <h1>Grafica Anual</h1>
+            {% comment %} <h1>Grafica Anual</h1> {% endcomment %}
             <style>
                 .graph-container {
                     display: flex;
@@ -137,9 +137,9 @@
             </style>
         
 
-            <div class="graph-container">
+            {% comment %} <div class="graph-container">
                 {{ graph|safe }}
-            </div>
+            </div> {% endcomment %}
 
             <h1>Grafica Trimestral</h1>
 
