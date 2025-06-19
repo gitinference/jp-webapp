@@ -34,7 +34,7 @@ DEBUG = DEBUG_FLAG
 
 ALLOWED_HOSTS = [
     "localhost",
-    "dev.econlabs.net",
+    "jp-dev.econlabs.net",
     "jp.econlabs.net",
     "127.0.0.1",
     "192.168.50.24",
