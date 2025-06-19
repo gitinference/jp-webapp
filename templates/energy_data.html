@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <title>Datos Energéticos</title>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Datos Energéticos</title>
 
-    <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="apple-touch-icon" href="{% static 'images/favicon-16x16.png' %}" />
-    <link rel="apple-touch-icon" href="{% static 'images/favicon-32x32.png' %}" />
-    <link rel="apple-touch-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
-    <link rel="apple-touch-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
+        <!-- Favicons -->
+        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+        <link rel="apple-touch-icon" href="{% static 'images/favicon-16x16.png' %}" />
+        <link rel="apple-touch-icon" href="{% static 'images/favicon-32x32.png' %}" />
+        <link rel="apple-touch-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
+        <link rel="apple-touch-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
 
-    <!-- CSS comunes -->
-    <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
-    <link rel="stylesheet" href="{% static 'css/website.css' %}">
+        <!-- CSS comunes -->
+        <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
+        <link rel="stylesheet" href="{% static 'css/website.css' %}">
 
-    <!-- JS -->
-    <script> window.API_URL = "{{ api|escapejs }}";</script>
-    <script src="{% static 'js/exportcsv.js' %}" defer></script>
-
+        <!-- JS -->
+        <script> window.API_URL = "{{ api|escapejs }}";</script>
+        <script src="{% static 'js/exportcsv.js' %}" defer></script>
+        
     <!-- Ajustes de alineación: centro pero texto alineado a la izquierda dentro del contenedor -->
     <style>
         .content-wrapper {
@@ -46,92 +46,141 @@
             margin-left: 0;
         }
     </style>
-</head>
+    </head>
 
-<body>
-    <!-- NAVIGATION -->
-    <div class="container">
-        <div class="burger" onclick="toggleBurgerMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+    <body>
+        <!-- NAVIGATION -->
+        <div class="container">
+            <div class="burger" onclick="toggleBurgerMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="burger_menu">
+                <li><a href="/">Home</a></li>
+                <strong><li><a href="/proyectos/">Proyectos</a></li></strong>
+                <li><a href="/productos_ranking/">Ranking de Products HTS</a></li>
+                <li><a href="/ingresos-de-empleos/">Ingresos de Empleos</a></li>
+                <li><a href="/indice-al-consumidor/">Indice al Consumidor</a></li>
+                <li><a href="/awards/">Gastos Gobierno Federal</a></li>
+            </ul>
+
+            <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
         </div>
-        <ul class="burger_menu">
-            <li><a href="/">Home</a></li>
-            <strong><li><a href="/proyectos/">Proyectos</a></li></strong>
-            <li><a href="/productos_ranking/">Ranking de Products HTS</a></li>
-            <li><a href="/ingresos-de-empleos/">Ingresos de Empleos</a></li>
-            <li><a href="/indice-al-consumidor/">Indice al Consumidor</a></li>
-            <li><a href="/awards/">Awards</a></li>
-        </ul>
-
-        <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
-    </div>
 
 <div class="content-wrapper">
-<main>
-    <!-- TÍTULO -->
-    <section>
-        <h1>Datos Energéticos</h1>
-    </section>
-
-    <!-- INTRODUCCIÓN -->
-    <section>
-        <p class="main_content">
-            En esta sección se presentan estadísticas de generación, demanda y precios de
-            energía en Puerto Rico. Utilice los controles para elegir la métrica y el período;
-            la gráfica se actualizará automáticamente.
-        </p>
-    </section>
-
-    <form method="post" id="energy-form">
-        {% csrf_token %}
-        <div class="graph_container">
-            <h2>Datos de energía</h2>
-            <section id="buttons">
-            <label for="period">Frecuencia: </label>
-            <select name="period" id="period">
-                <option value="monthly"   {% if period == 'monthly'   %}selected{% endif %}>Mensual</option>
-                <option value="quarterly" {% if period == 'quarterly' %}selected{% endif %}>Trimestral</option>
-                <option value="yearly"    {% if period == 'yearly'    %}selected{% endif %}>Anual</option>
-                <option value="fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
-            </select>
-
-            <!-- Métrica -->
-            <label for="metric">Métrica:</label>
-            <select name="metric" id="metric">
-                {% for m in energy_metrics %}
-                <option value="{{ m.value }}">{{ m.label }}</option>
-                {% endfor %}
-            </select>
-
-            <button type="submit" id="submit">Submit</button>
+        <main>
+            <!-- TÍTULO -->
+            <section>
+                <h1>Datos Energéticos</h1>
             </section>
-            <!-- Aquí entra el HTML del gráfico -->
-            <div id="graph">
-                {{ graph|safe }}
-            </div>
-        </div>
-    </form>
-</main>
-        <div class="download_container">
-            <button type="button" id="submit" onclick="downloadCSV('frequency','metric','files/index/energy')"
-                    title="Descargar archivo CSV Energy data"> Descargar CSV </button>
-        </div>
 
-<!-- ---------- FOOTER ----------- -->
-<footer>
-    <main>
-        <section><h1>Contáctanos</h1></section>
-        <section>
-            <div class="footer-container">
-                <div class="left-container"><!-- … contactos … --></div>
-                <div class="right-container"><!-- … direcciones … --></div>
-            </div>
-        </section>
-    </main>
-</footer>
+            <!-- INTRODUCCIÓN -->
+            <section>
+                <p class="main_content">
+                    En esta sección se presentan estadísticas de generación, demanda y precios de
+                    energía en Puerto Rico. Utilice los controles para elegir la métrica y el período;
+                    la gráfica se actualizará automáticamente.
+                </p>
+            </section>
 
-<script src="{% static 'js/header_menu.js' %}" defer></script>
-</body>
+            <form method="post" id="energy-form">
+                {% csrf_token %}
+                <div class="graph_container">
+                    <h2>Datos de energía</h2>
+                    <section id="buttons">
+                    <label for="period">Frecuencia: </label>
+                    <select name="period" id="period">
+                        <option value="monthly"   {% if period == 'monthly'   %}selected{% endif %}>Mensual</option>
+                        <option value="quarterly" {% if period == 'quarterly' %}selected{% endif %}>Trimestral</option>
+                        <option value="yearly"    {% if period == 'yearly'    %}selected{% endif %}>Anual</option>
+                        <option value="fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
+                    </select>
+
+                    <!-- Métrica -->
+                    <label for="metric">Métrica:</label>
+                    <select name="metric" id="metric">
+                        {% for m in energy_metrics %}
+                        <option value="{{ m.value }}">{{ m.label }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit" id="submit">Submit</button>
+                    </section>
+                    <!-- Aquí entra el HTML del gráfico -->
+                    <div id="graph">
+                        {{ graph|safe }}
+                    </div>
+                </div>
+            </form>
+        </main>
+            <div class="download_container">
+                <button type="button" id="submit" onclick="downloadCSV('frequency','metric','files/index/energy')"
+                        title="Descargar archivo CSV Energy data"> Descargar CSV </button>
+            </div>
+
+        <!-- ---------- FOOTER ----------- -->
+        <footer>
+            <main>
+                <section>
+                    <h1>Contáctanos</h1>
+                </section>
+
+                <section>
+                    <div class="footer-container">
+                        <div class="left-container">
+                            <h2>Oficiales de Información <br> (Ley 141-2019)</h2>
+                            <p>
+                                Sr. Edgardo Vázquez Rivera <br>
+                                Secretario Oficina de Secretaría <br>
+                                <a href="mailto:Vazquez_e@jp.pr.gov" class="custom-link">Vazquez_e@jp.pr.gov</a> <br>
+                                787 723-6200 ext. 16637 <br><br>
+
+                                Plan. Erika Rivera Felicié <br>
+                                Ayudante Especial <br>
+                                <a href="mailto:ivera_e1@jp.pr.gov" class="custom-link">ivera_e1@jp.pr.gov</a> <br><br>
+
+                                Lcda Aida Silver Cintrón <br>
+                                Abogada Oficina Asuntos Legales <br>
+                                <a href="mailto:Silver_A@jp.pr.gov" class="custom-link">Silver_A@jp.pr.gov</a> <br>
+                                787 723-6200 ext. 16016
+                            </p>
+                            <h2>Oficina de Datos PRITS</h2>
+                            <p>
+                                Carlos Castillo Domena <br>
+                                Director Oficina de Administración Interna <br>
+                                <a href="mailto:castillo_r@jp.pr.gov" class="custom-link">castillo_r@jp.pr.gov</a> <br>
+                                787 723-6200 ext. 16019 <br><br>
+                                <a href="https://jppr.sharepoint.com/sites/BibliotecaDigital" class="custom-link">BDV (Uso interno)</a>
+                            </p>
+                        </div>
+                        <div class="right-container">
+                            <h2><strong>Dirección Postal</strong></h2>
+                            <p>
+                                PO Box 4119 <br>
+                                San Juan P.R. 00940-1119 <br>
+                                Tel: (787) 723-6200 (Cuadro)<br>
+                                <h2><strong>Dirección Física</strong></h2>
+                                <p>
+                                    Centro Gubernamental<br>
+                                    Roberto Sánchez Vilella<br>
+                                    Ave. De Diego, Pda 22, <br>
+                                    Santurce<br>
+                                </p>
+                            </p>
+                            <div class="maps">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.7501887340845!2d-66.0698374248245!3d18.
+                                                449648171336893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c036f497801a7b7%3A0x68ace32a0663b72f!2sGov
+                                                ernor%20Roberto%20S%C3%A1nchez%20Vilella%20Government%20Center!5e0!3m2!1sen!2sus!4v1717000266481!5m2!1sen!2sus"
+                                                width="490" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </footer>
+
+            <script src="{% static 'js/header_menu.js' %}" defer></script>
+    </body>
 </html>
