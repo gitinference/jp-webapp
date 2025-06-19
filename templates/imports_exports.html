@@ -149,6 +149,15 @@
                         </select>
                     </section>
 
+                    <section id="dropdowns">
+                        <label id="drop_title" for="hts_code">HTS:</label>
+                        <select name="hts_codes" id="hts_codes">
+                            {% for code in hts_codes %}
+                                <option value="{{ code }}" >{{ code }}</option>
+                            {% endfor %}
+                        </select>
+                    </section>
+
                     <button id="submit" type="submit">Submit</button>
 
                     <div class="download_container">
@@ -212,6 +221,14 @@
                         <label id="drop_title" for="third_dropdown_2">Año:</label>
                         <select name="third_dropdown_2" id="third_dropdown_2">
                             <option value="default_value" {% if selected_third_dropdown_2 == "default_value" %}selected{% endif %}>Default</option>
+                        </select>
+                    </section>
+                    <section id="dropdowns">
+                        <label id="drop_title" for="hts_code_2">HTS:</label>
+                        <select name="hts_codes_2" id="hts_codes_2">
+                            {% for code in hts_codes %}
+                                <option value="{{ code }}" >{{ code }}</option>
+                            {% endfor %}
                         </select>
                     </section>
                     <button id="submit_2" type="submit">Submit</button>
