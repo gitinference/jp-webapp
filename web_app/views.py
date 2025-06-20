@@ -170,6 +170,9 @@ def ciclos_economicos(request):
 def energy(request):
     return energy_data(request)
 
+def gastos_esteatales(request):
+    return gastos_gobierno_estatal(request)
+
 def indicadores(request):
     return web_app_indicadores(request)
 
