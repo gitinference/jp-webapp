@@ -11,7 +11,7 @@ def web_app_macro(request):
     for i in df1.columns:
         df1[i] = df1[i].astype(float)
         
-    y_axis_options_1 = df1.columns[2:]
+    y_axis_options_1 = sorted(df1.columns[2:], reverse=True)
     x_axis_1 = df1["PERIODO = AÑO FISCAL"]
     y_axis_1 = df1[y_axis_options_1[0]]
 
@@ -107,7 +107,7 @@ def web_app_macro(request):
     for i in df2.columns:
         df2[i] = df2[i].astype(float)
         
-    y_axis_options_2 = df2.columns[2:]
+    y_axis_options_2 = sorted(df2.columns[2:], reverse=True)
     x_axis_2 = df2["PERIODO = AÑO FISCAL"]
     y_axis_2 = df2[y_axis_options_2[0]]
     
