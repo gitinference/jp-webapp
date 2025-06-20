@@ -82,7 +82,36 @@
             </p>
         </div>
     </div>
+        <form method="post" id="energy-form">
+                {% csrf_token %}
+                <div class="graph_container">
+                    <h2>Gastos estatales</h2>
+                    <section id="buttons">
+                    <label for="period">Frecuencia: </label>
+                    <select name="period" id="period">
+                        <option value="monthly"   {% if period == 'monthly'   %}selected{% endif %}>Mensual</option>
+                        <option value="quarterly" {% if period == 'quarterly' %}selected{% endif %}>Trimestral</option>
+                        <option value="yearly"    {% if period == 'yearly'    %}selected{% endif %}>Anual</option>
+                        <option value="fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
+                    </select>
 
+                    <!-- Métrica -->
+                    <label for="metric">Métrica:</label>
+                    <select name="metric" id="metric">
+                        {% for m in metric %}
+                        <option value="{{ m.value }}">{{ m.label }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit" id="submit">Submit</button>
+                    </section>
+                    <!-- Aquí entra el HTML del gráfico -->
+                    <div id="graph">
+                        {{ graph|safe }}
+                    </div>
+                </div>
+            </form>
+        </main>
         <div class="container"></div>
 
         <!-- ------------------ FOOTER --------------------- -->
