@@ -36,7 +36,7 @@ def normal_indexes_graph():
              method="update",
              args=[{"visible": [i == idx or False for idx in range(len(y_columns))]},  # Make the selected trace visible
                    {"title": f"Mostrando {index_names.get(y_column, y_column)}"}])
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
 
     # # Add a "Show All" button to display all traces
@@ -116,7 +116,7 @@ def adjusted_indexes_graph():
              method="update",
              args=[{"visible": [i == idx or False for idx in range(len(y_columns))]},  # Make the selected trace visible
                    {"title": f"Mostrando {adjusted_index_names.get(y_column, y_column)}"}])
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
 
     # # Add a "Show All" button to display all traces
