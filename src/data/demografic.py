@@ -61,7 +61,7 @@ def demographic_graph():
                 {"title": f"Showing {y_column}"},
             ],
         )
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
 
     # Add a "Show All" button to display all traces
@@ -128,7 +128,7 @@ def trimestral_demographic_graph(selected_graph=1):
                 {"title": f"Showing {y_column}"},
             ],
         )
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
 
     # Add a "Show All" button to display all traces
@@ -201,7 +201,7 @@ def monthly_demographic_graph():
                 {"title": f"Showing {y_column}"},
             ],
         )
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
 
     # Add a "Show All" button to display all traces
@@ -294,7 +294,7 @@ def fiscal_demographic_graph():
                 {"title": f"Showing {y_column}"},
             ],
         )
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
 
     # Add a "Show All" button to display all traces
