@@ -14,8 +14,13 @@
 		<link rel="apple-touch-icon" type="image/x-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
 
 		<link rel="stylesheet" href="{% static 'css/ciclos_economicos.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
 		<link rel="stylesheet" href="{% static 'css/website.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/forms/jquery-ui_1.10.2.css' %}" />
+
+		<!-- JS -->
+        <script> window.API_URL = "{{ api|escapejs }}";</script>
+        <script src="{% static 'js/exportcsv.js' %}" defer></script>
 
 	</head>
 
@@ -119,88 +124,27 @@
 					</p>
 				</div>
 			</section>
-
+			<h2></h2>
 			<!-- GRAPH -->
-			<section>
-				<div class="container-time">
-					<select id="timeRange">
-						<option value="anual" class="active">Anual</option>
-						<option value="enero">Enero</option>
-						<option value="febrero">Febrero</option>
-						<option value="marzo">Marzo</option>
-						<option value="abril">Abril</option>
-						<option value="mayo">Mayo</option>
-						<option value="junio">Junio</option>
-						<option value="julio">Julio</option>
-						<option value="agosto">Agosto</option>
-						<option value="septiembre">Septiembre</option>
-						<option value="octubre">Octubre</option>
-						<option value="noviembre">Noviembre</option>
-						<option value="diciembre">Diciembre</option>
-					</select>
-				</div>
-
+			<form id="hts-form" method="post">
+				{% csrf_token %}
 				<div class="graph-container">
-					<select id="variableY">
-						<option value="indice_coincidente_jp" class="active">Índice coincidente (JP)</option>
-						<option value="indice_actividad_economica_bgf">Índice de actividad económica (BGF)</option>
-						<option value="indice_actividad_economica_eu">Índice de actividad económica (EU)</option>
-						<option value="empleo_total_ee">Empleo total EE (DT)</option>
-						<option value="indice_precios_dt">Índice de precios (DT)</option>
-						<option value="generacion_energia_electrica_aee">Generación de energía eléctrica (AEE)</option>
-						<option value="consumo_gasolina_daco">Consumo de gasolina (DACO)</option>
-						<option value="ventas_detalle_cce">Ventas al detalle (CCE)</option>
-						<option value="exportaciones_jp">Exportaciones (JP)</option>
-						<option value="importaciones_jp">Importaciones (JP)</option>
-						<option value="indice_coincidente_manufactura_jp">Índice coincidente de manufactura (JP)</option>
-						<option value="empleo_manufactura_dt">Empleo en manufactura (DT)</option>
-						<option value="nomina_manufactura_dt">Nómina en manufactura (DT)</option>
-						<option value="horas_trabajadas_manufactura_dt">Horas trabajadas en manufactura (DT)</option>
-						<option value="indice_coincidente_construccion_jp">Índice coincidente de construcción (JP)</option>
-						<option value="empleo_construccion_dt">Empleo en construcción (DT)</option>
-						<option value="produccion_cemento_bgf">Producción de cemento (BGF)</option>
-						<option value="ventas_cemento_bgf">Ventas de cemento (BGF)</option>
-						<option value="ventas_materiales_construccion_cce">Ventas de materiales de construcción (CCE)</option>
-						<option value="valor_permisos_construccion_jp">Valor de permisos de construcción (JP)</option>
-						<option value="indice_coincidente_turismo_jp">Índice coincidente de turismo (JP)</option>
-						<option value="empleo_turismo_dt">Empleo en turismo (DT)</option>
-						<option value="registro_hoteles_ct">Registro de hoteles (CT)</option>
-						<option value="registro_paradores_ct">Registro de paradores (CT)</option>
-					</select>
-					
+					<section id="dropdowns">
+						<div>
+							<label id="drop_title" for="column">Y-axis:</label>
+							<select name="columns" id="columns">
+								{% for column in columns %}
+									<option value="{{ column.value }}" {% if column.value == selected_column %}selected{% endif %}>{{ column.label }}</option>                        
+								{% endfor %}
+							</select>
+							<button id="submit" type="submit">Submit</button>
+						</div>
+					</section>
+				</div>
+				<section class="graph-container">
 					{{ ciclos_economicos|safe }}
-				</div>
-
-				<div class="container-X">
-					<select id="variableX">
-						<option value="1_mes" class="active">(Por Mes)</option>
-						<option value="indice_coincidente_jp">Índice coincidente (JP)</option>
-						<option value="indice_actividad_economica_bgf">Índice de actividad económica (BGF)</option>
-						<option value="indice_actividad_economica_eu">Índice de actividad económica (EU)</option>
-						<option value="empleo_total_ee">Empleo total EE (DT)</option>
-						<option value="indice_precios_dt">Índice de precios (DT)</option>
-						<option value="generacion_energia_electrica_aee">Generación de energía eléctrica (AEE)</option>
-						<option value="consumo_gasolina_daco">Consumo de gasolina (DACO)</option>
-						<option value="ventas_detalle_cce">Ventas al detalle (CCE)</option>
-						<option value="exportaciones_jp">Exportaciones (JP)</option>
-						<option value="importaciones_jp">Importaciones (JP)</option>
-						<option value="indice_coincidente_manufactura_jp">Índice coincidente de manufactura (JP)</option>
-						<option value="empleo_manufactura_dt">Empleo en manufactura (DT)</option>
-						<option value="nomina_manufactura_dt">Nómina en manufactura (DT)</option>
-						<option value="horas_trabajadas_manufactura_dt">Horas trabajadas en manufactura (DT)</option>
-						<option value="indice_coincidente_construccion_jp">Índice coincidente de construcción (JP)</option>
-						<option value="empleo_construccion_dt">Empleo en construcción (DT)</option>
-						<option value="produccion_cemento_bgf">Producción de cemento (BGF)</option>
-						<option value="ventas_cemento_bgf">Ventas de cemento (BGF)</option>
-						<option value="ventas_materiales_construccion_cce">Ventas de materiales de construcción (CCE)</option>
-						<option value="valor_permisos_construccion_jp">Valor de permisos de construcción (JP)</option>
-						<option value="indice_coincidente_turismo_jp">Índice coincidente de turismo (JP)</option>
-						<option value="empleo_turismo_dt">Empleo en turismo (DT)</option>
-						<option value="registro_hoteles_ct">Registro de hoteles (CT)</option>
-						<option value="registro_paradores_ct">Registro de paradores (CT)</option>
-					</select>
-				</div>
-			</section>
+				</section>
+			</form>
 		</main>
 
 		<footer>
