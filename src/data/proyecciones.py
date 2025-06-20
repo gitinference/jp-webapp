@@ -46,7 +46,7 @@ def projection_annual_graph():
              method="update",
              args=[{"visible": [i == idx or vis for idx, vis in enumerate([False] * len(y_columns))]},  # Make the selected trace visible
                    {"title": f"Showing {y_column}"}])
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
     
     # Add a "Show All" button to display all traces
@@ -120,7 +120,7 @@ def projection_monthly_graph():
              method="update",
              args=[{"visible": [i == idx or vis for idx, vis in enumerate([False] * len(y_columns))]},  # Make the selected trace visible
                    {"title": f"Showing {y_column}"}])
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
     
     # Add a "Show All" button to display all traces
@@ -191,7 +191,7 @@ def projection_fiscal_graph():
              method="update",
              args=[{"visible": [i == idx or vis for idx, vis in enumerate([False] * len(y_columns))]},  # Make the selected trace visible
                    {"title": f"Showing {y_column}"}])
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
     
     # Add a "Show All" button to display all traces
@@ -265,7 +265,7 @@ def projection_quarter_graph():
              method="update",
              args=[{"visible": [i == idx or vis for idx, vis in enumerate([False] * len(y_columns))]},  # Make the selected trace visible
                    {"title": f"Showing {y_column}"}])
-        for i, y_column in enumerate(y_columns)
+        for i, y_column in enumerate(sorted(y_columns))
     ]
     
     # Add a "Show All" button to display all traces
