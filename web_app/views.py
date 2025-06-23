@@ -11,6 +11,7 @@ import requests
 from env import get_db_credentials
 from .models import *
 from src.visualization.income_employment import web_app_income_employment
+from src.visualization.empleo_industria import empleo_industria
 from src.visualization.product_hts import products_hts
 from src.visualization.productos_ranking import productos_ranking
 from src.visualization.ciclos_economicos import web_app_ciclos_economicos
@@ -113,6 +114,9 @@ def proyectos(request):
 
 def colaboradores(request):
     return render(request, "colaboradores.html")
+
+def empleo_por_industria(request):
+    return render(request, "empleo_industria.html")
 
 def macro(request):
     return web_app_macro(request)
