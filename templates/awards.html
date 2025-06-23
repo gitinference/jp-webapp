@@ -47,66 +47,7 @@
     <main>
       <!-- Título -->
       <section>
-        <h1>Gastos Gobierno Federal</h1>
-      </section>
-
-      <!-- Descripción -->
-      <section>
-        <form id="awards-form" method="post">
-                {% csrf_token %}
-                <h2>Gastos por Categoría</h2>
-                        <div class="graph_container">
-                          <a id="graph-anchor"></a>
-                          <section id="buttons">
-                            <section id="dropdowns">
-                                <label id="drop_title" for="frequency">Frecuencia:</label>
-                                <select name="frequency" id="frequency"
-                                    onchange="updateSecondDropdown();">
-                                    <option value="yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly
-                                    </option>
-                                    <option value="fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal
-                                    </option>
-                                    <option value="monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly
-                                    </option>
-                                    <option value="quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>
-                                        Quarterly</option>
-                                </select>
-                            </section>
-                            <section id="dropdowns">
-                                <label id="drop_title" for="second_dropdown">Periodo:</label>
-                                <select name="second_dropdown" id="second_dropdown">
-                                    <option value="default_value" {% if selected_second_dropdown == "default_value" %}selected{% endif %}>Default</option>
-                                    {% if selected_frequency == "Qrt" %}
-                                    <option value="1" {% if selected_second_dropdown == "1" %}selected{% endif %}>Qtr 1</option>
-                                    <option value="2" {% if selected_second_dropdown == "2" %}selected{% endif %}>Qtr 2</option>
-                                    <option value="3" {% if selected_second_dropdown == "3" %}selected{% endif %}>Qtr 3</option>
-                                    <option value="4" {% if selected_second_dropdown == "4" %}selected{% endif %}>Qtr 4</option>
-                                    {% endif %}
-                                </select>
-                            </section>
-                            <section id="dropdowns">
-                                <label id="drop_title" for="third_dropdown">Año:</label>
-                                <select name="third_dropdown" id="third_dropdown">
-                                    <option value="default_value" {% if selected_third_dropdown == "default_value" %}selected{% endif %}>Default</option>
-                                </select>
-                            </section>
-
-                            <label id="categoria" for="categoria">Category:</label>
-                            <select name="categories" id="categories">
-                                {% for category in categories %}
-                                    <option value="{{ category.value }}">{{ category.label }}</option>
-                                {% endfor %}
-                            </select>
-                            <button id="submit" type="submit">Submit</button>
-                            <button type="button" id="submit_3" onclick="downloadAwardsCategoryCSV('frequency','second_dropdown', 'third_dropdown', 'categories', 'files/index/awards/category')" title="Descargar archivo CSV Awards">Descargar CSV</button>
-                        </section>
-                    </section>                                
-                </div>
-            </form>
-      </section>
-
-      <section class="graph-container">
-          {{ categorygraph|safe }}
+        <h1>Gastos Gobierno Federal en Puerto Rico</h1>
       </section>
 
       <form id="awards-form" method="post">
@@ -141,11 +82,72 @@
         </div>
       </form>
 
-    <div style="padding-right: 50px;" class="graph-container">
-      {{ sectergraph|safe }}
-    </div>
+      <div style="padding-right: 50px;" class="graph-container">
+        {{ sectergraph|safe }}
+      </div>
 
-</section> 
+      <!-- Descripción -->
+      <section>
+          <form id="awards-form" method="post">
+                  {% csrf_token %}                
+                  <h2>Gastos por Categoría</h2>
+                          <div class="graph_container">
+                            <a id="graph-anchor"></a>
+                            <section id="buttons">
+                              <section id="dropdowns">
+                                  <label id="drop_title" for="frequency">Frecuencia:</label>
+                                  <select name="frequency" id="frequency"
+                                      onchange="updateSecondDropdown();">
+                                      <option value="yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly
+                                      </option>
+                                      <option value="fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal
+                                      </option>
+                                      <option value="monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly
+                                      </option>
+                                      <option value="quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>
+                                          Quarterly</option>
+                                  </select>
+                              </section>
+                              <section id="dropdowns">
+                                  <label id="drop_title" for="second_dropdown">Periodo:</label>
+                                  <select name="second_dropdown" id="second_dropdown">
+                                      <option value="default_value" {% if selected_second_dropdown == "default_value" %}selected{% endif %}>Default</option>
+                                      {% if selected_frequency == "Qrt" %}
+                                      <option value="1" {% if selected_second_dropdown == "1" %}selected{% endif %}>Qtr 1</option>
+                                      <option value="2" {% if selected_second_dropdown == "2" %}selected{% endif %}>Qtr 2</option>
+                                      <option value="3" {% if selected_second_dropdown == "3" %}selected{% endif %}>Qtr 3</option>
+                                      <option value="4" {% if selected_second_dropdown == "4" %}selected{% endif %}>Qtr 4</option>
+                                      {% endif %}
+                                  </select>
+                              </section>
+                              <section id="dropdowns">
+                                  <label id="drop_title" for="third_dropdown">Año:</label>
+                                  <select name="third_dropdown" id="third_dropdown">
+                                      <option value="default_value" {% if selected_third_dropdown == "default_value" %}selected{% endif %}>Default</option>
+                                  </select>
+                              </section>
+
+                              <label id="categoria" for="categoria">Category:</label>
+                              <select name="categories" id="categories">
+                                  {% for category in categories %}
+                                      <option value="{{ category.value }}">{{ category.label }}</option>
+                                  {% endfor %}
+                              </select>
+                              <button id="submit" type="submit">Submit</button>
+                              <button type="button" id="submit_3" onclick="downloadAwardsCategoryCSV('frequency','second_dropdown', 'third_dropdown', 'categories', 'files/index/awards/category')" title="Descargar archivo CSV Awards">Descargar CSV</button>
+                          </section>
+                      </section>                                
+                  </div>
+              </form>
+        </section>
+
+        <section class="graph-container">
+            {{ categorygraph|safe }}
+        </section>
+
+      
+
+      </section> 
     </main>
 
     <!--- FOOTER -->
