@@ -13,7 +13,7 @@ def products_hts(request):
         trade_type = request.POST.get("trade_type")
     else:
         frequency = "yearly"
-        hts_code = "01"
+        hts_code = "0101"
         trade_type = "imports"
 
     print(

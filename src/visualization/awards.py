@@ -19,7 +19,7 @@ def web_app_awards(request):
 
         if frequency is None and second_dropdown is None:
             frequency = "yearly"
-            second_dropdown = 2013
+            second_dropdown = 2009
 
         if category is None:
             category = 'awarding_agency_name'
@@ -37,7 +37,7 @@ def web_app_awards(request):
         
     else:
         category_graph, categories = requests.get(
-            f"{API_URL}graph/awards/category/?dropdown=2013&second_dropdown=1&third_dropdown=awarding_agency_name&time_frame=yearly"
+            f"{API_URL}graph/awards/category/?dropdown=2009&second_dropdown=1&third_dropdown=awarding_agency_name&time_frame=yearly"
         ).json()
 
     # SECTER GRAPH
@@ -47,7 +47,7 @@ def web_app_awards(request):
 
         if frequency_2 is None and dropdown_2 is None:
             frequency_2 = "yearly"
-            dropdown_2 = 'department_of_defense'
+            dropdown_2 = 'total'
 
         dropdown_2 = dropdown_2.lower().replace(" ", "_")
 
@@ -56,7 +56,7 @@ def web_app_awards(request):
         ).json()
     else:
         secter_graph, agencies = requests.get(
-            f"{API_URL}graph/awards/secter/?dropdown=department_of_defense&time_frame=yearly"
+            f"{API_URL}graph/awards/secter/?dropdown=total&time_frame=yearly"
         ).json()
 
     secter_graph = f"<div style='overflow-x: auto; white-space: nowrap; width: 100%; padding-bottom: 20px;'>{secter_graph}</div>"
