@@ -53,39 +53,12 @@
             <!-- Descripción -->
             <section>
                 <p>
-                  El Sistema de Clasificación Industrial de América del Norte (NAICS, por sus siglas en inglés) 
-                  se utiliza en Puerto Rico para organizar y analizar los datos de ingresos laborales por sector 
-                  económico. Este sistema permite identificar las áreas clave de empleo en la isla, proporcionando 
-                  una base estructurada para comprender la dinámica del mercado laboral. En esta sección, encontrarás 
-                  información detallada sobre los ingresos promedio, las diferencias por industria y las tendencias 
-                  salariales que impactan a la fuerza laboral. Estos datos son fundamentales para evaluar el desempeño 
-                  económico y planificar iniciativas que promuevan la equidad y el desarrollo sostenible.
+                    TODO
                 </p>
             </section>
 
             <form id="hts-form" method="post">
                 {% csrf_token %}
-                <div class="graph_container">
-                    <a id="graph-anchor"></a>
-                    <section id="buttons">
-                        <section id="dropdowns">
-                            <label id="drop_title" for="naics_time">Naics:</label>
-                            <select name="naics_time" id="naics_time">
-                                {% for naics in naics_code %}
-                                    <option value="{{ naics }}" {% if naics == naics_time_post%}selected{% endif %}>{{ naics }}</option>
-                                {% endfor %}
-                            </select>
-                        </section>
-                    
-                        <button id="submit" type="submit">Submit</button>
-                        <button type="button" id="submit_3" onclick="downloadCSV('naics_time','','files/qcew/employment')" title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
-
-                    </section>                                
-            
-                    <div id="graph">
-                        {{ graph|safe }}
-                    </div>
-                </div>
             </form>
         </main>
 
