@@ -23,7 +23,7 @@ def gastos_gobierno_estatal(request):
     gastos_html, metrics_dict = response.json()
 
     context = {
-        "gastos_gobierno_estatal": gastos_html,
+        "graph": gastos_html,
         "api": api,
         "period": period,
         "metric": metric,
