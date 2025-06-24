@@ -74,56 +74,12 @@
 						pueden incluir componentes cíclicos, estacionales, aleatorios y de
 						tendencia. Los economistas prestan particular atención al componente
 						cíclico de las series de tiempo para predecir el comportamiento de la
-						economía a corto plazo. Las cuatro fases de los ciclos económicos son:
-						(1) la desaceleración (verde), (2) la recesión (violeta), (3) la
-						recuperación (amarillo) y (4) la expansión (anaranjado).
+						economía a corto plazo.
 					</p>
 				</div>
 			</section>
 
-			<!-- SUBBODY 1 -->
-			<section>
-				<div>
-					<h2>Fases de los Ciclos Económicos</h2>
-
-					<p>
-						Los ciclos económicos tienen cuatro fases: (1) la desaceleración
-						(verde), (2) la recesión (violeta), (3) la recuperación (amarillo) y
-						(4) la expansión (anaranjado).
-					</p>
-
-					<div class="image-container">
-						<img src="{% static 'images/ciclos_economicos.png' %}" alt="fases de los ciclos económicos" class="responsive-image" />
-					</div>
-				</div>
-			</section>
-
-			<!-- SUBBODY 2 -->
-			<section >
-				<div>
-					<h2>Instrucciones</h2>
-					<p>
-						1. Para seleccionar la variable que interesa representar gráficamente
-						debe cursar encima del nombre de la variable continuo al eje vertical
-						(horizontal).
-					</p>
-					<p>
-						2. Si desea comparar el dato de la variable presentada con el dato de
-						las otras variables disponibles debe cursar encima del par ordenado
-						(el punto en la gráfica).
-					</p>
-					<p>
-						3. También, puede elegir el mes para el cual usted interesa la
-						representación gráfica seleccionando el botón “Todos los meses”,
-						ubicado debajo del eje horizontal.<strong> Nota:</strong> La serie que
-						aparece en la gráfica no es la variable original, es una serie
-						calculada. Esta serie es la diferencia entre la variable original y la
-						tendencia. Por lo que si la serie original asume valores menores que
-						la tendencia entonces la serie calculada (lo que aparece en la
-						gráfica) tiene que asumir valores negativos.
-					</p>
-				</div>
-			</section>
+			
 			<h2></h2>
 			<!-- GRAPH -->
 			<form id="hts-form" method="post">
@@ -137,7 +93,14 @@
 									<option value="{{ column.value }}" {% if column.value == selected_column %}selected{% endif %}>{{ column.label }}</option>                        
 								{% endfor %}
 							</select>
-							<button id="submit" type="submit">Submit</button>
+							<button id="submit" type="submit">Submit</button>							
+							
+							<div class="download_container">
+								<button type="button" id="submit" onclick="downloadCSV('','', 'files/index/cycle')"
+										title="Descargar archivo CSV"> Descargar CSV </button>
+							</div>
+
+
 						</div>
 					</section>
 				</div>
@@ -208,7 +171,6 @@
 			</main>
 		</footer>
 
-		<script src="{% static 'js/header_menu.js' %}" defer></script>
-
+		<script src="{% static 'js/header_menu.js' %}" defer></script>	
   	</body>
 </html>
