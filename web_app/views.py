@@ -16,6 +16,7 @@ from src.visualization.product_hts import products_hts
 from src.visualization.productos_ranking import productos_ranking
 from src.visualization.ciclos_economicos import web_app_ciclos_economicos
 from src.visualization.indice_consumidor import web_app_indice_consumidor
+from src.visualization.demographic import web_app_demographic
 from src.visualization.awards import web_app_awards
 from src.visualization.gastos_gobierno_estatal import gastos_gobierno_estatal
 from src.visualization.cuestionario_salida import cuestionario_viajero_salida
@@ -151,22 +152,7 @@ def idh_index_csv(request):
                         content_type="text/csv")
 
 def datos_demograficos(request):
-    # Generate the annual demographic graph
-    graph_html = demographic_graph()
-    t_graph_html = trimestral_demographic_graph()
-    m_graph_html = monthly_demographic_graph()
-    d_table = demographic_table(request)
-    f_graph_html = fiscal_demographic_graph()
-
-    context = {
-        "graph": graph_html,
-        "t_graph": t_graph_html,
-        "m_graph": m_graph_html,
-        "d_table": d_table,
-        "f_graph": f_graph_html
-    }
-
-    return render(request, "demograficos.html", context)
+    return web_app_demographic(request)
 
 def ciclos_economicos(request):
     return web_app_ciclos_economicos(request)

@@ -14,16 +14,15 @@
         <link rel="apple-touch-icon" href="{% static 'images/android-chrome-192x192.png' %}" />
         <link rel="apple-touch-icon" href="{% static 'images/android-chrome-512x512.png' %}" />
 
-        <!-- CSS -->
-        <!--
         <link rel="stylesheet" href="{% static 'css/indicadores.css' %}" />
         <link rel="stylesheet" href="{% static 'css/product_hts.css' %}" />
-        -->
 
-        <link rel="stylesheet" href="{% static 'css/ciclos_economicos.css' %}" />
         <link rel="stylesheet" href="{% static 'css/website.css' %}" />
 	    <link rel="stylesheet" href="{% static 'css/forms/jquery-ui_1.10.2.css' %}" />
-        
+
+        <!-- JS -->
+        <script> window.API_URL = "{{ api|escapejs }}";</script>
+        <script src="{% static 'js/exportcsv.js' %}" defer></script>
         
     </head>
     
@@ -106,58 +105,33 @@
 
 
             <!-- Demographic Graph -->
-            {% comment %} <h1>Grafica Anual</h1> {% endcomment %}
-            <style>
-                .graph-container {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: auto; /* Adjust the height as needed */
-                    padding: 20px; /* Add padding to prevent overlap */
-                }
-                
-                /* Media queries for responsiveness */
-                @media (max-width: 1200px) {
-                    .graph-container {
-                        height: 80vh; /* Adjust the height for medium screens */
-                    }
-                }
 
-                @media (max-width: 768px) {
-                    .graph-container {
-                        height: 60vh; /* Adjust the height for small screens */
-                    }
-                }
+            <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
+                {% csrf_token %}
+                <section id="dropdowns">
+                    <label id="drop_title" for="frequency">Frecuencia:</label>
+                    <select name="frequency" id="frequency">
+                        <option value="Yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly</option>
+                        <option value="Monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly</option>
+                        <option value="Quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly</option>
+                        <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
+                    </select>
+                    <label id="drop_title" for="column">Y-axis:</label>
+                    <select name="columns" id="columns">
+                        {% for column in columns %}
+                        <option value="{{ column.value }}" {% if column.value == selected_column %}selected{% endif %}>{{ column.label }}</option>                        
+                        {% endfor %}
+                    </select>
+                    <button id="submit" type="submit">Submit</button>
+                    <button type="button" id="submit" onclick="downloadCSV('frequency','', 'files/index/demographic')" title="Descargar archivo CSV"> Descargar CSV </button>
+                </section>
 
-                @media (max-width: 480px) {
-                    .graph-container {
-                        height: 40vh; /* Adjust the height for extra small screens */
-                    }
-                }
-            </style>
-        
 
-            {% comment %} <div class="graph-container">
-                {{ graph|safe }}
-            </div> {% endcomment %}
-
-            <h1>Grafica Trimestral</h1>
-
-            <div class="graph-container">
-                {{ t_graph|safe }}
-            </div>
-
-            <h1>Grafica Mensual</h1>
-
-            <div class="graph-container">
-                {{ m_graph|safe }}
-            </div>
-
-            <h1>Grafica Año Fiscal</h1>
-
-            <div class="graph-container">
-                {{ f_graph|safe }}
-            </div>
+                <!-- Contenedor de la gráfica -->
+                <div class="graph_container">
+                    {{ graph|safe }}
+                </div>
+            </form>
 
         </main>
         <!-- FOOTER -->
