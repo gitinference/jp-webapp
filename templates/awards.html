@@ -25,6 +25,7 @@
   </head>
 
   <body>
+
     <!-- NAVIGATION -->
     <div class="container">
         <div class="burger" onclick="toggleBurgerMenu()">
@@ -60,36 +61,29 @@
                   <label id="drop_title" for="frequency_2">Frecuencia:</label>
                   <select name="frequency_2" id="frequency_2"
                       onchange="updateSecondDropdown();">
-                      <option value="yearly" {% if selected_frequency_2 == "yearly" %}selected{% endif %}>Yearly
-                      </option>
-                      <option value="fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal
-                      </option>
-                      <option value="monthly" {% if selected_frequency_2 == "monthly" %}selected{% endif %}>Monthly
-                      </option>
-                      <option value="quarterly" {% if selected_frequency_2 == "quarterly" %}selected{% endif %}>
-                          Quarterly</option>
+                      <option value="Yearly" {% if selected_frequency_2 == "yearly" %}selected{% endif %}>Yearly</option>
+                      <option value="Monthly" {% if selected_frequency_2 == "monthly" %}selected{% endif %}>Monthly</option>
+                      <option value="Quarterly" {% if selected_frequency_2 == "quarterly" %}selected{% endif %}>Quarterly</option>
+                      <option value="Fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal</option>
                   </select>
               </section>
               <label id="agencies" for="agencies">Agency:</label>
               <select name="agencies" id="agencies">
                   {% for agency in agencies %}
-                      <option value="{{ agency }}">{{ agency }}</option>
+                      <option value="{{ agency }}" {% if agency == selected_dropdown_2 %}selected{% endif %}>{{ agency }}</option>
                   {% endfor %}
               </select>
               <button id="submit" type="submit">Submit</button>
               <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','agencies','files/index/awards/secter')" title="Descargar archivo CSV Awards">Descargar CSV</button>
           </section>
         </div>
-      </form>
 
       <div style="padding-right: 50px;" class="graph-container">
         {{ sectergraph|safe }}
       </div>
 
       <!-- Descripción -->
-      <section>
-          <form id="awards-form" method="post">
-                  {% csrf_token %}                
+      <section>             
                   <h2>Gastos por Categoría</h2>
                           <div class="graph_container">
                             <a id="graph-anchor"></a>
@@ -98,14 +92,10 @@
                                   <label id="drop_title" for="frequency">Frecuencia:</label>
                                   <select name="frequency" id="frequency"
                                       onchange="updateSecondDropdown();">
-                                      <option value="yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly
-                                      </option>
-                                      <option value="fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal
-                                      </option>
-                                      <option value="monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly
-                                      </option>
-                                      <option value="quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>
-                                          Quarterly</option>
+                                      <option value="Yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly</option>
+                                      <option value="Monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly</option>
+                                      <option value="Quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly</option>
+                                      <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
                                   </select>
                               </section>
                               <section id="dropdowns">
@@ -130,7 +120,7 @@
                               <label id="categoria" for="categoria">Category:</label>
                               <select name="categories" id="categories">
                                   {% for category in categories %}
-                                      <option value="{{ category.value }}">{{ category.label }}</option>
+                                      <option value="{{ category.value }}" {% if category.value == selected_category %}selected{% endif %}>{{ category.label }}</option>
                                   {% endfor %}
                               </select>
                               <button id="submit" type="submit">Submit</button>
@@ -224,18 +214,18 @@
             let options2 = [];
 
             // Logic for second dropdown options
-            if (frequency === 'yearly' || frequency === 'fiscal') {
+            if (frequency === 'Yearly' || frequency === 'Fiscal') {
                 options = Array.from({ length: 16 }, (_, i) => ({ value: 2009 + i, text: 2009 + i }));
 
                 // Hide third dropdown and label
-                thirdDropdown.style.visibility = 'hidden';
-                thirdDropdownLabel.style.visibility = 'hidden';
-            } else if (frequency === 'monthly' || frequency === 'quarterly') {
+                thirdDropdown.style.display = 'none';
+                thirdDropdownLabel.style.display = 'none';
+            } else if (frequency === 'Monthly' || frequency === 'Quarterly') {
                 // Show third dropdown and label
-                thirdDropdown.style.visibility = 'visible';
-                thirdDropdownLabel.style.visibility = 'visible';
+                thirdDropdown.style.display = 'none';
+                thirdDropdownLabel.style.display = 'none';
 
-                if (frequency === 'monthly') {
+                if (frequency === 'Monthly') {
                     options = [
                         { value: 1, text: 'January' },
                         { value: 2, text: 'February' },
@@ -263,19 +253,29 @@
             }
 
             // Populate second dropdown
+            const selectedSecondDropdown = "{{ selected_second_dropdown }}"; 
+
             options.forEach(option => {
                 const opt = document.createElement('option');
                 opt.value = option.value;
                 opt.text = option.text;
+                if (String(option.value) === selectedSecondDropdown) {
+                    opt.selected = true;
+                }
                 secondDropdown.appendChild(opt);
             });
 
+            const selectedThirdDropdown = "{{ selected_third_dropdown }}"; 
+
             // Populate third dropdown if 'Monthly' or 'Quarterly'
-            if (frequency === 'monthly' || frequency === 'quarterly') {
+            if (frequency === 'Monthly' || frequency === 'Quarterly') {
                 options2.forEach(option => {
                     const opt = document.createElement('option');
                     opt.value = option.value;
                     opt.text = option.text;
+                    if (String(option.value) === selectedThirdDropdown) {
+                        opt.selected = true;
+                    }
                     thirdDropdown.appendChild(opt);
                 });
             }

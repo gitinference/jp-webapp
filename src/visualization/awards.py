@@ -12,7 +12,7 @@ def web_app_awards(request):
 
     # CATEGORY GRAPH
     if request.method == "POST":
-        frequency = request.POST.get("frequency")
+        frequency = request.POST.get("frequency").lower()
         category = request.POST.get("categories")
         second_dropdown = request.POST.get("second_dropdown")
         third_dropdown = request.POST.get("third_dropdown")
@@ -36,31 +36,50 @@ def web_app_awards(request):
         ).json()
         
     else:
+        frequency = "yearly"
+        second_dropdown = 2009
+        third_dropdown = 1
+        category = 'awarding_agency_name'
         category_graph, categories = requests.get(
-            f"{API_URL}graph/awards/category/?dropdown=2009&second_dropdown=1&third_dropdown=awarding_agency_name&time_frame=yearly"
+            f"{API_URL}graph/awards/category/?dropdown={second_dropdown}&second_dropdown={third_dropdown}&third_dropdown={category}&time_frame={frequency}"
         ).json()
 
     # SECTER GRAPH
     if request.method == "POST":
-        frequency_2 = request.POST.get("frequency_2")
+        frequency_2 = request.POST.get("frequency_2").lower()
         dropdown_2 = request.POST.get("agencies")
 
         if frequency_2 is None and dropdown_2 is None:
             frequency_2 = "yearly"
             dropdown_2 = 'total'
 
-        dropdown_2 = dropdown_2.lower().replace(" ", "_")
+        temp_dropdown_2 = dropdown_2.lower().replace(" ", "_")
 
         secter_graph, agencies = requests.get(
-            f"{API_URL}graph/awards/secter/?dropdown={dropdown_2}&time_frame={frequency_2}"
+            f"{API_URL}graph/awards/secter/?dropdown={temp_dropdown_2}&time_frame={frequency_2}"
         ).json()
     else:
+        frequency_2 = "yearly"
+        dropdown_2 = 'total'
         secter_graph, agencies = requests.get(
-            f"{API_URL}graph/awards/secter/?dropdown=total&time_frame=yearly"
+            f"{API_URL}graph/awards/secter/?dropdown={dropdown_2}&time_frame={frequency_2}"
         ).json()
 
     secter_graph = f"<div style='overflow-x: auto; white-space: nowrap; width: 100%; padding-bottom: 20px;'>{secter_graph}</div>"
 
     # Validate required columns
-    return render(request, "awards.html", {'sectergraph': secter_graph, 'categorygraph': category_graph, **agencies, **categories, "api":API_URL})
+    return render(request, "awards.html", 
+                    {
+                      'sectergraph': secter_graph, 
+                      'categorygraph': category_graph, 
+                      **agencies, 
+                      **categories, 
+                      "api":API_URL,
+                      'selected_frequency': frequency,
+                      'selected_second_dropdown': second_dropdown,
+                      'selected_third_dropdown': third_dropdown,
+                      'selected_category': category,
+                      'selected_frequency_2': frequency_2,
+                      'selected_dropdown_2': dropdown_2
+                    })
 
