@@ -46,21 +46,24 @@
     <main>
       <!-- Título -->
       <section>
-        <h1>HTS Product Price Ranking</h1>
+        <h1>Product Price Ranking</h1>
       </section>
 
       <!-- Descripción -->
       <section>
         <p>TODO</p>
       </section>
+      <!-- Import -->
+      <div class='graph-container' style="padding-bottom: 20px;" id="graph_import_top">{{ graph_import_top|safe }}</div>
 
+      <div class='graph-container' style="padding-bottom: 20px;" id="graph_export_bottom">{{ graph_import_bottom|safe }}</div>
+      
+      <!-- Export -->
       <div class='graph-container' style="padding-bottom: 20px;" id="graph_export_top">{{ graph_export_top|safe }}</div>
 
       <div class='graph-container' style="padding-bottom: 20px;" id="graph_export_bottom">{{ graph_export_bottom|safe }}</div>
 
-      <div class='graph-container' style="padding-bottom: 20px;" id="graph_import_top">{{ graph_import_top|safe }}</div>
-
-      <div class='graph-container' style="padding-bottom: 20px;" id="graph_export_bottom">{{ graph_import_bottom|safe }}</div>
+      
       <div class="download_container">
         <button type="button" id="submit_3" onclick="downloadCSV('','','files/trade/moving')" title="Descargar archivo CSV Ranking de Productos">Descargar CSV</button>
       </div>
