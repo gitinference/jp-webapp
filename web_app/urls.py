@@ -10,7 +10,7 @@ urlpatterns = [
     re_path(r"^$", views.home, name="home"),
     re_path(r"^proyectos/$", views.proyectos, name="proyectos"),
     re_path(r"^colaboradores/$", views.colaboradores, name="colaboradores"),
-    re_path(r"^proyecciones/$", views.proyecciones_poblacionales, name="proyecciones_poblacionales"),
+    re_path(r"^proyecciones/$", views.proyecciones_accion, name="proyecciones_poblacionales"),
     re_path(r"^centro-de-datos-macroeconomicos/$", views.macro, name="macro"),
     re_path(r"^indice-desarrollo-humano/$", views.indice_desarrollo_humano, name="indice-desarrollo-humano"),
     re_path(r"^ciclos-economicos/$", views.ciclos_economicos, name="ciclos_economicos"),
@@ -83,9 +83,8 @@ urlpatterns = [
     re_path(r"^cuestionario-del-viajero-english/$", views.cuestionario_viajero_english, name='cuestionario_viajero_english'),
     re_path(r"^cuestionario-del-viajero-spanish/$", views.cuestionario_viajero_spanish, name='cuestionario_viajero_spanish'),
     re_path(r"^cuestionario-del-viajero-salida/$", views.cuestionario_viajero_salida, name='cuestionario_viajero_salida'),
-
-
-        
+    
+       
     # Asegura los path que estén bien cuando añadas otro
     re_path(r"^JP-361-transactions-in-pr-of-external-insurance-companies-qrt/$", views.JP_361_qrt, name="JP-361-qrt"),
     re_path(r"^JP-362-transacciones-con-el-exterior-para-la-balanza-de-Puerto-Rico-qtr/$", views.JP_362_qtr, name="JP-362-qtr"),
