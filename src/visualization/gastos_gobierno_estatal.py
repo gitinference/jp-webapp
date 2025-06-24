@@ -7,7 +7,6 @@ creds = get_db_credentials()
 api = creds[6]
 
 def gastos_gobierno_estatal(request):
-    # 1) pull the user’s inputs (POST or GET)
     if request.method == "POST":
         period = request.POST.get("period", "").lower()
         metric = request.POST.get("metric", "")
@@ -27,6 +26,7 @@ def gastos_gobierno_estatal(request):
         "api": api,
         "period": period,
         "metric": metric,
+        'metric_post': metric,
         **metrics_dict, 
     }
     return render(request, "gastos_gobierno_estatal.html", context)
