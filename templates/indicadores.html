@@ -127,6 +127,8 @@
                         {% endfor %}
                     </select>
                     <button id="submit" type="submit">Submit</button>
+                    <button type="button" id="submit" onclick="downloadCSV('frequency','', 'files/index/indicators')"
+                            title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
                 </section>
 
 
@@ -136,10 +138,6 @@
                 </div>
             </form>
         </main>
-                <div class="download_container">
-                    <button type="button" id="submit" onclick="downloadCSV('frequency','', 'files/index/indicators')"
-                            title="Descargar archivo CSV Importaciones / Exportaciones"> Descargar CSV </button>
-                </div>
 
 
         <!-- ------------------ FOOTER --------------------- -->
