@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.http import HttpResponse, FileResponse
+
 import plotly.graph_objects as go
 import pandas as pd
+import os
 
 def projection_annual_graph():
     # Read the CSV file
@@ -27,7 +30,7 @@ def projection_annual_graph():
             rangeslider=dict(visible=True),
             type="date"
         ),
-        title="Gráfica Anual",
+        # title="Gráfica Anual",
         xaxis_title=" ",
         yaxis_title=" ",
         width=1400,
@@ -101,7 +104,7 @@ def projection_monthly_graph():
             rangeslider=dict(visible=True),
             type="category"
         ),
-        title="Gráfica Mensual",
+        # title="Gráfica Mensual",
         xaxis_title=" ",
         yaxis_title=" ",
         width=1400,
@@ -172,7 +175,7 @@ def projection_fiscal_graph():
             rangeslider=dict(visible=True),
             type="category"
         ),
-        title="Gráfica Año Fiscal",
+        # title="Gráfica Año Fiscal",
         xaxis_title=" ",
         yaxis_title=" ",
         width=1400,
@@ -246,8 +249,8 @@ def projection_quarter_graph():
             rangeslider=dict(visible=True),
             type="category"
         ),
-        title="Gráfica Trimestral",
-        xaxis_title=" ",
+        # title="Gráfica Trimestral",
+        # xaxis_title=" ",
         yaxis_title=" ",
         width=1400,
         height=750
@@ -293,25 +296,56 @@ def projection_quarter_graph():
     
     return projection_quarter_html
 
-def proyecciones_poblacionales(request):
-
-    d_table = demographic_table(request)
-    annual_graph = projection_annual_graph()
-    monthly_graph = projection_monthly_graph()
-    fiscal_graph = projection_fiscal_graph()
-    quarter_graph = projection_quarter_graph()
-
-    context = {
-        "d_table": d_table,
-        "annual_graph": annual_graph,
-        "monthly_graph": monthly_graph,
-        "fiscal_graph": fiscal_graph,
-        "quarter_graph": quarter_graph
-        }
-    
-    return render(request, "proyecciones.html", context)
+def proyecciones_poblacionales(valor):
+    grafica_html = ""
+    if valor == "anual":
+        grafica_html = projection_annual_graph()
+    elif valor == "semestral":
+        grafica_html = projection_quarter_graph()
+    elif valor == "mensual":
+        grafica_html = projection_monthly_graph()
+    elif valor == "fiscal":
+        grafica_html = projection_fiscal_graph()
+   
+    return grafica_html
 
 def demographic_table(request):
     df = pd.read_parquet("data/processed/fiscal_year_idb.parquet")
     demographic_table = df.to_html(index=False, classes='table table-striped')
     return demographic_table
+
+def proyecciones_accion(request):
+    grafica_html = proyecciones_poblacionales('anual')
+    selected = "anual"  # Default value for the period type
+    valor ="anual"
+
+    if request.method == "POST":
+        valor = request.POST.get("tipo_periodo")
+        accion = request.POST.get("accion")
+
+        # Selección de archivo Parquet según el valor
+        if valor == "anual":
+            file_path = "data/processed/yearly_idb.parquet"
+        elif valor == "semestral":
+            file_path = "data/processed/quarterly_idb.parquet"
+        elif valor == "mensual":
+            file_path = "data/processed/monthly_idb.parquet"
+        elif valor == "fiscal":
+            file_path = "data/processed/fiscal_year_idb.parquet"
+        else:
+            file_path = None
+
+        if not file_path or not os.path.exists(file_path):
+            return HttpResponse("Seleccione un periodo válido o el archivo no existe", status=400)
+        
+        if accion == "grafica":
+            grafica_html = proyecciones_poblacionales(valor)
+            selected = valor 
+        elif accion == "csv":
+            csv_path = os.path.splitext(file_path)[0] + ".csv"
+            if not os.path.exists(csv_path):
+                df = pd.read_parquet(file_path)
+                df.to_csv(csv_path, index=False)
+            return FileResponse(open(csv_path, 'rb'), as_attachment=True, filename=os.path.basename(csv_path))  
+    
+    return render(request, "proyecciones.html", {"grafica_html": grafica_html, "selected": selected, "valor":valor})

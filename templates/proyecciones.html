@@ -64,35 +64,6 @@
             </p>
         </section>
 
-        <!-- SUBBODY 1 -->
-        <!-- <section>
-            <h2> Documentos </h2>
-
-            <p>
-                <a href="https://jp.pr.gov/wp-content/uploads/2023/06/Proyecciones-de-Poblacion-por-Municipios-anos-2021-2030.pdf" class="custom-link" role="link">Proyecciones de Población para los Municipios de Puerto Rico 2020-2030</a>
-                <br>
-                <a href="https://jp.pr.gov/wp-content/uploads/2021/09/Metodologia-PR-2015-2027-feb-2017.pdf" class="custom-link" role="link">Metodología para las Proyecciones de Población de Puerto Rico 2015-2027 y resultados relevantes</a>
-                <br>
-                <a href="https://estadisticas.pr/en/inventario-de-estadisticas/informe-anual-estadisticas-vitales" class="custom-link" role="link">Informe Anual Estadísticas Vitales</a>
-                <br>
-                <a href="https://estadisticas.pr/en/inventario-de-estadisticas/estadisticas-vitales" class="custom-link" role="link">Estadísticas Vitales</a>
-                <br>
-            </p>
-
-        </section> -->
-
-            <!-- SUBBODY 2 -->
-            <!-- <section>
-                <h2>Instrucciones</h2>
-                <p>1. Para seleccionar la variable que interesa representar gráficamente debe pasar encima del nombre de la variable continua al eje vertical (horizontal).</p>
-                <p>2. Si desea comparar el dato de la variable presentada con el dato de las otras variables disponibles debe pasar encima del par ordenado (el punto en la gráfica).</p>
-                <p>3. También, puede elegir el mes para el cual usted interesa la representación gráfica seleccionando el botón “Todos los meses”, ubicado debajo del eje horizontal.</p>
-                <p><strong>Nota:</strong> La serie que aparece en la gráfica no es la variable original, es una serie calculada. Esta serie es la diferencia entre la variable original y la tendencia. Por lo que si la serie original asume valores menores que la tendencia entonces la serie calculada (lo que aparece en la gráfica) tiene que asumir valores negativos.</p>
-            </section> -->
-            <br>
-            <br>
-            <br>
-
             <!-- GRAPH -->
 
              <style>
@@ -121,50 +92,73 @@
                 vertical-align: middle; /* Center the text vertically */
                 border: 1px solid #ddd; /* Add a border to the cells */
             }
+
+            #submit, #submit_2, #submit_3 {
+	            font-size: 1em;
+	            border-radius: 8px;
+	            padding: 6px;
+	            background-color: #008cff;
+	            border: none;
+	            margin-top: -1px;
+            }
+
+            .graph-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: auto; /* Adjust the height as needed */
+                padding: 20px; /* Add padding to prevent overlap */
+            }
+            
+            /* Media queries for responsiveness */
+            @media (max-width: 1200px) {
+                .graph-container {
+                    height: 80vh; /* Adjust the height for medium screens */
+                }
+            }
+
+            @media (max-width: 768px) {
+                .graph-container {
+                    height: 60vh; /* Adjust the height for small screens */
+                }
+            }
+
+            @media (max-width: 480px) {
+                .graph-container {
+                    height: 40vh; /* Adjust the height for extra small screens */
+                }
+            }
+
             </style>
-			<section>
+			{% comment %} <section>
                 <div class="table-container">
                     <h3>Año Fiscal</h3>
                     <div class="table-responsive">
                         {{ d_table|safe }}
                     </div>
                 </div>
-            </section>
+            </section> {% endcomment %}
 
             <!-- Pojection Graph -->
-            <h2>Gráfica Anual</h2>
-            <style>
-                .graph-container {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: auto; /* Adjust the height as needed */
-                    padding: 20px; /* Add padding to prevent overlap */
-                }
-                
-                /* Media queries for responsiveness */
-                @media (max-width: 1200px) {
-                    .graph-container {
-                        height: 80vh; /* Adjust the height for medium screens */
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    .graph-container {
-                        height: 60vh; /* Adjust the height for small screens */
-                    }
-                }
-
-                @media (max-width: 480px) {
-                    .graph-container {
-                        height: 40vh; /* Adjust the height for extra small screens */
-                    }
-                }
-            </style>
+            <h2>Gráfica {%if valor == "fiscal" %}Año{%endif%} {{valor|capfirst }} </h2>
             <div class="graph-container">
-                {{ annual_graph|safe }}
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="tipo_periodo">Seleccione periodo:</label>
+                    <select name="tipo_periodo" id="tipo_periodo">
+                        <option value="anual" {% if valor == "anual" %}selected{% endif %}>Anual</option>
+                        <option value="semestral" {% if valor == "semestral" %}selected{% endif %}>Semestral</option>
+                        <option value="mensual" {% if valor == "mensual" %}selected{% endif %}>Mensual</option>
+                        <option value="fiscal" {% if valor == "fiscal" %}selected{% endif %}>Fiscal</option>
+                    </select>
+                    <button type="submit" id="submit" name="accion" value="grafica">Submit</button>
+                    <button type="submit" id="submit_2" name="accion" value="csv">Descargar CSV</button>
+                </form>
             </div>
-            <h2>Gráfica Mensual</h2>
+            <div class="graph-container">
+                {{ grafica_html|safe }}
+            </div>
+            {% comment %} <h2>Gráfica Mensual</h2>
             <div class="graph-container">
                 {{ monthly_graph|safe }}
             </div>
@@ -175,7 +169,7 @@
             <h2>Gráfica Trimestral</h2>
             <div class="graph-container">
                 {{ quarter_graph|safe }}
-            </div>
+            </div> {% endcomment %}
             
     </main>
 
