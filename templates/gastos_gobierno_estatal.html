@@ -82,7 +82,7 @@
             </p>
         </div>
     </div>
-        <form method="post" id="energy-form">
+        <form method="post" id="gastos-estatales-form">
                 {% csrf_token %}
                 <div class="graph_container">
                     <h2>Gastos estatales</h2>
@@ -96,7 +96,7 @@
                     </select>
 
                     <!-- Métrica -->
-                    <label for="metric">Métrica:</label>
+                    <label for="metrics">Métrica:</label>
                     <select name="metric" id="metric">
                         {% for m in metric %}
                         <option value="{{ m.value }}">{{ m.label }}</option>
@@ -112,6 +112,10 @@
                 </div>
             </form>
         </main>
+            <div class="download_container">
+                <button type="button" id="submit" onclick="downloadCSV('period','','files/index/gastos_estatales')"
+                        title="Descargar archivo CSV Gastos estatales"> Descargar CSV </button>
+            </div>
         <div class="container"></div>
 
         <!-- ------------------ FOOTER --------------------- -->
