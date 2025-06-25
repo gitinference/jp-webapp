@@ -57,7 +57,7 @@
                 </p>
             </section>
 
-            <form id="hts-form" method="post">
+            <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
                 {% csrf_token %}
                 <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Nominas por Industria</div>
                 <section id="dropdowns">
@@ -71,7 +71,7 @@
                     <label id="drop_title" for="column">Y-axis:</label>
                     <select name="columns" id="columns">
                         {% for column in columns %}
-                            <option value="{{ column.value }}" {% if selected_column == column.value %}selected{% endif %}>{{ column.label }}</option>
+                            <option value="{{ column }}" {% if selected_column == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
                     </select>
                     <button id="submit" type="submit">Submit</button>
@@ -96,7 +96,7 @@
                     <label id="drop_title" for="column_2">Y-axis:</label>
                     <select name="columns_2" id="columns_2">
                         {% for column in columns %}
-                            <option value="{{ column.value }}" {% if selected_column_2 == column.value %}selected{% endif %}>{{ column.label }}</option>
+                            <option value="{{ column }}" {% if selected_column_2 == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
                     </select>
                     <button id="submit" type="submit">Submit</button>
@@ -121,7 +121,7 @@
                     <label id="drop_title" for="column_3">Y-axis:</label>
                     <select name="columns_3" id="columns_3">
                         {% for column in columns %}
-                            <option value="{{ column.value }}" {% if selected_column_3 == column.value %}selected{% endif %}>{{ column.label }}</option>
+                            <option value="{{ column }}" {% if selected_column_3 == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
                     </select>
                     <button id="submit" type="submit">Submit</button>

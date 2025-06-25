@@ -18,9 +18,9 @@ def empleo_industria(request):
     frequency = "yearly"
     frequency_2 = "yearly"
     frequency_3 = "yearly"
-    column = 'Oilseed and Grain Farming'
-    column_2 = 'Oilseed and Grain Farming'
-    column_3 = 'Oilseed and Grain Farming'
+    column = 'Accounting, Tax Preparation, Bookkeeping, and Payroll Services'
+    column_2 = 'Accounting, Tax Preparation, Bookkeeping, and Payroll Services'
+    column_3 = 'Accounting, Tax Preparation, Bookkeeping, and Payroll Services'
 
   # Fetch graph from the API
   response = requests.get(f"{api}graph/nomina/?time_frame={frequency}&data_type=nivel&naics_desc={column}").json()
@@ -32,7 +32,7 @@ def empleo_industria(request):
   response = requests.get(f"{api}graph/nomina/?time_frame={frequency_3}&data_type=primera_diferencia&naics_desc={column_3}").json()
   primera_diferencia_html, context = response
 
-  return render(request, "indice_consumidor.html", 
+  return render(request, "empleo_industria.html", 
           {
               "nomina": nomina_html, 
               "api": api, 
