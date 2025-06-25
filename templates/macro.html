@@ -102,7 +102,21 @@
             <div class="graph-container">
                 {{ macro2|safe }}
             </div>
-
+            <div class="download_container">
+                <section id="buttons">
+                    <form method="post">
+                        {% csrf_token %}
+                        <label for="idh_csv">Descargar Series Históricas 1950-2011: </label>
+                        <button type="submit"
+                                id = "submit"
+                                name = "historicas"
+                                value = "2011"
+                                title="Descargar CSV de IDH">
+                            Descargar CSV
+                        </button>
+                    </form>
+                </section>
+            </div>
             <br>
             <br>
             <br>
@@ -115,6 +129,23 @@
             <div class="graph-container">
                 {{ macro1|safe }}
             </div>
+
+            <div class="download_container">
+                <section id="buttons">
+                    <form method="post">
+                        {% csrf_token %}
+                        <label for="idh_csv">Descargar Series Históricas 2001-2023: </label>
+                        <button type="submit"
+                                id = "submit_2"
+                                name ="historicas"
+                                value = "2023"
+                                title="Descargar CSV de IDH">
+                            Descargar CSV
+                        </button>
+                    </form>
+                </section>
+            </div>
+
         </main>
             <!-- ------------------ FOOTER --------------------- -->
             <footer>
