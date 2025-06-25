@@ -82,28 +82,30 @@
             </p>
         </div>
     </div>
-        <form method="post" id="energy-form">
+        <form method="post" id="gastos-estatales-form">
                 {% csrf_token %}
                 <div class="graph_container">
                     <h2>Gastos estatales</h2>
                     <section id="buttons">
                     <label for="period">Frecuencia: </label>
                     <select name="period" id="period">
-                        <option value="monthly"   {% if period == 'monthly'   %}selected{% endif %}>Mensual</option>
-                        <option value="quarterly" {% if period == 'quarterly' %}selected{% endif %}>Trimestral</option>
-                        <option value="yearly"    {% if period == 'yearly'    %}selected{% endif %}>Anual</option>
-                        <option value="fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
+                        <option value="Monthly"   {% if period == 'monthly'   %}selected{% endif %}>Mensual</option>
+                        <option value="Quarterly" {% if period == 'quarterly' %}selected{% endif %}>Trimestral</option>
+                        <option value="Yearly"    {% if period == 'yearly'    %}selected{% endif %}>Anual</option>
+                        <option value="Fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
                     </select>
 
                     <!-- Métrica -->
-                    <label for="metric">Métrica:</label>
+                    <label for="metrics">Métrica:</label>
                     <select name="metric" id="metric">
                         {% for m in metric %}
-                        <option value="{{ m.value }}">{{ m.label }}</option>
+                        <option value="{{ m.value }}" {% if m.value == metric_post%}selected{% endif %}>{{ m.label }}</option>
                         {% endfor %}
                     </select>
 
                     <button type="submit" id="submit">Submit</button>
+                    <button type="button" id="submit" onclick="downloadCSV('period','','files/index/gastos_estatales')"
+                            title="Descargar archivo CSV Gastos estatales"> Descargar CSV </button>
                     </section>
                     <!-- Aquí entra el HTML del gráfico -->
                     <div id="graph">

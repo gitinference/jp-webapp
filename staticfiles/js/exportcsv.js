@@ -4,6 +4,7 @@ function downloadCSV(frec, lev, api) {
     
     let frequency = "";
     let frequencyLower = "";
+    let level = "";
     let levelLower = "";
     let apiurl = "";
     let baseUrl = "";
@@ -12,8 +13,13 @@ function downloadCSV(frec, lev, api) {
         frequency = document.getElementById(frec).value;
         frequencyLower = frequency.toLowerCase();
     }
-    if (lev != "") {
 
+    if (lev == "metric"){
+        level = document.getElementById(lev).value;
+        lev  = level;
+    }
+
+    if (lev != "") {
         levelLower = lev.toLowerCase();
     }
     apiurl = api;
