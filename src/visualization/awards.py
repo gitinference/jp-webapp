@@ -19,7 +19,7 @@ def web_app_awards(request):
 
         if frequency is None and second_dropdown is None:
             frequency = "yearly"
-            second_dropdown = 2009
+            second_dropdown = 2024
 
         if category is None:
             category = 'awarding_agency_name'
@@ -37,7 +37,7 @@ def web_app_awards(request):
         
     else:
         frequency = "yearly"
-        second_dropdown = 2009
+        second_dropdown = 2024
         third_dropdown = 1
         category = 'awarding_agency_name'
         category_graph, categories = requests.get(
