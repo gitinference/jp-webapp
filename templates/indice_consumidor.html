@@ -107,7 +107,7 @@
                   <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
               </select>
 
-              <label id="drop_title" for="column">Y-axis:</label>
+              <label id="drop_title" for="column">Categoría:</label>
               <select name="columns" id="columns">
                 {% for column in columns %}
                     <option value="{{ column.value }}" {% if selected_column == column.value %}selected{% endif %}>{{ column.label }}</option>
@@ -115,7 +115,7 @@
               </select>
               <button id="submit" type="submit">Submit</button>
 
-              <button type="button" id="submit_3" onclick="downloadCSV('frequency','indices_precio','files/index/consumer_index')" title="Descargar archivo CSV Importaciones / Exportaciones">Descargar CSV</button>
+              <button type="button" id="submit_3" onclick="downloadCSV('frequency','indices_precio','files/index/consumer_index')" title="Descargar archivo CSV indice de precios al consumidor">Descargar CSV</button>
           </section>
 
           <!-- Contenedor de la gráfica -->
@@ -133,7 +133,7 @@
                   <option value="Fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal</option>
               </select>
 
-              <label id="drop_title" for="column_2">Y-axis:</label>
+              <label id="drop_title" for="column_2">Categoría:</label>
               <select name="columns_2" id="columns_2">
                 {% for column in columns %}
                     <option value="{{ column.value }}" {% if selected_column_2 == column.value %}selected{% endif %}>{{ column.label }}</option>
@@ -141,7 +141,7 @@
               </select>
               <button id="submit" type="submit">Submit</button>
 
-              <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','cambio_porcentual','files/index/consumer_index')" title="Descargar archivo CSV Importaciones / Exportaciones">Descargar CSV</button>
+              <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','cambio_porcentual','files/index/consumer_index')" title="Descargar archivo CSV índice de precios al consumidor">Descargar CSV</button>
           </section>
 
           <!-- Contenedor de la gráfica -->
@@ -159,7 +159,7 @@
                   <option value="Fiscal" {% if selected_frequency_3 == "fiscal" %}selected{% endif %}>Fiscal</option>
               </select>
 
-              <label id="drop_title" for="column_3">Y-axis:</label>
+              <label id="drop_title" for="column_3">Indicadores:</label>
               <select name="columns_3" id="columns_3">
                 {% for column in columns %}
                     <option value="{{ column.value }}" {% if selected_column_3 == column.value %}selected{% endif %}>{{ column.label }}</option>
@@ -167,7 +167,7 @@
               </select>
               <button id="submit" type="submit">Submit</button>
 
-              <button type="button" id="submit_3" onclick="downloadCSV('frequency_3','primera_diferencia','files/index/consumer_index')" title="Descargar archivo CSV Importaciones / Exportaciones">Descargar CSV</button>
+              <button type="button" id="submit_3" onclick="downloadCSV('frequency_3','primera_diferencia','files/index/consumer_index')" title="Descargar archivo CSV índice de precios al consumidor">Descargar CSV</button>
           </section>
 
           <!-- Contenedor de la gráfica -->

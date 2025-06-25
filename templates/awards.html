@@ -67,14 +67,14 @@
                       <option value="Fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal</option>
                   </select>
               </section>
-              <label id="agencies" for="agencies">Agency:</label>
+              <label id="agencies" for="agencies">Agencia:</label>
               <select name="agencies" id="agencies">
                   {% for agency in agencies %}
                       <option value="{{ agency }}" {% if agency == selected_dropdown_2 %}selected{% endif %}>{{ agency }}</option>
                   {% endfor %}
               </select>
               <button id="submit" type="submit">Submit</button>
-              <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','agencies','files/index/awards/secter')" title="Descargar archivo CSV Awards">Descargar CSV</button>
+              <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','agencies','files/index/awards/secter')" title="Descargar archivo CSV gastos gobierno federal">Descargar CSV</button>
           </section>
         </div>
 
@@ -99,7 +99,7 @@
                                   </select>
                               </section>
                               <section id="dropdowns">
-                                  <label id="drop_title" for="second_dropdown">Periodo:</label>
+                                  <label id="drop_title" for="second_dropdown">Período:</label>
                                   <select name="second_dropdown" id="second_dropdown">
                                       <option value="default_value" {% if selected_second_dropdown == "default_value" %}selected{% endif %}>Default</option>
                                       {% if selected_frequency == "Qrt" %}
@@ -117,14 +117,14 @@
                                   </select>
                               </section>
 
-                              <label id="categoria" for="categoria">Category:</label>
+                              <label id="categoria" for="categoria">Categoría:</label>
                               <select name="categories" id="categories">
                                   {% for category in categories %}
                                       <option value="{{ category.value }}" {% if category.value == selected_category %}selected{% endif %}>{{ category.label }}</option>
                                   {% endfor %}
                               </select>
                               <button id="submit" type="submit">Submit</button>
-                              <button type="button" id="submit_3" onclick="downloadAwardsCategoryCSV('frequency','second_dropdown', 'third_dropdown', 'categories', 'files/index/awards/category')" title="Descargar archivo CSV Awards">Descargar CSV</button>
+                              <button type="button" id="submit_3" onclick="downloadAwardsCategoryCSV('frequency','second_dropdown', 'third_dropdown', 'categories', 'files/index/awards/category')" title="Descargar archivo CSV gastos gobierno federal">Descargar CSV</button>
                           </section>
                       </section>                                
                   </div>

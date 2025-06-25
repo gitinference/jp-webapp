@@ -72,7 +72,7 @@ def web_app_macro(request):
                 y=1.11,
                 xref='paper',
                 yref='paper',
-                text='Y:',
+                text='Indicador:',
                 showarrow=False,
                 font=dict(
                     family='Arial',
@@ -95,7 +95,7 @@ def web_app_macro(request):
                 direction="down",
                 pad={"r": 10, "t": 10},
                 showactive=True,
-                x=0.07,
+                x=0.15,
                 xanchor="left",
                 y=1.15,
                 yanchor="top"
@@ -168,7 +168,7 @@ def web_app_macro(request):
                 y=1.11,
                 xref='paper',
                 yref='paper',
-                text='Y:',
+                text='Indicador:',
                 showarrow=False,
                 font=dict(
                     family='Arial',
@@ -191,7 +191,7 @@ def web_app_macro(request):
                 direction="down",
                 pad={"r": 10, "t": 10},
                 showactive=True,
-                x=0.07,
+                x=0.15,
                 xanchor="left",
                 y=1.15,
                 yanchor="top"
