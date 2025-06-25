@@ -89,23 +89,25 @@
                 <div class="graph_container">
                     <h2>Datos de energía</h2>
                     <section id="buttons">
-                    <label for="period">Frecuencia: </label>
-                    <select name="period" id="period">
-                        <option value="monthly"   {% if period == 'monthly'   %}selected{% endif %}>Mensual</option>
-                        <option value="quarterly" {% if period == 'quarterly' %}selected{% endif %}>Trimestral</option>
-                        <option value="yearly"    {% if period == 'yearly'    %}selected{% endif %}>Anual</option>
-                        <option value="fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
-                    </select>
+                        <label for="period">Frecuencia: </label>
+                        <select name="period" id="period">
+                            <option value="monthly"   {% if period == 'monthly'   %}selected{% endif %}>Mensual</option>
+                            <option value="quarterly" {% if period == 'quarterly' %}selected{% endif %}>Trimestral</option>
+                            <option value="yearly"    {% if period == 'yearly'    %}selected{% endif %}>Anual</option>
+                            <option value="fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
+                        </select>
 
-                    <!-- Métrica -->
-                    <label for="metric">Métrica:</label>
-                    <select name="metric" id="metric">
-                        {% for m in energy_metrics %}
-                        <option value="{{ m.value }}">{{ m.label }}</option>
-                        {% endfor %}
-                    </select>
+                        <!-- Métrica -->
+                        <label for="metric">Métrica:</label>
+                        <select name="metric" id="metric">
+                            {% for m in energy_metrics %}
+                            <option value="{{ m.value }}">{{ m.label }}</option>
+                            {% endfor %}
+                        </select>
 
-                    <button type="submit" id="submit">Submit</button>
+                        <button type="submit" id="submit">Submit</button>
+                        <button type="button" id="submit" onclick="downloadCSV('period','metric','files/index/energy')"
+                            title="Descargar archivo CSV Energy data"> Descargar CSV </button>
                     </section>
                     <!-- Aquí entra el HTML del gráfico -->
                     <div id="graph">
@@ -114,10 +116,7 @@
                 </div>
             </form>
         </main>
-            <div class="download_container">
-                <button type="button" id="submit" onclick="downloadCSV('period','metric','files/index/energy')"
-                        title="Descargar archivo CSV Energy data"> Descargar CSV </button>
-            </div>
+            
         </div>
     </form>
 </main>

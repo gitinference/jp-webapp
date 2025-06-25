@@ -87,16 +87,15 @@
 				<div class="graph-container">
 					<section id="dropdowns">
 						<div>
-							<label id="drop_title" for="column">Y-axis:</label>
+							<label id="drop_title" for="column">Indicador:</label>
 							<select name="columns" id="columns">
 								{% for column in columns %}
 									<option value="{{ column.value }}" {% if column.value == selected_column %}selected{% endif %}>{{ column.label }}</option>                        
 								{% endfor %}
 							</select>
 							<button id="submit" type="submit">Submit</button>							
-							<button type="button" id="submit" onclick="downloadCSV('','', 'files/index/cycle')" title="Descargar archivo CSV"> Descargar CSV </button>
-						
-						</div>
+							<button type="button" id="submit" onclick="downloadCSV('','', 'files/index/cycle')" title="Descargar archivo CSV Ciclos económicos"> Descargar CSV </button>						
+						</div><br>
 					</section>
 				</div>
 				<section class="graph-container">
