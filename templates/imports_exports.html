@@ -130,7 +130,7 @@
                             <option value="Yearly" {% if selected_frequency == "Yearly" %}selected{% endif %}>Yearly</option>
                             <option value="Monthly" {% if selected_frequency == "Monthly" %}selected{% endif %}>Monthly
                             </option>
-                            <option value="Qrt" {% if selected_frequency == "Qrt" %}selected{% endif %}>Quarterly
+                            <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly
                             </option>
                         </select>
                     </section>
@@ -153,7 +153,7 @@
                         <label id="drop_title" for="hts_code">HTS:</label>
                         <select name="hts_codes" id="hts_codes">
                             {% for code in hts_codes %}
-                                <option value="{{ code }}" >{{ code }}</option>
+                                <option value="{{ code }}" {% if code == selected_level_filter %}selected{% endif %}>{{ code }}</option>
                             {% endfor %}
                         </select>
                     </section>
@@ -185,10 +185,7 @@
                     downloadButton.href = `https://api.econlabs.net/files/trade/jp/?types=country&agg=${timeParam}&agr=false&group=false`;
                 }            
             </script>
-        </form>
 
-        <form id="export-form" method="post">
-            {% csrf_token %}
             <div class="graph_container_2">
                 <a id="export-graph-anchor"></a>
                 <h1 id="graph_title_2">Exportaciones</h1>
@@ -201,7 +198,7 @@
                             </option>
                             <option value="Monthly" {% if selected_frequency_2 == "Monthly" %}selected{% endif %}>Monthly
                             </option>
-                            <option value="Qrt" {% if selected_frequency_2 == "Qrt" %}selected{% endif %}>
+                            <option value="Quarterly" {% if selected_frequency_2 == "Quarterly" %}selected{% endif %}>
                                 Quarterly</option>
                         </select>
                     </section>
@@ -209,7 +206,7 @@
                         <label id="drop_title" for="second_dropdown_2">Periodo:</label>
                         <select name="second_dropdown_2" id="second_dropdown_2">
                             <option value="default_value" {% if selected_second_dropdown_2 == "default_value" %}selected{% endif %}>Default</option>
-                            {% if selected_frequency_2 == "Qrt" %}
+                            {% if selected_frequency_2 == "Quarterly" %}
                             <option value="1" {% if selected_second_dropdown_2 == "1" %}selected{% endif %}>Qtr 1</option>
                             <option value="2" {% if selected_second_dropdown_2 == "2" %}selected{% endif %}>Qtr 2</option>
                             <option value="3" {% if selected_second_dropdown_2 == "3" %}selected{% endif %}>Qtr 3</option>
@@ -227,7 +224,7 @@
                         <label id="drop_title" for="hts_code_2">HTS:</label>
                         <select name="hts_codes_2" id="hts_codes_2">
                             {% for code in hts_codes %}
-                                <option value="{{ code }}" >{{ code }}</option>
+                                <option value="{{ code }}"  {% if code == selected_level_filter_2 %}selected{% endif %}>{{ code }}</option>
                             {% endfor %}
                         </select>
                     </section>
@@ -346,7 +343,7 @@
                 // Hide third dropdown and label
                 thirdDropdown.style.visibility = 'hidden';
                 thirdDropdownLabel.style.visibility = 'hidden';
-            } else if (frequency === 'Monthly' || frequency === 'Qrt') {
+            } else if (frequency === 'Monthly' || frequency === 'Quarterly') {
                 // Show third dropdown and label
                 thirdDropdown.style.visibility = 'visible';
                 thirdDropdownLabel.style.visibility = 'visible';
@@ -379,19 +376,29 @@
             }
 
             // Populate second dropdown
+            const selectedSecondDropdown = "{{ selected_second_dropdown }}"; 
+
             options.forEach(option => {
                 const opt = document.createElement('option');
                 opt.value = option.value;
                 opt.text = option.text;
+                if (String(option.value) === selectedSecondDropdown) {
+                    opt.selected = true;
+                }
                 secondDropdown.appendChild(opt);
             });
 
+            const selectedThirdDropdown = "{{ selected_third_dropdown }}";
+
             // Populate third dropdown if 'Monthly' or 'Quarterly'
-            if (frequency === 'Monthly' || frequency === 'Qrt') {
+            if (frequency === 'Monthly' || frequency === 'Quarterly') {
                 options2.forEach(option => {
                     const opt = document.createElement('option');
                     opt.value = option.value;
                     opt.text = option.text;
+                    if (String(option.value) === selectedThirdDropdown) {
+                        opt.selected = true;
+                    }
                     thirdDropdown.appendChild(opt);
                 });
             }
@@ -420,7 +427,7 @@
                 // Hide third dropdown and label
                 thirdDropdown2.style.visibility = 'hidden';
                 thirdDropdownLabel2.style.visibility = 'hidden';
-            } else if (frequency2 === 'Monthly' || frequency2 === 'Qrt') {
+            } else if (frequency2 === 'Monthly' || frequency2 === 'Quarterly') {
                 // Show third dropdown and label
                 thirdDropdown2.style.visibility = 'visible';
                 thirdDropdownLabel2.style.visibility = 'visible';
@@ -452,20 +459,29 @@
                 options2 = Array.from({ length: 16 }, (_, i) => ({ value: 2024 - i, text: 2024 - i }));
             }
 
-            // Populate second dropdown
+            const selectedSecondDropdown_2 = "{{ selected_second_dropdown_2 }}"; 
+
             options.forEach(option => {
                 const opt = document.createElement('option');
                 opt.value = option.value;
                 opt.text = option.text;
+                if (String(option.value) === selectedSecondDropdown_2) {
+                    opt.selected = true;
+                }
                 secondDropdown2.appendChild(opt);
             });
 
+            const selectedThirdDropdown_2 = "{{ selected_third_dropdown_2 }}";
+
             // Populate third dropdown if 'Monthly' or 'Quarterly'
-            if (frequency2 === 'Monthly' || frequency2 === 'Qrt') {
+            if (frequency2 === 'Monthly' || frequency2 === 'Quarterly') {
                 options2.forEach(option => {
                     const opt = document.createElement('option');
                     opt.value = option.value;
                     opt.text = option.text;
+                    if (String(option.value) === selectedThirdDropdown_2) {
+                        opt.selected = true;
+                    }
                     thirdDropdown2.appendChild(opt);
                 });
             }
