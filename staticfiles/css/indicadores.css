@@ -40,6 +40,7 @@ select {
   cursor: pointer;
   border-radius: 0.25em;
   position: relative;
+  margin-right: 30px;
 }
 
 select:focus {
@@ -101,6 +102,7 @@ select:focus {
   align-items: center;
   justify-items: center;
   margin-left: 90px;
+  justify-content: center;
 }
 
 .horizontal-line {
@@ -124,6 +126,7 @@ select:focus {
   background-color: #008cff;
   border: none;
   margin-top: -1px;
+  margin-left: 5px;
 }
 
 #submit:hover, #submit_2:hover, #submit_3:hover {

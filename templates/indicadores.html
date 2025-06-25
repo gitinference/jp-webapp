@@ -110,17 +110,17 @@
                 </p>
             </section>
 
-            <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
+            <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px; justify-content: center;">
                 {% csrf_token %}
                 <section id="dropdowns">
-                    <label id="drop_title" for="frequency">Frecuencia:</label>
+                    &emsp;&emsp;<label id="drop_title" for="frequency">Frecuencia:</label>
                     <select name="frequency" id="frequency">
                         <option value="Yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly</option>
                         <option value="Monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly</option>
                         <option value="Quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly</option>
                         <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
                     </select>
-                    <label id="drop_title" for="column">Y-axis:</label>
+                    <label id="drop_title" for="column">Indicador:</label>
                     <select name="columns" id="columns">
                         {% for column in columns %}
                         <option value="{{ column.value }}" {% if column.value == column_post %}selected{% endif %}>{{ column.label }}</option>                        
@@ -128,8 +128,8 @@
                     </select>
                     <button id="submit" type="submit">Submit</button>
                     <button type="button" id="submit" onclick="downloadCSV('frequency','', 'files/index/indicators')"
-                            title="Descargar archivo CSV"> Descargar CSV </button>
-                </section>
+                            title="Descargar archivo CSV indicadores económicos"> Descargar CSV </button>
+                </section><br>
 
 
                 <!-- Contenedor de la gráfica -->
