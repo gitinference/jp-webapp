@@ -115,3 +115,22 @@ select:focus {
   line-height: 1.5;
 }
 
+.download_container{
+  display: flex;
+  justify-content: center;
+}
+
+/**Buttons**/
+
+#submit, #submit_2, #submit_3 {
+  font-size: 1em;
+  border-radius: 8px;
+  padding: 6px;
+  background-color: #008cff;
+  border: none;
+  margin-top: -1px;
+}
+
+#submit:hover, #submit_2:hover, #submit_3:hover {
+  background-color: #0071cd;
+}

@@ -1,8 +1,10 @@
 import pandas as pd
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
 
 import plotly.graph_objects as go
 import plotly.express as px
+import os
 
 def web_app_macro(request):
   
@@ -199,6 +201,21 @@ def web_app_macro(request):
 
     macro_html_1 = fig1.to_html()
     macro_html_2 = fig2.to_html()
+    
+    if request.method == "POST":
+        historicas = request.POST.get("historicas")
+        if(historicas == "2011"):
+            file_path = "data/processed/series-historicas-1950-2011_processed.parquet"
+        elif(historicas == "2023"):
+            file_path = "data/processed/series-historicas-2001-2023_processed.parquet"
+        else:
+            file_path = None
+        
+        csv_path = os.path.splitext(file_path)[0] + ".csv"
+        if not os.path.exists(csv_path):
+            df = pd.read_parquet(file_path)
+            df.to_csv(csv_path, index=False)
+        return FileResponse(open(csv_path, 'rb'), as_attachment=True, filename=os.path.basename(csv_path))
 
     context = {
         "macro1": macro_html_1,
