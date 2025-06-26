@@ -159,7 +159,7 @@
                   <option value="Fiscal" {% if selected_frequency_3 == "fiscal" %}selected{% endif %}>Fiscal</option>
               </select>
 
-              <label id="drop_title" for="column_3">Indicadores:</label>
+              <label id="drop_title" for="column_3">Categoría:</label>
               <select name="columns_3" id="columns_3">
                 {% for column in columns %}
                     <option value="{{ column.value }}" {% if selected_column_3 == column.value %}selected{% endif %}>{{ column.label }}</option>
