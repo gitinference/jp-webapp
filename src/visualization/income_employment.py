@@ -13,7 +13,7 @@ def web_app_income_employment(request):
   if request.method == "POST":
     naics_time = request.POST.get("naics_time")
   else:
-    naics_time = "1111"
+    naics_time = "Accounting, Tax Preparation, Bookkeeping, and Payroll Services"
     
   response = requests.get(f"{api}graph/naics/?naics_code={naics_time}")
   graph, naics = response.json()

@@ -123,7 +123,7 @@
               {{ consumer|safe }}
           </div>
 
-          <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Índice de Precios al Consumidor - Crecimiento Porcentual</div>
+          <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Índice de Precios al Consumidor - Crecimiento Porcentual Interanual</div>
           <section id="dropdowns">
               <label id="drop_title" for="frequency_2">Frecuencia:</label>
               <select name="frequency_2" id="frequency_2">
@@ -159,7 +159,7 @@
                   <option value="Fiscal" {% if selected_frequency_3 == "fiscal" %}selected{% endif %}>Fiscal</option>
               </select>
 
-              <label id="drop_title" for="column_3">Indicadores:</label>
+              <label id="drop_title" for="column_3">Categoría:</label>
               <select name="columns_3" id="columns_3">
                 {% for column in columns %}
                     <option value="{{ column.value }}" {% if selected_column_3 == column.value %}selected{% endif %}>{{ column.label }}</option>

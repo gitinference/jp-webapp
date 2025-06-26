@@ -90,18 +90,13 @@
                 </p>
             </section>
             
-            <br>
-            <br>
-            <br>
+            <br>            
             
             <!-- ----------------- FIRST GRAPH ----------------- -->
             <section id="graph_title">
                 <h2>Series Históricas 1950-2011</h2>
             </section>
-
-            <div class="graph-container">
-                {{ macro2|safe }}
-            </div>
+            
             <div class="download_container">
                 <section id="buttons">
                     <form method="post">
@@ -117,18 +112,16 @@
                     </form>
                 </section>
             </div>
-            <br>
-            <br>
+
+            <div class="graph-container">
+                {{ macro2|safe }}
+            </div>
             <br>
 
             <!-- ----------------- SECOND GRAPH ----------------- -->
             <section id="graph_title">
                 <h2>Series Históricas 2001-2023</h2>
-            </section>
-
-            <div class="graph-container">
-                {{ macro1|safe }}
-            </div>
+            </section>            
 
             <div class="download_container">
                 <section id="buttons">
@@ -144,6 +137,10 @@
                         </button>
                     </form>
                 </section>
+            </div>
+
+            <div class="graph-container">
+                {{ macro1|safe }}
             </div>
 
         </main>

@@ -4,7 +4,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Gastos de Gobierno General</title>
+        <title>Gastos Gobierno Estatal</title>
 
         <!-- Favicons -->
         <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
@@ -85,7 +85,7 @@
         <form method="post" id="gastos-estatales-form">
                 {% csrf_token %}
                 <div class="graph_container">
-                    <h2>Gastos estatales</h2>
+                    <h2>Gasto de Gobierno Estatal</h2>
                     <section id="buttons">
                     <label for="period">Frecuencia: </label>
                     <select name="period" id="period">
