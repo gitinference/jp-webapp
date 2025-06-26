@@ -68,17 +68,24 @@
                         <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
                     </select>
 
-                    <label id="drop_title" for="column">Y-axis:</label>
+                    <label id="drop_title" for="column">Naics:</label>
                     <select name="columns" id="columns">
                         {% for column in columns %}
                             <option value="{{ column }}" {% if selected_column == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
                     </select>
-                    <button id="submit" type="submit">Submit</button>
 
-                    <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
+                    <label id="drop_title" for="column">Type:</label>
+                    <select name="type" id="type">
+                        {% for col in type %}
+                            <option value="{{ col.value }}" {% if selected_col == col.value %}selected{% endif %}>{{ col.label }}</option>
+                        {% endfor %}
+                    </select>
                 </section>
-
+                <h3></h3>
+                <button id="submit" type="submit">Submit</button>
+                <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
+                <h3></h3>
                 <!-- Contenedor de la gráfica -->
                 <div class="graph_container">
                     {{ nomina|safe }}
@@ -93,17 +100,24 @@
                         <option value="Fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal</option>
                     </select>
 
-                    <label id="drop_title" for="column_2">Y-axis:</label>
+                    <label id="drop_title" for="column_2">Naics:</label>
                     <select name="columns_2" id="columns_2">
                         {% for column in columns %}
                             <option value="{{ column }}" {% if selected_column_2 == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
                     </select>
-                    <button id="submit" type="submit">Submit</button>
 
-                    <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
+                    <label id="drop_title" for="column">Type:</label>
+                    <select name="type_2" id="type_2">
+                        {% for col in type %}
+                            <option value="{{ col.value }}" {% if selected_col_2 == col.value %}selected{% endif %}>{{ col.label }}</option>
+                        {% endfor %}
+                    </select>
                 </section>
-
+                <h3></h3>
+                <button id="submit" type="submit">Submit</button>
+                <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
+                <h3></h3>
                 <!-- Contenedor de la gráfica -->
                 <div class="graph_container">
                     {{ cambio_porcentual|safe }}
@@ -118,17 +132,24 @@
                         <option value="Fiscal" {% if selected_frequency_3 == "fiscal" %}selected{% endif %}>Fiscal</option>
                     </select>
 
-                    <label id="drop_title" for="column_3">Y-axis:</label>
+                    <label id="drop_title" for="column_3">Naics:</label>
                     <select name="columns_3" id="columns_3">
                         {% for column in columns %}
                             <option value="{{ column }}" {% if selected_column_3 == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
                     </select>
-                    <button id="submit" type="submit">Submit</button>
 
-                    <button type="button" id="submit_3" onclick="downloadCSV('frequency_3','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
+                    <label id="drop_title" for="types">Type:</label>
+                    <select name="type_3" id="type_3">
+                        {% for col in type %}
+                            <option value="{{ col.value }}" {% if selected_col_3 == col.value %}selected{% endif %}>{{ col.label }}</option>
+                        {% endfor %}
+                    </select>
                 </section>
-
+                <h3></h3>
+                <button id="submit" type="submit">Submit</button>
+                <button type="button" id="submit_3" onclick="downloadCSV('frequency_3','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
+                <h3></h3>
                 <!-- Contenedor de la gráfica -->
                 <div class="graph_container">
                     {{ primera_diferencia|safe }}
