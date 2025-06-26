@@ -12,7 +12,7 @@ def web_app_demographic(request):
         column = request.POST.get("columns")
     else:
         frequency = request.GET.get("frequency", "yearly").lower()
-        column = request.GET.get("columns", 'cambio_natural')
+        column = request.GET.get("columns", 'componentes')
 
     response = requests.get(f"{api}graph/demographic/?time_frame={frequency}&column={column}")
     demographic_html, columns = response.json()
