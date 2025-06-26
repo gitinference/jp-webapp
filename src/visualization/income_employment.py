@@ -7,17 +7,22 @@ creds = get_db_credentials()
 api = creds[6]
 
 def web_app_income_employment(request):
-  
-  naics = None
-  
-  if request.method == "POST":
-    naics_time = request.POST.get("naics_time")
-  else:
-    naics_time = "Accounting, Tax Preparation, Bookkeeping, and Payroll Services"
-    
-  response = requests.get(f"{api}graph/naics/?naics_code={naics_time}")
-  graph, naics = response.json()
-    
-  html_graph = f'<div style="padding-left: 120px;">{graph}</div>'
+    if request.method == "POST":
+      frequency = request.POST.get("frequency").lower()
+      column = request.POST.get("columns")
+    else:
+      frequency = "yearly"
+      column = '1111--Oilseed and Grain Farming'
 
-  return render(request, "income_employment.html", {'graph': html_graph, 'api': api, 'naics_time_post': naics_time, **naics})
+    # Fetch graph from the API
+    response = requests.get(f"{api}graph/nomina/?time_frame={frequency}&data_type=nivel&naics_desc={column}&column=employment").json()
+    empleo_html, context = response
+
+    return render(request, "income_employment.html", 
+            {
+                "graph": empleo_html, 
+                "api": api, 
+                **context, 
+                "selected_frequency": frequency, 
+                "selected_column": column,
+            })

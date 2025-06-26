@@ -69,20 +69,27 @@
                     <a id="graph-anchor"></a>
                     <section id="buttons">
                         <section id="dropdowns">
-                            <label id="drop_title" for="naics_time">Naics:</label>
-                            <select name="naics_time" id="naics_time">
-                                {% for naics in naics_code %}
-                                    <option value="{{ naics }}" {% if naics == naics_time_post%}selected{% endif %}>{{ naics }}</option>
+                            <label id="drop_title" for="frequency">Frecuencia:</label>
+                            <select name="frequency" id="frequency">
+                                <option value="Yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly</option>
+                                <option value="Quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly</option>
+                                <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
+                            </select>
+
+                            <label id="drop_title" for="column">Categoría:</label>
+                            <select name="columns" id="columns">
+                                {% for column in columns %}
+                                    <option value="{{ column }}" {% if selected_column == column %}selected{% endif %}>{{ column }}</option>
                                 {% endfor %}
                             </select>
                         </section>
                     
                         <button id="submit" type="submit">Submit</button>
-                        <button type="button" id="submit_3" onclick="downloadCSV('naics_time','','files/qcew/employment')" title="Descargar archivo CSV nómina por sector industrial"> Descargar CSV </button>
+                        <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/qcew/nomina')" title="Descargar archivo CSV nómina por sector industrial"> Descargar CSV </button>
 
                     </section>                                
             
-                    <div id="graph">
+                    <div class="graph-container" id="graph">
                         {{ graph|safe }}
                     </div>
                 </div>
