@@ -22,9 +22,9 @@ def web_app_indice_consumidor(request):
         frequency = "yearly"
         frequency_2 = "yearly"
         frequency_3 = "yearly"
-        column = 'ropa'
-        column_2 = 'ropa'
-        column_3 = 'ropa'
+        column = 'agua_alcantarillados_y_limpieza_de_pozos_septicos'
+        column_2 = 'agua_alcantarillados_y_limpieza_de_pozos_septicos'
+        column_3 = 'agua_alcantarillados_y_limpieza_de_pozos_septicos'
 
     # Fetch graph from the API
     response = requests.get(f"{API_URL}graph/consumer/?time_frame={frequency}&data_type=indices_precio&column={column}").json()
