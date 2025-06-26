@@ -13,7 +13,7 @@ def web_app_indicadores(request):
         column = request.POST.get("columns")
     else:
         frequency = request.GET.get("frequency", "yearly").lower()
-        column = request.GET.get("columns", 'indice_de_actividad_economica')
+        column = request.GET.get("columns", 'encuesta_de_establecimientos')
 
     # Fetch graph from the API
     response = requests.get(f"{api}graph/indicadores/?time_frame={frequency}&column={column}")

@@ -11,7 +11,7 @@ def web_app_ciclos_economicos(request):
     if request.method == "POST":
         column = request.POST.get("columns")
     else:
-        column = request.GET.get("columns", 'indice_de_actividad_economica')
+        column = request.GET.get("columns", 'encuesta_de_establecimientos')
 
     # Fetch graph from the API
     response = requests.get(f"{api}graph/jp/cycles/?column={column}")
