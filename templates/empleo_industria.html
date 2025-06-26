@@ -69,7 +69,7 @@
                     </select>
 
                     <label id="drop_title" for="column">Categoría:</label>
-                    <select name="columns" id="columns">
+                    <select style="width: 400px;" name="columns" id="columns">
                         {% for column in columns %}
                             <option value="{{ column }}" {% if selected_column == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
@@ -81,11 +81,10 @@
                             <option value="{{ col.value }}" {% if selected_col == col.value %}selected{% endif %}>{{ col.label }}</option>
                         {% endfor %}
                     </select>
+                    <button id="submit" type="submit">Submit</button>
+                    <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
                 </section>
-                <h3></h3>
-                <button id="submit" type="submit">Submit</button>
-                <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
-                <h3></h3>
+
                 <!-- Contenedor de la gráfica -->
                 <div class="graph_container">
                     {{ nomina|safe }}
@@ -101,7 +100,7 @@
                     </select>
 
                     <label id="drop_title" for="column_2">Categoría:</label>
-                    <select name="columns_2" id="columns_2">
+                    <select style="width: 400px;" name="columns_2" id="columns_2">
                         {% for column in columns %}
                             <option value="{{ column }}" {% if selected_column_2 == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
@@ -113,11 +112,10 @@
                             <option value="{{ col.value }}" {% if selected_col_2 == col.value %}selected{% endif %}>{{ col.label }}</option>
                         {% endfor %}
                     </select>
+                    <button id="submit" type="submit">Submit</button>
+                    <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
                 </section>
-                <h3></h3>
-                <button id="submit" type="submit">Submit</button>
-                <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
-                <h3></h3>
+    
                 <!-- Contenedor de la gráfica -->
                 <div class="graph_container">
                     {{ cambio_porcentual|safe }}
@@ -133,7 +131,7 @@
                     </select>
 
                     <label id="drop_title" for="column_3">Categoría:</label>
-                    <select name="columns_3" id="columns_3">
+                    <select style="width: 400px;" name="columns_3" id="columns_3">
                         {% for column in columns %}
                             <option value="{{ column }}" {% if selected_column_3 == column %}selected{% endif %}>{{ column }}</option>
                         {% endfor %}
@@ -145,11 +143,10 @@
                             <option value="{{ col.value }}" {% if selected_col_3 == col.value %}selected{% endif %}>{{ col.label }}</option>
                         {% endfor %}
                     </select>
+                    <button id="submit" type="submit">Submit</button>
+                    <button type="button" id="submit_3" onclick="downloadCSV('frequency_3','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
                 </section>
-                <h3></h3>
-                <button id="submit" type="submit">Submit</button>
-                <button type="button" id="submit_3" onclick="downloadCSV('frequency_3','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
-                <h3></h3>
+                
                 <!-- Contenedor de la gráfica -->
                 <div class="graph_container">
                     {{ primera_diferencia|safe }}

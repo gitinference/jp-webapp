@@ -12,7 +12,7 @@ def web_app_income_employment(request):
       column = request.POST.get("columns")
     else:
       frequency = "yearly"
-      column = 'Accounting, Tax Preparation, Bookkeeping, and Payroll Services'
+      column = '1111--Oilseed and Grain Farming'
 
     # Fetch graph from the API
     response = requests.get(f"{api}graph/nomina/?time_frame={frequency}&data_type=nivel&naics_desc={column}&column=employment").json()
