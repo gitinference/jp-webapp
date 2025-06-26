@@ -14,7 +14,7 @@ function downloadCSV(frec, lev, api) {
         frequencyLower = frequency.toLowerCase();
     }
 
-    if (lev == "metric"){
+    if (lev == "metric" || lev == "agencies"){
         level = document.getElementById(lev).value;
         lev  = level;
     }
