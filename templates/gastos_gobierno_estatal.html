@@ -95,24 +95,46 @@
                         <option value="Fiscal"    {% if period == 'fiscal'    %}selected{% endif %}>Fiscal</option>
                     </select>
 
-                    <!-- Métrica -->
-                    <label for="metrics">Métrica:</label>
-                    <select name="metric" id="metric">
-                        {% for m in metric %}
-                        <option value="{{ m.value }}" {% if m.value == metric_post%}selected{% endif %}>{{ m.label }}</option>
+                    <label for="metric_gasto">Métrica:</label>
+                    <select name="metric_gasto" id="metric_gasto">
+                        {% for m in metric_gast %}
+                            <option value="{{ m.value }}" {% if metric_gasto == m.value %}selected{% endif %}>{{ m.label }}</option>
                         {% endfor %}
                     </select>
 
                     <button type="submit" id="submit">Submit</button>
-                    <button type="button" id="submit" onclick="downloadCSV('period','','files/index/gastos_estatales')"
-                            title="Descargar archivo CSV Gastos estatales"> Descargar CSV </button>
-                    </section>
-                    <!-- Aquí entra el HTML del gráfico -->
-                    <div id="graph">
-                        {{ graph|safe }}
-                    </div>
+                </section>
+                <div id="graph">
+                    {{ gasto_graph|safe }}
                 </div>
-            </form>
+            </div>
+
+            <!-- NUEVA GRÁFICA: Ingresos estatales -->
+            <div class="graph_container">
+                <h2>Ingresos estatales</h2>
+                <section id="buttons">
+                    <label for="period_revenue">Frecuencia: </label>
+                    <select name="period_revenue" id="period_revenue">
+                        <option value="monthly"   {% if period_revenue == 'monthly'   %}selected{% endif %}>Mensual</option>
+                        <option value="quarterly" {% if period_revenue == 'quarterly' %}selected{% endif %}>Trimestral</option>
+                        <option value="yearly"    {% if period_revenue == 'yearly'    %}selected{% endif %}>Anual</option>
+                        <option value="fiscal"    {% if period_revenue == 'fiscal'    %}selected{% endif %}>Fiscal</option>
+                    </select>
+
+                    <label for="metric_revenue">Métrica:</label>
+                    <select name="metric_revenue" id="metric_revenue">
+                        {% for m in metric_rev %}
+                            <option value="{{ m.value }}" {% if metric_revenue == m.value %}selected{% endif %}>{{ m.label }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit" id="submit_revenue">Submit</button>
+                </section>
+                <div id="revenue_graph">
+                    {{ revenue_graph|safe }}
+                </div>
+            </div>
+        </form>
         </main>
         <div class="container"></div>
 
