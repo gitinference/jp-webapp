@@ -30,6 +30,7 @@ function downloadCSV(frec, lev, api) {
     if (levelLower)    params.push("level=" + encodeURIComponent(levelLower));
 
     url = baseUrl + params.join("&");
+
     const a = document.createElement('a');
     a.href = url;
     document.body.appendChild(a);
