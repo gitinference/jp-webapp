@@ -14,7 +14,7 @@ function downloadCSV(frec, lev, api) {
         frequencyLower = frequency.toLowerCase();
     }
 
-    if (lev == "metric" || lev == "agencies"){
+    if (lev == "metric" || lev == "agencies" || lev == "metric_gasto" || lev == "metric_revenue"){
         level = document.getElementById(lev).value;
         lev  = level;
     }
@@ -24,11 +24,12 @@ function downloadCSV(frec, lev, api) {
     }
     apiurl = api;
     baseUrl = apienv+apiurl+"/?";
+
     
     let params = [];
     if (frequencyLower) params.push("time_frame=" + encodeURIComponent(frequencyLower));
     if (levelLower)    params.push("level=" + encodeURIComponent(levelLower));
-
+    
     url = baseUrl + params.join("&");
     const a = document.createElement('a');
     a.href = url;
