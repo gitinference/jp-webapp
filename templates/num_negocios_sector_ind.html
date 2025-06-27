@@ -4,7 +4,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Nómina por Sector Industrial</title>
+        <title>Número de Establecimientos por Sector Industrial</title>
 
         <!-- Favicons -->
         <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
@@ -38,7 +38,7 @@
                 <li><a href="/productos-hts/">Productos HTS</a></li>
                 <li><a href="/productos_ranking/">Product Price Ranking</a></li>
                 <li><a href="/indice-al-consumidor/">Indice al Consumidor</a></li>
-                <li><a href="/awards/">Gastos Gobierno Federal</a></li>
+                <li><a href="/awards/">Gastos Gobierno Federal en Puerto Rico</a></li>
             </ul>
 
             <img src="{% static 'images/gobierno_de_puerto_rico.png' %}" alt="Logo del Gobierno de Puerto Rico" id="logo" />
@@ -47,109 +47,47 @@
         <main>
             <!-- Título -->
             <section>
-                <h1>Nómina por Sector Industrial</h1>
+                <h1>Número de Establecimientos por Sector Industrial</h1>
             </section>
 
             <!-- Descripción -->
             <section>
                 <p>
-                    Utilizando datos del Quarterly Census of Employment and Wages (QCEW) del Negociado de Estadísticas Laborales de los Estados Unidos esta página grafica la evolución histórica de distintas series monetarias relacionadas con el empleo por industria en Puerto Rico. Estos datos ofrecen un indicador del desempeño económico de las distintas industrias definidas por el sistema North American Industry Classification System (NAICS).
+                  Esta aplicación permite evaluar los cambios históricos en la cantidad de establecimientos por 
+                  sector industrial en Puerto Rico. Para esto se utilizan datos del Quarterly Census of Employment 
+                  and Wages (QCEW) del Negociado de Estadísticas Laborales de los Estados Unidos. 
                 </p>
             </section>
 
-            <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
+            <form id="hts-form" method="post">
                 {% csrf_token %}
-                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Nominas por Industria (Términos Corrientes)</div>
-                <section id="dropdowns">
-                    <label id="drop_title" for="frequency">Frecuencia:</label>
-                    <select name="frequency" id="frequency">
-                        <option value="Yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly</option>
-                        <option value="Quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly</option>
-                        <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
-                    </select>
-
-                    <label id="drop_title" for="column">Categoría:</label>
-                    <select style="width: 400px;" name="columns" id="columns">
-                        {% for column in columns %}
-                            <option value="{{ column }}" {% if selected_column == column %}selected{% endif %}>{{ column }}</option>
-                        {% endfor %}
-                    </select>
-
-                    <label id="drop_title" for="column">Type:</label>
-                    <select name="type" id="type">
-                        {% for col in type %}
-                            <option value="{{ col.value }}" {% if selected_col == col.value %}selected{% endif %}>{{ col.label }}</option>
-                        {% endfor %}
-                    </select>
-                    <button id="submit" type="submit">Submit</button>
-                    <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
-                </section>
-
-                <!-- Contenedor de la gráfica -->
                 <div class="graph_container">
-                    {{ nomina|safe }}
-                </div>
+                    <a id="graph-anchor"></a>
+                    <section id="buttons">
+                        <section id="dropdowns">
+                            <label id="drop_title" for="frequency">Frecuencia:</label>
+                            <select name="frequency" id="frequency">
+                                <option value="Yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly</option>
+                                <option value="Quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly</option>
+                                <option value="Fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal</option>
+                            </select>
 
-                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Nominas por Industria - Crecimiento Porcentual</div>
-                <section id="dropdowns">
-                    <label id="drop_title" for="frequency_2">Frecuencia:</label>
-                    <select name="frequency_2" id="frequency_2">
-                        <option value="Yearly" {% if selected_frequency_2 == "yearly" %}selected{% endif %}>Yearly</option>
-                        <option value="Quarterly" {% if selected_frequency_2 == "quarterly" %}selected{% endif %}>Quarterly</option>
-                        <option value="Fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal</option>
-                    </select>
+                            <label id="drop_title" for="column">Categoría:</label>
+                            <select name="columns" id="columns">
+                                {% for column in columns %}
+                                    <option value="{{ column }}" {% if selected_column == column %}selected{% endif %}>{{ column }}</option>
+                                {% endfor %}
+                            </select>
+                        </section>
+                    
+                        <button id="submit" type="submit">Submit</button>
+                        <button type="button" id="submit_3" onclick="downloadCSV('frequency','','files/qcew/nomina')" title="Descargar archivo CSV Número de Negocios por Sector Industrial"> Descargar CSV </button>
 
-                    <label id="drop_title" for="column_2">Categoría:</label>
-                    <select style="width: 400px;" name="columns_2" id="columns_2">
-                        {% for column in columns %}
-                            <option value="{{ column }}" {% if selected_column_2 == column %}selected{% endif %}>{{ column }}</option>
-                        {% endfor %}
-                    </select>
-
-                    <label id="drop_title" for="column">Type:</label>
-                    <select name="type_2" id="type_2">
-                        {% for col in type %}
-                            <option value="{{ col.value }}" {% if selected_col_2 == col.value %}selected{% endif %}>{{ col.label }}</option>
-                        {% endfor %}
-                    </select>
-                    <button id="submit" type="submit">Submit</button>
-                    <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
-                </section>
-    
-                <!-- Contenedor de la gráfica -->
-                <div class="graph_container">
-                    {{ cambio_porcentual|safe }}
-                </div>
-
-                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Nominas por Industria - Tasa de Crecimiento</div>
-                <section id="dropdowns">
-                    <label id="drop_title" for="frequency_3">Frecuencia:</label>
-                    <select name="frequency_3" id="frequency_3">
-                        <option value="Yearly" {% if selected_frequency_3 == "yearly" %}selected{% endif %}>Yearly</option>
-                        <option value="Quarterly" {% if selected_frequency_3 == "quarterly" %}selected{% endif %}>Quarterly</option>
-                        <option value="Fiscal" {% if selected_frequency_3 == "fiscal" %}selected{% endif %}>Fiscal</option>
-                    </select>
-
-                    <label id="drop_title" for="column_3">Categoría:</label>
-                    <select style="width: 400px;" name="columns_3" id="columns_3">
-                        {% for column in columns %}
-                            <option value="{{ column }}" {% if selected_column_3 == column %}selected{% endif %}>{{ column }}</option>
-                        {% endfor %}
-                    </select>
-
-                    <label id="drop_title" for="types">Type:</label>
-                    <select name="type_3" id="type_3">
-                        {% for col in type %}
-                            <option value="{{ col.value }}" {% if selected_col_3 == col.value %}selected{% endif %}>{{ col.label }}</option>
-                        {% endfor %}
-                    </select>
-                    <button id="submit" type="submit">Submit</button>
-                    <button type="button" id="submit_3" onclick="downloadCSV('frequency_3','','files/qcew/nomina')" title="Descargar archivo CSV">Descargar CSV</button>
-                </section>
-                
-                <!-- Contenedor de la gráfica -->
-                <div class="graph_container">
-                    {{ primera_diferencia|safe }}
+                    </section>                                
+            
+                    <div class="graph-container" id="graph">
+                        {{ graph|safe }}
+                    </div>
                 </div>
             </form>
         </main>
