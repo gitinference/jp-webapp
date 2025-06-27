@@ -105,7 +105,6 @@
                             </option>
                         </select>
                     </section>
-                    <div>{{selected_trade_type}}</div>
                     <button id="submit" type="submit">Submit</button>
                     <div class="download_container_2">
                         <button type="button" id="submit_3" onclick="downloadCSV('frequency','hts', 'files/trade/jp')"
@@ -113,8 +112,104 @@
                     </div>
                 </section>
 
-                <div id="graph">
+                <div class="graph-container">
                     {{ graph|safe }}
+                </div>
+
+                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">HTS - Tasa de Crecimiento</div>
+
+                <section id="buttons">
+                    <section id="dropdowns">
+                        <label id="drop_title" for="frequency_2">Frecuencia:</label>
+                        <select name="frequency_2" id="frequency_2"
+                            onchange="updateHtsCodeDropdown(); updateDownloadLink();">
+                            <option value="yearly" {% if selected_frequency_2 == "yearly" %}selected{% endif %}>Yearly
+                            </option>
+                            <option value="monthly" {% if selected_frequency_2 == "monthly" %}selected{% endif %}>Monthly
+                            </option>
+                            <option value="qrt" {% if selected_frequency_2 == "qrt" %}selected{% endif %}>Quarterly
+                            </option>
+                            <option value="fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal
+                            </option>
+                        </select>
+                    </section>
+
+                    <section id="dropdowns">
+                        <label id="drop_title" for="hts_code_2">HTS Code:</label>
+                        <select name="hts_code_2" id="hts_code_2">
+                            {% for code in hts_codes %}
+                            <option value="{{ code }}" {% if selected_hts_code_2 == code %}selected{% endif %}>{{ code }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </section>
+
+                    <section id="dropdowns">
+                        <label id="drop_title" for="trade_type_2">Trade Type:</label>
+                        <select name="trade_type_2" id="trade_type_2">
+                            <option value="imports" {% if selected_trade_type_2 == "imports" %}selected{% endif %}>Imports
+                            </option>
+                            <option value="exports" {% if selected_trade_type_2 == "exports" %}selected{% endif %}>Exports
+                            </option>
+                        </select>
+                    </section>
+                    <button id="submit" type="submit">Submit</button>
+                    <div class="download_container_2">
+                        <button type="button" id="submit_3" onclick="downloadCSV('frequency','hts', 'files/trade/jp')"
+                            title="Descargar archivo CSV productos HTS"> Descargar CSV </button>
+                    </div>
+                </section>
+
+                <div class="graph-container">
+                    {{ pd_graph|safe }}
+                </div>
+
+                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">HTS - Crecimiento Porcentual Interanual</div>
+
+                <section id="buttons">
+                    <section id="dropdowns">
+                        <label id="drop_title" for="frequency_3">Frecuencia:</label>
+                        <select name="frequency_3" id="frequency_3"
+                            onchange="updateHtsCodeDropdown(); updateDownloadLink();">
+                            <option value="yearly" {% if selected_frequency_3 == "yearly" %}selected{% endif %}>Yearly
+                            </option>
+                            <option value="monthly" {% if selected_frequency_3 == "monthly" %}selected{% endif %}>Monthly
+                            </option>
+                            <option value="qrt" {% if selected_frequency_3 == "qrt" %}selected{% endif %}>Quarterly
+                            </option>
+                            <option value="fiscal" {% if selected_frequency_3 == "fiscal" %}selected{% endif %}>Fiscal
+                            </option>
+                        </select>
+                    </section>
+
+                    <section id="dropdowns">
+                        <label id="drop_title" for="hts_code_3">HTS Code:</label>
+                        <select name="hts_code_3" id="hts_code_3">
+                            {% for code in hts_codes %}
+                            <option value="{{ code }}" {% if selected_hts_code_3 == code %}selected{% endif %}>{{ code }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </section>
+
+                    <section id="dropdowns">
+                        <label id="drop_title" for="trade_type_3">Trade Type:</label>
+                        <select name="trade_type_3" id="trade_type_3">
+                            <option value="imports" {% if selected_trade_type_3 == "imports" %}selected{% endif %}>Imports
+                            </option>
+                            <option value="exports" {% if selected_trade_type_3 == "exports" %}selected{% endif %}>Exports
+                            </option>
+                        </select>
+                    </section>
+                    <button id="submit" type="submit">Submit</button>
+                    <div class="download_container_2">
+                        <button type="button" id="submit_3" onclick="downloadCSV('frequency','hts', 'files/trade/jp')"
+                            title="Descargar archivo CSV productos HTS"> Descargar CSV </button>
+                    </div>
+                </section>
+
+                <div class="graph-container">
+                    {{ cp_graph|safe }}
                 </div>
             </div>
 
