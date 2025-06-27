@@ -67,7 +67,7 @@
                       <option value="Fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal</option>
                   </select>
               </section>
-              <label id="agencies" for="agencies">Agencia:</label>
+              <label id="agencie" for="agencie">Agencia:</label>
               <select name="agencies" id="agencies">
                   {% for agency in agencies %}
                       <option value="{{ agency }}" {% if agency == selected_dropdown_2 %}selected{% endif %}>{{ agency }}</option>
