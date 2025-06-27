@@ -24,11 +24,12 @@ function downloadCSV(frec, lev, api) {
     }
     apiurl = api;
     baseUrl = apienv+apiurl+"/?";
+
     
     let params = [];
     if (frequencyLower) params.push("time_frame=" + encodeURIComponent(frequencyLower));
     if (levelLower)    params.push("level=" + encodeURIComponent(levelLower));
-
+    
     url = baseUrl + params.join("&");
 
     const a = document.createElement('a');
