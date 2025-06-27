@@ -53,13 +53,13 @@
             <!-- Descripción -->
             <section>
                 <p>
-                    TODO
+                    Utilizando datos del Quarterly Census of Employment and Wages (QCEW) del Negociado de Estadísticas Laborales de los Estados Unidos esta página grafica la evolución histórica de distintas series monetarias relacionadas con el empleo por industria en Puerto Rico. Estos datos ofrecen un indicador del desempeño económico de las distintas industrias definidas por el sistema North American Industry Classification System (NAICS).
                 </p>
             </section>
 
             <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
                 {% csrf_token %}
-                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Nominas por Industria</div>
+                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Nominas por Industria (Términos Corrientes)</div>
                 <section id="dropdowns">
                     <label id="drop_title" for="frequency">Frecuencia:</label>
                     <select name="frequency" id="frequency">
