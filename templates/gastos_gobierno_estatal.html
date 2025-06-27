@@ -22,7 +22,6 @@
         <!-- JS -->        
         <script> window.API_URL = "{{ api|escapejs }}";</script>
         <script src="{% static 'js/exportcsv.js' %}" defer></script>
-        <script src="{% static 'js/resetSession.js' %}"></script>
     </head>
 
     <body>
@@ -103,6 +102,7 @@
                     </select>
 
                     <button type="submit" id="submit">Submit</button>
+                    <button type="button" id="submit" onclick="downloadCSV('period','', 'files/index/gastos_estatales')" title="Descargar archivo CSV gastos "> Descargar CSV </button>
                 </section>
                 <div id="graph">
                     {{ gasto_graph|safe }}
@@ -128,7 +128,8 @@
                         {% endfor %}
                     </select>
 
-                    <button type="submit" id="submit_revenue">Submit</button>
+                    <button type="submit" id="submit_2">Submit</button>
+                    <button type="button" id="submit" onclick="downloadCSV('period_revenue','', 'files/index/revenues_estatales')" title="Descargar archivo CSV gastos "> Descargar CSV </button>
                 </section>
                 <div id="revenue_graph">
                     {{ revenue_graph|safe }}
