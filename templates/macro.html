@@ -15,9 +15,14 @@
 
         <!-- CSS -->
         <!-- <link rel="stylesheet" href="{% static 'css/macro.css' %}">-->
-        <link rel="stylesheet" href="{% static 'css/ciclos_economicos.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
+        <link rel="stylesheet" href="{% static 'css/product_hts.css' %}">
         <link rel="stylesheet" href="{% static 'css/website.css' %}">
-        <link rel="stylesheet" href="{% static 'css/forms/jquery-ui_1.10.2.css' %}" />
+
+        <!-- JS -->
+        <script> window.API_URL = "{{ api|escapejs }}";</script>
+        <script src="{% static 'js/exportcsv.js' %}" defer></script>
+        <script src="{% static 'js/resetSession.js' %}"></script>
     </head>
 
     <body>
@@ -95,53 +100,46 @@
             <!-- ----------------- FIRST GRAPH ----------------- -->
             <section id="graph_title">
                 <h2>Series Históricas 1950-2011</h2>
-            </section>
-            
-            <div class="download_container">
-                <section id="buttons">
-                    <form method="post">
+            <div class="graph_container">
+                    <form  id="hts-form" method="post">
                         {% csrf_token %}
-                        <label for="idh_csv">Descargar Series Históricas 1950-2011: </label>
-                        <button type="submit"
-                                id = "submit"
-                                name = "historicas"
-                                value = "2011"
-                                title="Descargar CSV datos macroeconómicos">
-                            Descargar CSV
-                        </button>
-                    </form>
-                </section>
-            </div>
+                    <section id="buttons">
+                    <section id="dropdowns">
+                        <label id="drop_title" for="frequency">Frecuencia:</label>
+                        <select name="frequency" id="frequency"
+                            onchange="updateHtsCodeDropdown(); updateDownloadLink();">
+                            <option value="yearly" {% if selected_frequency == "yearly" %}selected{% endif %}>Yearly
+                            </option>
+                            <option value="monthly" {% if selected_frequency == "monthly" %}selected{% endif %}>Monthly
+                            </option>
+                            <option value="qrt" {% if selected_frequency == "qrt" %}selected{% endif %}>Quarterly
+                            </option>
+                            <option value="fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal
+                            </option>
+                        </select>
+                    </section>
+
+                    <section id="dropdowns">
+                        <label id="drop_title" for="column">Categoria:</label>
+                        <select name="columns" id="columns">
+                            {% for code in columns %}
+                            <option value="{{ code.value }}" {% if selected_column == code.value %}selected{% endif %}>{{ code.label }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </section>
+                    <button id="submit" type="submit">Submit</button>
+                    <div class="download_container_2">
+                        <button type="button" id="submit_3" onclick="downloadCSV('frequency','', 'files/index/macro')"
+                            title="Descargar archivo CSV productos HTS"> Descargar CSV </button>
+                    </div>
+                </div>
+                </form>
 
             <div class="graph-container">
-                {{ macro2|safe }}
+                {{ graph|safe }}
             </div>
             <br>
-
-            <!-- ----------------- SECOND GRAPH ----------------- -->
-            <section id="graph_title">
-                <h2>Series Históricas 2001-2023</h2>
-            </section>            
-
-            <div class="download_container">
-                <section id="buttons">
-                    <form method="post">
-                        {% csrf_token %}
-                        <label for="idh_csv">Descargar Series Históricas 2001-2023: </label>
-                        <button type="submit"
-                                id = "submit_2"
-                                name ="historicas"
-                                value = "2023"
-                                title="Descargar CSV datos macroeconómicos">
-                            Descargar CSV
-                        </button>
-                    </form>
-                </section>
-            </div>
-
-            <div class="graph-container">
-                {{ macro1|safe }}
-            </div>
 
         </main>
             <!-- ------------------ FOOTER --------------------- -->
