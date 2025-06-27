@@ -102,7 +102,7 @@
                     </select>
 
                     <button type="submit" id="submit">Submit</button>
-                    <button type="button" id="submit" onclick="downloadCSV('period','', 'files/index/gastos_estatales')" title="Descargar archivo CSV gastos "> Descargar CSV </button>
+                    <button type="button" id="submit" onclick="downloadCSV('period','metric_gasto', 'files/index/gastos_estatales')" title="Descargar archivo CSV gastos "> Descargar CSV </button>
                 </section>
                 <div id="graph">
                     {{ gasto_graph|safe }}
@@ -129,7 +129,7 @@
                     </select>
 
                     <button type="submit" id="submit_2">Submit</button>
-                    <button type="button" id="submit" onclick="downloadCSV('period_revenue','', 'files/index/revenues_estatales')" title="Descargar archivo CSV gastos "> Descargar CSV </button>
+                    <button type="button" id="submit" onclick="downloadCSV('period_revenue','metric_revenue', 'files/index/revenues_estatales')" title="Descargar archivo CSV gastos "> Descargar CSV </button>
                 </section>
                 <div id="revenue_graph">
                     {{ revenue_graph|safe }}
