@@ -12,10 +12,11 @@ def web_app_macro(request):
         column = request.POST.get("columns")
     else:
         frequency = "fiscal"
-        column = 'producto bruto (millones $)'
+        column = 'producto_bruto_(millones_$)'
 
-
-    graph, context = requests.get(f"{API_URL}/graph/macro/?time_frame={frequency}&column={column}").json()
+    temp_col = column.lower()
+    temp_freq = frequency.lower()
+    graph, context = requests.get(f"{API_URL}/graph/macro/?time_frame={temp_freq}&column={temp_col}").json()
 
     return render(request, "macro.html", 
                     {
