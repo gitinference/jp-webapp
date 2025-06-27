@@ -78,6 +78,7 @@ urlpatterns = [
     re_path(r"^datos-energia/$", views.energy_data, name="energy_data"),
     re_path(r"^gastos-gobierno-estatal/$", views.gastos_gobierno_estatal, name="gastos_gobierno_estatal"),
     re_path(r"^empleo-por-industria/$", views.empleo_industria, name="empleo_industria"),
+    re_path(r"^num-neg-sec-ind/$", views.num_neg_industria, name="num_neg_industria"),
 
     re_path(r"^cuestionario-del-viajero/$", views.travel_questionaire, name='travel_questionaire'),
     re_path(r"^cuestionario-del-viajero-english/$", views.cuestionario_viajero_english, name='cuestionario_viajero_english'),

@@ -28,6 +28,7 @@ from src.visualization.macro import web_app_macro
 from src.visualization.login import log_in_page 
 from src.visualization.imports_exports import web_app_imports_exports
 from src.visualization.energy import energy_data
+from src.visualization.num_neg_sec_ind import web_app_num_neg_industria
 from src.formularios.form_ip_110 import IP_110
 from src.formularios.form_jp_304 import JP_304
 from src.formularios.form_jp_361 import JP_361
@@ -180,3 +181,6 @@ def JP_544_1(request):
 def logout_view(request):
     logout(request)
     return redirect('web_app:log_in_page')
+
+def num_neg_industria(request):
+    return web_app_num_neg_industria(request)
