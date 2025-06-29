@@ -21,9 +21,9 @@ def empleo_industria(request):
     frequency = "yearly"
     frequency_2 = "yearly"
     frequency_3 = "yearly"
-    column = '1111--Oilseed and Grain Farming'
-    column_2 = '1111--Oilseed and Grain Farming'
-    column_3 = '1111--Oilseed and Grain Farming'
+    column = '(N1111) Oilseed and Grain Farming'
+    column_2 = '(N1111) Oilseed and Grain Farming'
+    column_3 = '(N1111) Oilseed and Grain Farming'
     col = 'taxable_wages'
     col_2 = 'taxable_wages'
     col_3 = 'taxable_wages'

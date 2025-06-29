@@ -112,6 +112,7 @@
 
             <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px; justify-content: center;">
                 {% csrf_token %}
+                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Indicadores</div>
                 <section id="dropdowns">
                     &emsp;&emsp;<label id="drop_title" for="frequency">Frecuencia:</label>
                     <select name="frequency" id="frequency">
@@ -127,7 +128,7 @@
                         {% endfor %}
                     </select>
                     <button id="submit" type="submit">Submit</button>
-                    <button type="button" id="submit" onclick="downloadCSV('frequency','', 'files/index/indicators')"
+                    <button type="button" id="submit" onclick="downloadCSV('frequency','indices_precio', 'files/index/indicators')"
                             title="Descargar archivo CSV indicadores económicos"> Descargar CSV </button>
                 </section><br>
 
@@ -136,6 +137,58 @@
                 <div class="graph_container">
                     {{ indicadores|safe }}
                 </div>
+
+                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Indicadores - Crecimiento Porcentual Interanual</div>
+          <section id="dropdowns">
+              <label id="drop_title" for="frequency_2">Frecuencia:</label>
+              <select name="frequency_2" id="frequency_2">
+                  <option value="Yearly" {% if selected_frequency_2 == "yearly" %}selected{% endif %}>Yearly</option>
+                  <option value="Monthly" {% if selected_frequency_2 == "monthly" %}selected{% endif %}>Monthly</option>
+                  <option value="Quarterly" {% if selected_frequency_2 == "quarterly" %}selected{% endif %}>Quarterly</option>
+                  <option value="Fiscal" {% if selected_frequency_2 == "fiscal" %}selected{% endif %}>Fiscal</option>
+              </select>
+
+              <label id="drop_title" for="column_2">Categoría:</label>
+              <select name="columns_2" id="columns_2">
+                {% for column in columns %}
+                    <option value="{{ column.value }}" {% if column.value == column_post_2 %}selected{% endif %}>{{ column.label }}</option>
+                {% endfor %}
+              </select>
+              <button id="submit" type="submit">Submit</button>
+
+              <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','cambio_porcentual','files/index/indicators')" title="Descargar archivo CSV índice de precios al consumidor">Descargar CSV</button>
+          </section>
+
+          <!-- Contenedor de la gráfica -->
+          <div class="graph_container">
+              {{ cambio_porcentual|safe }}
+          </div>
+
+          <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Indicadores - Tasa de Crecimiento Interanual</div>
+          <section id="dropdowns">
+              <label id="drop_title" for="frequency_3">Frecuencia:</label>
+              <select name="frequency_3" id="frequency_3">
+                  <option value="Yearly" {% if selected_frequency_3 == "yearly" %}selected{% endif %}>Yearly</option>
+                  <option value="Monthly" {% if selected_frequency_3 == "monthly" %}selected{% endif %}>Monthly</option>
+                  <option value="Quarterly" {% if selected_frequency_3 == "quarterly" %}selected{% endif %}>Quarterly</option>
+                  <option value="Fiscal" {% if selected_frequency_3 == "fiscal" %}selected{% endif %}>Fiscal</option>
+              </select>
+
+              <label id="drop_title" for="column_3">Categoría:</label>
+              <select name="columns_3" id="columns_3">
+                {% for column in columns %}
+                    <option value="{{ column.value }}" {% if column.value == column_post_3 %}selected{% endif %}>{{ column.label }}</option>
+                {% endfor %}
+              </select>
+              <button id="submit" type="submit">Submit</button>
+
+              <button type="button" id="submit_3" onclick="downloadCSV('frequency_3','primera_diferencia','files/index/indicators')" title="Descargar archivo CSV índice de precios al consumidor">Descargar CSV</button>
+          </section>
+
+          <!-- Contenedor de la gráfica -->
+          <div class="graph_container">
+              {{ primera_diferencia|safe }}
+          </div>
             </form>
         </main>
 
