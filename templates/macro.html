@@ -15,14 +15,13 @@
 
         <!-- CSS -->
         <!-- <link rel="stylesheet" href="{% static 'css/macro.css' %}">-->
-        <link rel="stylesheet" href="{% static 'css/indicadores.css' %}">
-        <link rel="stylesheet" href="{% static 'css/product_hts.css' %}">
-        <link rel="stylesheet" href="{% static 'css/website.css' %}">
+        <link rel="stylesheet" href="{% static 'css/indicadores.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/product_hts.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/website.css' %}" />
 
         <!-- JS -->
         <script> window.API_URL = "{{ api|escapejs }}";</script>
         <script src="{% static 'js/exportcsv.js' %}" defer></script>
-        <script src="{% static 'js/resetSession.js' %}"></script>
     </head>
 
     <body>
@@ -99,43 +98,57 @@
             
             <!-- ----------------- FIRST GRAPH ----------------- -->
             <section id="graph_title">
-                <h2>Series Históricas 1950-2011</h2>
-            <div class="graph_container">
-                    <form  id="hts-form" method="post">
-                        {% csrf_token %}
-                    <section id="buttons">
-                    <section id="dropdowns">
-                        <label id="drop_title" for="frequency">Frecuencia:</label>
-                        <select name="frequency" id="frequency"
-                            onchange="updateHtsCodeDropdown(); updateDownloadLink();">
-                            <option value="quarterly" {% if selected_frequency == "quarterly" %}selected{% endif %}>Quarterly
-                            </option>
-                            <option value="fiscal" {% if selected_frequency == "fiscal" %}selected{% endif %}>Fiscal
-                            </option>
-                        </select>
-                    </section>
+            <div>
+                <form id="hts-form" method="post" style="padding-left: 120px; padding-bottom: 20px;">
+                    {% csrf_token %}
+                    <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Series Históricas 1950-2011</div>
+                <section id="dropdowns">
+                    <label id="drop_title" for="frequency">Frecuencia:</label>
+                    <select name="frequency" id="frequency">
+                        <option value="Quarterly" {% if selected_frequency == "Quarterly" %}selected{% endif %}>Quarterly</option>
+                        <option value="Fiscal" {% if selected_frequency == "Fiscal" %}selected{% endif %}>Fiscal</option>
+                    </select>
 
-                    <section id="dropdowns">
-                        <label id="drop_title" for="column">Categoria:</label>
-                        <select name="columns" id="columns">
-                            {% for code in columns %}
-                            <option value="{{ code.value }}" {% if selected_column == code.value %}selected{% endif %}>{{ code.label }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </section>
+                    <label id="drop_title" for="column">Categoría:</label>
+                    <select name="columns" id="columns">
+                        {% for column in columns %}
+                            <option value="{{ column.value }}" {% if selected_column == column.value %}selected{% endif %}>{{ column.label }}</option>
+                        {% endfor %}
+                    </select>
                     <button id="submit" type="submit">Submit</button>
-                    <div class="download_container_2">
-                        <button type="button" id="submit_3" onclick="downloadCSV('frequency','', 'files/index/macro')"
-                            title="Descargar archivo CSV productos HTS"> Descargar CSV </button>
-                    </div>
-                </div>
-                </form>
 
-            <div class="graph-container">
-                {{ graph|safe }}
-            </div>
-            <br>
+                    <button type="button" id="submit_3" onclick="downloadCSV('frequency','df_1950','files/index/macro')" title="Descargar archivo CSV indice de precios al consumidor">Descargar CSV</button>
+                </section>
+
+                <!-- Contenedor de la gráfica -->
+                <div class="graph_container">
+                    {{ graph|safe }}
+                </div>
+
+                <div style="font-weight: bold; font-size: 24px; padding-bottom: 20px; padding-top: 20px;">Series Históricas 2001-2023</div>
+                <section id="dropdowns">
+                    <label id="drop_title" for="frequency_2">Frecuencia:</label>
+                    <select name="frequency_2" id="frequency_2">
+                        <option value="Quarterly" {% if selected_frequency_2 == "Quarterly" %}selected{% endif %}>Quarterly</option>
+                        <option value="Fiscal" {% if selected_frequency_2 == "Fiscal" %}selected{% endif %}>Fiscal</option>
+                    </select>
+
+                    <label id="drop_title" for="column_2">Categoría:</label>
+                    <select name="columns_2" id="columns_2">
+                        {% for column in columns_2 %}
+                            <option value="{{ column.value }}" {% if selected_column_2 == column.value %}selected{% endif %}>{{ column.label }}</option>
+                        {% endfor %}
+                    </select>
+                    <button id="submit" type="submit">Submit</button>
+
+                    <button type="button" id="submit_3" onclick="downloadCSV('frequency_2','df_2001','files/index/macro')" title="Descargar archivo CSV índice de precios al consumidor">Descargar CSV</button>
+                </section>
+
+                <!-- Contenedor de la gráfica -->
+                <div class="graph_container">
+                    {{ graph2001|safe }}
+                </div>
+            </form>
 
         </main>
             <!-- ------------------ FOOTER --------------------- -->
